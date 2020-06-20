@@ -27,7 +27,7 @@ const Login = () => {
 
 	return (
 
-		<section className="hero has-background-grey-light is-fullheight">
+		<section className="hero has-background-grey is-fullheight">
 			<div className="hero-body">
 				<div className="container">
 					<div className="columns is-centered">
@@ -61,7 +61,7 @@ const Login = () => {
 								</div>
 
 								<div className="field">
-									<button className="button is-primary is-fullwidth" onClick={e => handleClick(e)}>Login</button>
+									<button className="button is-info is-fullwidth" onClick={e => handleClick(e)}>Login</button>
 								</div>
 
 								<div className="field">
