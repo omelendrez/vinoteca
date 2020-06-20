@@ -1,13 +1,14 @@
 import React, { useState } from 'react'
 import { login } from '../services/login'
 import Notification from './Notification'
+import { saveData, getData } from '../helper'
 
 const Login = () => {
 
-	const defaultForm = { user: '', password: '' }
+	const defaultForm = { email: '', password: '' }
 
 	const [form, setForm] = useState(defaultForm)
-	const [error, setError] = useState('')
+	const [error, setError] = useState({})
 
 	const handleChange = e => {
 		if (error) clearError()
@@ -15,14 +16,19 @@ const Login = () => {
 	}
 
 	const clearError = () => {
-		setError('')
+		setError({})
 	}
 
 	const handleClick = e => {
 		e.preventDefault()
 		login(form)
-			.then(data => console.log(data))
-			.catch(error => setError(error.message))
+			.then(data => {
+				const { token, user } = data
+				saveData('token', token)
+				saveData('user', user)
+				setError({ message: 'Bienvenido', type: 'is-success' })
+			})
+			.catch(error => setError({ message: error.message, type: 'is-danger' }))
 	}
 
 	return (
@@ -32,16 +38,16 @@ const Login = () => {
 				<div className="container">
 					<div className="columns is-centered">
 						<div className="column is-4">
-							<form className="box">
+							<form className="box" style={styles.box}>
 
 								<h3 className="title is-3">Login</h3>
 
 								<div className="field">
 									<div className="control has-icons-left">
-										<input type="text" placeholder="Usuario" className="input" id="user" onChange={e => handleChange(e)}
+										<input type="email" placeholder="Email" className="input" id="email" onChange={e => handleChange(e)}
 											required />
 										<span className="icon is-small is-left">
-											<i className="fa fa-user"></i>
+											<i className="fa fa-at"></i>
 										</span>
 									</div>
 								</div>
@@ -70,7 +76,7 @@ const Login = () => {
 									</div>
 								</div>
 
-								{error && <Notification message={error} clear={clearError} />}
+								{error.message && <Notification message={error.message} clear={clearError} type={error.type} />}
 
 							</form>
 						</div>
@@ -86,6 +92,12 @@ const Login = () => {
 	)
 
 
+}
+
+const styles = {
+	box: {
+		height: 360
+	}
 }
 
 export default Login
