@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { login } from '../services/login'
 import Notification from './Notification'
 import { saveData, getData } from '../helper'
@@ -9,6 +9,13 @@ const Login = () => {
 
 	const [form, setForm] = useState(defaultForm)
 	const [error, setError] = useState({})
+	const [checked, setChecked] = useState(getData('remember'))
+
+	useEffect(() => {
+		if (checked) {
+			setForm({ ...form, email: getData('user').email })
+		}
+	}, [])
 
 	const handleChange = e => {
 		if (error) clearError()
@@ -26,9 +33,13 @@ const Login = () => {
 				const { token, user } = data
 				saveData('token', token)
 				saveData('user', user)
-				setError({ message: 'Bienvenido', type: 'is-success' })
+				setError({ message: `Bienvenido ${user.name}`, type: 'is-success' })
 			})
 			.catch(error => setError({ message: error.message, type: 'is-danger' }))
+	}
+
+	const handleToggle = e => {
+		saveData('remember', e.target.checked)
 	}
 
 	return (
@@ -44,7 +55,8 @@ const Login = () => {
 
 								<div className="field">
 									<div className="control has-icons-left">
-										<input type="email" placeholder="Email" className="input" id="email" onChange={e => handleChange(e)}
+										<input type="email" placeholder="Email" className="input" id="email" onChange={handleChange}
+											value={form.email}
 											required />
 										<span className="icon is-small is-left">
 											<i className="fa fa-at"></i>
@@ -54,7 +66,7 @@ const Login = () => {
 
 								<div className="field">
 									<div className="control has-icons-left">
-										<input type="password" placeholder="********" className="input" required id="password" onChange={e => handleChange(e)} />
+										<input type="password" placeholder="********" className="input" required id="password" onChange={handleChange} />
 										<span className="icon is-small is-left">
 											<i className="fa fa-key"></i>
 										</span>
@@ -62,12 +74,17 @@ const Login = () => {
 								</div>
 
 								<div className="field">
-									<input type="checkbox" className="mr-1" />
-									<label>Recordar usuario</label>
+									<input
+										type="checkbox"
+										className="mr-1"
+										onClick={handleToggle}
+										defaultChecked={checked}
+									/>
+									<label>Recordar email</label>
 								</div>
 
 								<div className="field">
-									<button className="button is-info is-fullwidth" onClick={e => handleClick(e)}>Login</button>
+									<button className="button is-info is-fullwidth" onClick={handleClick}>Login</button>
 								</div>
 
 								<div className="field">
@@ -96,7 +113,7 @@ const Login = () => {
 
 const styles = {
 	box: {
-		height: 360
+		height: 370
 	}
 }
 
