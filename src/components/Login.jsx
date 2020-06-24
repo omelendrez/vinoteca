@@ -8,7 +8,7 @@ const Login = () => {
 	const defaultForm = { email: '', password: '' }
 
 	const [form, setForm] = useState(defaultForm)
-	const [error, setError] = useState({})
+	const [alert, setAlert] = useState({})
 	const [checked, setChecked] = useState(getData('remember'))
 	const [isLoading, setIsLoading] = useState(false)
 
@@ -19,12 +19,12 @@ const Login = () => {
 	}, [])
 
 	const handleChange = e => {
-		if (error) clearError()
+		if (alert) clearAlert()
 		setForm({ ...form, [e.target.id]: e.target.value })
 	}
 
-	const clearError = () => {
-		setError({})
+	const clearAlert = () => {
+		setAlert({})
 	}
 
 	const handleClick = e => {
@@ -35,10 +35,13 @@ const Login = () => {
 				const { token, user } = data
 				saveData('token', token)
 				saveData('user', user)
-				setError({ message: `Bienvenido ${user.name}`, type: 'is-success' })
+				setAlert({ message: `Bienvenido ${user.name}`, type: 'is-success' })
 				setIsLoading(false)
 			})
-			.catch(error => setError({ message: error.message, type: 'is-danger' }))
+			.catch(error => {
+				setAlert({ message: error.message, type: 'is-danger' })
+				setIsLoading(false)
+			})
 	}
 
 	const handleToggle = e => {
@@ -96,7 +99,7 @@ const Login = () => {
 									</div>
 								</div>
 
-								{error.message && <Notification message={error.message} clear={clearError} type={error.type} />}
+								{alert.message && <Notification message={alert.message} clear={clearAlert} type={alert.type} />}
 
 							</form>
 						</div>
