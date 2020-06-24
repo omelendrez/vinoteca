@@ -10,6 +10,7 @@ const Login = () => {
 	const [form, setForm] = useState(defaultForm)
 	const [error, setError] = useState({})
 	const [checked, setChecked] = useState(getData('remember'))
+	const [isLoading, setIsLoading] = useState(false)
 
 	useEffect(() => {
 		if (checked) {
@@ -28,12 +29,14 @@ const Login = () => {
 
 	const handleClick = e => {
 		e.preventDefault()
+		setIsLoading(true)
 		login(form)
 			.then(data => {
 				const { token, user } = data
 				saveData('token', token)
 				saveData('user', user)
 				setError({ message: `Bienvenido ${user.name}`, type: 'is-success' })
+				setIsLoading(false)
 			})
 			.catch(error => setError({ message: error.message, type: 'is-danger' }))
 	}
@@ -84,12 +87,12 @@ const Login = () => {
 								</div>
 
 								<div className="field">
-									<button className="button is-info is-fullwidth" onClick={handleClick}>Login</button>
+									<button className={`button is-info is-fullwidth ${isLoading ? 'is-loading' : ''}`} onClick={handleClick}>Login</button>
 								</div>
 
 								<div className="field">
 									<div className="control">
-										<a href="#" className="is-link">Olvidé mi password</a>
+										<a href="#">Olvidé mi password</a>
 									</div>
 								</div>
 
