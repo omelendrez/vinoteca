@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import './NavBar.scss'
 
 const NavBar = () => {
   const [isActive, setIsActive] = useState(false)
