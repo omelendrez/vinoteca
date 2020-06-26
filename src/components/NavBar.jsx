@@ -33,14 +33,23 @@ const NavBar = ({ user }) => {
       </div>
 
       <div className={`navbar-menu ${isActive ? 'is-active' : ''}`}>
-        {user.id && <div className="navbar-start">
-
-          <a className="navbar-item">Productos</a>
-          <a className="navbar-item">Depósitos</a>
-          <a className="navbar-item">Categorías</a>
-          <a className="navbar-item">Inventario</a>
-
-        </div>}
+        {user.id &&
+          <>
+            <div className="navbar-start">
+              <a className="navbar-item">Productos</a>
+              <a className="navbar-item">Depósitos</a>
+              <a className="navbar-item">Categorías</a>
+              <a className="navbar-item">Inventario</a>
+            </div>
+            <div className="navbar-end">
+              <div className="navbar-item">
+                <span className="tag is-info">
+                  {user.name}
+                </span>
+              </div>
+            </div>
+          </>
+        }
 
       </div>
     </nav>
