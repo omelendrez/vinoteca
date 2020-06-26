@@ -3,7 +3,7 @@ import { login } from '../services/login'
 import Notification from './Notification'
 import { saveData, getData } from '../helper'
 
-const Login = () => {
+const Login = ({ setUser }) => {
 
 	const defaultForm = { email: '', password: '' }
 
@@ -37,6 +37,7 @@ const Login = () => {
 				saveData('user', user)
 				setAlert({ message: `Bienvenido ${user.name}`, type: 'is-success' })
 				setIsLoading(false)
+				setUser(user)
 			})
 			.catch(error => {
 				setAlert({ message: error.message, type: 'is-danger' })
