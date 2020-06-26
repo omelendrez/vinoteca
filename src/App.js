@@ -7,7 +7,7 @@ function App() {
   const [user, setUser] = useState({})
   return (
     <>
-      <NavBar user={user} />
+      <NavBar user={user} setUser={setUser} />
       {!user.id && <Login setUser={setUser} />}
     </>
   )
