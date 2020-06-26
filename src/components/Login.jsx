@@ -80,13 +80,15 @@ const Login = () => {
 								</div>
 
 								<div className="field">
-									<input
-										type="checkbox"
-										className="mr-1"
-										onClick={handleToggle}
-										defaultChecked={checked}
-									/>
-									<label>Recordar email</label>
+									<label className="checkbox">
+										<input
+											type="checkbox"
+											className="mr-1"
+											onClick={handleToggle}
+											defaultChecked={checked}
+										/>
+										Recordar email
+									</label>
 								</div>
 
 								<div className="field">
