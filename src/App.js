@@ -4,6 +4,7 @@ import './components/Login'
 import Login from './components/Login'
 import NavBar from './components/NavBar'
 
+import Home from './components/Home'
 import Companies from './components/companies/Companies'
 import Profiles from './components/profiles/Profiles'
 import Users from './components/users/Users'
@@ -17,6 +18,7 @@ function App() {
         {!user.id && <Login setUser={setUser} />}
         {user.id && <main>
           <Switch>
+            <Route path="/" exact component={Home} />
             <Route path="/companies" exact component={Companies} />
             <Route path="/profiles" exact component={Profiles} />
             <Route path="/users" exact component={Users} />

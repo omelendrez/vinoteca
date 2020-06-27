@@ -36,10 +36,7 @@ const NavBar = ({ user, setUser }) => {
       aria-label='main navigation'
     >
       <div className='navbar-brand'>
-        <a className='navbar-item' href='https://bulma.io'>
-          La Cava
-        </a>
-
+        <NavLink to="/">La Cava</NavLink>
         <a
           role='button'
           className={`navbar-burger burger ${isActive ? "is-active" : ""}`}
