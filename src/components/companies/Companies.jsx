@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Notification from '../Notification'
+import Loading from '../Loading'
 import { getCompanies } from '../../services/companies'
 import { formatDateFull } from '../../helpers'
 
@@ -27,6 +28,7 @@ const Companies = () => {
   const { rows } = companies
   return (
     <>
+      {alert.message && <Notification message={alert.message} clear={clearAlert} type={alert.type} />}
       <section className="hero is-warning">
         <div className="hero-body">
           <div className="container">
@@ -66,10 +68,10 @@ const Companies = () => {
                 )
               }
               )}
-              {alert.message && <Notification message={alert.message} clear={clearAlert} type={alert.type} />}
             </section>}
         </div>
       </section>
+      {isLoading && <Loading />}
     </>
   )
 }
