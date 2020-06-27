@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import NavLink from './NavLink'
+import NavBarGroup from './NavBarGroup'
 import "./NavBar.scss"
 
 const NavBar = ({ user, setUser }) => {
@@ -11,16 +12,16 @@ const NavBar = ({ user, setUser }) => {
     user: false
   }
   const [isActive, setIsActive] = useState(false)
-  const [expanded, setExpanded] = useState(expandedDefaults)
+  const [groups, setGroups] = useState(expandedDefaults)
 
   const handleToggle = e => {
     setIsActive(!isActive)
   }
 
   const handleSubmenu = submenu => {
-    const exp = { ...expanded }
+    const exp = { ...groups }
     exp[submenu] = !exp[submenu]
-    setExpanded(exp)
+    setGroups(exp)
   }
 
   const logout = e => {
@@ -58,7 +59,7 @@ const NavBar = ({ user, setUser }) => {
 
               <div className='navbar-item has-dropdown is-hoverable'>
                 <a className='navbar-link' onClick={() => handleSubmenu('products')}>Productos</a>
-                <div className={`navbar-dropdown ${expanded.products ? '' : 'is-hidden-mobile is-hidden-tablet-only'}`} onClick={handleToggle}>
+                <div className={`navbar-dropdown ${groups.products ? '' : 'is-hidden-mobile is-hidden-tablet-only'}`} onClick={handleToggle}>
                   <a className='navbar-item'>Categorías</a>
                   <a className='navbar-item'>Productos</a>
                 </div>
@@ -66,7 +67,7 @@ const NavBar = ({ user, setUser }) => {
 
               <div className='navbar-item has-dropdown is-hoverable'>
                 <a className='navbar-link' onClick={() => handleSubmenu('inventory')}>Inventario</a>
-                <div className={`navbar-dropdown ${expanded.inventory ? '' : 'is-hidden-mobile is-hidden-tablet-only'}`} onClick={handleToggle}>
+                <div className={`navbar-dropdown ${groups.inventory ? '' : 'is-hidden-mobile is-hidden-tablet-only'}`} onClick={handleToggle}>
                   <a className='navbar-item'>Inventario</a>
                   <a className='navbar-item'>Faltantes</a>
                   <a className='navbar-item'>Correción de inventario</a>
@@ -76,7 +77,7 @@ const NavBar = ({ user, setUser }) => {
 
               <div className='navbar-item has-dropdown is-hoverable'>
                 <a className='navbar-link' onClick={() => handleSubmenu('orders')}>Órdenes de compra</a>
-                <div className={`navbar-dropdown ${expanded.orders ? '' : 'is-hidden-mobile is-hidden-tablet-only'}`} onClick={handleToggle}>
+                <div className={`navbar-dropdown ${groups.orders ? '' : 'is-hidden-mobile is-hidden-tablet-only'}`} onClick={handleToggle}>
                   <a className='navbar-item'>Proveedores</a>
                   <a className='navbar-item'>Órdenes de compra</a>
                   <a className='navbar-item'>Depósitos</a>
@@ -84,14 +85,17 @@ const NavBar = ({ user, setUser }) => {
               </div>
 
               {user.profileId === 1 && (
-                <div className='navbar-item has-dropdown is-hoverable'>
-                  <a className='navbar-link' onClick={() => handleSubmenu('users')}>Usuarios</a>
-                  <div className={`navbar-dropdown ${expanded.users ? '' : 'is-hidden-mobile is-hidden-tablet-only'}`} onClick={handleToggle}>
-                    <NavLink to="/companies">Empresas</NavLink>
-                    <NavLink to="/profiles">Perfiles</NavLink>
-                    <NavLink to="/users">Usuarios</NavLink>
-                  </div>
-                </div>
+                <NavBarGroup
+                  title="Usuarios"
+                  handleToggle={handleToggle}
+                  handleSubmenu={handleSubmenu}
+                  group="users"
+                  groups={groups}
+                >
+                  <NavLink to="/companies">Empresas</NavLink>
+                  <NavLink to="/profiles">Perfiles</NavLink>
+                  <NavLink to="/users">Usuarios</NavLink>
+                </NavBarGroup>
               )}
 
             </div>
@@ -100,7 +104,7 @@ const NavBar = ({ user, setUser }) => {
 
               <div className='navbar-item has-dropdown is-hoverable'>
                 <a className='navbar-link' onClick={() => handleSubmenu('user')}>{user.name}</a>
-                <div className={`navbar-dropdown ${expanded.user ? '' : 'is-hidden-mobile is-hidden-tablet-only'}`} onClick={handleToggle}>
+                <div className={`navbar-dropdown ${groups.user ? '' : 'is-hidden-mobile is-hidden-tablet-only'}`} onClick={handleToggle}>
                   <a className='navbar-item'>
                     <i className="fa fa-key mr-2"></i> Password
                   </a>
