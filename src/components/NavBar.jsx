@@ -41,7 +41,7 @@ const NavBar = ({ user, setUser }) => {
       <div className={`navbar-menu ${isActive ? "is-active" : ""}`}>
         {user.id && (
           <>
-            <div className='navbar-start'>
+            <div className='navbar-start'> {/* Opciones la izquiera */}
               <div className='navbar-item has-dropdown is-hoverable'>
                 <a className='navbar-link'>Productos</a>
                 <div className='navbar-dropdown'>
@@ -81,13 +81,15 @@ const NavBar = ({ user, setUser }) => {
               )}
             </div>
 
-            <div className='navbar-end'>
+            <div className='navbar-end mr-6'> {/* Opciones de la derecha */}
               <div className='navbar-item has-dropdown is-hoverable'>
-                <a className='navbar-link'>Usuario: {user.name}</a>
+                <a className='navbar-link'>{user.name}</a>
                 <div className='navbar-dropdown'>
-                  <a className='navbar-item'>Cambiar password</a>
+                  <a className='navbar-item'>
+                    Cambiar password
+                  </a>
                   <a className='navbar-item' onClick={logout}>
-                    <span className='tag is-danger'>Logout</span>
+                    Logout
                   </a>
                 </div>
               </div>
