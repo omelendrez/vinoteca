@@ -3,11 +3,25 @@ import NavLink from './NavLink'
 import "./NavBar.scss"
 
 const NavBar = ({ user, setUser }) => {
+  const expandedDefaults = {
+    products: false,
+    inventory: false,
+    orders: false,
+    users: false,
+    user: false
+  }
   const [isActive, setIsActive] = useState(false)
+  const [expanded, setExpanded] = useState(expandedDefaults)
 
   const handleToggle = e => {
     e.preventDefault()
     setIsActive(!isActive)
+  }
+
+  const handleSubmenu = submenu => {
+    const exp = { ...expanded }
+    exp[submenu] = !exp[submenu]
+    setExpanded(exp)
   }
 
   const logout = e => {
@@ -45,16 +59,16 @@ const NavBar = ({ user, setUser }) => {
             <div className='navbar-start'> {/* Opciones la izquierda en la navbar */}
 
               <div className='navbar-item has-dropdown is-hoverable'>
-                <a className='navbar-link'>Productos</a>
-                <div className='navbar-dropdown' onClick={handleToggle}>
+                <a className='navbar-link' onClick={() => handleSubmenu('products')}>Productos</a>
+                <div className={`navbar-dropdown ${expanded.products ? '' : 'is-hidden-mobile'}`} onClick={handleToggle}>
                   <a className='navbar-item'>Categorías</a>
                   <a className='navbar-item'>Productos</a>
                 </div>
               </div>
 
               <div className='navbar-item has-dropdown is-hoverable'>
-                <a className='navbar-link'>Inventario</a>
-                <div className='navbar-dropdown' onClick={handleToggle}>
+                <a className='navbar-link' onClick={() => handleSubmenu('inventory')}>Inventario</a>
+                <div className={`navbar-dropdown ${expanded.inventory ? '' : 'is-hidden-mobile'}`} onClick={handleToggle}>
                   <a className='navbar-item'>Inventario</a>
                   <a className='navbar-item'>Faltantes</a>
                   <a className='navbar-item'>Correción de inventario</a>
@@ -63,8 +77,8 @@ const NavBar = ({ user, setUser }) => {
               </div>
 
               <div className='navbar-item has-dropdown is-hoverable'>
-                <a className='navbar-link'>Órdenes de compra</a>
-                <div className='navbar-dropdown' onClick={handleToggle}>
+                <a className='navbar-link' onClick={() => handleSubmenu('orders')}>Órdenes de compra</a>
+                <div className={`navbar-dropdown ${expanded.orders ? '' : 'is-hidden-mobile'}`} onClick={handleToggle}>
                   <a className='navbar-item'>Proveedores</a>
                   <a className='navbar-item'>Órdenes de compra</a>
                   <a className='navbar-item'>Depósitos</a>
@@ -73,8 +87,8 @@ const NavBar = ({ user, setUser }) => {
 
               {user.profileId === 1 && (
                 <div className='navbar-item has-dropdown is-hoverable'>
-                  <a className='navbar-link'>Usuarios</a>
-                  <div className='navbar-dropdown' onClick={handleToggle}>
+                  <a className='navbar-link' onClick={() => handleSubmenu('users')}>Usuarios</a>
+                  <div className={`navbar-dropdown ${expanded.users ? '' : 'is-hidden-mobile'}`} onClick={handleToggle}>
                     <NavLink to="/companies">Empresas</NavLink>
                     <NavLink to="/profiles">Perfiles</NavLink>
                     <NavLink to="/users">Usuarios</NavLink>
@@ -87,8 +101,8 @@ const NavBar = ({ user, setUser }) => {
             <div className='navbar-end mr-6'> {/* Opciones de la derecha en la navbar */}
 
               <div className='navbar-item has-dropdown is-hoverable'>
-                <a className='navbar-link'>{user.name}</a>
-                <div className='navbar-dropdown' onClick={handleToggle}>
+                <a className='navbar-link' onClick={() => handleSubmenu('user')}>{user.name}</a>
+                <div className={`navbar-dropdown ${expanded.user ? '' : 'is-hidden-mobile'}`} onClick={handleToggle}>
                   <a className='navbar-item'>
                     Cambiar password
                   </a>

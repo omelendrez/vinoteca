@@ -17,6 +17,10 @@
         transform: none;
         pointer-events: auto;
       }
+
+      .navbar-end {
+        margin-right: 0 !important; // Remover el margen derecho del usuario en celulares
+      }
     }
   }
 }
