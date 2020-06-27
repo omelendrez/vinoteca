@@ -14,7 +14,6 @@ const NavBar = ({ user, setUser }) => {
   const [expanded, setExpanded] = useState(expandedDefaults)
 
   const handleToggle = e => {
-    e.preventDefault()
     setIsActive(!isActive)
   }
 
@@ -54,6 +53,8 @@ const NavBar = ({ user, setUser }) => {
         {user.id && (
           <>
             <div className='navbar-start'> {/* Opciones la izquierda en la navbar */}
+
+              <NavLink to="/" onClick={handleToggle}>Home</NavLink>
 
               <div className='navbar-item has-dropdown is-hoverable'>
                 <a className='navbar-link' onClick={() => handleSubmenu('products')}>Productos</a>
