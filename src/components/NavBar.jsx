@@ -1,4 +1,5 @@
 import React, { useState } from "react"
+import NavLink from './NavLink'
 import "./NavBar.scss"
 
 const NavBar = ({ user, setUser }) => {
@@ -41,10 +42,11 @@ const NavBar = ({ user, setUser }) => {
       <div className={`navbar-menu ${isActive ? "is-active" : ""}`}>
         {user.id && (
           <>
-            <div className='navbar-start'> {/* Opciones la izquiera */}
+            <div className='navbar-start'> {/* Opciones la izquierda en la navbar */}
+
               <div className='navbar-item has-dropdown is-hoverable'>
                 <a className='navbar-link'>Productos</a>
-                <div className='navbar-dropdown'>
+                <div className='navbar-dropdown' onClick={handleToggle}>
                   <a className='navbar-item'>Categorías</a>
                   <a className='navbar-item'>Productos</a>
                 </div>
@@ -52,7 +54,7 @@ const NavBar = ({ user, setUser }) => {
 
               <div className='navbar-item has-dropdown is-hoverable'>
                 <a className='navbar-link'>Inventario</a>
-                <div className='navbar-dropdown'>
+                <div className='navbar-dropdown' onClick={handleToggle}>
                   <a className='navbar-item'>Inventario</a>
                   <a className='navbar-item'>Faltantes</a>
                   <a className='navbar-item'>Correción de inventario</a>
@@ -62,7 +64,7 @@ const NavBar = ({ user, setUser }) => {
 
               <div className='navbar-item has-dropdown is-hoverable'>
                 <a className='navbar-link'>Órdenes de compra</a>
-                <div className='navbar-dropdown'>
+                <div className='navbar-dropdown' onClick={handleToggle}>
                   <a className='navbar-item'>Proveedores</a>
                   <a className='navbar-item'>Órdenes de compra</a>
                   <a className='navbar-item'>Depósitos</a>
@@ -72,19 +74,21 @@ const NavBar = ({ user, setUser }) => {
               {user.profileId === 1 && (
                 <div className='navbar-item has-dropdown is-hoverable'>
                   <a className='navbar-link'>Usuarios</a>
-                  <div className='navbar-dropdown'>
-                    <a className='navbar-item'>Empresas</a>
-                    <a className='navbar-item'>Perfiles</a>
-                    <a className='navbar-item'>Usuarios</a>
+                  <div className='navbar-dropdown' onClick={handleToggle}>
+                    <NavLink to="/companies">Empresas</NavLink>
+                    <NavLink to="/profiles">Perfiles</NavLink>
+                    <NavLink to="/users">Usuarios</NavLink>
                   </div>
                 </div>
               )}
+
             </div>
 
-            <div className='navbar-end mr-6'> {/* Opciones de la derecha */}
+            <div className='navbar-end mr-6'> {/* Opciones de la derecha en la navbar */}
+
               <div className='navbar-item has-dropdown is-hoverable'>
                 <a className='navbar-link'>{user.name}</a>
-                <div className='navbar-dropdown'>
+                <div className='navbar-dropdown' onClick={handleToggle}>
                   <a className='navbar-item'>
                     Cambiar password
                   </a>
@@ -93,6 +97,7 @@ const NavBar = ({ user, setUser }) => {
                   </a>
                 </div>
               </div>
+
             </div>
           </>
         )}
