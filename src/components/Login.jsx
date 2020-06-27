@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { login } from '../services/login'
 import Notification from './Notification'
-import { saveData, getData } from '../helper'
+import { saveData, getData } from '../localStorage'
 
 const Login = ({ setUser }) => {
 

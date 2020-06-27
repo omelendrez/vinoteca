@@ -41,10 +41,10 @@ const Companies = () => {
           </div>
           {rows &&
             <section>
-              {rows.map(company => {
+              {rows.map((company, index) => {
                 const { name, contact, address, email, phone, created } = company
                 return (
-                  <div className="card my-3">
+                  <div className="card my-3" key={index}>
                     <header className="card-header has-background-success-dark">
                       <p className="card-header-title  has-text-white">
                         {name}
