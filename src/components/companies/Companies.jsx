@@ -53,6 +53,7 @@ const Companies = () => {
                             {name}
                           </p>
                         </header>
+
                         <div className="card-content">
                           <div className="content">
                             <div><i className="fa fa-user mr-2"></i>{contact}</div>
@@ -63,6 +64,7 @@ const Companies = () => {
                             <time><i className="fa fa-calendar-alt mr-2"></i>{formatDateFull(created)}</time>
                           </div>
                         </div>
+
                         <footer className="card-footer">
                           <a href="#" className="card-footer-item"><i className="fa fa-edit"></i></a>
                           <a href="#" className="card-footer-item"><i className="fa fa-trash"></i></a>
