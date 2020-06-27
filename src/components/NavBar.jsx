@@ -4,7 +4,7 @@ import NavBarGroup from './NavBarGroup'
 import "./NavBar.scss"
 
 const NavBar = ({ user, setUser }) => {
-  const expandedDefaults = {
+  const groupsDefaultStates = {
     products: false,
     inventory: false,
     orders: false,
@@ -12,7 +12,7 @@ const NavBar = ({ user, setUser }) => {
     user: false
   }
   const [isActive, setIsActive] = useState(false)
-  const [groups, setGroups] = useState(expandedDefaults)
+  const [groups, setGroups] = useState(groupsDefaultStates)
 
   const handleToggle = e => {
     setIsActive(!isActive)
