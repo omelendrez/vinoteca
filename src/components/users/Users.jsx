@@ -2,7 +2,7 @@ import React from 'react'
 
 const Users = () => {
   return (
-    <section className="hero is-warning">
+    <section className="hero is-danger">
       <div className="hero-body">
         <div className="container">
           <h1 className="title">

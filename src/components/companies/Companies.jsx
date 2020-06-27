@@ -29,7 +29,7 @@ const Companies = () => {
   return (
     <>
       {alert.message && <Notification message={alert.message} clear={clearAlert} type={alert.type} />}
-      <section className="hero is-warning">
+      <section className="hero is-small is-light is-bold">
         <div className="hero-body">
           <div className="container">
             <h1 className="title">
@@ -45,7 +45,7 @@ const Companies = () => {
                 const { name, contact, address, email, phone, created } = company
                 return (
                   <div className="card my-3" key={index}>
-                    <header className="card-header has-background-success-dark">
+                    <header className="card-header has-background-link-dark">
                       <p className="card-header-title  has-text-white">
                         {name}
                       </p>
