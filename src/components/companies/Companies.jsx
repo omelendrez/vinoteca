@@ -27,7 +27,7 @@ const Companies = () => {
   const { rows } = companies
   return (
     <>
-      <section className="hero is-light">
+      <section className="hero is-warning">
         <div className="hero-body">
           <div className="container">
             <h1 className="title">
@@ -43,7 +43,7 @@ const Companies = () => {
                 const { name, contact, address, email, phone, created } = company
                 return (
                   <div className="card my-3">
-                    <header className="card-header has-background-primary">
+                    <header className="card-header has-background-success-dark">
                       <p className="card-header-title  has-text-white">
                         {name}
                       </p>

@@ -13,15 +13,16 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <NavBar user={user} />
+        <NavBar user={user} setUser={setUser} />
         {!user.id && <Login setUser={setUser} />}
-        <main>
+        {user.id && <main>
           <Switch>
             <Route path="/companies" exact component={Companies} />
             <Route path="/profiles" exact component={Profiles} />
             <Route path="/users" exact component={Users} />
           </Switch>
         </main>
+        }
       </BrowserRouter>
     </>
   )
