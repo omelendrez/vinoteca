@@ -36,7 +36,7 @@ const NavBar = ({ user, setUser }) => {
       aria-label='main navigation'
     >
       <div className='navbar-brand'>
-        <NavLink to="/">La Cava</NavLink>
+        <NavLink to="/">La Caba</NavLink>
         <a
           role='button'
           className={`navbar-burger burger ${isActive ? "is-active" : ""}`}

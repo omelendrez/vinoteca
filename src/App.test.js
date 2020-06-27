@@ -4,6 +4,6 @@ import App from './App'
 
 test('Renders botón Log in', () => {
   const { getByText } = render(<App />)
-  const linkElement = getByText(/log in/i)
+  const linkElement = getByText(/La Caba/i)
   expect(linkElement).toBeInTheDocument()
 })
