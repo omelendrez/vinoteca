@@ -87,9 +87,9 @@ const NavBar = ({ user, setUser }) => {
               {user.profileId === 1 && (
                 <NavBarGroup
                   title="Usuarios"
+                  group="users"
                   handleToggle={handleToggle}
                   handleSubmenu={handleSubmenu}
-                  group="users"
                   groups={groups}
                 >
                   <NavLink to="/companies">Empresas</NavLink>
