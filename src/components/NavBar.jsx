@@ -104,10 +104,10 @@ const NavBar = ({ user, setUser }) => {
                 <a className='navbar-link' onClick={() => handleSubmenu('user')}>{user.name}</a>
                 <div className={`navbar-dropdown ${expanded.user ? '' : 'is-hidden-mobile'}`} onClick={handleToggle}>
                   <a className='navbar-item'>
-                    Cambiar password
+                    <i className="fa fa-key mr-2"></i> Password
                   </a>
                   <a className='navbar-item' onClick={logout}>
-                    Logout
+                    <i className="fa fa-sign-out-alt mr-2"></i> Logout
                   </a>
                 </div>
               </div>
