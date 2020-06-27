@@ -36,8 +36,8 @@ const NavBar = ({ user, setUser }) => {
       aria-label='main navigation'
     >
       <div className='navbar-brand'>
-        <NavLink to="/">La Caba</NavLink>
-        <a
+        <NavLink to="/">La Cava</NavLink>
+        <span
           role='button'
           className={`navbar-burger burger ${isActive ? "is-active" : ""}`}
           aria-label='menu'
@@ -47,7 +47,7 @@ const NavBar = ({ user, setUser }) => {
           <span aria-hidden='true'></span>
           <span aria-hidden='true'></span>
           <span aria-hidden='true'></span>
-        </a>
+        </span>
       </div>
 
       <div className={`navbar-menu ${isActive ? "is-active" : ""}`}>

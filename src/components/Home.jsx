@@ -6,7 +6,7 @@ const Home = () => {
       <div className="hero-body">
         <div className="container">
           <h1 className="title">
-            La Caba
+            La Cava
         </h1>
           <h2 className="subtitle">
             Administración de stock
