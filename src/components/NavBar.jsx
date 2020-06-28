@@ -22,7 +22,7 @@ const NavBar = ({ user, setUser }) => {
 
         <NavLink to="/">La Cava</NavLink>
 
-        <a href="# " role='button' className={`navbar-burger burger ${isActive ? "is-active" : ""}`} aria-label='menu' aria-expanded='false' onClick={handleToggle}>
+        <a href="#/" role='button' className={`navbar-burger burger ${isActive ? "is-active" : ""}`} aria-label='menu' aria-expanded='false' onClick={handleToggle}>
           <span aria-hidden='true'></span>
           <span aria-hidden='true'></span>
           <span aria-hidden='true'></span>

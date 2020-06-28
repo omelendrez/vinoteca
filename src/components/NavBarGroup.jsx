@@ -9,7 +9,7 @@ const NavBarGroup = ({ title, handleToggle, children }) => {
 
     <div className='navbar-item has-dropdown is-hoverable'>
       <span className='navbar-link' onClick={handleSubmenu}>{title}</span>
-      <div className={`navbar-dropdown ${isOpen ? '' : 'is-hidden-mobile is-hidden-tablet-only'}`} onClick={handleToggle}>
+      <div className={`navbar-dropdown ${isOpen ? 'is-active' : 'is-hidden-mobile is-hidden-tablet-only'}`} onClick={handleToggle}>
         {children}
       </div>
     </div>
