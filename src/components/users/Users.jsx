@@ -1,19 +1,14 @@
 import React from 'react'
+import Container from '../common/Container'
 
 const Users = () => {
   return (
-    <section className="hero is-danger">
-      <div className="hero-body">
-        <div className="container">
-          <h1 className="title">
-            Usuarios
-      </h1>
-          <h2 className="subtitle">
-            Componente de usuarios
-          </h2>
-        </div>
-      </div>
-    </section>
+    <Container
+      title="Usuarios"
+      subTitle="Administración de usuarios"
+      width="is-6"
+      background="is-primary">
+    </Container>
   )
 }
 

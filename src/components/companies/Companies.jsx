@@ -44,7 +44,12 @@ const Companies = () => {
     <>
       {alert.message && <Notification message={alert.message} clear={clearAlert} type={alert.type} />}
 
-      <Container title="Empresas" subTitle="Administración de empresas" width="is-8" background="is-light" >
+      <Container
+        title="Empresas"
+        subTitle="Admnistración de empresas"
+        width="is-6"
+        background="is-primary"
+      >
         {rows && rows.map((company, index) => {
           const { name, contact, address, email, phone, created } = company
           return (

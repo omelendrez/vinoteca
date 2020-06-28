@@ -5,8 +5,8 @@ const Profiles = () => {
   return (
     <Container
       title="Perfiles de usuario"
-      subTitle="Componente de perfiles de usuario"
-      width="is-8"
+      subTitle="Administración de perfiles de usuario"
+      width="is-6"
       background="is-primary">
     </Container>
   )
