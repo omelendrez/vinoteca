@@ -4,19 +4,19 @@ import Loading from '../common/Loading'
 import Container from '../common/Container'
 import TableItem from '../common/TableItem'
 import TableItemField from '../common/TableItemField'
-import { getUsers } from '../../services/users'
+import { getInventoryVariationReasons } from '../../services/inventory_variation_reasons'
 import { formatDateFull } from '../../helpers'
 
-const Users = () => {
-  const [users, setUsers] = useState({ rows: [] })
+const InventoryVariationReasons = () => {
+  const [inventoryVariationReasons, setInventoryVariationReasons] = useState({ rows: [] })
   const [alert, setAlert] = useState({})
   const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
     setIsLoading(true)
-    getUsers()
-      .then(users => {
-        setUsers(users)
+    getInventoryVariationReasons()
+      .then(inventoryVariationReasons => {
+        setInventoryVariationReasons(inventoryVariationReasons)
         setIsLoading(false)
       })
       .catch(error => {
@@ -29,38 +29,33 @@ const Users = () => {
     setAlert({})
   }
 
-  const handleEdit = (e, user) => {
+  const handleEdit = (e, inventoryVariationReason) => {
     e.preventDefault()
-    console.log(user)
+    console.log(inventoryVariationReason)
   }
 
-  const handleDelete = (e, user) => {
+  const handleDelete = (e, inventoryVariationReason) => {
     e.preventDefault()
-    console.log(user)
+    console.log(inventoryVariationReason)
   }
 
-  const { rows } = users
+  const { rows } = inventoryVariationReasons
   return (
     <>
       {alert.message && <Notification message={alert.message} clear={clearAlert} type={alert.type} />}
 
       <Container
-        title="Usuarios"
-        subTitle="Admnistración de usuarios"
+        title="Motivos de variación de inventario"
+        subTitle="Admnistración de empresas"
         width="is-6"
         background="is-primary"
       >
-        {rows && rows.map((user, index) => {
-          const { name, email, created } = user
+        {rows && rows.map((inventoryVariationReason, index) => {
+          const { code, name, created } = inventoryVariationReason
           return (
-            <TableItem
-              key={index}
-              item={user}
-              itemHeader={name}
-              handleEdit={handleEdit}
-              handleDelete={handleDelete}
-            >
-              <TableItemField icon="fa fa-at mr-2" value={email} />
+            <TableItem key={index} item={inventoryVariationReason} itemHeader={name} handleEdit={handleEdit} handleDelete={handleDelete}>
+              <TableItemField label="Código" value={code} />
+              <TableItemField label="Razón" value={name} />
               <br />
               <TableItemField icon="fa fa-calendar-alt mr-2" value={formatDateFull(created)} />
             </TableItem>
@@ -75,4 +70,4 @@ const Users = () => {
   )
 }
 
-export default Users
+export default InventoryVariationReasons
