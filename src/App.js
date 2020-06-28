@@ -25,9 +25,9 @@ function App() {
             <Route path="/" exact component={Home} />
             <Route path="/companies" exact component={Companies} />
             <Route path="/profiles" exact component={Profiles} />
-            <Route path="/users" exact component={Users} />
-            <Route path="/suppliers" exact component={Suppliers} />
             <Route path="/stores" exact component={Stores} />
+            <Route path="/suppliers" exact component={Suppliers} />
+            <Route path="/users" exact component={Users} />
             <Route path="/variation-reasons" exact component={VariationReasons} />
           </Switch>
         </main>
