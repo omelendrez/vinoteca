@@ -4,19 +4,19 @@ import Loading from '../common/Loading'
 import Container from '../common/Container'
 import TableItem from '../common/TableItem'
 import TableItemField from '../common/TableItemField'
-import { getCompanies } from '../../services/companies'
+import { getStores } from '../../services/stores'
 import { formatDateFull } from '../../helpers'
 
-const Companies = () => {
-  const [companies, setCompanies] = useState({ rows: [] })
+const Stores = () => {
+  const [stores, setStores] = useState({ rows: [] })
   const [alert, setAlert] = useState({})
   const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
     setIsLoading(true)
-    getCompanies()
-      .then(companies => {
-        setCompanies(companies)
+    getStores()
+      .then(stores => {
+        setStores(stores)
         setIsLoading(false)
       })
       .catch(error => {
@@ -29,37 +29,31 @@ const Companies = () => {
     setAlert({})
   }
 
-  const handleEdit = (e, company) => {
+  const handleEdit = (e, store) => {
     e.preventDefault()
-    console.log(company)
+    console.log(store)
   }
 
-  const handleDelete = (e, company) => {
+  const handleDelete = (e, store) => {
     e.preventDefault()
-    console.log(company)
+    console.log(store)
   }
 
-  const { rows } = companies
+  const { rows } = stores
   return (
     <>
       {alert.message && <Notification message={alert.message} clear={clearAlert} type={alert.type} />}
 
       <Container
-        title="Empresas"
-        subTitle="Administración de empresas"
+        title="Depósitos"
+        subTitle="Listado de depósitos asociados"
         width="is-6"
-        background="is-primary"
+        background="is-warning"
       >
-        {rows && rows.map((company, index) => {
-          const { name, contact, address, email, phone, created } = company
+        {rows && rows.map((store, index) => {
+          const { name, contact, address, phone, email, created } = store
           return (
-            <TableItem
-              key={index}
-              item={company}
-              itemHeader={name}
-              handleEdit={handleEdit}
-              handleDelete={handleDelete}
-            >
+            <TableItem key={index} item={store} itemHeader={name} handleEdit={handleEdit} handleDelete={handleDelete}>
               <TableItemField icon="fa fa-user mr-2" value={contact} />
               <TableItemField icon="fa fa-map-marker-alt mr-2" value={address} />
               <TableItemField icon="fa fa-at mr-2" value={email} />
@@ -81,4 +75,4 @@ const Companies = () => {
   )
 }
 
-export default Companies
+export default Stores

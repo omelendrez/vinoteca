@@ -4,19 +4,19 @@ import Loading from '../common/Loading'
 import Container from '../common/Container'
 import TableItem from '../common/TableItem'
 import TableItemField from '../common/TableItemField'
-import { getCompanies } from '../../services/companies'
+import { getVariationReasons } from '../../services/variation_reasons'
 import { formatDateFull } from '../../helpers'
 
-const Companies = () => {
-  const [companies, setCompanies] = useState({ rows: [] })
+const VariationReasons = () => {
+  const [variationReasons, setVariationReasons] = useState({ rows: [] })
   const [alert, setAlert] = useState({})
   const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
     setIsLoading(true)
-    getCompanies()
-      .then(companies => {
-        setCompanies(companies)
+    getVariationReasons()
+      .then(variationReasons => {
+        setVariationReasons(variationReasons)
         setIsLoading(false)
       })
       .catch(error => {
@@ -29,47 +29,40 @@ const Companies = () => {
     setAlert({})
   }
 
-  const handleEdit = (e, company) => {
+  const handleEdit = (e, variationReason) => {
     e.preventDefault()
-    console.log(company)
+    console.log(variationReason)
   }
 
-  const handleDelete = (e, company) => {
+  const handleDelete = (e, variationReason) => {
     e.preventDefault()
-    console.log(company)
+    console.log(variationReason)
   }
 
-  const { rows } = companies
+  const { rows } = variationReasons
   return (
     <>
       {alert.message && <Notification message={alert.message} clear={clearAlert} type={alert.type} />}
 
       <Container
-        title="Empresas"
-        subTitle="Administración de empresas"
+        title="Motivos de variación de inventario"
+        subTitle="Admnistración de empresas"
         width="is-6"
         background="is-primary"
       >
-        {rows && rows.map((company, index) => {
-          const { name, contact, address, email, phone, created } = company
+        {rows && rows.map((variationReason, index) => {
+          const { code, name, created } = variationReason
           return (
-            <TableItem
-              key={index}
-              item={company}
-              itemHeader={name}
-              handleEdit={handleEdit}
-              handleDelete={handleDelete}
-            >
-              <TableItemField icon="fa fa-user mr-2" value={contact} />
-              <TableItemField icon="fa fa-map-marker-alt mr-2" value={address} />
-              <TableItemField icon="fa fa-at mr-2" value={email} />
-              <TableItemField icon="fa fa-phone mr-2" value={phone} />
+            <TableItem key={index} item={variationReason} itemHeader={name} handleEdit={handleEdit} handleDelete={handleDelete}>
+              <TableItemField label="Código" value={code} />
+              <TableItemField label="Razón" value={name} />
               <br />
               <TableItemField icon="fa fa-calendar-alt mr-2" value={formatDateFull(created)} />
             </TableItem>
           )
         })
         }
+
 
       </Container>
 
@@ -81,4 +74,4 @@ const Companies = () => {
   )
 }
 
-export default Companies
+export default VariationReasons
