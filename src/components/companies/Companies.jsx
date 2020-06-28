@@ -66,8 +66,8 @@ const Companies = () => {
                         </div>
 
                         <footer className="card-footer">
-                          <a href="#" className="card-footer-item"><i className="fa fa-edit"></i></a>
-                          <a href="#" className="card-footer-item"><i className="fa fa-trash"></i></a>
+                          <a href="# " className="card-footer-item"><i className="fa fa-edit"></i></a>
+                          <a href="# " className="card-footer-item"><i className="fa fa-trash"></i></a>
                         </footer>
                       </div>
                     )

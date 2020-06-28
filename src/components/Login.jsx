@@ -1,22 +1,16 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { login } from '../services/login'
 import Notification from './Notification'
 import { saveData, getData } from '../localStorage'
 
 const Login = ({ setUser }) => {
 
-	const defaultForm = { email: '', password: '' }
+	const checked = getData('remember')
+	const defaultForm = { email: checked ? getData('user').email : '', password: '' }
 
 	const [form, setForm] = useState(defaultForm)
 	const [alert, setAlert] = useState({})
-	const [checked, setChecked] = useState(getData('remember'))
 	const [isLoading, setIsLoading] = useState(false)
-
-	useEffect(() => {
-		if (checked) {
-			setForm({ ...form, email: getData('user').email })
-		}
-	}, [])
 
 	const handleChange = e => {
 		if (alert) clearAlert()
@@ -98,7 +92,7 @@ const Login = ({ setUser }) => {
 
 								<div className="field">
 									<div className="control">
-										<a href="#">Olvidé mi password</a>
+										<a href="# ">Olvidé mi password</a>
 									</div>
 								</div>
 

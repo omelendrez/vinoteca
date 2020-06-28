@@ -22,11 +22,11 @@ const NavBar = ({ user, setUser }) => {
 
         <NavLink to="/">La Cava</NavLink>
 
-        <span role='button' className={`navbar-burger burger ${isActive ? "is-active" : ""}`} aria-label='menu' aria-expanded='false' onClick={handleToggle}>
+        <a href="# " role='button' className={`navbar-burger burger ${isActive ? "is-active" : ""}`} aria-label='menu' aria-expanded='false' onClick={handleToggle}>
           <span aria-hidden='true'></span>
           <span aria-hidden='true'></span>
           <span aria-hidden='true'></span>
-        </span>
+        </a>
 
       </div>
 
@@ -43,7 +43,7 @@ const NavBar = ({ user, setUser }) => {
               <NavBarGroup title="Inventario" handleToggle={handleToggle}>
                 <NavLink to="/inventory">Inventario</NavLink>
                 <NavLink to="/low-stock">Faltantes</NavLink>
-                <NavLink to="/inventory-variation">Correción de inventario</NavLink>
+                <NavLink to="/inventory-variations">Correción de inventario</NavLink>
                 <NavLink to="/variation-reasons">Motivos de variación</NavLink>
               </NavBarGroup>
 
@@ -67,7 +67,7 @@ const NavBar = ({ user, setUser }) => {
 
               <NavBarGroup title={user.name} handleToggle={handleToggle}>
                 <NavLink to="/change-password"><i className="fa fa-key mr-2"></i> Password</NavLink>
-                <a className='navbar-item' onClick={logout}><i className="fa fa-sign-out-alt mr-2"></i> Logout</a>
+                <a href="# " className='navbar-item' onClick={logout}><i className="fa fa-sign-out-alt mr-2"></i> Logout</a>
               </NavBarGroup>
 
             </div>
