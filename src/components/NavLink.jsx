@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 const NavLink = props => {
   return (
-    <Link className="navbar-item" {...props}>
+    <Link className="navbar-item is-active-link" {...props}>
       {props.children}
     </Link>
   )
