@@ -36,7 +36,7 @@ const NavBar = ({ user, setUser }) => {
       aria-label='main navigation'
     >
       <div className='navbar-brand'>
-        <NavLink to="/">La Caba</NavLink>
+        <NavLink to="/">La Cava</NavLink>
         <a
           role='button'
           className={`navbar-burger burger ${isActive ? "is-active" : ""}`}
@@ -55,34 +55,41 @@ const NavBar = ({ user, setUser }) => {
           <>
             <div className='navbar-start'> {/* Opciones la izquierda en la navbar */}
 
-              <NavLink to="/" onClick={handleToggle}>Home</NavLink>
+              <NavBarGroup
+                title="Productos"
+                group="products"
+                handleToggle={handleToggle}
+                handleSubmenu={handleSubmenu}
+                groups={groups}
+              >
+                <NavLink to="/categories">Categorías</NavLink>
+                <NavLink to="/products">Productos</NavLink>
+              </NavBarGroup>
 
-              <div className='navbar-item has-dropdown is-hoverable'>
-                <a className='navbar-link' onClick={() => handleSubmenu('products')}>Productos</a>
-                <div className={`navbar-dropdown ${groups.products ? '' : 'is-hidden-mobile is-hidden-tablet-only'}`} onClick={handleToggle}>
-                  <a className='navbar-item'>Categorías</a>
-                  <a className='navbar-item'>Productos</a>
-                </div>
-              </div>
+              <NavBarGroup
+                title="Inventario"
+                group="inventory"
+                handleToggle={handleToggle}
+                handleSubmenu={handleSubmenu}
+                groups={groups}
+              >
+                <NavLink to="/inventory">Inventario</NavLink>
+                <NavLink to="/low-stock">Faltantes</NavLink>
+                <NavLink to="/inventory-variation">Correción de inventario</NavLink>
+                <NavLink to="/variation-reasons">Motivos de variación</NavLink>
+              </NavBarGroup>
 
-              <div className='navbar-item has-dropdown is-hoverable'>
-                <a className='navbar-link' onClick={() => handleSubmenu('inventory')}>Inventario</a>
-                <div className={`navbar-dropdown ${groups.inventory ? '' : 'is-hidden-mobile is-hidden-tablet-only'}`} onClick={handleToggle}>
-                  <a className='navbar-item'>Inventario</a>
-                  <a className='navbar-item'>Faltantes</a>
-                  <a className='navbar-item'>Correción de inventario</a>
-                  <a className='navbar-item'>Motivos variación</a>
-                </div>
-              </div>
-
-              <div className='navbar-item has-dropdown is-hoverable'>
-                <a className='navbar-link' onClick={() => handleSubmenu('orders')}>Órdenes de compra</a>
-                <div className={`navbar-dropdown ${groups.orders ? '' : 'is-hidden-mobile is-hidden-tablet-only'}`} onClick={handleToggle}>
-                  <a className='navbar-item'>Proveedores</a>
-                  <a className='navbar-item'>Órdenes de compra</a>
-                  <a className='navbar-item'>Depósitos</a>
-                </div>
-              </div>
+              <NavBarGroup
+                title="Órdenes de compra"
+                group="orders"
+                handleToggle={handleToggle}
+                handleSubmenu={handleSubmenu}
+                groups={groups}
+              >
+                <NavLink to="/providers">Proveedores</NavLink>
+                <NavLink to="/orders">Órdenes de compra</NavLink>
+                <NavLink to="/stores">Depósitos</NavLink>
+              </NavBarGroup>
 
               {user.profileId === 1 && (
                 <NavBarGroup
@@ -102,17 +109,20 @@ const NavBar = ({ user, setUser }) => {
 
             <div className='navbar-end mr-6'> {/* Opciones de la derecha en la navbar */}
 
-              <div className='navbar-item has-dropdown is-hoverable'>
-                <a className='navbar-link' onClick={() => handleSubmenu('user')}>{user.name}</a>
-                <div className={`navbar-dropdown ${groups.user ? '' : 'is-hidden-mobile is-hidden-tablet-only'}`} onClick={handleToggle}>
-                  <a className='navbar-item'>
-                    <i className="fa fa-key mr-2"></i> Password
-                  </a>
-                  <a className='navbar-item' onClick={logout}>
-                    <i className="fa fa-sign-out-alt mr-2"></i> Logout
-                  </a>
-                </div>
-              </div>
+              <NavBarGroup
+                title={user.name}
+                group="user"
+                handleToggle={handleToggle}
+                handleSubmenu={handleSubmenu}
+                groups={groups}
+              >
+                <a className='navbar-item'>
+                  <i className="fa fa-key mr-2"></i> Password
+                </a>
+                <a className='navbar-item' onClick={logout}>
+                  <i className="fa fa-sign-out-alt mr-2"></i> Logout
+                </a>
+              </NavBarGroup>
 
             </div>
           </>
