@@ -4,19 +4,19 @@ import Loading from '../common/Loading'
 import Container from '../common/Container'
 import TableItem from '../common/TableItem'
 import TableItemField from '../common/TableItemField'
-import { getInventoryVariationReasons } from '../../services/inventory_variation_reasons'
+import { getVariationReasons } from '../../services/variation_reasons'
 import { formatDateFull } from '../../helpers'
 
-const InventoryVariationReasons = () => {
-  const [inventoryVariationReasons, setInventoryVariationReasons] = useState({ rows: [] })
+const VariationReasons = () => {
+  const [variationReasons, setVariationReasons] = useState({ rows: [] })
   const [alert, setAlert] = useState({})
   const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
     setIsLoading(true)
-    getInventoryVariationReasons()
-      .then(inventoryVariationReasons => {
-        setInventoryVariationReasons(inventoryVariationReasons)
+    getVariationReasons()
+      .then(variationReasons => {
+        setVariationReasons(variationReasons)
         setIsLoading(false)
       })
       .catch(error => {
@@ -29,17 +29,17 @@ const InventoryVariationReasons = () => {
     setAlert({})
   }
 
-  const handleEdit = (e, inventoryVariationReason) => {
+  const handleEdit = (e, variationReason) => {
     e.preventDefault()
-    console.log(inventoryVariationReason)
+    console.log(variationReason)
   }
 
-  const handleDelete = (e, inventoryVariationReason) => {
+  const handleDelete = (e, variationReason) => {
     e.preventDefault()
-    console.log(inventoryVariationReason)
+    console.log(variationReason)
   }
 
-  const { rows } = inventoryVariationReasons
+  const { rows } = variationReasons
   return (
     <>
       {alert.message && <Notification message={alert.message} clear={clearAlert} type={alert.type} />}
@@ -50,10 +50,10 @@ const InventoryVariationReasons = () => {
         width="is-6"
         background="is-primary"
       >
-        {rows && rows.map((inventoryVariationReason, index) => {
-          const { code, name, created } = inventoryVariationReason
+        {rows && rows.map((variationReason, index) => {
+          const { code, name, created } = variationReason
           return (
-            <TableItem key={index} item={inventoryVariationReason} itemHeader={name} handleEdit={handleEdit} handleDelete={handleDelete}>
+            <TableItem key={index} item={variationReason} itemHeader={name} handleEdit={handleEdit} handleDelete={handleDelete}>
               <TableItemField label="Código" value={code} />
               <TableItemField label="Razón" value={name} />
               <br />
@@ -62,7 +62,11 @@ const InventoryVariationReasons = () => {
           )
         })
         }
+
+
       </Container>
+
+      {!rows.length && <Notification message="La tabla no contiene registros" type="is-light" clear={clearAlert} />}
 
       {isLoading && <Loading />}
 
@@ -70,4 +74,4 @@ const InventoryVariationReasons = () => {
   )
 }
 
-export default InventoryVariationReasons
+export default VariationReasons

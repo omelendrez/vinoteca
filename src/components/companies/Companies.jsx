@@ -70,7 +70,10 @@ const Companies = () => {
           )
         })
         }
+
       </Container>
+
+      {!rows.length && <Notification message="La tabla no contiene registros" type="is-light" clear={clearAlert} />}
 
       {isLoading && <Loading />}
 

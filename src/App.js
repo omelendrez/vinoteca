@@ -9,7 +9,7 @@ import Companies from "./components/companies/Companies"
 import Profiles from "./components/profiles/Profiles"
 import Users from "./components/users/Users"
 import Stores from "./components/stores/Stores"
-import InventoryVariationReasons from './components/inventory_variation_reasons/InventoryVariationReasons'
+import VariationReasons from './components/variation_reasons/VariationReasons'
 
 function App() {
   const [user, setUser] = useState({})
@@ -26,10 +26,10 @@ function App() {
               <Route path="/profiles" exact component={Profiles} />
               <Route path="/users" exact component={Users} />
               <Route path="/stores" exact component={Stores} />
-            <Route path="/inventory_variation_reasons" exact component={InventoryVariationReasons} />
-          </Switch>
-        </main>
-        }
+              <Route path="/variation-reasons" exact component={VariationReasons} />
+            </Switch>
+          </main>
+        )}
       </BrowserRouter>
     </>
   )
