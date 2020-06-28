@@ -4,10 +4,11 @@ import "./components/Login"
 import Login from "./components/Login"
 import NavBar from "./components/NavBar"
 
-import Home from "./components/Home"
-import Companies from "./components/companies/Companies"
-import Profiles from "./components/profiles/Profiles"
-import Users from "./components/users/Users"
+import Home from './components/Home'
+import Companies from './components/companies/Companies'
+import Profiles from './components/profiles/Profiles'
+import Users from './components/users/Users'
+import Suppliers from './components/suppliers/Suppliers'
 import Stores from "./components/stores/Stores"
 import VariationReasons from './components/variation_reasons/VariationReasons'
 
@@ -25,7 +26,7 @@ function App() {
             <Route path="/companies" exact component={Companies} />
             <Route path="/profiles" exact component={Profiles} />
             <Route path="/users" exact component={Users} />
-            <Route path="/profiles" exact component={Profiles} />
+            <Route path="/suppliers" exact component={Suppliers} />
               <Route path="/stores" exact component={Stores} />
               <Route path="/variation-reasons" exact component={VariationReasons} />
             </Switch>
