@@ -9,6 +9,7 @@ import Companies from './components/companies/Companies'
 import Profiles from './components/profiles/Profiles'
 import Users from './components/users/Users'
 import InventoryVariationReasons from './components/inventory_variation_reasons/InventoryVariationReasons'
+import Suppliers from './components/suppliers/Suppliers'
 
 function App() {
   const [user, setUser] = useState({})
@@ -24,6 +25,7 @@ function App() {
             <Route path="/profiles" exact component={Profiles} />
             <Route path="/users" exact component={Users} />
             <Route path="/inventory_variation_reasons" exact component={InventoryVariationReasons} />
+            <Route path="/suppliers" exact component={Suppliers} />
           </Switch>
         </main>
         }
