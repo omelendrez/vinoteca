@@ -1,19 +1,14 @@
 import React from 'react'
+import Container from '../Container'
 
 const Profiles = () => {
   return (
-    <section className="hero is-primary">
-      <div className="hero-body">
-        <div className="container">
-          <h1 className="title">
-            Perfiles de usuario
-      </h1>
-          <h2 className="subtitle">
-            Componente de perfiles de usuario
-          </h2>
-        </div>
-      </div>
-    </section>
+    <Container
+      title="Perfiles de usuario"
+      subTitle="Componente de perfiles de usuario"
+      width="is-8"
+      background="is-primary">
+    </Container>
   )
 }
 
