@@ -1,22 +1,22 @@
 import React, { useState, useEffect } from 'react'
-import Container from '../common/Container'
 import Notification from '../common/Notification'
 import Loading from '../common/Loading'
+import Container from '../common/Container'
 import TableItem from '../common/TableItem'
 import TableItemField from '../common/TableItemField'
-import { getProfiles } from '../../services/profiles'
+import { getVariationReasons } from '../../services/variation_reasons'
 import { formatDateFull } from '../../helpers'
 
-const Profiles = () => {
-  const [profiles, setProfiles] = useState({ rows: [] })
+const VariationReasons = () => {
+  const [variationReasons, setVariationReasons] = useState({ rows: [] })
   const [alert, setAlert] = useState({})
   const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
     setIsLoading(true)
-    getProfiles()
-      .then(profiles => {
-        setProfiles(profiles)
+    getVariationReasons()
+      .then(variationReasons => {
+        setVariationReasons(variationReasons)
         setIsLoading(false)
       })
       .catch(error => {
@@ -29,40 +29,44 @@ const Profiles = () => {
     setAlert({})
   }
 
-  const handleEdit = (e, profile) => {
+  const handleEdit = (e, variationReason) => {
     e.preventDefault()
-    console.log(profile)
+    console.log(variationReason)
   }
 
-  const handleDelete = (e, profile) => {
+  const handleDelete = (e, variationReason) => {
     e.preventDefault()
-    console.log(profile)
+    console.log(variationReason)
   }
 
-  const { rows } = profiles
-
+  const { rows } = variationReasons
   return (
     <>
       {alert.message && <Notification message={alert.message} clear={clearAlert} type={alert.type} />}
 
       <Container
-        title="Perfiles de usuario"
-        subTitle="Administración de perfiles de usuario"
+        title="Motivos de variación de inventario"
+        subTitle="Admnistración de empresas"
         width="is-6"
         background="is-primary"
       >
-        {rows && rows.map((profile, index) => {
-          const { code, name, created } = profile
+        {rows && rows.map((variationReason, index) => {
+          const { code, name, created } = variationReason
           return (
-            <TableItem key={index} item={profile} itemHeader={name} handleEdit={handleEdit} handleDelete={handleDelete}>
+            <TableItem key={index} item={variationReason} itemHeader={name} handleEdit={handleEdit} handleDelete={handleDelete}>
               <TableItemField label="Código" value={code} />
+              <TableItemField label="Razón" value={name} />
               <br />
               <TableItemField icon="fa fa-calendar-alt mr-2" value={formatDateFull(created)} />
             </TableItem>
           )
         })
         }
+
+
       </Container>
+
+      {!rows.length && <Notification message="La tabla no contiene registros" type="is-light" clear={clearAlert} />}
 
       {isLoading && <Loading />}
 
@@ -70,4 +74,4 @@ const Profiles = () => {
   )
 }
 
-export default Profiles
+export default VariationReasons

@@ -46,14 +46,20 @@ const Companies = () => {
 
       <Container
         title="Empresas"
-        subTitle="Admnistración de empresas"
+        subTitle="Administración de empresas"
         width="is-6"
         background="is-primary"
       >
         {rows && rows.map((company, index) => {
           const { name, contact, address, email, phone, created } = company
           return (
-            <TableItem key={index} item={company} itemHeader={name} handleEdit={handleEdit} handleDelete={handleDelete}>
+            <TableItem
+              key={index}
+              item={company}
+              itemHeader={name}
+              handleEdit={handleEdit}
+              handleDelete={handleDelete}
+            >
               <TableItemField icon="fa fa-user mr-2" value={contact} />
               <TableItemField icon="fa fa-map-marker-alt mr-2" value={address} />
               <TableItemField icon="fa fa-at mr-2" value={email} />
@@ -64,7 +70,10 @@ const Companies = () => {
           )
         })
         }
+
       </Container>
+
+      {!rows.length && <Notification message="La tabla no contiene registros" type="is-light" clear={clearAlert} />}
 
       {isLoading && <Loading />}
 
