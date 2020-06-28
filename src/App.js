@@ -20,18 +20,18 @@ function App() {
         <NavBar user={user} setUser={setUser} />
         {!user.id && <Login setUser={setUser} />}
 
-      {user.id && <main>
+        {user.id && <main>
           <Switch>
             <Route path="/" exact component={Home} />
             <Route path="/companies" exact component={Companies} />
             <Route path="/profiles" exact component={Profiles} />
             <Route path="/users" exact component={Users} />
             <Route path="/suppliers" exact component={Suppliers} />
-              <Route path="/stores" exact component={Stores} />
-              <Route path="/variation-reasons" exact component={VariationReasons} />
-            </Switch>
-          </main>
-        )}
+            <Route path="/stores" exact component={Stores} />
+            <Route path="/variation-reasons" exact component={VariationReasons} />
+          </Switch>
+        </main>
+        }
       </BrowserRouter>
     </>
   )
