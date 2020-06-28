@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { login } from '../services/login'
-import Notification from './Notification'
+import Notification from './common/Notification'
 import { saveData, getData } from '../localStorage'
 
 const Login = ({ setUser }) => {
