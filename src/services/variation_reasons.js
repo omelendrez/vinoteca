@@ -8,3 +8,19 @@ export const getVariationReasons = () => {
       .catch(error => reject(handleError(error)))
   })
 }
+
+export const saveVariationReason = variationReason => {
+  return new Promise((resolve, reject) => {
+    api.post('inventory_variation_reasons', variationReason)
+      .then(response => resolve(response.data))
+      .catch(error => reject(handleError(error)))
+  })
+}
+
+export const deleteVariationReason = variationReason => {
+  return new Promise((resolve, reject) => {
+    api.delete(`inventory_variation_reasons/${variationReason.id}`)
+      .then(response => resolve(response.data))
+      .catch(error => reject(handleError(error)))
+  })
+}
