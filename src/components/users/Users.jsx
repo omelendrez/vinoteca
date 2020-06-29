@@ -4,13 +4,14 @@ import Loading from '../common/Loading'
 import Container from '../common/Container'
 import TableItem from '../common/TableItem'
 import TableItemField from '../common/TableItemField'
-import { getUsers } from '../../services/users'
+import { getUsers, deleteUser } from '../../services/users'
 import { formatDateFull } from '../../helpers'
 
 const Users = () => {
   const [users, setUsers] = useState({ rows: [] })
   const [alert, setAlert] = useState({})
   const [isLoading, setIsLoading] = useState(false)
+  const [update, setUpdate] = useState(false)
 
   useEffect(() => {
     setIsLoading(true)
@@ -23,7 +24,7 @@ const Users = () => {
         setAlert({ message: error.message, type: 'is-danger' })
         setIsLoading(false)
       })
-  }, [])
+  }, [update])
 
   const clearAlert = () => {
     setAlert({})
@@ -34,9 +35,11 @@ const Users = () => {
     console.log(user)
   }
 
-  const handleDelete = (e, user) => {
+  const handleDelete = async (e, user) => {
     e.preventDefault()
-    console.log(user)
+    setIsLoading(true)
+    deleteUser(user)
+    setUpdate(!update)
   }
 
   const { rows } = users
