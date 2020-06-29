@@ -8,6 +8,7 @@ import Home from "./components/Home";
 import Companies from "./components/companies/Companies";
 import Profiles from "./components/profiles/Profiles";
 import Products from "./components/products/Products";
+import Categories from "./components/categories/Categories";
 import Users from "./components/users/Users";
 import Suppliers from "./components/suppliers/Suppliers";
 import Stores from "./components/stores/Stores";
@@ -27,6 +28,7 @@ function App() {
               <Route path="/" exact component={Home} />
               <Route path="/companies" exact component={Companies} />
               <Route path="/products" exact component={Products} />
+              <Route path="/categories" exact component={Categories} />
               <Route path="/profiles" exact component={Profiles} />
               <Route path="/stores" exact component={Stores} />
               <Route path="/suppliers" exact component={Suppliers} />
