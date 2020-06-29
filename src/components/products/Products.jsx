@@ -1,45 +1,48 @@
-import React, { useState, useEffect } from "react"
-import Notification from "../common/Notification"
-import Loading from "../common/Loading"
-import Container from "../common/Container"
-import TableItem from "../common/TableItem"
-import TableItemField from "../common/TableItemField"
-import { getProducts } from "../../services/products"
-import { formatDateFull } from "../../helpers"
+import React, { useState, useEffect } from "react";
+import Notification from "../common/Notification";
+import Loading from "../common/Loading";
+import Container from "../common/Container";
+import TableItem from "../common/TableItem";
+import TableItemField from "../common/TableItemField";
+import { getProducts, deleteProduct } from "../../services/products";
+import { formatDateFull } from "../../helpers";
 
 const Products = () => {
-  const [products, setProducts] = useState({ rows: [] })
-  const [alert, setAlert] = useState({})
-  const [isLoading, setIsLoading] = useState(false)
+  const [products, setProducts] = useState({ rows: [] });
+  const [alert, setAlert] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
+  const [update, setUpdate] = useState(false);
 
   useEffect(() => {
-    setIsLoading(true)
+    setIsLoading(true);
     getProducts()
       .then((products) => {
-        setProducts(products)
-        setIsLoading(false)
+        setProducts(products);
+        setIsLoading(false);
       })
       .catch((error) => {
-        setAlert({ message: error.message, type: "is-danger" })
-        setIsLoading(false)
-      })
-  }, [])
+        setAlert({ message: error.message, type: "is-danger" });
+        setIsLoading(false);
+      });
+  }, []);
 
   const clearAlert = () => {
-    setAlert({})
-  }
+    setAlert({});
+  };
 
   const handleEdit = (e, product) => {
-    e.preventDefault()
-    console.log(product)
-  }
+    e.preventDefault();
+    console.log(product);
+  };
 
-  const handleDelete = (e, product) => {
-    e.preventDefault()
-    console.log(product)
-  }
+  const handleDelete = async (e, product) => {
+    e.preventDefault();
+    setIsLoading(true);
+    deleteProduct(product);
+    setUpdate(!update);
+  };
 
-  const { rows } = products
+  const { rows } = products;
   return (
     <>
       {alert.message && (
@@ -58,7 +61,7 @@ const Products = () => {
       >
         {rows &&
           rows.map((product, index) => {
-            const { name, price, created } = product
+            const { name, price, created } = product;
             return (
               <TableItem
                 key={index}
@@ -74,7 +77,7 @@ const Products = () => {
                   value={formatDateFull(created)}
                 />
               </TableItem>
-            )
+            );
           })}
       </Container>
 
@@ -88,7 +91,7 @@ const Products = () => {
 
       {isLoading && <Loading />}
     </>
-  )
-}
+  );
+};
 
-export default Products
+export default Products;
