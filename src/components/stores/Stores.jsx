@@ -4,13 +4,14 @@ import Loading from '../common/Loading'
 import Container from '../common/Container'
 import TableItem from '../common/TableItem'
 import TableItemField from '../common/TableItemField'
-import { getStores } from '../../services/stores'
+import { getStores, deleteStore } from '../../services/stores'
 import { formatDateFull } from '../../helpers'
 
 const Stores = () => {
   const [stores, setStores] = useState({ rows: [] })
   const [alert, setAlert] = useState({})
   const [isLoading, setIsLoading] = useState(false)
+  const [update, setUpdate] = useState(false)
 
   useEffect(() => {
     setIsLoading(true)
@@ -23,7 +24,7 @@ const Stores = () => {
         setAlert({ message: error.message, type: 'is-danger' })
         setIsLoading(false)
       })
-  }, [])
+  }, [update])
 
   const clearAlert = () => {
     setAlert({})
@@ -34,9 +35,11 @@ const Stores = () => {
     console.log(store)
   }
 
-  const handleDelete = (e, store) => {
+  const handleDelete = async (e, store) => {
     e.preventDefault()
-    console.log(store)
+    setIsLoading(true)
+    await deleteStore(store)
+    setUpdate(!update)
   }
 
   const { rows } = stores
@@ -53,7 +56,13 @@ const Stores = () => {
         {rows && rows.map((store, index) => {
           const { name, contact, address, phone, email, created } = store
           return (
-            <TableItem key={index} item={store} itemHeader={name} handleEdit={handleEdit} handleDelete={handleDelete}>
+            <TableItem
+              key={index}
+              item={store}
+              itemHeader={name}
+              handleEdit={handleEdit}
+              handleDelete={handleDelete}
+            >
               <TableItemField icon="fa fa-user mr-2" value={contact} />
               <TableItemField icon="fa fa-map-marker-alt mr-2" value={address} />
               <TableItemField icon="fa fa-at mr-2" value={email} />

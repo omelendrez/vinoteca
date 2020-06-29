@@ -8,3 +8,19 @@ export const getSuppliers = () => {
       .catch(error => reject(handleError(error)))
   })
 }
+
+export const saveSupplier = supplier => {
+  return new Promise((resolve, reject) => {
+    api.post('suppliers', supplier)
+      .then(response => resolve(response.data))
+      .catch(error => reject(handleError(error)))
+  })
+}
+
+export const deleteSupplier = supplier => {
+  return new Promise((resolve, reject) => {
+    api.delete(`suppliers/${supplier.id}`)
+      .then(response => resolve(response.data))
+      .catch(error => reject(handleError(error)))
+  })
+}

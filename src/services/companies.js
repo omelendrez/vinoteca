@@ -8,3 +8,19 @@ export const getCompanies = () => {
       .catch(error => reject(handleError(error)))
   })
 }
+
+export const saveCompany = company => {
+  return new Promise((resolve, reject) => {
+    api.post('companies', company)
+      .then(response => resolve(response.data))
+      .catch(error => reject(handleError(error)))
+  })
+}
+
+export const deleteCompany = company => {
+  return new Promise((resolve, reject) => {
+    api.delete(`companies/${company.id}`)
+      .then(response => resolve(response.data))
+      .catch(error => reject(handleError(error)))
+  })
+}
