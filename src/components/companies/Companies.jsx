@@ -4,13 +4,14 @@ import Loading from '../common/Loading'
 import Container from '../common/Container'
 import TableItem from '../common/TableItem'
 import TableItemField from '../common/TableItemField'
-import { getCompanies } from '../../services/companies'
+import { getCompanies, deleteCompany } from '../../services/companies'
 import { formatDateFull } from '../../helpers'
 
 const Companies = () => {
   const [companies, setCompanies] = useState({ rows: [] })
   const [alert, setAlert] = useState({})
   const [isLoading, setIsLoading] = useState(false)
+  const [update, setUpdate] = useState(false)
 
   useEffect(() => {
     setIsLoading(true)
@@ -23,7 +24,7 @@ const Companies = () => {
         setAlert({ message: error.message, type: 'is-danger' })
         setIsLoading(false)
       })
-  }, [])
+  }, [update])
 
   const clearAlert = () => {
     setAlert({})
@@ -34,9 +35,11 @@ const Companies = () => {
     console.log(company)
   }
 
-  const handleDelete = (e, company) => {
+  const handleDelete = async (e, company) => {
     e.preventDefault()
-    console.log(company)
+    setIsLoading(true)
+    await deleteCompany(company)
+    setUpdate(!update)
   }
 
   const { rows } = companies
