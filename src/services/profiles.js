@@ -8,3 +8,19 @@ export const getProfiles = () => {
       .catch(error => reject(handleError(error)))
   })
 }
+
+export const saveProfile = profile => {
+  return new Promise((resolve, reject) => {
+    api.post('profiles', profile)
+      .then(response => resolve(response.data))
+      .catch(error => reject(handleError(error)))
+  })
+}
+
+export const deleteProfile = profile => {
+  return new Promise((resolve, reject) => {
+    api.delete(`profiles/${profile.id}`)
+      .then(response => resolve(response.data))
+      .catch(error => reject(handleError(error)))
+  })
+}
