@@ -49,7 +49,7 @@ const Users = () => {
 
       <Container
         title="Usuarios"
-        subTitle="Admnistración de usuarios"
+        subTitle="Administración de usuarios"
         width="is-6"
         background="is-primary"
       >
