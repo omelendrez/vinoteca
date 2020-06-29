@@ -4,13 +4,14 @@ import Loading from '../common/Loading'
 import Container from '../common/Container'
 import TableItem from '../common/TableItem'
 import TableItemField from '../common/TableItemField'
-import { getSuppliers } from '../../services/suppliers'
+import { getSuppliers, deleteSupplier } from '../../services/suppliers'
 import { formatDateFull } from '../../helpers'
 
 const Suppliers = () => {
   const [suppliers, setSuppliers] = useState({ rows: [] })
   const [alert, setAlert] = useState({})
   const [isLoading, setIsLoading] = useState(false)
+  const [update, setUpdate] = useState(false)
 
   useEffect(() => {
     setIsLoading(true)
@@ -34,9 +35,11 @@ const Suppliers = () => {
     console.log(supplier)
   }
 
-  const handleDelete = (e, supplier) => {
+  const handleDelete = async (e, supplier) => {
     e.preventDefault()
-    console.log(supplier)
+    setIsLoading(true)
+    await deleteSupplier(supplier)
+    setUpdate(!update)
   }
 
   const { rows } = suppliers
