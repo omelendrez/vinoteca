@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { Redirect } from 'react-router-dom'
 import Notification from '../common/Notification'
 import Loading from '../common/Loading'
 import Container from '../common/Container'
@@ -11,6 +12,7 @@ const Companies = () => {
   const [companies, setCompanies] = useState({ rows: [] })
   const [alert, setAlert] = useState({})
   const [isLoading, setIsLoading] = useState(false)
+  const [redirect, setRedirect] = useState('')
 
   useEffect(() => {
     setIsLoading(true)
@@ -31,7 +33,7 @@ const Companies = () => {
 
   const handleEdit = (e, company) => {
     e.preventDefault()
-    console.log(company)
+    setRedirect({ pathname: '/company-edit', state: { company } })
   }
 
   const handleDelete = (e, company) => {
@@ -42,11 +44,12 @@ const Companies = () => {
   const { rows } = companies
   return (
     <>
+      {redirect && <Redirect to={redirect} />}
       {alert.message && <Notification message={alert.message} clear={clearAlert} type={alert.type} />}
 
       <Container
         title="Empresas"
-        subTitle="Admnistración de empresas"
+        subTitle="Administración de empresas"
         width="is-6"
         background="is-primary"
       >

@@ -6,6 +6,7 @@ import NavBar from './components/NavBar'
 
 import Home from './components/Home'
 import Companies from './components/companies/Companies'
+import CompanyEdit from './components/companies/CompanyEdit'
 import Profiles from './components/profiles/Profiles'
 import Users from './components/users/Users'
 
@@ -22,6 +23,7 @@ function App() {
             <Route path="/companies" exact component={Companies} />
             <Route path="/profiles" exact component={Profiles} />
             <Route path="/users" exact component={Users} />
+            <Route path="/company-edit" exact component={CompanyEdit} />
           </Switch>
         </main>
         }
