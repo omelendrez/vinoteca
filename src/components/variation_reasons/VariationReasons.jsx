@@ -4,13 +4,14 @@ import Loading from '../common/Loading'
 import Container from '../common/Container'
 import TableItem from '../common/TableItem'
 import TableItemField from '../common/TableItemField'
-import { getVariationReasons } from '../../services/variation_reasons'
+import { getVariationReasons, deleteVariationReason } from '../../services/variation_reasons'
 import { formatDateFull } from '../../helpers'
 
 const VariationReasons = () => {
   const [variationReasons, setVariationReasons] = useState({ rows: [] })
   const [alert, setAlert] = useState({})
   const [isLoading, setIsLoading] = useState(false)
+  const [update, setUpdate] = useState(false)
 
   useEffect(() => {
     setIsLoading(true)
@@ -23,7 +24,7 @@ const VariationReasons = () => {
         setAlert({ message: error.message, type: 'is-danger' })
         setIsLoading(false)
       })
-  }, [])
+  }, [update])
 
   const clearAlert = () => {
     setAlert({})
@@ -34,9 +35,11 @@ const VariationReasons = () => {
     console.log(variationReason)
   }
 
-  const handleDelete = (e, variationReason) => {
+  const handleDelete = async (e, variationReason) => {
     e.preventDefault()
-    console.log(variationReason)
+    setIsLoading(true)
+    await deleteVariationReason(variationReason)
+    setUpdate(!update)
   }
 
   const { rows } = variationReasons
