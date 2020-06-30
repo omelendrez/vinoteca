@@ -1,10 +1,11 @@
 import React from 'react'
 
-const Modal = ({ isActive, close, children, handleOk, confirmText, cancelText }) => (
+const Modal = ({ title, isActive, close, children, handleOk, confirmText, cancelText }) => (
   <div className={`modal ${isActive ? 'is-active' : ''}`}>
     <div className="modal-background"></div>
     <div className="modal-card">
-      <header className="modal-card-head">
+      <header className="modal-card-head has-background-danger">
+        <p class="modal-card-title has-text-white">{title}</p>
         <button className="delete" aria-label="close" onClick={() => close()}></button>
       </header>
       {children}

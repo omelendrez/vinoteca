@@ -89,14 +89,11 @@ const Companies = () => {
         })
         }
         <Confirm
-          close={() => setConfirm(false)}
           title="Eliminando registro"
-          message={`Confirma eliminación de registro ${company.name} `}
-          confirmText="Eliminar"
+          message={<span>Confirma eliminación de registro <strong>{company.name}</strong>? </span>}
           handleOk={confirmDelete}
-          cancelText="Cancelar"
-          hasCancel="true"
           isActive={confirm}
+          close={() => setConfirm(false)}
         />
 
       </Container>
