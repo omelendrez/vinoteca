@@ -15,7 +15,6 @@ const Companies = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [redirect, setRedirect] = useState('')
   const [update, setUpdate] = useState(false)
-  const [confirm, setConfirm] = useState(false)
   const [company, setCompany] = useState({})
 
   useEffect(() => {
@@ -43,13 +42,12 @@ const Companies = () => {
   const handleDelete = async (e, company) => {
     e.preventDefault()
     setCompany(company)
-    setConfirm(true)
   }
 
   const confirmDelete = async () => {
     setIsLoading(true)
-    setConfirm(false)
     await deleteCompany(company)
+    setCompany({})
     setUpdate(!update)
   }
 
@@ -90,10 +88,10 @@ const Companies = () => {
         }
         <Confirm
           title="Eliminando registro"
-          message={<span>Confirma eliminación de registro <strong>{company.name}</strong>? </span>}
+          message={<span>Confirma eliminación de registro <strong>{company.name}</strong>?</span>}
           handleOk={confirmDelete}
-          isActive={confirm}
-          close={() => setConfirm(false)}
+          isActive={company.id}
+          close={() => setCompany({})}
         />
 
       </Container>
