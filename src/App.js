@@ -1,22 +1,25 @@
-import React, { useState } from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
-import "./components/Login";
-import Login from "./components/Login";
-import NavBar from "./components/NavBar";
+import React, { useState } from "react"
+import { BrowserRouter, Switch, Route } from "react-router-dom"
+import "./components/Login"
+import Login from "./components/Login"
+import NavBar from "./components/NavBar"
 
-import Home from "./components/Home";
-import Companies from "./components/companies/Companies";
-import Profiles from "./components/profiles/Profiles";
-import Products from "./components/products/Products";
-import Categories from "./components/categories/Categories";
-import Users from "./components/users/Users";
-import Suppliers from "./components/suppliers/Suppliers";
-import Stores from "./components/stores/Stores";
-import VariationReasons from "./components/variation_reasons/VariationReasons";
+import Home from "./components/Home"
+import Companies from "./components/companies/Companies"
 import CompanyForm from './components/companies/CompanyForm'
+import Profiles from "./components/profiles/Profiles"
+import Products from "./components/products/Products"
+import Categories from "./components/categories/Categories"
+import Users from "./components/users/Users"
+import UserForm from "./components/users/UserForm"
+import Suppliers from "./components/suppliers/Suppliers"
+import Stores from "./components/stores/Stores"
+import VariationReasons from "./components/variation_reasons/VariationReasons"
+
+import './App.scss'
 
 function App() {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState({})
   return (
     <>
       <BrowserRouter>
@@ -28,25 +31,27 @@ function App() {
             <Switch>
               <Route path="/" exact component={Home} />
               <Route path="/companies" exact component={Companies} />
+              <Route path="/edit-company" exact component={CompanyForm} />
+              <Route path="/add-company" exact component={CompanyForm} />
               <Route path="/products" exact component={Products} />
               <Route path="/categories" exact component={Categories} />
               <Route path="/profiles" exact component={Profiles} />
               <Route path="/stores" exact component={Stores} />
               <Route path="/suppliers" exact component={Suppliers} />
               <Route path="/users" exact component={Users} />
+              <Route path="/edit-user" exact component={UserForm} />
+              <Route path="/add-user" exact component={UserForm} />
               <Route
                 path="/variation-reasons"
                 exact
                 component={VariationReasons}
               />
-              <Route path="/edit-company" exact component={CompanyForm} />
-              <Route path="/add-company" exact component={CompanyForm} />
             </Switch>
           </main>
         )}
       </BrowserRouter>
     </>
-  );
+  )
 }
 
-export default App;
+export default App

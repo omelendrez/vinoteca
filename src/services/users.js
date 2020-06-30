@@ -9,9 +9,17 @@ export const getUsers = () => {
   })
 }
 
-export const saveUser = user => {
+export const addUser = user => {
   return new Promise((resolve, reject) => {
     api.post('users', user)
+      .then(response => resolve(response.data))
+      .catch(error => reject(handleError(error)))
+  })
+}
+
+export const saveUser = user => {
+  return new Promise((resolve, reject) => {
+    api.put(`users/${user.id}`, user)
       .then(response => resolve(response.data))
       .catch(error => reject(handleError(error)))
   })
