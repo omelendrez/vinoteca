@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from "react";
+import { Redirect } from "react-router-dom";
 import Notification from "../common/Notification";
 import Loading from "../common/Loading";
 import Container from "../common/Container";
 import TableItem from "../common/TableItem";
 import TableItemField from "../common/TableItemField";
+import Confirm from "../common/Confirm";
 import { getProducts, deleteProduct } from "../../services/products";
 import { formatDateFull } from "../../helpers";
 
@@ -12,6 +14,7 @@ const Products = () => {
   const [alert, setAlert] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [update, setUpdate] = useState(false);
+  const [product, setProduct] = useState({});
 
   useEffect(() => {
     setIsLoading(true);
@@ -39,6 +42,13 @@ const Products = () => {
     e.preventDefault();
     setIsLoading(true);
     deleteProduct(product);
+    setUpdate(!update);
+  };
+
+  const confirmDelete = async () => {
+    setIsLoading(true);
+    await deleteCompany(product);
+    setCompany({});
     setUpdate(!update);
   };
 
@@ -79,6 +89,17 @@ const Products = () => {
               </TableItem>
             );
           })}
+        <Confirm
+          title="Eliminando producto"
+          message={
+            <span>
+              Confirma eliminación de producto <strong>{product.name}</strong>?
+            </span>
+          }
+          handleOk={confirmDelete}
+          isActive={product.id}
+          close={() => setProduct({})}
+        />
       </Container>
 
       {!rows.length && (
