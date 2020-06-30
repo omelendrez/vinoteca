@@ -56,6 +56,9 @@ const Companies = () => {
         width="is-6"
         background="is-primary"
       >
+        {/* <button className="is-primary" onClick={() => setRedirect('/add-company')}>
+          Agregar
+        </button> */}
         {rows && rows.map((company, index) => {
           const { name, contact, address, email, phone, created } = company
           return (

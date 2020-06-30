@@ -39,8 +39,8 @@ function App() {
                 exact
                 component={VariationReasons}
               />
-              <Route path="/company-edit" exact component={CompanyForm} />
-              <Route path="/company-add" exact component={CompanyForm} />
+              <Route path="/edit-company" exact component={CompanyForm} />
+              <Route path="/add-company" exact component={CompanyForm} />
             </Switch>
           </main>
         )}

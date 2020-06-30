@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { Redirect } from 'react-router-dom'
-// import Notification from '../common/Notification'
-// import Loading from '../common/Loading'
+import Notification from '../common/Notification'
+import Loading from '../common/Loading'
 import Container from '../common/Container'
 import Form from '../common/Form'
 import FormField from '../common/FormField'
+import { saveCompany, addCompany } from '../../services/companies'
+import { cleanData } from '../../helpers'
 
 const CompanyForm = props => {
 
@@ -18,12 +20,16 @@ const CompanyForm = props => {
 
   const [form, setForm] = useState(formDefault)
   const [redirect, setRedirect] = useState('')
-  // const [alert, setAlert] = useState({})
-  // const [isLoading, setIsLoading] = useState(false)
+  const [alert, setAlert] = useState({})
+  const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
-    setForm(props.location.state.company)
+    if (props.location && props.location.state && props.location.state.company) setForm(props.location.state.company)
   }, [])
+
+  const clearAlert = () => {
+    setAlert({})
+  }
 
   const handleChange = (e => {
     e.preventDefault()
@@ -35,7 +41,29 @@ const CompanyForm = props => {
 
   const handleSave = (e) => {
     e.preventDefault()
-    console.log(form)
+    setIsLoading(true)
+    if (form.id) {
+      const cleanedForm = cleanData(form)
+      saveCompany(cleanedForm)
+        .then(() => {
+          setIsLoading(false)
+          setRedirect('/companies')
+        })
+        .catch(error => {
+          setIsLoading(false)
+          setAlert({ message: error.message, type: 'is-danger' })
+        })
+    } else {
+      addCompany(form)
+        .then(() => {
+          setIsLoading(false)
+          setRedirect('/companies')
+        })
+        .catch(error => {
+          setIsLoading(false)
+          setAlert({ message: error.message, type: 'is-danger' })
+        })
+    }
   }
 
   const handleCancel = (e) => {
@@ -46,6 +74,7 @@ const CompanyForm = props => {
   return (
     <>
       {redirect && <Redirect to={redirect} />}
+      {isLoading && <Loading />}
       <Container
         title={form.id ? 'Editando' : 'Agregando'}
         subTitle="Administración de empresas"
@@ -96,7 +125,7 @@ const CompanyForm = props => {
             handleChange={handleChange}
             icon="fas fa-at"
           />
-
+          {alert.message && <Notification message={alert.message} clear={clearAlert} type={alert.type} />}
         </Form>
       </Container>
 
