@@ -12,6 +12,7 @@ const Home = () => {
             Administración de stock
         </h2>
         </div>
+        <image src="../../logo1.jpg" alt="logo1" />
       </div>
     </section>
   )

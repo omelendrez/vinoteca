@@ -14,8 +14,8 @@ const Form = ({ formHeader, children, handleSave, handleCancel }) => (
     </div>
 
     <footer className="card-footer">
-      <a className="card-footer-item has-text-white has-background-info" onClick={handleSave}>Guardar</a>
-      <a className="card-footer-item has-text-white has-background-danger" onClick={handleCancel}>Cancelar</a>
+      <a href="# " className="card-footer-item has-text-white has-background-info" onClick={handleSave}>Guardar</a>
+      <a href="# " className="card-footer-item has-text-white has-background-danger" onClick={handleCancel}>Cancelar</a>
     </footer>
 
   </div>

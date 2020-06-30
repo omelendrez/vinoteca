@@ -25,7 +25,7 @@ const CompanyForm = props => {
 
   useEffect(() => {
     if (props.location && props.location.state && props.location.state.company) setForm(props.location.state.company)
-  }, [])
+  }, [props])
 
   const clearAlert = () => {
     setAlert({})

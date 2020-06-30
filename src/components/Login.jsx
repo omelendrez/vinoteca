@@ -6,7 +6,7 @@ import { saveData, getData } from '../localStorage'
 const Login = ({ setUser }) => {
 
 	const checked = getData('remember')
-	const defaultForm = { email: checked ? getData('user').email : '', password: '' }
+	const defaultForm = { email: checked && getData('user') ? getData('user').email : '', password: '' }
 
 	const [form, setForm] = useState(defaultForm)
 	const [alert, setAlert] = useState({})
