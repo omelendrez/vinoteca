@@ -7,6 +7,7 @@ import NavBar from "./components/NavBar";
 import Home from "./components/Home";
 import Companies from "./components/companies/Companies";
 import Profiles from "./components/profiles/Profiles";
+import ProfileForm from './components/profiles/ProfileForm'
 import Products from "./components/products/Products";
 import Categories from "./components/categories/Categories";
 import Users from "./components/users/Users";
@@ -41,6 +42,8 @@ function App() {
               />
               <Route path="/edit-company" exact component={CompanyForm} />
               <Route path="/add-company" exact component={CompanyForm} />
+              <Route path="/edit-profile" exact component={ProfileForm} />
+              <Route path="/add-profile" exact component={ProfileForm} />
             </Switch>
           </main>
         )}

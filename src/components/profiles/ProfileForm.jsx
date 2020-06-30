@@ -105,4 +105,4 @@ const ProfileForm = props => {
   )
 }
 
-export default CompanyForm
+export default ProfileForm
