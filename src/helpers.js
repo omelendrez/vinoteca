@@ -12,3 +12,9 @@ export const handleError = error => {
   }
   return ({ message: 'Error de conexión' })
 }
+
+export const cleanData = data => {
+  delete data.created
+  delete data.updated
+  return data
+}

@@ -9,9 +9,17 @@ export const getCompanies = () => {
   })
 }
 
-export const saveCompany = company => {
+export const addCompany = company => {
   return new Promise((resolve, reject) => {
     api.post('companies', company)
+      .then(response => resolve(response.data))
+      .catch(error => reject(handleError(error)))
+  })
+}
+
+export const saveCompany = company => {
+  return new Promise((resolve, reject) => {
+    api.put(`companies/${company.id}`, company)
       .then(response => resolve(response.data))
       .catch(error => reject(handleError(error)))
   })
