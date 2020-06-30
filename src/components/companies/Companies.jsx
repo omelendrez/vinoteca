@@ -5,6 +5,7 @@ import Loading from '../common/Loading'
 import Container from '../common/Container'
 import TableItem from '../common/TableItem'
 import TableItemField from '../common/TableItemField'
+import Modal from '../common/Modal'
 import { getCompanies, deleteCompany } from '../../services/companies'
 import { formatDateFull } from '../../helpers'
 
@@ -14,6 +15,8 @@ const Companies = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [redirect, setRedirect] = useState('')
   const [update, setUpdate] = useState(false)
+  const [confirm, setConfirm] = useState(false)
+  const [company, setCompany] = useState({})
 
   useEffect(() => {
     setIsLoading(true)
@@ -34,12 +37,18 @@ const Companies = () => {
 
   const handleEdit = (e, company) => {
     e.preventDefault()
-    setRedirect({ pathname: '/company-edit', state: { company } })
+    setRedirect({ pathname: '/edit-company', state: { company } })
   }
 
   const handleDelete = async (e, company) => {
     e.preventDefault()
+    setCompany(company)
+    setConfirm(true)
+  }
+
+  const confirmDelete = async () => {
     setIsLoading(true)
+    setConfirm(false)
     await deleteCompany(company)
     setUpdate(!update)
   }
@@ -56,9 +65,9 @@ const Companies = () => {
         width="is-6"
         background="is-primary"
       >
-        {/* <button className="is-primary" onClick={() => setRedirect('/add-company')}>
+        <button className="button" onClick={() => setRedirect('/add-company')}>
           Agregar
-        </button> */}
+        </button>
         {rows && rows.map((company, index) => {
           const { name, contact, address, email, phone, created } = company
           return (
@@ -79,6 +88,16 @@ const Companies = () => {
           )
         })
         }
+        <Modal
+          close={() => setConfirm(false)}
+          title="Eliminando registro"
+          message={`Confirma eliminación de registro ${company.name} `}
+          confirmText="Eliminar"
+          handleOk={confirmDelete}
+          cancelText="Cancelar"
+          hasCancel="true"
+          isActive={confirm}
+        />
 
       </Container>
 
