@@ -9,9 +9,17 @@ export const getVariationReasons = () => {
   })
 }
 
+export const addVariationReason = variationReason => {
+  return new Promise((resolve, reject) => {
+    api.post('variation_reasons', variationReason)
+      .then(response => resolve(response.data))
+      .catch(error => reject(handleError(error)))
+  })
+}
+
 export const saveVariationReason = variationReason => {
   return new Promise((resolve, reject) => {
-    api.post('inventory_variation_reasons', variationReason)
+    api.put(`inventory_variation_reasons/${variationReason.id}`, variationReason)
       .then(response => resolve(response.data))
       .catch(error => reject(handleError(error)))
   })
