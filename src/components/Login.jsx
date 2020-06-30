@@ -7,7 +7,6 @@ const Login = ({ setUser }) => {
 
 	const checked = getData('remember')
 	const defaultForm = { email: checked && getData('user') ? getData('user').email : '', password: '' }
-
 	const [form, setForm] = useState(defaultForm)
 	const [alert, setAlert] = useState({})
 	const [isLoading, setIsLoading] = useState(false)
