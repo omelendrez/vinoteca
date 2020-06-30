@@ -1,48 +1,57 @@
-import React, { useState, useEffect } from "react"
-import Notification from "../common/Notification"
-import Loading from "../common/Loading"
-import Container from "../common/Container"
-import TableItem from "../common/TableItem"
-import TableItemField from "../common/TableItemField"
-import { getCategories, deleteCategory } from "../../services/categories"
-import { formatDateFull } from "../../helpers"
+import React, { useState, useEffect } from "react";
+import Notification from "../common/Notification";
+import Loading from "../common/Loading";
+import Container from "../common/Container";
+import TableItem from "../common/TableItem";
+import TableItemField from "../common/TableItemField";
+import Confirm from "../common/Confirm";
+import { getCategories, deleteCategory } from "../../services/categories";
+import { formatDateFull } from "../../helpers";
 
 const Categories = () => {
-  const [categories, setCategories] = useState({ rows: [] })
-  const [alert, setAlert] = useState({})
-  const [isLoading, setIsLoading] = useState(false)
-  const [update, setUpdate] = useState(false)
+  const [categories, setCategories] = useState({ rows: [] });
+  const [alert, setAlert] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
+  const [update, setUpdate] = useState(false);
+  const [category, setCategory] = useState({});
 
   useEffect(() => {
-    setIsLoading(true)
+    setIsLoading(true);
     getCategories()
       .then((categories) => {
-        setCategories(categories)
-        setIsLoading(false)
+        setCategories(categories);
+        setIsLoading(false);
       })
       .catch((error) => {
-        setAlert({ message: error.message, type: "is-danger" })
-        setIsLoading(false)
-      })
-  }, [update])
+        setAlert({ message: error.message, type: "is-danger" });
+        setIsLoading(false);
+      });
+  }, [update]);
 
   const clearAlert = () => {
-    setAlert({})
-  }
+    setAlert({});
+  };
 
   const handleEdit = (e, category) => {
-    e.preventDefault()
-    console.log(category)
-  }
+    e.preventDefault();
+    console.log(category);
+  };
 
   const handleDelete = async (e, category) => {
-    e.preventDefault()
-    setIsLoading(true)
-    deleteCategory(category)
-    setUpdate(!update)
-  }
+    e.preventDefault();
+    setIsLoading(true);
+    deleteCategory(category);
+    setUpdate(!update);
+  };
 
-  const { rows } = categories
+  const confirmDelete = async () => {
+    setIsLoading(true);
+    await deleteCategory(category);
+    setCategory({});
+    setUpdate(!update);
+  };
+
+  const { rows } = categories;
   return (
     <>
       {alert.message && (
@@ -61,7 +70,7 @@ const Categories = () => {
       >
         {rows &&
           rows.map((category, index) => {
-            const { code, name, created } = category
+            const { code, name, created } = category;
             return (
               <TableItem
                 key={index}
@@ -77,8 +86,20 @@ const Categories = () => {
                   value={formatDateFull(created)}
                 />
               </TableItem>
-            )
+            );
           })}
+        <Confirm
+          title="Eliminando categoria"
+          message={
+            <span>
+              Confirma eliminación de categoria <strong>{category.name}</strong>
+              ?
+            </span>
+          }
+          handleOk={confirmDelete}
+          isActive={category.id}
+          close={() => setCategory({})}
+        />
       </Container>
 
       {!rows.length && (
@@ -91,7 +112,7 @@ const Categories = () => {
 
       {isLoading && <Loading />}
     </>
-  )
-}
+  );
+};
 
-export default Categories
+export default Categories;
