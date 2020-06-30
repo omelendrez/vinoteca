@@ -6,7 +6,7 @@ import Container from '../common/Container'
 import Form from '../common/Form'
 import FormField from '../common/FormField'
 
-const CompanyEdit = props => {
+const CompanyForm = props => {
 
   const formDefault = {
     name: '',
@@ -47,13 +47,13 @@ const CompanyEdit = props => {
     <>
       {redirect && <Redirect to={redirect} />}
       <Container
-        title="Editar"
-        subTitle="Empresas"
+        title={form.id ? 'Editando' : 'Agregando'}
+        subTitle="Administración de empresas"
         width="is-6"
         background="is-primary"
       >
         <Form
-          formHeader={props.location.state.company.name}
+          formHeader={form.id ? form.name : 'Nueva empresa'}
           handleSave={handleSave}
           handleCancel={handleCancel}
         >
@@ -104,4 +104,4 @@ const CompanyEdit = props => {
   )
 }
 
-export default CompanyEdit
+export default CompanyForm
