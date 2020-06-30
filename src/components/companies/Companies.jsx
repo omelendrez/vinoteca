@@ -87,8 +87,8 @@ const Companies = () => {
         })
         }
         <Confirm
-          title="Eliminando registro"
-          message={<span>Confirma eliminación de registro <strong>{company.name}</strong>?</span>}
+          title="Eliminando empresa"
+          message={<span>Confirma eliminación de la empresa <strong>{company.name}</strong>?</span>}
           handleOk={confirmDelete}
           isActive={company.id}
           close={() => setCompany({})}
