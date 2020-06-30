@@ -5,7 +5,7 @@ import Loading from '../common/Loading'
 import Container from '../common/Container'
 import TableItem from '../common/TableItem'
 import TableItemField from '../common/TableItemField'
-import Modal from '../common/Modal'
+import Confirm from '../common/Confirm'
 import { getCompanies, deleteCompany } from '../../services/companies'
 import { formatDateFull } from '../../helpers'
 
@@ -88,7 +88,7 @@ const Companies = () => {
           )
         })
         }
-        <Modal
+        <Confirm
           close={() => setConfirm(false)}
           title="Eliminando registro"
           message={`Confirma eliminación de registro ${company.name} `}
