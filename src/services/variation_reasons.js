@@ -1,25 +1,25 @@
 import api from './api'
 import { handleError } from '../helpers'
 
-export const getCompanies = () => {
+export const getVariationReasons = () => {
   return new Promise((resolve, reject) => {
-    api.get('companies')
+    api.get('inventory_variation_reasons')
       .then(response => resolve(response.data))
       .catch(error => reject(handleError(error)))
   })
 }
 
-export const saveCompany = company => {
+export const saveVariationReason = variationReason => {
   return new Promise((resolve, reject) => {
-    api.post('companies', company)
+    api.post('inventory_variation_reasons', variationReason)
       .then(response => resolve(response.data))
       .catch(error => reject(handleError(error)))
   })
 }
 
-export const deleteCompany = company => {
+export const deleteVariationReason = variationReason => {
   return new Promise((resolve, reject) => {
-    api.delete(`companies/${company.id}`)
+    api.delete(`inventory_variation_reasons/${variationReason.id}`)
       .then(response => resolve(response.data))
       .catch(error => reject(handleError(error)))
   })
