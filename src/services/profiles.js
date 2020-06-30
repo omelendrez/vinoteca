@@ -9,9 +9,17 @@ export const getProfiles = () => {
   })
 }
 
-export const saveProfile = profile => {
+export const addProfile = profile => {
   return new Promise((resolve, reject) => {
     api.post('profiles', profile)
+      .then(response => resolve(response.data))
+      .catch(error => reject(handleError(error)))
+  })
+}
+
+export const saveProfile = profile => {
+  return new Promise((resolve, reject) => {
+    api.put(`profiles/${profile.id}`, profile)
       .then(response => resolve(response.data))
       .catch(error => reject(handleError(error)))
   })
