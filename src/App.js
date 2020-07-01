@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom"
 import "./components/Login"
 import Login from "./components/Login"
 import NavBar from "./components/NavBar"
+import './App.scss'
 
 import Home from "./components/Home"
 import Companies from "./components/companies/Companies"
@@ -14,6 +15,7 @@ import ProductForm from "./components/products/ProductForm"
 import Categories from "./components/categories/Categories"
 import CategoryForm from "./components/categories/CategoryForm"
 import Users from "./components/users/Users"
+import UserForm from "./components/users/UserForm"
 import Suppliers from "./components/suppliers/Suppliers"
 import SupplierForm from "./components/suppliers/SupplierForm"
 import Stores from "./components/stores/Stores"
@@ -52,6 +54,8 @@ function App() {
               <Route path="/edit-supplier" exact component={SupplierForm} />
               <Route path="/add-supplier" exact component={SupplierForm} />
               <Route path="/users" exact component={Users} />
+              <Route path="/edit-user" exact component={UserForm} />
+              <Route path="/add-user" exact component={UserForm} />
               <Route
                 path="/variation-reasons"
                 exact
@@ -59,6 +63,7 @@ function App() {
               />
               <Route path="/edit-variation-reason" exact component={VariationReasonForm} />
               <Route path="/add-variation-reason" exact component={VariationReasonForm} />
+
             </Switch>
           </main>
         )}
