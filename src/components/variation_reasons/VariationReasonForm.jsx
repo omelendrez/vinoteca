@@ -7,12 +7,14 @@ import Form from '../common/Form'
 import FormField from '../common/FormField'
 import { saveVariationReason, addVariationReason } from '../../services/variation_reasons'
 import { cleanData } from '../../helpers'
+import { getData } from '../../localStorage'
 
 const VariationReasonForm = props => {
 
   const formDefault = {
     code: '',
-    name: ''
+    name: '',
+    companyId: getData('user').companyId
   }
 
   const [form, setForm] = useState(formDefault)
@@ -54,7 +56,7 @@ const VariationReasonForm = props => {
       addVariationReason(form)
         .then(() => {
           setIsLoading(false)
-          setRedirect('/variation_reasons')
+          setRedirect('/variation-reasons')
         })
         .catch(error => {
           setIsLoading(false)

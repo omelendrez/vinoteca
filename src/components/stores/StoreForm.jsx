@@ -7,6 +7,7 @@ import Form from '../common/Form'
 import FormField from '../common/FormField'
 import { saveStore, addStore } from '../../services/stores'
 import { cleanData } from '../../helpers'
+import { getData } from '../../localStorage'
 
 const StoreForm = props => {
 
@@ -15,7 +16,8 @@ const StoreForm = props => {
     contact: '',
     address: '',
     phone: '',
-    email: ''
+    email: '',
+    companyId: getData('user').companyId
   }
 
   const [form, setForm] = useState(formDefault)
