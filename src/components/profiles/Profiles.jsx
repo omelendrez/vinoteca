@@ -78,8 +78,7 @@ const Profiles = () => {
               handleDelete={handleDelete}
             >
               <TableItemField label="Código" value={code} />
-              <br />
-              <br />
+              <hr />
               <TableItemField
                 icon="fa fa-calendar-alt mr-2"
                 label="Creado"

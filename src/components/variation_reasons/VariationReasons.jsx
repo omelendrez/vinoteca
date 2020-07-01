@@ -78,8 +78,7 @@ const VariationReasons = () => {
             >
               <TableItemField label="Código" value={code} />
               <TableItemField label="Razón" value={name} />
-              <br />
-              <br />
+              <hr />
               <TableItemField
                 icon="fa fa-calendar-alt mr-2"
                 label="Creado"

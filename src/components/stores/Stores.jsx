@@ -80,8 +80,7 @@ const Stores = () => {
               <TableItemField icon="fa fa-map-marker-alt mr-2" value={address} />
               <TableItemField icon="fa fa-at mr-2" value={email} />
               <TableItemField icon="fa fa-phone mr-2" value={phone} />
-              <br />
-              <br />
+              <hr />
               <TableItemField
                 icon="fa fa-calendar-alt mr-2"
                 label="Creado"

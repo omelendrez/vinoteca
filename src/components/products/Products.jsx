@@ -87,8 +87,7 @@ const Products = () => {
                 handleDelete={handleDelete}
               >
                 <TableItemField icon="fa fa-at mr-2" value={price} />
-                <br />
-                <br />
+                <hr />
                 <TableItemField
                   icon="fa fa-calendar-alt mr-2"
                   label="Creado"
