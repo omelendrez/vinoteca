@@ -44,7 +44,7 @@ const VariationReasonForm = props => {
       saveVariationReason(cleanedForm)
         .then(() => {
           setIsLoading(false)
-          setRedirect('/variation_reasons')
+          setRedirect('/variation-reasons')
         })
         .catch(error => {
           setIsLoading(false)
@@ -65,7 +65,7 @@ const VariationReasonForm = props => {
 
   const handleCancel = (e) => {
     e.preventDefault()
-    setRedirect('/variation_reasons')
+    setRedirect('/variation-reasons')
   }
 
   return (

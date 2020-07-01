@@ -1,12 +1,12 @@
-import React, { useState, useEffect } from "react";
-import { Redirect } from "react-router-dom";
-import Notification from "../common/Notification";
-import Loading from "../common/Loading";
-import Container from "../common/Container";
-import Form from "../common/Form";
-import FormField from "../common/FormField";
-import { saveProduct, addProduct } from "../../services/companies";
-import { cleanData } from "../../helpers";
+import React, { useState, useEffect } from "react"
+import { Redirect } from "react-router-dom"
+import Notification from "../common/Notification"
+import Loading from "../common/Loading"
+import Container from "../common/Container"
+import Form from "../common/Form"
+import FormField from "../common/FormField"
+import { saveProduct, addProduct } from "../../services/products"
+import { cleanData } from "../../helpers"
 
 const ProductForm = (props) => {
   const formDefault = {
@@ -21,61 +21,61 @@ const ProductForm = (props) => {
     lastSaleDate: "",
     lastSalePrice: "",
     price: "",
-  };
+  }
 
-  const [form, setForm] = useState(formDefault);
-  const [redirect, setRedirect] = useState("");
-  const [alert, setAlert] = useState({});
-  const [isLoading, setIsLoading] = useState(false);
+  const [form, setForm] = useState(formDefault)
+  const [redirect, setRedirect] = useState("")
+  const [alert, setAlert] = useState({})
+  const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
     if (props.location && props.location.state && props.location.state.product)
-      setForm(props.location.state.product);
-  }, [props]);
+      setForm(props.location.state.product)
+  }, [props])
 
   const clearAlert = () => {
-    setAlert({});
-  };
+    setAlert({})
+  }
 
   const handleChange = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     setForm({
       ...form,
       [e.target.id]: e.target.value,
-    });
-  };
+    })
+  }
 
   const handleSave = (e) => {
-    e.preventDefault();
-    setIsLoading(true);
+    e.preventDefault()
+    setIsLoading(true)
     if (form.id) {
-      const cleanedForm = cleanData(form);
+      const cleanedForm = cleanData(form)
       saveProduct(cleanedForm)
         .then(() => {
-          setIsLoading(false);
-          setRedirect("/products");
+          setIsLoading(false)
+          setRedirect("/products")
         })
         .catch((error) => {
-          setIsLoading(false);
-          setAlert({ message: error.message, type: "is-danger" });
-        });
+          setIsLoading(false)
+          setAlert({ message: error.message, type: "is-danger" })
+        })
     } else {
       addProduct(form)
         .then(() => {
-          setIsLoading(false);
-          setRedirect("/products");
+          setIsLoading(false)
+          setRedirect("/products")
         })
         .catch((error) => {
-          setIsLoading(false);
-          setAlert({ message: error.message, type: "is-danger" });
-        });
+          setIsLoading(false)
+          setAlert({ message: error.message, type: "is-danger" })
+        })
     }
-  };
+  }
 
   const handleCancel = (e) => {
-    e.preventDefault();
-    setRedirect("/products");
-  };
+    e.preventDefault()
+    setRedirect("/products")
+  }
 
   return (
     <>
@@ -172,7 +172,7 @@ const ProductForm = (props) => {
         </Form>
       </Container>
     </>
-  );
-};
+  )
+}
 
-export default ProductForm;
+export default ProductForm
