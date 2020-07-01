@@ -7,7 +7,6 @@ import Form from "../common/Form"
 import FormField from "../common/FormField"
 import { saveProduct, addProduct } from "../../services/products"
 import { cleanData } from "../../helpers"
-import { getData } from "../../localStorage"
 
 const ProductForm = (props) => {
   const formDefault = {
@@ -21,8 +20,7 @@ const ProductForm = (props) => {
     lastPurchasePrice: "",
     lastSaleDate: "",
     lastSalePrice: "",
-    price: "",
-    companyId: getData('user').companyId
+    price: ""
   }
 
   const [form, setForm] = useState(formDefault)

@@ -7,13 +7,11 @@ import Form from "../common/Form"
 import FormField from "../common/FormField"
 import { saveCategory, addCategory } from "../../services/categories"
 import { cleanData } from "../../helpers"
-import { getData } from "../../localStorage"
 
 const CategoryForm = (props) => {
   const formDefault = {
     code: "",
-    name: "",
-    companyId: getData('user').companyId
+    name: ""
   }
 
   const [form, setForm] = useState(formDefault)
