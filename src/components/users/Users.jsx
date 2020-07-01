@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { Redirect } from 'react-router-dom'
 import Notification from '../common/Notification'
 import Loading from '../common/Loading'
 import Container from '../common/Container'
@@ -12,6 +13,7 @@ const Users = () => {
   const [alert, setAlert] = useState({})
   const [isLoading, setIsLoading] = useState(false)
   const [update, setUpdate] = useState(false)
+  const [redirect, setRedirect] = useState('')
 
   useEffect(() => {
     setIsLoading(true)
@@ -32,7 +34,9 @@ const Users = () => {
 
   const handleEdit = (e, user) => {
     e.preventDefault()
-    console.log(user)
+    //console.log(user)
+    setRedirect({ pathname: '/edit-user', state: { user } })
+
   }
 
   const handleDelete = async (e, user) => {
@@ -45,6 +49,7 @@ const Users = () => {
   const { rows } = users
   return (
     <>
+      {redirect && <Redirect to={redirect} />}
       {alert.message && <Notification message={alert.message} clear={clearAlert} type={alert.type} />}
 
       <Container
@@ -53,6 +58,9 @@ const Users = () => {
         width="is-6"
         background="is-primary"
       >
+        <button className="button" onClick={() => setRedirect('/add-user')}>
+          Agregar
+        </button>
         {rows && rows.map((user, index) => {
           const { name, email, created } = user
           return (
