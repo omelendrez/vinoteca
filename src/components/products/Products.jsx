@@ -47,8 +47,8 @@ const Products = () => {
 
   const confirmDelete = async () => {
     setIsLoading(true);
-    await deleteCompany(product);
-    setCompany({});
+    await deleteProduct(product);
+    setProduct({});
     setUpdate(!update);
   };
 

@@ -5,7 +5,7 @@ import Loading from "../common/Loading";
 import Container from "../common/Container";
 import Form from "../common/Form";
 import FormField from "../common/FormField";
-import { saveCompany, addCompany } from "../../services/companies";
+import { saveProduct, addProduct } from "../../services/companies";
 import { cleanData } from "../../helpers";
 
 const ProductForm = (props) => {
@@ -16,10 +16,10 @@ const ProductForm = (props) => {
     description: "",
     quantity: "",
     minimum: "",
-    last_purchase_date: "",
-    last_purchase_price: "",
-    last_sale_date: "",
-    last_sale_price: "",
+    lastPurchaseDate: "",
+    lastPurchasePrice: "",
+    lastSaleDate: "",
+    lastSalePrice: "",
     price: "",
   };
 
@@ -130,29 +130,29 @@ const ProductForm = (props) => {
           <FormField
             label="última fecha de compra"
             type="date"
-            fieldId="last_purchase_date"
-            fieldValue={form.last_purchase_date}
+            fieldId="lastPurchaseDate"
+            fieldValue={form.lastPurchaseDate}
             handleChange={handleChange}
           />
           <FormField
             label="Ultimo precio de compra"
             type="number"
-            fieldId="last_purchase_price"
-            fieldValue={form.last_purchase_price}
+            fieldId="lastPurchasePrice"
+            fieldValue={form.lastPurchasePrice}
             handleChange={handleChange}
           />
           <FormField
             label="Ultima fecha de venta"
             type="date"
-            fieldId="last_sale_date"
-            fieldValue={form.last_sale_date}
+            fieldId="lastSaleDate"
+            fieldValue={form.lastSaleDate}
             handleChange={handleChange}
           />
           <FormField
             label="Precio de última venta"
             type="number"
-            fieldId="last_sale_price"
-            fieldValue={form.last_sale_price}
+            fieldId="lastSalePrice"
+            fieldValue={form.lastSalePrice}
             handleChange={handleChange}
           />
           <FormField
