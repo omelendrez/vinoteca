@@ -77,7 +77,7 @@ const Products = () => {
 
         {rows &&
           rows.map((product, index) => {
-            const { name, price, created } = product
+            const { name, price, created, updated } = product
             return (
               <TableItem
                 key={index}
@@ -88,10 +88,19 @@ const Products = () => {
               >
                 <TableItemField icon="fa fa-at mr-2" value={price} />
                 <br />
+                <br />
                 <TableItemField
                   icon="fa fa-calendar-alt mr-2"
+                  label="Creado"
                   value={formatDateFull(created)}
                 />
+                {created !== updated &&
+                  <TableItemField
+                    label="Modificado"
+                    icon="fa fa-calendar-alt mr-2"
+                    value={formatDateFull(updated)}
+                  />
+                }
               </TableItem>
             )
           })}

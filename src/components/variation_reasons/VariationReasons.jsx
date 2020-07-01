@@ -67,7 +67,7 @@ const VariationReasons = () => {
           Agregar
         </button>
         {rows && rows.map((variationReason, index) => {
-          const { code, name, created } = variationReason
+          const { code, name, created, updated } = variationReason
           return (
             <TableItem
               key={index}
@@ -79,7 +79,19 @@ const VariationReasons = () => {
               <TableItemField label="Código" value={code} />
               <TableItemField label="Razón" value={name} />
               <br />
-              <TableItemField icon="fa fa-calendar-alt mr-2" value={formatDateFull(created)} />
+              <br />
+              <TableItemField
+                icon="fa fa-calendar-alt mr-2"
+                label="Creado"
+                value={formatDateFull(created)}
+              />
+              {created !== updated &&
+                <TableItemField
+                  label="Modificado"
+                  icon="fa fa-calendar-alt mr-2"
+                  value={formatDateFull(updated)}
+                />
+              }
             </TableItem>
           )
         })

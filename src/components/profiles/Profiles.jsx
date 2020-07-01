@@ -68,7 +68,7 @@ const Profiles = () => {
           Agregar
         </button>
         {rows && rows.map((profile, index) => {
-          const { code, name, created } = profile
+          const { code, name, created, updated } = profile
           return (
             <TableItem
               key={index}
@@ -79,7 +79,19 @@ const Profiles = () => {
             >
               <TableItemField label="Código" value={code} />
               <br />
-              <TableItemField icon="fa fa-calendar-alt mr-2" value={formatDateFull(created)} />
+              <br />
+              <TableItemField
+                icon="fa fa-calendar-alt mr-2"
+                label="Creado"
+                value={formatDateFull(created)}
+              />
+              {created !== updated &&
+                <TableItemField
+                  label="Modificado"
+                  icon="fa fa-calendar-alt mr-2"
+                  value={formatDateFull(updated)}
+                />
+              }
             </TableItem>
           )
         })

@@ -74,7 +74,7 @@ const Categories = () => {
         </button>
         {rows &&
           rows.map((category, index) => {
-            const { code, name, created } = category
+            const { code, name, created, updated } = category
             return (
               <TableItem
                 key={index}
@@ -87,8 +87,16 @@ const Categories = () => {
                 <br />
                 <TableItemField
                   icon="fa fa-calendar-alt mr-2"
+                  label="Creado"
                   value={formatDateFull(created)}
                 />
+                {created !== updated &&
+                  <TableItemField
+                    label="Modificado"
+                    icon="fa fa-calendar-alt mr-2"
+                    value={formatDateFull(updated)}
+                  />
+                }
               </TableItem>
             )
           })}

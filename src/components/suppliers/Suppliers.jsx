@@ -67,7 +67,7 @@ const Suppliers = () => {
           Agregar
         </button>
         {rows && rows.map((supplier, index) => {
-          const { name, contact, address, email, phone, created } = supplier
+          const { name, contact, address, email, phone, created, updated } = supplier
           return (
             <TableItem
               key={index}
@@ -81,7 +81,19 @@ const Suppliers = () => {
               <TableItemField icon="fa fa-at mr-2" value={email} />
               <TableItemField icon="fa fa-phone mr-2" value={phone} />
               <br />
-              <TableItemField icon="fa fa-calendar-alt mr-2" value={formatDateFull(created)} />
+              <br />
+              <TableItemField
+                icon="fa fa-calendar-alt mr-2"
+                label="Creado"
+                value={formatDateFull(created)}
+              />
+              {created !== updated &&
+                <TableItemField
+                  label="Modificado"
+                  icon="fa fa-calendar-alt mr-2"
+                  value={formatDateFull(updated)}
+                />
+              }
             </TableItem>
           )
         })
