@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react'
+import { Redirect } from 'react-router-dom'
 import Container from '../common/Container'
 import Notification from '../common/Notification'
 import Loading from '../common/Loading'
 import TableItem from '../common/TableItem'
 import TableItemField from '../common/TableItemField'
+import Confirm from '../common/Confirm'
 import { getProfiles, deleteProfile } from '../../services/profiles'
 import { formatDateFull } from '../../helpers'
 
@@ -12,6 +14,8 @@ const Profiles = () => {
   const [alert, setAlert] = useState({})
   const [isLoading, setIsLoading] = useState(false)
   const [update, setUpdate] = useState(false)
+  const [redirect, setRedirect] = useState('')
+  const [profile, setProfile] = useState({})
 
   useEffect(() => {
     setIsLoading(true)
@@ -32,13 +36,18 @@ const Profiles = () => {
 
   const handleEdit = (e, profile) => {
     e.preventDefault()
-    console.log(profile)
+    setRedirect({ pathname: '/edit-profile', state: { profile } })
   }
 
   const handleDelete = async (e, profile) => {
     e.preventDefault()
+    setProfile(profile)
+  }
+
+  const confirmDelete = async () => {
     setIsLoading(true)
     await deleteProfile(profile)
+    setProfile({})
     setUpdate(!update)
   }
 
@@ -46,6 +55,7 @@ const Profiles = () => {
 
   return (
     <>
+      {redirect && <Redirect to={redirect} />}
       {alert.message && <Notification message={alert.message} clear={clearAlert} type={alert.type} />}
 
       <Container
@@ -54,6 +64,9 @@ const Profiles = () => {
         width="is-6"
         background="is-primary"
       >
+        <button className="button" onClick={() => setRedirect('/add-profile')}>
+          Agregar
+        </button>
         {rows && rows.map((profile, index) => {
           const { code, name, created } = profile
           return (
@@ -71,6 +84,13 @@ const Profiles = () => {
           )
         })
         }
+        <Confirm
+          title="Eliminando perfil"
+          message={<span>¿Confirma eliminación del perfil <strong>{profile.name}</strong>?</span>}
+          handleOk={confirmDelete}
+          isActive={profile.id}
+          close={() => setProfile({})}
+        />
       </Container>
 
       {!rows.length && <Notification message="La tabla no contiene registros" type="is-light" clear={clearAlert} />}

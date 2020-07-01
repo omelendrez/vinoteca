@@ -10,10 +10,19 @@ export const getProducts = () => {
   });
 };
 
-export const saveProduct = (product) => {
+export const addProduct = (product) => {
   return new Promise((resolve, reject) => {
     api
       .post("products", product)
+      .then((response) => resolve(response.data))
+      .catch((error) => reject(handleError(error)));
+  });
+};
+
+export const saveProduct = (product) => {
+  return new Promise((resolve, reject) => {
+    api
+      .put(`products/${product.id}`, product)
       .then((response) => resolve(response.data))
       .catch((error) => reject(handleError(error)));
   });
