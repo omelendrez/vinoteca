@@ -41,9 +41,7 @@ const Categories = () => {
 
   const handleDelete = async (e, category) => {
     e.preventDefault()
-    setIsLoading(true)
-    deleteCategory(category)
-    setUpdate(!update)
+    setCategory(category)
   }
 
   const confirmDelete = async () => {
@@ -106,6 +104,14 @@ const Categories = () => {
           isActive={category.id}
           close={() => setCategory({})}
         />
+        <Confirm
+          title="Eliminando empresa"
+          message={<span>Confirma eliminación de la empresa <strong>{category.name}</strong>?</span>}
+          handleOk={confirmDelete}
+          isActive={category.id}
+          close={() => setCategory({})}
+        />
+
       </Container>
 
       {!rows.length && (
