@@ -13,6 +13,7 @@ import Categories from "./components/categories/Categories";
 import Users from "./components/users/Users";
 import Suppliers from "./components/suppliers/Suppliers";
 import Stores from "./components/stores/Stores";
+import StoreForm from './components/stores/StoreForm'
 import VariationReasons from "./components/variation_reasons/VariationReasons";
 import CompanyForm from './components/companies/CompanyForm'
 
@@ -42,6 +43,8 @@ function App() {
               />
               <Route path="/edit-company" exact component={CompanyForm} />
               <Route path="/add-company" exact component={CompanyForm} />
+              <Route path="/edit-store" exact component={StoreForm} />
+              <Route path="/add-store" exact component={StoreForm} />
               <Route path="/edit-profile" exact component={ProfileForm} />
               <Route path="/add-profile" exact component={ProfileForm} />
             </Switch>
