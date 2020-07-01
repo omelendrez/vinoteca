@@ -3,7 +3,7 @@ import 'moment/locale/es'
 
 export const formatDate = date => moment(date).format('L')
 
-export const formatDateFull = dateTime => moment(dateTime).format('l LT')
+export const formatDateFull = dateTime => moment(dateTime).format('DD-MM-YYYY HH:mm:ss')
 
 export const handleError = error => {
   console.log(error)

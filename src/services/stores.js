@@ -9,9 +9,17 @@ export const getStores = () => {
   })
 }
 
-export const saveStore = store => {
+export const addStore = store => {
   return new Promise((resolve, reject) => {
     api.post('stores', store)
+      .then(response => resolve(response.data))
+      .catch(error => reject(handleError(error)))
+  })
+}
+
+export const saveStore = store => {
+  return new Promise((resolve, reject) => {
+    api.put(`stores/${store.id}`, store)
       .then(response => resolve(response.data))
       .catch(error => reject(handleError(error)))
   })

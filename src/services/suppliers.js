@@ -9,9 +9,17 @@ export const getSuppliers = () => {
   })
 }
 
-export const saveSupplier = supplier => {
+export const addSupplier = supplier => {
   return new Promise((resolve, reject) => {
     api.post('suppliers', supplier)
+      .then(response => resolve(response.data))
+      .catch(error => reject(handleError(error)))
+  })
+}
+
+export const saveSupplier = supplier => {
+  return new Promise((resolve, reject) => {
+    api.put(`suppliers/${supplier.id}`, supplier)
       .then(response => resolve(response.data))
       .catch(error => reject(handleError(error)))
   })
