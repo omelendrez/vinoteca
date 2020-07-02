@@ -1,0 +1,34 @@
+{
+  "fields": [
+    {
+      "label": "Nombre",
+      "type": "text",
+      "fieldId": "name",
+      "icon": "fas fa-warehouse"
+    },
+    {
+      "label": "Contacto",
+      "type": "text",
+      "fieldId": "contact",
+      "icon": "fas fa-user"
+    },
+    {
+      "label": "Dirección",
+      "type": "text",
+      "fieldId": "address",
+      "icon": "fas fa-map-marker-alt"
+    },
+    {
+      "label": "Teléfono",
+      "type": "text",
+      "fieldId": "phone",
+      "icon": "fas fa-phone"
+    },
+    {
+      "label": "E-mail",
+      "type": "text",
+      "fieldId": "email",
+      "icon": "fas fa-at"
+    }
+  ]
+}
