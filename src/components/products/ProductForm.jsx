@@ -14,12 +14,7 @@ const ProductForm = (props) => {
     barcode: "",
     name: "",
     description: "",
-    quantity: "",
     minimum: "",
-    lastPurchaseDate: "",
-    lastPurchasePrice: "",
-    lastSaleDate: "",
-    lastSalePrice: "",
     price: ""
   }
 
@@ -114,45 +109,10 @@ const ProductForm = (props) => {
             handleChange={handleChange}
           />
           <FormField
-            label="Cantidad"
-            type="number"
-            fieldId="quantity"
-            fieldValue={form.quantity}
-            handleChange={handleChange}
-          />
-          <FormField
             label="Minima"
             type="number"
             fieldId="minimum"
             fieldValue={form.minimum}
-            handleChange={handleChange}
-          />
-          <FormField
-            label="última fecha de compra"
-            type="date"
-            fieldId="lastPurchaseDate"
-            fieldValue={form.lastPurchaseDate}
-            handleChange={handleChange}
-          />
-          <FormField
-            label="Ultimo precio de compra"
-            type="number"
-            fieldId="lastPurchasePrice"
-            fieldValue={form.lastPurchasePrice}
-            handleChange={handleChange}
-          />
-          <FormField
-            label="Ultima fecha de venta"
-            type="date"
-            fieldId="lastSaleDate"
-            fieldValue={form.lastSaleDate}
-            handleChange={handleChange}
-          />
-          <FormField
-            label="Precio de última venta"
-            type="number"
-            fieldId="lastSalePrice"
-            fieldValue={form.lastSalePrice}
             handleChange={handleChange}
           />
           <FormField
