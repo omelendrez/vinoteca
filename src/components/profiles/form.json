@@ -8,7 +8,8 @@
     {
       "label": "Nombre",
       "type": "text",
-      "fieldId": "name"
+      "fieldId": "name",
+      "icon": "fas fa-users"
     }
   ]
 }
