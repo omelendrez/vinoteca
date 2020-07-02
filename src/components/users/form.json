@@ -1,0 +1,19 @@
+{
+  "fields": [
+    {
+      "label": "Nombre",
+      "type": "text",
+      "fieldId": "name"
+    },
+    {
+      "label": "Email",
+      "type": "text",
+      "fieldId": "email"
+    },
+    {
+      "label": "Password",
+      "type": "text",
+      "fieldId": "password"
+    }
+  ]
+}

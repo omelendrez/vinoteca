@@ -10,6 +10,7 @@ import { saveUser, addUser } from '../../services/users'
 import { getProfiles } from '../../services/profiles'
 import { getCompanies } from '../../services/companies'
 import { cleanData } from '../../helpers'
+import { fields } from './form.json'
 
 const UserForm = props => {
 
@@ -131,32 +132,18 @@ const UserForm = props => {
             }
           </FormFieldSelect>
 
-          <FormField
-            label="Nombre"
-            type="text"
-            fieldId="name"
-            fieldValue={form.name}
-            handleChange={handleChange}
-            icon="fas fa-user"
-          />
+          {fields.map((field, index) => (
+            <FormField
+              key={index}
+              label={field.label}
+              type={field.type}
+              fieldId={field.fieldId}
+              fieldValue={form[field.fieldId]}
+              handleChange={handleChange}
+              icon={field.icon}
+            />
+          ))}
 
-          <FormField
-            label="Email"
-            type="text"
-            fieldId="email"
-            fieldValue={form.email}
-            handleChange={handleChange}
-            icon="fas fa-at"
-          />
-
-          <FormField
-            label="Password"
-            type="text"
-            fieldId="password"
-            fieldValue={form.password}
-            handleChange={handleChange}
-            icon="fas fa-key"
-          />
           {alert.message && <Notification message={alert.message} clear={clearAlert} type={alert.type} />}
         </Form>
       </Container>

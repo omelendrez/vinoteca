@@ -18,5 +18,7 @@ export const cleanData = data => {
   result.created = undefined
   result.updated = undefined
   result.confirmPassword = undefined
+  if (!result.lastPurchaseDate) result.lastPurchaseDate = undefined
+  if (!result.lastSaleDate) result.lastSaleDate = undefined
   return result
 }
