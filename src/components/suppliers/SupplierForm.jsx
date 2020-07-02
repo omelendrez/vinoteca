@@ -7,6 +7,7 @@ import Form from '../common/Form'
 import FormField from '../common/FormField'
 import { saveSupplier, addSupplier } from '../../services/suppliers'
 import { cleanData } from '../../helpers'
+import { fields } from './form.json'
 
 const SupplierForm = props => {
 
@@ -86,45 +87,17 @@ const SupplierForm = props => {
           handleSave={handleSave}
           handleCancel={handleCancel}
         >
-          <FormField
-            label="Nombre"
-            type="text"
-            fieldId="name"
-            fieldValue={form.name}
-            handleChange={handleChange}
-          />
-          <FormField
-            label="Contacto"
-            type="text"
-            fieldId="contact"
-            fieldValue={form.contact}
-            handleChange={handleChange}
-            icon="fas fa-user"
-          />
-          <FormField
-            label="Dirección"
-            type="text"
-            fieldId="address"
-            fieldValue={form.address}
-            handleChange={handleChange}
-            icon="fas fa-map-marker-alt"
-          />
-          <FormField
-            label="Teléfono"
-            type="text"
-            fieldId="phone"
-            fieldValue={form.phone}
-            handleChange={handleChange}
-            icon="fas fa-phone"
-          />
-          <FormField
-            label="Email"
-            type="text"
-            fieldId="email"
-            fieldValue={form.email}
-            handleChange={handleChange}
-            icon="fas fa-at"
-          />
+          {fields.map((field, index) => (
+            <FormField
+              key={index}
+              label={field.label}
+              type={field.type}
+              fieldId={field.fieldId}
+              fieldValue={form[field.fieldId]}
+              handleChange={handleChange}
+              icon={field.icon}
+            />
+          ))}
           {alert.message && <Notification message={alert.message} clear={clearAlert} type={alert.type} />}
         </Form>
       </Container>

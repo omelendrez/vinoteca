@@ -1,0 +1,29 @@
+{
+  "fields": [
+    {
+      "label": "Nombre",
+      "type": "text",
+      "fieldId": "name"
+    },
+    {
+      "label": "Contacto",
+      "type": "text",
+      "fieldId": "contact"
+    },
+    {
+      "label": "Dirección",
+      "type": "text",
+      "fieldId": "address"
+    },
+    {
+      "label": "Teléfono",
+      "type": "text",
+      "fieldId": "phone"
+    },
+    {
+      "label": "Email",
+      "type": "text",
+      "fieldId": "email"
+    }
+  ]
+}
