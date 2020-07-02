@@ -8,7 +8,7 @@
     {
       "label": "Razón",
       "type": "text",
-      "fieldId": "reason"
+      "fieldId": "name"
     }
   ]
 }
