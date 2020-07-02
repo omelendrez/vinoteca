@@ -16,6 +16,7 @@ import Categories from "./components/categories/Categories"
 import CategoryForm from "./components/categories/CategoryForm"
 import Users from "./components/users/Users"
 import UserForm from "./components/users/UserForm"
+import ChangePassword from './components/users/ChangePassword'
 import Suppliers from "./components/suppliers/Suppliers"
 import SupplierForm from "./components/suppliers/SupplierForm"
 import Stores from "./components/stores/Stores"
@@ -56,14 +57,10 @@ function App() {
               <Route path="/users" exact component={Users} />
               <Route path="/edit-user" exact component={UserForm} />
               <Route path="/add-user" exact component={UserForm} />
-              <Route
-                path="/variation-reasons"
-                exact
-                component={VariationReasons}
-              />
+              <Route path='/change-password' exact component={ChangePassword} />
+              <Route path="/variation-reasons" exact component={VariationReasons} />
               <Route path="/edit-variation-reason" exact component={VariationReasonForm} />
               <Route path="/add-variation-reason" exact component={VariationReasonForm} />
-
             </Switch>
           </main>
         )}
