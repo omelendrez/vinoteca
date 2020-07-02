@@ -1,0 +1,36 @@
+{
+  "fields": [
+    {
+      "label": "Codigo",
+      "type": "text",
+      "fieldId": "code"
+    },
+    {
+      "label": "Barcode",
+      "type": "text",
+      "fieldId": "barcode"
+    },
+    {
+      "label": "Nombre",
+      "type": "text",
+      "fieldId": "name"
+    },
+    {
+      "label": "Descripcion",
+      "type": "text",
+      "fieldId": "description"
+    },
+    {
+      "label": "Minima",
+      "type": "number",
+      "fieldId": "minimum",
+      "fieldValue": ""
+    },
+    {
+      "label": "Precio",
+      "type": "number",
+      "fieldId": "price",
+      "fieldValue": ""
+    }
+  ]
+}

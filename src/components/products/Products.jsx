@@ -36,7 +36,7 @@ const Products = () => {
 
   const handleEdit = (e, product) => {
     e.preventDefault()
-    setRedirect({ pathname: '/edit-product', state: { product } })
+    setRedirect({ pathname: "/edit-product", state: { product } })
   }
 
   const handleDelete = async (e, product) => {
@@ -71,7 +71,7 @@ const Products = () => {
         width="is-6"
         background="is-info"
       >
-        <button className="button" onClick={() => setRedirect('/add-product')}>
+        <button className="button" onClick={() => setRedirect("/add-product")}>
           Agregar
         </button>
 
@@ -93,13 +93,13 @@ const Products = () => {
                   label="Creado"
                   value={formatDateFull(created)}
                 />
-                {created !== updated &&
+                {created !== updated && (
                   <TableItemField
                     label="Modificado"
                     icon="fa fa-calendar-alt mr-2"
                     value={formatDateFull(updated)}
                   />
-                }
+                )}
               </TableItem>
             )
           })}
