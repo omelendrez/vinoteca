@@ -1,14 +1,14 @@
 {
   "fields": [
     {
-      "label": "Codigo",
+      "label": "Código",
       "type": "text",
       "fieldId": "code"
     },
     {
-      "label": "Nombre",
+      "label": "Razón",
       "type": "text",
-      "fieldId": "name"
+      "fieldId": "reason"
     }
   ]
 }
