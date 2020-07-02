@@ -1,0 +1,15 @@
+{
+  "fields": [
+    {
+      "label": "Codigo",
+      "type": "text",
+      "fieldId": "code"
+    },
+    {
+      "label": "Nombre",
+      "type": "text",
+      "fieldId": "name",
+      "icon": "fas fa-user"
+    }
+  ]
+}
