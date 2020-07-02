@@ -7,6 +7,7 @@ import Form from '../common/Form'
 import FormField from '../common/FormField'
 import { saveProfile, addProfile } from '../../services/profiles'
 import { cleanData } from '../../helpers'
+import { fields } from './form.json'
 
 const ProfileForm = props => {
 
@@ -21,7 +22,8 @@ const ProfileForm = props => {
   const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
-    if (props.location && props.location.state && props.location.state.profile) setForm(props.location.state.profile)
+    if (props.location && props.location.state && props.location.state.profile)
+      setForm(props.location.state.profile)
   }, [props])
 
   const clearAlert = () => {
@@ -83,20 +85,17 @@ const ProfileForm = props => {
           handleSave={handleSave}
           handleCancel={handleCancel}
         >
-          <FormField
-            label="Nombre"
-            type="text"
-            fieldId="name"
-            fieldValue={form.name}
-            handleChange={handleChange}
-          />
-          <FormField
-            label="Código"
-            type="text"
-            fieldId="code"
-            fieldValue={form.code}
-            handleChange={handleChange}
-          />
+          {fields.map((field, index) => (
+            <FormField
+              key={index}
+              label={field.label}
+              type={field.type}
+              fieldId={field.fieldId}
+              fieldValue={form[field.fieldId]}
+              handleChange={handleChange}
+              icon={field.icon}
+            />
+          ))}
           {alert.message && <Notification message={alert.message} clear={clearAlert} type={alert.type} />}
         </Form>
       </Container>
