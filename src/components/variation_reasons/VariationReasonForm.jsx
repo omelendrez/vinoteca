@@ -8,6 +8,7 @@ import FormField from '../common/FormField'
 import { saveVariationReason, addVariationReason } from '../../services/variation_reasons'
 import { cleanData } from '../../helpers'
 import { getData } from '../../localStorage'
+import { fields } from './form.json'
 
 const VariationReasonForm = props => {
 
@@ -85,21 +86,17 @@ const VariationReasonForm = props => {
           handleSave={handleSave}
           handleCancel={handleCancel}
         >
-          <FormField
-            label="Código"
-            type="text"
-            fieldId="code"
-            fieldValue={form.code}
-            handleChange={handleChange}
-          />
-          <FormField
-            label="Nombre"
-            type="text"
-            fieldId="name"
-            fieldValue={form.name}
-            handleChange={handleChange}
-          />
-
+          {fields.map((field, index) => (
+            <FormField
+              key={index}
+              label={field.label}
+              type={field.type}
+              fieldId={field.fieldId}
+              fieldValue={form[field.fieldId]}
+              handleChange={handleChange}
+              icon={field.icon}
+            />
+          ))}
           {alert.message && <Notification message={alert.message} clear={clearAlert} type={alert.type} />}
         </Form>
       </Container>
