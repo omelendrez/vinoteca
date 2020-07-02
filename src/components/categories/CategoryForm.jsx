@@ -7,6 +7,7 @@ import Form from "../common/Form"
 import FormField from "../common/FormField"
 import { saveCategory, addCategory } from "../../services/categories"
 import { cleanData } from "../../helpers"
+//TODO
 import { fields } from './form.json'
 
 const CategoryForm = (props) => {
