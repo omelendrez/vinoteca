@@ -10,12 +10,6 @@
       "type": "text",
       "fieldId": "name",
       "icon": "fas fa-user"
-    },
-    {
-      "label": "Test",
-      "type": "select",
-      "fieldId": "name",
-      "icon": "fas fa-user"
     }
   ]
 }
