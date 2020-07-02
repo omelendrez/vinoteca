@@ -5,24 +5,39 @@ import Loading from '../common/Loading'
 import Container from '../common/Container'
 import Form from '../common/Form'
 import FormField from '../common/FormField'
+import FormFieldSelect from '../common/FormFieldSelect'
 import { saveUser, addUser } from '../../services/users'
+import { getProfiles } from '../../services/profiles'
+import { getCompanies } from '../../services/companies'
 import { cleanData } from '../../helpers'
 
 const UserForm = props => {
 
   const formDefault = {
+    companyId: '',
     name: '',
     email: '',
-    password: ''
+    password: '',
+    profileId: ''
   }
 
   const [form, setForm] = useState(formDefault)
   const [redirect, setRedirect] = useState('')
   const [alert, setAlert] = useState({})
   const [isLoading, setIsLoading] = useState(false)
+  const [profiles, setProfiles] = useState([])
+  const [companies, setCompanies] = useState([])
 
   useEffect(() => {
     if (props.location && props.location.state && props.location.state.user) setForm(props.location.state.user)
+    getProfiles()
+      .then(profiles => {
+        setProfiles(profiles.rows)
+      })
+    getCompanies()
+      .then(companies => {
+        setCompanies(companies.rows)
+      })
   }, [props])
 
   const clearAlert = () => {
@@ -84,6 +99,38 @@ const UserForm = props => {
           handleSave={handleSave}
           handleCancel={handleCancel}
         >
+          <FormFieldSelect
+            label="Empresa"
+            fieldId="companyId"
+            fieldValue={form.companyId}
+            handleChange={handleChange}
+            icon="fas fa-building"
+          >
+            <option value=""></option>
+            {companies.map((company, index) => {
+              return (
+                <option key={index} value={company.id}>{company.name}</option>
+              )
+            })
+            }
+          </FormFieldSelect>
+
+          <FormFieldSelect
+            label="Perfil"
+            fieldId="profileId"
+            fieldValue={form.profileId}
+            handleChange={handleChange}
+            icon="fas fa-users"
+          >
+            <option value=""></option>
+            {profiles.map((profile, index) => {
+              return (
+                <option key={index} value={profile.id}>{profile.name}</option>
+              )
+            })
+            }
+          </FormFieldSelect>
+
           <FormField
             label="Nombre"
             type="text"
@@ -92,6 +139,7 @@ const UserForm = props => {
             handleChange={handleChange}
             icon="fas fa-user"
           />
+
           <FormField
             label="Email"
             type="text"
@@ -100,6 +148,7 @@ const UserForm = props => {
             handleChange={handleChange}
             icon="fas fa-at"
           />
+
           <FormField
             label="Password"
             type="text"

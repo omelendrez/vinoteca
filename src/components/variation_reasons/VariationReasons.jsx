@@ -95,6 +95,7 @@ const VariationReasons = () => {
           )
         })
         }
+
         <Confirm
           title="Eliminando razón de variación"
           message={<span>Confirma eliminación de la razón de variación <strong>{variationReason.name}</strong>?</span>}

@@ -25,6 +25,14 @@ export const saveUser = user => {
   })
 }
 
+export const changePassword = user => {
+  return new Promise((resolve, reject) => {
+    api.put(`change-password/${user.id}`, user)
+      .then(response => resolve(response.data))
+      .catch(error => reject(handleError(error)))
+  })
+}
+
 export const deleteUser = user => {
   return new Promise((resolve, reject) => {
     api.delete(`users/${user.id}`)

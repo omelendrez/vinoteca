@@ -14,7 +14,9 @@ export const handleError = error => {
 }
 
 export const cleanData = data => {
-  delete data.created
-  delete data.updated
-  return data
+  const result = { ...data }
+  result.created = undefined
+  result.updated = undefined
+  result.confirmPassword = undefined
+  return result
 }

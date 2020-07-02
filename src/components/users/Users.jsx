@@ -5,6 +5,7 @@ import Loading from '../common/Loading'
 import Container from '../common/Container'
 import TableItem from '../common/TableItem'
 import TableItemField from '../common/TableItemField'
+import Confirm from '../common/Confirm'
 import { getUsers, deleteUser } from '../../services/users'
 import { formatDateFull } from '../../helpers'
 
@@ -14,6 +15,7 @@ const Users = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [update, setUpdate] = useState(false)
   const [redirect, setRedirect] = useState('')
+  const [user, setUser] = useState({})
 
   useEffect(() => {
     setIsLoading(true)
@@ -34,19 +36,22 @@ const Users = () => {
 
   const handleEdit = (e, user) => {
     e.preventDefault()
-    //console.log(user)
     setRedirect({ pathname: '/edit-user', state: { user } })
-
   }
 
   const handleDelete = async (e, user) => {
     e.preventDefault()
+    setUser(user)
+  }
+  const confirmDelete = async () => {
     setIsLoading(true)
-    deleteUser(user)
+    await deleteUser(user)
+    setUser({})
     setUpdate(!update)
   }
 
   const { rows } = users
+
   return (
     <>
       {redirect && <Redirect to={redirect} />}
@@ -78,6 +83,14 @@ const Users = () => {
           )
         })
         }
+
+        <Confirm
+          title="Eliminando usuario"
+          message={<span>Confirma eliminación del usuario <strong>{user.name}</strong>?</span>}
+          handleOk={confirmDelete}
+          isActive={user.id}
+          close={() => setUser({})}
+        />
 
       </Container>
 
