@@ -91,11 +91,12 @@ const Products = () => {
                 <TableItemField label="Descripción" value={description} />
                 <TableItemField label="Stock" value={quantity} />
                 <TableItemField label="Cantidad mínima" value={minimum} />
-                <TableItemField label="Precio" value={price} />
+                <TableItemField label="Precio" value={`$ ${price.toFixed(2)}`} />
+                <hr />
                 <TableItemField label="Última compra" value={lastPurchaseDate} />
-                <TableItemField label="Último precio de costo" value={lastPurchasePrice} />
+                <TableItemField label="Último precio de costo" value={`$ ${lastPurchasePrice.toFixed(2)}`} />
                 <TableItemField label="Última venta" value={lastSaleDate} />
-                <TableItemField label="Último precio de venta" value={lastSalePrice} />
+                <TableItemField label="Último precio de venta" value={`$ ${lastSalePrice.toFixed(2)}`} />
                 <hr />
                 <TableItemField
                   icon="fa fa-calendar-alt mr-2"
