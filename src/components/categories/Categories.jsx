@@ -69,37 +69,39 @@ const Categories = () => {
         width="is-6"
         background="is-primary"
       >
-        <button className="button" onClick={() => setRedirect('/add-category')}>
+        <button className="button mx-1 my-1" onClick={() => setRedirect('/add-category')}>
           Agregar
         </button>
-        {rows &&
-          rows.map((category, index) => {
-            const { code, name, created, updated } = category
-            return (
-              <TableItem
-                key={index}
-                item={category}
-                itemHeader={name}
-                handleEdit={handleEdit}
-                handleDelete={handleDelete}
-              >
-                <TableItemField label="Código" value={code} />
-                <hr />
-                <TableItemField
-                  icon="fa fa-calendar-alt mr-2"
-                  label="Creado"
-                  value={formatDateFull(created)}
-                />
-                {created !== updated &&
+        <div className="container list-container">
+          {rows &&
+            rows.map((category, index) => {
+              const { code, name, created, updated } = category
+              return (
+                <TableItem
+                  key={index}
+                  item={category}
+                  itemHeader={name}
+                  handleEdit={handleEdit}
+                  handleDelete={handleDelete}
+                >
+                  <TableItemField label="Código" value={code} />
+                  <hr />
                   <TableItemField
-                    label="Modificado"
                     icon="fa fa-calendar-alt mr-2"
-                    value={formatDateFull(updated)}
+                    label="Creado"
+                    value={formatDateFull(created)}
                   />
-                }
-              </TableItem>
-            )
-          })}
+                  {created !== updated &&
+                    <TableItemField
+                      label="Modificado"
+                      icon="fa fa-calendar-alt mr-2"
+                      value={formatDateFull(updated)}
+                    />
+                  }
+                </TableItem>
+              )
+            })}
+        </div>
         <Confirm
           title="Eliminando categoria"
           message={
