@@ -7,7 +7,6 @@ import Form from "../common/Form"
 import FormField from "../common/FormField"
 import { saveCategory, addCategory } from "../../services/categories"
 import { cleanData } from "../../helpers"
-//TODO
 import { fields } from './form.json'
 
 const CategoryForm = (props) => {
@@ -85,18 +84,22 @@ const CategoryForm = (props) => {
           handleSave={handleSave}
           handleCancel={handleCancel}
         >
-          {/*//TODO*/}
-          {fields.map((field, index) => (
-            <FormField
-              key={index}
-              label={field.label}
-              type={field.type}
-              fieldId={field.fieldId}
-              fieldValue={form[field.fieldId]}
-              handleChange={handleChange}
-              icon={field.icon}
-            />
-          ))}
+          {fields.map((field, index) => {
+            if (field.hideEmpty && !form[field.fieldId]) return null
+            return (
+              <FormField
+                key={index}
+                label={field.label}
+                type={field.type}
+                fieldId={field.fieldId}
+                fieldValue={form[field.fieldId]}
+                handleChange={handleChange}
+                icon={field.icon}
+                readOnly={field.readOnly}
+              />
+            )
+          }
+          )}
 
           {alert.message && (
             <Notification

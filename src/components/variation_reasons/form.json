@@ -3,7 +3,9 @@
     {
       "label": "Código",
       "type": "text",
-      "fieldId": "code"
+      "fieldId": "code",
+      "hideEmpty": true,
+      "readOnly": true
     },
     {
       "label": "Razón",

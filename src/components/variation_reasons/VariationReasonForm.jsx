@@ -86,17 +86,21 @@ const VariationReasonForm = props => {
           handleSave={handleSave}
           handleCancel={handleCancel}
         >
-          {fields.map((field, index) => (
-            <FormField
-              key={index}
-              label={field.label}
-              type={field.type}
-              fieldId={field.fieldId}
-              fieldValue={form[field.fieldId]}
-              handleChange={handleChange}
-              icon={field.icon}
-            />
-          ))}
+          {fields.map((field, index) => {
+            if (field.hideEmpty && !form[field.fieldId]) return null
+            return (
+              <FormField
+                key={index}
+                label={field.label}
+                type={field.type}
+                fieldId={field.fieldId}
+                fieldValue={form[field.fieldId]}
+                handleChange={handleChange}
+                icon={field.icon}
+                readOnly={field.readOnly}
+              />
+            )
+          })}
           {alert.message && <Notification message={alert.message} clear={clearAlert} type={alert.type} />}
         </Form>
       </Container>
