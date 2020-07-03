@@ -22,6 +22,9 @@ const Login = ({ setUser }) => {
 
 	const handleClick = e => {
 		e.preventDefault()
+		if (!form.email || !form.password) {
+			return setAlert({ message: 'Debe ingresar email y pasword', type: 'is-danger' })
+		}
 		setIsLoading(true)
 		login(form)
 			.then(data => {
