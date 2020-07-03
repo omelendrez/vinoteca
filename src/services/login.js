@@ -8,3 +8,11 @@ export const login = user => {
       .catch(error => reject(handleError(error)))
   })
 }
+
+export const forgotPassword = user => {
+  return new Promise((resolve, reject) => {
+    api.post('emails', user)
+      .then(response => resolve(response.data))
+      .catch(error => reject(handleError(error)))
+  })
+}

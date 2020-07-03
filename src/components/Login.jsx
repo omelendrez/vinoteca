@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { login } from '../services/login'
+import { login, forgotPassword } from '../services/login'
 import Notification from './common/Notification'
 import { saveData, getData } from '../localStorage'
 
@@ -40,6 +40,26 @@ const Login = ({ setUser }) => {
 
 	const handleToggle = e => {
 		saveData('remember', e.target.checked)
+	}
+
+	const handleForgotPassword = e => {
+		e.preventDefault()
+		if (!form.email) {
+			return setAlert({ message: 'Ingrese su dirección de email', type: 'is-danger' })
+		}
+		const user = {
+			"emailAddress": form.email
+		}
+		setIsLoading(true)
+		forgotPassword(user)
+			.then(data => {
+				setAlert({ message: 'Te hemos enviado un email a esa cuenta con instrucciones', type: 'is-danger' })
+				setIsLoading(false)
+			})
+			.catch(error => {
+				setAlert({ message: error.message, type: 'is-danger' })
+				setIsLoading(false)
+			})
 	}
 
 	return (
@@ -91,7 +111,7 @@ const Login = ({ setUser }) => {
 
 								<div className="field">
 									<div className="control">
-										<a href="# ">Olvidé mi password</a>
+										<a href="# " onClick={handleForgotPassword}>Olvidé mi password</a>
 									</div>
 								</div>
 
