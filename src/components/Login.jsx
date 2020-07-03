@@ -56,7 +56,7 @@ const Login = ({ setUser }) => {
 		setIsLoading(true)
 		forgotPassword(user)
 			.then(data => {
-				setAlert({ message: 'Te hemos enviado un email a esa cuenta con instrucciones', type: 'is-danger' })
+				setAlert({ message: 'Te hemos enviado un email a esa cuenta con instrucciones', type: 'is-info' })
 				setIsLoading(false)
 			})
 			.catch(error => {
