@@ -44,7 +44,7 @@ const Login = ({ setUser }) => {
 
 	return (
 
-		<section className="hero has-background-grey is-fullheight">
+		<section className="hero is-fullheight">
 			<div className="hero-body">
 				<div className="container">
 					<div className="columns is-centered">
