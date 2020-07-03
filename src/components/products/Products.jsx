@@ -71,12 +71,13 @@ const Products = () => {
         width="is-6"
         background="is-info"
       >
-        <button className="button" onClick={() => setRedirect("/add-product")}>
+        <button className="button mx-1 my-1" onClick={() => setRedirect("/add-product")}>
           Agregar
         </button>
 
-        {rows &&
-          rows.map((product, index) => {
+        <div className="container list-container">
+
+          {rows && rows.map((product, index) => {
             const { name, code, description, lastPurchaseDate, lastPurchasePrice, lastSaleDate, lastSalePrice, minimum, quantity, price, created, updated } = product
             return (
               <TableItem
@@ -110,7 +111,10 @@ const Products = () => {
                 )}
               </TableItem>
             )
-          })}
+          })
+          }
+        </div>
+
         <Confirm
           title="Eliminando producto"
           message={

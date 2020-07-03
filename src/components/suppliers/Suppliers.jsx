@@ -63,40 +63,45 @@ const Suppliers = () => {
         width="is-6"
         background="is-primary"
       >
-        <button className="button" onClick={() => setRedirect('/add-supplier')}>
+        <button className="button mx-1 my-1" onClick={() => setRedirect('/add-supplier')}>
           Agregar
         </button>
-        {rows && rows.map((supplier, index) => {
-          const { name, contact, address, email, phone, created, updated } = supplier
-          return (
-            <TableItem
-              key={index}
-              item={supplier}
-              itemHeader={name}
-              handleEdit={handleEdit}
-              handleDelete={handleDelete}
-            >
-              <TableItemField icon="fa fa-user mr-2" value={contact} />
-              <TableItemField icon="fa fa-map-marker-alt mr-2" value={address} />
-              <TableItemField icon="fa fa-at mr-2" value={email} />
-              <TableItemField icon="fa fa-phone mr-2" value={phone} />
-              <hr />
-              <TableItemField
-                icon="fa fa-calendar-alt mr-2"
-                label="Creado"
-                value={formatDateFull(created)}
-              />
-              {created !== updated &&
+
+        <div className="container list-container">
+
+          {rows && rows.map((supplier, index) => {
+            const { name, contact, address, email, phone, created, updated } = supplier
+            return (
+              <TableItem
+                key={index}
+                item={supplier}
+                itemHeader={name}
+                handleEdit={handleEdit}
+                handleDelete={handleDelete}
+              >
+                <TableItemField icon="fa fa-user mr-2" value={contact} />
+                <TableItemField icon="fa fa-map-marker-alt mr-2" value={address} />
+                <TableItemField icon="fa fa-at mr-2" value={email} />
+                <TableItemField icon="fa fa-phone mr-2" value={phone} />
+                <hr />
                 <TableItemField
-                  label="Modificado"
                   icon="fa fa-calendar-alt mr-2"
-                  value={formatDateFull(updated)}
+                  label="Creado"
+                  value={formatDateFull(created)}
                 />
-              }
-            </TableItem>
-          )
-        })
-        }
+                {created !== updated &&
+                  <TableItemField
+                    label="Modificado"
+                    icon="fa fa-calendar-alt mr-2"
+                    value={formatDateFull(updated)}
+                  />
+                }
+              </TableItem>
+            )
+          })
+          }
+        </div>
+
         <Confirm
           title="Eliminando proveedor"
           message={<span>Confirma eliminación de proovedor <strong>{supplier.name}</strong>?</span>}

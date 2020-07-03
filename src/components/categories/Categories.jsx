@@ -73,34 +73,34 @@ const Categories = () => {
           Agregar
         </button>
         <div className="container list-container">
-          {rows &&
-            rows.map((category, index) => {
-              const { code, name, created, updated } = category
-              return (
-                <TableItem
-                  key={index}
-                  item={category}
-                  itemHeader={name}
-                  handleEdit={handleEdit}
-                  handleDelete={handleDelete}
-                >
-                  <TableItemField label="Código" value={code} />
-                  <hr />
+          {rows && rows.map((category, index) => {
+            const { code, name, created, updated } = category
+            return (
+              <TableItem
+                key={index}
+                item={category}
+                itemHeader={name}
+                handleEdit={handleEdit}
+                handleDelete={handleDelete}
+              >
+                <TableItemField label="Código" value={code} />
+                <hr />
+                <TableItemField
+                  icon="fa fa-calendar-alt mr-2"
+                  label="Creado"
+                  value={formatDateFull(created)}
+                />
+                {created !== updated &&
                   <TableItemField
+                    label="Modificado"
                     icon="fa fa-calendar-alt mr-2"
-                    label="Creado"
-                    value={formatDateFull(created)}
+                    value={formatDateFull(updated)}
                   />
-                  {created !== updated &&
-                    <TableItemField
-                      label="Modificado"
-                      icon="fa fa-calendar-alt mr-2"
-                      value={formatDateFull(updated)}
-                    />
-                  }
-                </TableItem>
-              )
-            })}
+                }
+              </TableItem>
+            )
+          })
+          }
         </div>
         <Confirm
           title="Eliminando categoria"

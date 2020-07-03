@@ -63,26 +63,30 @@ const Users = () => {
         width="is-6"
         background="is-primary"
       >
-        <button className="button" onClick={() => setRedirect('/add-user')}>
+        <button className="button mx-1 my-1" onClick={() => setRedirect('/add-user')}>
           Agregar
         </button>
-        {rows && rows.map((user, index) => {
-          const { name, email, created } = user
-          return (
-            <TableItem
-              key={index}
-              item={user}
-              itemHeader={name}
-              handleEdit={handleEdit}
-              handleDelete={handleDelete}
-            >
-              <TableItemField icon="fa fa-at mr-2" value={email} />
-              <br />
-              <TableItemField icon="fa fa-calendar-alt mr-2" value={formatDateFull(created)} />
-            </TableItem>
-          )
-        })
-        }
+
+        <div className="container list-container">
+
+          {rows && rows.map((user, index) => {
+            const { name, email, created } = user
+            return (
+              <TableItem
+                key={index}
+                item={user}
+                itemHeader={name}
+                handleEdit={handleEdit}
+                handleDelete={handleDelete}
+              >
+                <TableItemField icon="fa fa-at mr-2" value={email} />
+                <br />
+                <TableItemField icon="fa fa-calendar-alt mr-2" value={formatDateFull(created)} />
+              </TableItem>
+            )
+          })
+          }
+        </div>
 
         <Confirm
           title="Eliminando usuario"

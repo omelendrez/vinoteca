@@ -64,37 +64,42 @@ const Profiles = () => {
         width="is-6"
         background="is-primary"
       >
-        <button className="button" onClick={() => setRedirect('/add-profile')}>
+        <button className="button mx-1 my-1" onClick={() => setRedirect('/add-profile')}>
           Agregar
         </button>
-        {rows && rows.map((profile, index) => {
-          const { code, name, created, updated } = profile
-          return (
-            <TableItem
-              key={index}
-              item={profile}
-              itemHeader={name}
-              handleEdit={handleEdit}
-              handleDelete={handleDelete}
-            >
-              <TableItemField label="Código" value={code} />
-              <hr />
-              <TableItemField
-                icon="fa fa-calendar-alt mr-2"
-                label="Creado"
-                value={formatDateFull(created)}
-              />
-              {created !== updated &&
+
+        <div className="container list-container">
+
+          {rows && rows.map((profile, index) => {
+            const { code, name, created, updated } = profile
+            return (
+              <TableItem
+                key={index}
+                item={profile}
+                itemHeader={name}
+                handleEdit={handleEdit}
+                handleDelete={handleDelete}
+              >
+                <TableItemField label="Código" value={code} />
+                <hr />
                 <TableItemField
-                  label="Modificado"
                   icon="fa fa-calendar-alt mr-2"
-                  value={formatDateFull(updated)}
+                  label="Creado"
+                  value={formatDateFull(created)}
                 />
-              }
-            </TableItem>
-          )
-        })
-        }
+                {created !== updated &&
+                  <TableItemField
+                    label="Modificado"
+                    icon="fa fa-calendar-alt mr-2"
+                    value={formatDateFull(updated)}
+                  />
+                }
+              </TableItem>
+            )
+          })
+          }
+        </div>
+
         <Confirm
           title="Eliminando perfil"
           message={<span>¿Confirma eliminación del perfil <strong>{profile.name}</strong>?</span>}

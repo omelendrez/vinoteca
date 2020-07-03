@@ -63,38 +63,42 @@ const VariationReasons = () => {
         width="is-6"
         background="is-primary"
       >
-        <button className="button" onClick={() => setRedirect('/add-variation-reason')}>
+        <button className="button mx-1 my-1" onClick={() => setRedirect('/add-variation-reason')}>
           Agregar
         </button>
-        {rows && rows.map((variationReason, index) => {
-          const { code, name, created, updated } = variationReason
-          return (
-            <TableItem
-              key={index}
-              item={variationReason}
-              itemHeader={name}
-              handleEdit={handleEdit}
-              handleDelete={handleDelete}
-            >
-              <TableItemField label="Código" value={code} />
-              <TableItemField label="Razón" value={name} />
-              <hr />
-              <TableItemField
-                icon="fa fa-calendar-alt mr-2"
-                label="Creado"
-                value={formatDateFull(created)}
-              />
-              {created !== updated &&
+
+        <div className="container list-container">
+
+          {rows && rows.map((variationReason, index) => {
+            const { code, name, created, updated } = variationReason
+            return (
+              <TableItem
+                key={index}
+                item={variationReason}
+                itemHeader={name}
+                handleEdit={handleEdit}
+                handleDelete={handleDelete}
+              >
+                <TableItemField label="Código" value={code} />
+                <TableItemField label="Razón" value={name} />
+                <hr />
                 <TableItemField
-                  label="Modificado"
                   icon="fa fa-calendar-alt mr-2"
-                  value={formatDateFull(updated)}
+                  label="Creado"
+                  value={formatDateFull(created)}
                 />
-              }
-            </TableItem>
-          )
-        })
-        }
+                {created !== updated &&
+                  <TableItemField
+                    label="Modificado"
+                    icon="fa fa-calendar-alt mr-2"
+                    value={formatDateFull(updated)}
+                  />
+                }
+              </TableItem>
+            )
+          })
+          }
+        </div>
 
         <Confirm
           title="Eliminando razón de variación"
