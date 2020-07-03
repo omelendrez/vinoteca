@@ -3,8 +3,8 @@ body {
   /*background-color: rgb(0, 148, 126);*/
   background-color: #b0c4de; // lightsteelblue
   height: 100vh;
-  overflow: hidden;
   .list-container {
+    overflow: hidden;
     overflow-x: hidden;
     overflow-y: auto;
     max-height: calc(100vh - 220px);
