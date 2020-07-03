@@ -98,6 +98,8 @@ const Products = () => {
                 <TableItemField label="Última venta" value={lastSaleDate} />
                 <TableItemField label="Último precio de venta" value={`$ ${lastSalePrice.toFixed(2)}`} />
                 <hr />
+                <Notification message={quantity <= minimum && quantity > 0 ? 'Producto bajo de stock' : ''} type="is-warning" clear={() => { }} />
+                <Notification message={quantity === 0 ? 'Producto sin stock' : ''} type="is-danger" clear={() => { }} />
                 <TableItemField
                   icon="fa fa-calendar-alt mr-2"
                   label="Creado"
