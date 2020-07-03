@@ -3,12 +3,9 @@
     {
       "label": "Codigo",
       "type": "text",
-      "fieldId": "code"
-    },
-    {
-      "label": "Barcode",
-      "type": "text",
-      "fieldId": "barcode"
+      "fieldId": "code",
+      "hideEmpty": true,
+      "readOnly": true
     },
     {
       "label": "Nombre",
