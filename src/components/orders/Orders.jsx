@@ -42,14 +42,23 @@ const Orders = () => {
 
   const handleDelete = async (e, order) => {
     e.preventDefault()
+    clearAlert()
     setOrder(order)
   }
 
   const confirmDelete = async () => {
     setIsLoading(true)
-    await deleteOrder(order)
-    setOrder({})
-    setUpdate(!update)
+    deleteOrder(order)
+      .then(() => {
+        setOrder({})
+        setUpdate(!update)
+        setIsLoading(false)
+      })
+      .catch(error => {
+        setOrder({})
+        setAlert({ message: error.message, type: 'is-danger' })
+        setIsLoading(false)
+      })
   }
 
   const { rows } = orders
@@ -108,17 +117,17 @@ const Orders = () => {
           close={() => setOrder({})}
         />
 
+        {!rows.length && (
+          <Notification
+            message="La tabla no contiene registros"
+            type="is-light"
+            clear={clearAlert}
+          />
+        )}
+        {isLoading && <Loading />}
+
       </Container>
 
-      {!rows.length && (
-        <Notification
-          message="La tabla no contiene registros"
-          type="is-light"
-          clear={clearAlert}
-        />
-      )}
-
-      {isLoading && <Loading />}
     </>
   )
 }

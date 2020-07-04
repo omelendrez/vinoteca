@@ -105,11 +105,11 @@ const Users = () => {
           close={() => setUser({})}
         />
 
+        {!rows.length && <Notification message="La tabla no contiene registros" type="is-light" clear={clearAlert} />}
+
+        {isLoading && <Loading />}
+
       </Container>
-
-      {!rows.length && <Notification message="La tabla no contiene registros" type="is-light" clear={clearAlert} />}
-
-      {isLoading && <Loading />}
 
     </>
   )
