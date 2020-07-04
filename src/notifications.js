@@ -13,7 +13,7 @@ export const showNotification = () => {
 
   const options = {
     body: "Hola, qué tal?",
-    icon: "../public/images/icons/icon-128x128.png",
+    icon: "../images/icons/icon-128x128.png",
     dir: "ltr"
   }
   const notification = new Notification("Notificación", options)
