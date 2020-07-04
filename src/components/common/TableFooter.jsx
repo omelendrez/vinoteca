@@ -1,15 +1,15 @@
 import React from 'react'
 import TableItemField from "./TableItemField"
-import { formatDateFull } from "../../helpers"
+import { formatDateFromNow } from "../../helpers"
 
 const TableFooter = ({ statusName, created, createdByName, updated, updatedByName }) => {
   return (
     <>
       <hr />
-      {statusName && <TableItemField icon="fa fa-calendar-alt mr-2" label="Status" value={statusName} />}
-      <TableItemField icon="fa fa-calendar-alt mr-2" label="Creado" value={`${createdByName} ${formatDateFull(created)}`} />
+      {statusName && <TableItemField icon="far fa-eye mr-2" label="Status" value={statusName} />}
+      <TableItemField icon="far fa-clock mr-2" label="Creado" value={`${createdByName}, ${formatDateFromNow(created)}`} />
       {updatedByName &&
-        <TableItemField label="Modificado" icon="fa fa-calendar-alt mr-2" value={`${updatedByName} ${formatDateFull(updated)}`} />
+        <TableItemField label="Modificado" icon="far fa-clock mr-2" value={`${updatedByName}, ${formatDateFromNow(updated)}`} />
       }
     </>
   )

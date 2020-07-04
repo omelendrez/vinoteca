@@ -70,7 +70,7 @@ const Users = () => {
         <div className="container list-container">
 
           {rows && rows.map((user, index) => {
-            const { name, email, statusName, created, createdByName, updated, updatedByName } = user
+            const { companyName, profileName, name, email, statusName, created, createdByName, updated, updatedByName } = user
             return (
               <TableItem
                 key={index}
@@ -79,7 +79,10 @@ const Users = () => {
                 handleEdit={handleEdit}
                 handleDelete={handleDelete}
               >
+                <TableItemField icon="fa fa-building mr-2" value={companyName} />
+                <TableItemField icon="fa fa-users mr-2" value={profileName} />
                 <TableItemField icon="fa fa-at mr-2" value={email} />
+
                 <TableFooter
                   statusName={statusName}
                   created={created}

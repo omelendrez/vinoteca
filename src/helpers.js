@@ -3,7 +3,9 @@ import 'moment/locale/es'
 
 export const formatDate = date => moment(date).format('L')
 
-export const formatDateFull = dateTime => moment(dateTime).format('DD-MM-YYYY HH:mm:ss')
+export const formatDateFull = date => moment(date).format('DD-MM-YYYY HH:mm:ss')
+
+export const formatDateFromNow = date => moment(date).fromNow()
 
 export const handleError = error => {
   console.log('Error!', error)
