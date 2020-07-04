@@ -1,15 +1,19 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { login, forgotPassword } from '../services/login'
 import Notification from './common/Notification'
 import { saveData, getData } from '../localStorage'
+import { showNotification } from '../notifications'
 
 const Login = ({ setUser }) => {
-
 	const checked = getData('remember')
 	const defaultForm = { email: checked && getData('user') ? getData('user').email : '', password: '' }
 	const [form, setForm] = useState(defaultForm)
 	const [alert, setAlert] = useState({})
 	const [isLoading, setIsLoading] = useState(false)
+
+	useEffect(() => {
+		setTimeout(() => showNotification(), 3000)
+	}, [])
 
 	const handleChange = e => {
 		if (alert) clearAlert()
