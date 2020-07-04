@@ -1,7 +1,7 @@
 import React from 'react'
 
 const TableItem = ({ item, itemHeader, children, handleEdit, handleDelete }) => (
-  <div className="card my-3 mx-2">
+  <div className="card my-3 mx-1">
     <header className="card-header has-background-link-dark">
       <p className="card-header-title  has-text-white">
         {itemHeader}
