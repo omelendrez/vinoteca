@@ -5,9 +5,9 @@ import Loading from '../common/Loading'
 import Container from '../common/Container'
 import TableItem from '../common/TableItem'
 import TableItemField from '../common/TableItemField'
+import TableFooter from '../common/TableFooter'
 import Confirm from '../common/Confirm'
 import { getUsers, deleteUser } from '../../services/users'
-import { formatDateFull } from '../../helpers'
 
 const Users = () => {
   const [users, setUsers] = useState({ rows: [] })
@@ -70,7 +70,7 @@ const Users = () => {
         <div className="container list-container">
 
           {rows && rows.map((user, index) => {
-            const { name, email, created } = user
+            const { name, email, statusName, created, createdByName, updated, updatedByName } = user
             return (
               <TableItem
                 key={index}
@@ -80,8 +80,14 @@ const Users = () => {
                 handleDelete={handleDelete}
               >
                 <TableItemField icon="fa fa-at mr-2" value={email} />
-                <br />
-                <TableItemField icon="fa fa-calendar-alt mr-2" value={formatDateFull(created)} />
+                <TableFooter
+                  statusName={statusName}
+                  created={created}
+                  createdByName={createdByName}
+                  updated={updated}
+                  updatedByName={updatedByName}
+                />
+
               </TableItem>
             )
           })

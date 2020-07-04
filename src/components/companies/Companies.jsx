@@ -5,9 +5,9 @@ import Loading from '../common/Loading'
 import Container from '../common/Container'
 import TableItem from '../common/TableItem'
 import TableItemField from '../common/TableItemField'
+import TableFooter from '../common/TableFooter'
 import Confirm from '../common/Confirm'
 import { getCompanies, deleteCompany } from '../../services/companies'
-import { formatDateFull } from '../../helpers'
 
 const Companies = () => {
   const [companies, setCompanies] = useState({ rows: [] })
@@ -68,7 +68,7 @@ const Companies = () => {
         </button>
         <div className="container list-container">
           {rows && rows.map((company, index) => {
-            const { name, contact, address, email, phone, created, updated } = company
+            const { name, contact, address, email, phone, statusName, created, createdByName, updated, updatedByName } = company
             return (
               <TableItem
                 key={index}
@@ -81,19 +81,13 @@ const Companies = () => {
                 <TableItemField icon="fa fa-map-marker-alt mr-2" value={address} />
                 <TableItemField icon="fa fa-at mr-2" value={email} />
                 <TableItemField icon="fa fa-phone mr-2" value={phone} />
-                <hr />
-                <TableItemField
-                  icon="fa fa-calendar-alt mr-2"
-                  label="Creado"
-                  value={formatDateFull(created)}
+                <TableFooter
+                  statusName={statusName}
+                  created={created}
+                  createdByName={createdByName}
+                  updated={updated}
+                  updatedByName={updatedByName}
                 />
-                {created !== updated &&
-                  <TableItemField
-                    label="Modificado"
-                    icon="fa fa-calendar-alt mr-2"
-                    value={formatDateFull(updated)}
-                  />
-                }
               </TableItem>
             )
           })

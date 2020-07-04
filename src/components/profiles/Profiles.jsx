@@ -5,9 +5,9 @@ import Notification from '../common/Notification'
 import Loading from '../common/Loading'
 import TableItem from '../common/TableItem'
 import TableItemField from '../common/TableItemField'
+import TableFooter from '../common/TableFooter'
 import Confirm from '../common/Confirm'
 import { getProfiles, deleteProfile } from '../../services/profiles'
-import { formatDateFull } from '../../helpers'
 
 const Profiles = () => {
   const [profiles, setProfiles] = useState({ rows: [] })
@@ -71,7 +71,7 @@ const Profiles = () => {
         <div className="container list-container">
 
           {rows && rows.map((profile, index) => {
-            const { code, name, created, updated } = profile
+            const { code, name, statusName, created, createdByName, updated, updatedByName } = profile
             return (
               <TableItem
                 key={index}
@@ -81,19 +81,13 @@ const Profiles = () => {
                 handleDelete={handleDelete}
               >
                 <TableItemField label="Código" value={code} />
-                <hr />
-                <TableItemField
-                  icon="fa fa-calendar-alt mr-2"
-                  label="Creado"
-                  value={formatDateFull(created)}
+                <TableFooter
+                  statusName={statusName}
+                  created={created}
+                  createdByName={createdByName}
+                  updated={updated}
+                  updatedByName={updatedByName}
                 />
-                {created !== updated &&
-                  <TableItemField
-                    label="Modificado"
-                    icon="fa fa-calendar-alt mr-2"
-                    value={formatDateFull(updated)}
-                  />
-                }
               </TableItem>
             )
           })

@@ -15,8 +15,14 @@ export const handleError = error => {
 
 export const cleanData = data => {
   const result = { ...data }
+  result.companyName = undefined
+  result.profileName = undefined
+  result.categoryName = undefined
   result.created = undefined
+  result.createdByName = undefined
   result.updated = undefined
+  result.updatedByName = undefined
+  result.statusName = undefined
   result.confirmPassword = undefined
   if (!result.lastPurchaseDate) result.lastPurchaseDate = undefined
   if (!result.lastSaleDate) result.lastSaleDate = undefined

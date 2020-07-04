@@ -5,9 +5,9 @@ import Loading from "../common/Loading"
 import Container from "../common/Container"
 import TableItem from "../common/TableItem"
 import TableItemField from "../common/TableItemField"
+import TableFooter from '../common/TableFooter'
 import Confirm from "../common/Confirm"
 import { getCategories, deleteCategory } from "../../services/categories"
-import { formatDateFull } from "../../helpers"
 
 const Categories = () => {
   const [categories, setCategories] = useState({ rows: [] })
@@ -74,7 +74,7 @@ const Categories = () => {
         </button>
         <div className="container list-container">
           {rows && rows.map((category, index) => {
-            const { code, name, created, updated } = category
+            const { code, name, statusName, created, createdByName, updated, updatedByName } = category
             return (
               <TableItem
                 key={index}
@@ -84,19 +84,13 @@ const Categories = () => {
                 handleDelete={handleDelete}
               >
                 <TableItemField label="Código" value={code} />
-                <hr />
-                <TableItemField
-                  icon="fa fa-calendar-alt mr-2"
-                  label="Creado"
-                  value={formatDateFull(created)}
+                <TableFooter
+                  statusName={statusName}
+                  created={created}
+                  createdByName={createdByName}
+                  updated={updated}
+                  updatedByName={updatedByName}
                 />
-                {created !== updated &&
-                  <TableItemField
-                    label="Modificado"
-                    icon="fa fa-calendar-alt mr-2"
-                    value={formatDateFull(updated)}
-                  />
-                }
               </TableItem>
             )
           })

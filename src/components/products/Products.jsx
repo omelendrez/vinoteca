@@ -5,9 +5,9 @@ import Loading from "../common/Loading"
 import Container from "../common/Container"
 import TableItem from "../common/TableItem"
 import TableItemField from "../common/TableItemField"
+import TableFooter from "../common/TableFooter"
 import Confirm from "../common/Confirm"
 import { getProducts, deleteProduct } from "../../services/products"
-import { formatDateFull } from "../../helpers"
 
 const Products = () => {
   const [products, setProducts] = useState({ rows: [] })
@@ -78,7 +78,7 @@ const Products = () => {
         <div className="container list-container">
 
           {rows && rows.map((product, index) => {
-            const { name, code, description, lastPurchaseDate, lastPurchasePrice, lastSaleDate, lastSalePrice, minimum, quantity, price, created, updated } = product
+            const { categoryName, name, code, description, lastPurchaseDate, lastPurchasePrice, lastSaleDate, lastSalePrice, minimum, quantity, price, statusName, created, createdByName, updated, updatedByName } = product
             return (
               <TableItem
                 key={index}
@@ -87,8 +87,11 @@ const Products = () => {
                 handleEdit={handleEdit}
                 handleDelete={handleDelete}
               >
-                <TableItemField label="Código" value={code} />
+                <Notification message={quantity <= minimum && quantity > 0 ? 'Producto con bajo stock' : ''} type="is-warning" clear={() => { }} />
+                <Notification message={quantity === 0 ? 'Producto sin stock' : ''} type="is-danger" clear={() => { }} />
                 <TableItemField label="Descripción" value={description} />
+                <TableItemField label="Código" value={code} />
+                <TableItemField label="Categoría" value={categoryName} />
                 <TableItemField label="Stock" value={quantity} />
                 <TableItemField label="Cantidad mínima" value={minimum} />
                 <TableItemField label="Precio" value={`$ ${price.toFixed(2)}`} />
@@ -97,21 +100,13 @@ const Products = () => {
                 <TableItemField label="Último precio de costo" value={`$ ${lastPurchasePrice.toFixed(2)}`} />
                 <TableItemField label="Última venta" value={lastSaleDate} />
                 <TableItemField label="Último precio de venta" value={`$ ${lastSalePrice.toFixed(2)}`} />
-                <hr />
-                <Notification message={quantity <= minimum && quantity > 0 ? 'Producto con bajo stock' : ''} type="is-warning" clear={() => { }} />
-                <Notification message={quantity === 0 ? 'Producto sin stock' : ''} type="is-danger" clear={() => { }} />
-                <TableItemField
-                  icon="fa fa-calendar-alt mr-2"
-                  label="Creado"
-                  value={formatDateFull(created)}
+                <TableFooter
+                  statusName={statusName}
+                  created={created}
+                  createdByName={createdByName}
+                  updated={updated}
+                  updatedByName={updatedByName}
                 />
-                {created !== updated && (
-                  <TableItemField
-                    label="Modificado"
-                    icon="fa fa-calendar-alt mr-2"
-                    value={formatDateFull(updated)}
-                  />
-                )}
               </TableItem>
             )
           })

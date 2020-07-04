@@ -5,9 +5,9 @@ import Loading from '../common/Loading'
 import Container from '../common/Container'
 import TableItem from '../common/TableItem'
 import TableItemField from '../common/TableItemField'
+import TableFooter from '../common/TableFooter'
 import Confirm from '../common/Confirm'
 import { getVariationReasons, deleteVariationReason } from '../../services/variation_reasons'
-import { formatDateFull } from '../../helpers'
 
 const VariationReasons = () => {
   const [variationReasons, setVariationReasons] = useState({ rows: [] })
@@ -70,7 +70,7 @@ const VariationReasons = () => {
         <div className="container list-container">
 
           {rows && rows.map((variationReason, index) => {
-            const { code, name, created, updated } = variationReason
+            const { code, name, statusName, created, createdByName, updated, updatedByName } = variationReason
             return (
               <TableItem
                 key={index}
@@ -81,19 +81,14 @@ const VariationReasons = () => {
               >
                 <TableItemField label="Código" value={code} />
                 <TableItemField label="Razón" value={name} />
-                <hr />
-                <TableItemField
-                  icon="fa fa-calendar-alt mr-2"
-                  label="Creado"
-                  value={formatDateFull(created)}
+
+                <TableFooter
+                  statusName={statusName}
+                  created={created}
+                  createdByName={createdByName}
+                  updated={updated}
+                  updatedByName={updatedByName}
                 />
-                {created !== updated &&
-                  <TableItemField
-                    label="Modificado"
-                    icon="fa fa-calendar-alt mr-2"
-                    value={formatDateFull(updated)}
-                  />
-                }
               </TableItem>
             )
           })
