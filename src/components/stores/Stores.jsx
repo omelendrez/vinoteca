@@ -39,23 +39,30 @@ const Stores = () => {
     setRedirect({ pathname: '/edit-store', state: { store } })
   }
 
-  const handleDelete = async (e, store) => {
+  const handleDelete = (e, store) => {
     e.preventDefault()
     setStore(store)
   }
 
-  const confirmDelete = async () => {
+  const confirmDelete = () => {
     setIsLoading(true)
-    await deleteStore(store)
-    setStore({})
-    setUpdate(!update)
+    deleteStore(store)
+      .then(() => {
+        setStore({})
+        setUpdate(!update)
+        setIsLoading(false)
+      })
+      .catch(error => {
+        setStore({})
+        setAlert({ message: error.message, type: 'is-danger' })
+        setIsLoading(false)
+      })
   }
 
   const { rows } = stores
   return (
     <>
       {redirect && <Redirect to={redirect} />}
-      {alert.message && <Notification message={alert.message} clear={clearAlert} type={alert.type} />}
 
       <Container
         title="Depósitos"
@@ -66,6 +73,8 @@ const Stores = () => {
         <button className="button mx-1 my-1" onClick={() => setRedirect('/add-store')}>
           Agregar
         </button>
+
+        <Notification message={alert.message} clear={clearAlert} type={alert.type} />
 
         <div className="container list-container">
 

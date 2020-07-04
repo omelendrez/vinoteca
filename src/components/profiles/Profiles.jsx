@@ -39,16 +39,24 @@ const Profiles = () => {
     setRedirect({ pathname: '/edit-profile', state: { profile } })
   }
 
-  const handleDelete = async (e, profile) => {
+  const handleDelete = (e, profile) => {
     e.preventDefault()
     setProfile(profile)
   }
 
-  const confirmDelete = async () => {
+  const confirmDelete = () => {
     setIsLoading(true)
-    await deleteProfile(profile)
-    setProfile({})
-    setUpdate(!update)
+    deleteProfile(profile)
+      .then(() => {
+        setProfile({})
+        setUpdate(!update)
+        setIsLoading(false)
+      })
+      .catch(error => {
+        setProfile({})
+        setAlert({ message: error.message, type: 'is-danger' })
+        setIsLoading(false)
+      })
   }
 
   const { rows } = profiles
@@ -56,7 +64,6 @@ const Profiles = () => {
   return (
     <>
       {redirect && <Redirect to={redirect} />}
-      {alert.message && <Notification message={alert.message} clear={clearAlert} type={alert.type} />}
 
       <Container
         title="Perfiles de usuario"
@@ -67,6 +74,8 @@ const Profiles = () => {
         <button className="button mx-1 my-1" onClick={() => setRedirect('/add-profile')}>
           Agregar
         </button>
+
+        <Notification message={alert.message} clear={clearAlert} type={alert.type} />
 
         <div className="container list-container">
 

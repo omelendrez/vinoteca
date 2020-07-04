@@ -44,18 +44,26 @@ const VariationReasons = () => {
     setVariationReason(variationReason)
   }
 
-  const confirmDelete = async () => {
+  const confirmDelete = () => {
     setIsLoading(true)
-    await deleteVariationReason(variationReason)
-    setVariationReason({})
-    setUpdate(!update)
+    deleteVariationReason(variationReason)
+      .then(() => {
+        setVariationReason({})
+        setUpdate(!update)
+        setIsLoading(false)
+      })
+      .catch(error => {
+        setVariationReason({})
+        setAlert({ message: error.message, type: 'is-danger' })
+        setIsLoading(false)
+      })
+
   }
 
   const { rows } = variationReasons
   return (
     <>
       {redirect && <Redirect to={redirect} />}
-      {alert.message && <Notification message={alert.message} clear={clearAlert} type={alert.type} />}
 
       <Container
         title="Motivos de variación de inventario"
@@ -66,6 +74,8 @@ const VariationReasons = () => {
         <button className="button mx-1 my-1" onClick={() => setRedirect('/add-variation-reason')}>
           Agregar
         </button>
+
+        <Notification message={alert.message} clear={clearAlert} type={alert.type} />
 
         <div className="container list-container">
 

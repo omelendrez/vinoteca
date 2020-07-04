@@ -39,23 +39,30 @@ const Suppliers = () => {
     setRedirect({ pathname: '/edit-supplier', state: { supplier } })
   }
 
-  const handleDelete = async (e, supplier) => {
+  const handleDelete = (e, supplier) => {
     e.preventDefault()
     setSupplier(supplier)
   }
 
-  const confirmDelete = async () => {
+  const confirmDelete = () => {
     setIsLoading(true)
-    await deleteSupplier(supplier)
-    setSupplier({})
-    setUpdate(!update)
+    deleteSupplier(supplier)
+      .then(() => {
+        setSupplier({})
+        setUpdate(!update)
+        setIsLoading(false)
+      })
+      .catch(error => {
+        setSupplier({})
+        setAlert({ message: error.message, type: 'is-danger' })
+        setIsLoading(false)
+      })
   }
 
   const { rows } = suppliers
   return (
     <>
       {redirect && <Redirect to={redirect} />}
-      {alert.message && <Notification message={alert.message} clear={clearAlert} type={alert.type} />}
 
       <Container
         title="Proovedores"
@@ -66,6 +73,8 @@ const Suppliers = () => {
         <button className="button mx-1 my-1" onClick={() => setRedirect('/add-supplier')}>
           Agregar
         </button>
+
+        <Notification message={alert.message} clear={clearAlert} type={alert.type} />
 
         <div className="container list-container">
 

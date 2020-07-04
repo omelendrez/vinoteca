@@ -39,31 +39,30 @@ const Products = () => {
     setRedirect({ pathname: "/edit-product", state: { product } })
   }
 
-  const handleDelete = async (e, product) => {
+  const handleDelete = (e, product) => {
     e.preventDefault()
-    setIsLoading(true)
-    deleteProduct(product)
-    setUpdate(!update)
+    setProduct(product)
   }
 
-  const confirmDelete = async () => {
+  const confirmDelete = () => {
     setIsLoading(true)
-    await deleteProduct(product)
-    setProduct({})
-    setUpdate(!update)
+    deleteProduct(product)
+      .then(() => {
+        setProduct({})
+        setUpdate(!update)
+        setIsLoading(false)
+      })
+      .catch(error => {
+        setProduct({})
+        setAlert({ message: error.message, type: 'is-danger' })
+        setIsLoading(false)
+      })
   }
 
   const { rows } = products
   return (
     <>
       {redirect && <Redirect to={redirect} />}
-      {alert.message && (
-        <Notification
-          message={alert.message}
-          clear={clearAlert}
-          type={alert.type}
-        />
-      )}
 
       <Container
         title="Productos"
@@ -74,6 +73,8 @@ const Products = () => {
         <button className="button mx-1 my-1" onClick={() => setRedirect("/add-product")}>
           Agregar
         </button>
+
+        <Notification message={alert.message} clear={clearAlert} type={alert.type} />
 
         <div className="container list-container">
 
@@ -125,13 +126,11 @@ const Products = () => {
           close={() => setProduct({})}
         />
 
-        {!rows.length && (
-          <Notification
-            message="La tabla no contiene registros"
-            type="is-light"
-            clear={clearAlert}
-          />
-        )}
+        <Notification
+          message="La tabla no contiene registros"
+          type="is-light"
+          clear={clearAlert}
+        />
 
         {isLoading && <Loading />}
 

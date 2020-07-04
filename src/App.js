@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { BrowserRouter, Switch, Route } from "react-router-dom"
 import "./components/Login"
 import Login from "./components/Login"
@@ -26,9 +26,18 @@ import VariationReasonForm from "./components/variation_reasons/VariationReasonF
 import InventoryVariations from "./components/inventory/InventoryVariations"
 import InventoryVariationForm from "./components/inventory/InventoryVariationForm"
 import Orders from './components/orders/Orders'
+import { getData } from "./localStorage"
 
 function App() {
   const [user, setUser] = useState({})
+
+  useEffect(() => {
+    const user = getData('user')
+    if (user) {
+      setUser(user)
+    }
+  }, [])
+
   return (
     <>
       <BrowserRouter>

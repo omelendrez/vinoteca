@@ -65,13 +65,6 @@ const Orders = () => {
   return (
     <>
       {redirect && <Redirect to={redirect} />}
-      {alert.message && (
-        <Notification
-          message={alert.message}
-          clear={clearAlert}
-          type={alert.type}
-        />
-      )}
 
       <Container
         title="Órdenes de compra"
@@ -79,9 +72,17 @@ const Orders = () => {
         width="is-6"
         background="is-primary"
       >
+
         <button className="button mx-1 my-1" onClick={() => setRedirect('/add-order')}>
           Agregar
         </button>
+
+        <Notification
+          message={alert.message}
+          clear={clearAlert}
+          type={alert.type}
+        />
+
         <div className="container list-container">
           {rows && rows.map((order, index) => {
             const { number, date, amount, supplierName, statusName, created, createdByName, updated, updatedByName } = order

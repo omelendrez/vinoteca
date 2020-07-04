@@ -39,29 +39,30 @@ const Categories = () => {
     setRedirect({ pathname: '/edit-category', state: { category } })
   }
 
-  const handleDelete = async (e, category) => {
+  const handleDelete = (e, category) => {
     e.preventDefault()
     setCategory(category)
   }
 
-  const confirmDelete = async () => {
+  const confirmDelete = () => {
     setIsLoading(true)
-    await deleteCategory(category)
-    setCategory({})
-    setUpdate(!update)
+    deleteCategory(category)
+      .then(() => {
+        setCategory({})
+        setUpdate(!update)
+        setIsLoading(false)
+      })
+      .catch(error => {
+        setCategory({})
+        setAlert({ message: error.message, type: 'is-danger' })
+        setIsLoading(false)
+      })
   }
 
   const { rows } = categories
   return (
     <>
       {redirect && <Redirect to={redirect} />}
-      {alert.message && (
-        <Notification
-          message={alert.message}
-          clear={clearAlert}
-          type={alert.type}
-        />
-      )}
 
       <Container
         title="Categorias"
@@ -69,9 +70,19 @@ const Categories = () => {
         width="is-6"
         background="is-primary"
       >
+
         <button className="button mx-1 my-1" onClick={() => setRedirect('/add-category')}>
           Agregar
         </button>
+
+        {alert.message && (
+          <Notification
+            message={alert.message}
+            clear={clearAlert}
+            type={alert.type}
+          />
+        )}
+
         <div className="container list-container">
           {rows && rows.map((category, index) => {
             const { code, name, statusName, created, createdByName, updated, updatedByName } = category

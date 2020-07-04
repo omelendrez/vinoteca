@@ -39,15 +39,23 @@ const Users = () => {
     setRedirect({ pathname: '/edit-user', state: { user } })
   }
 
-  const handleDelete = async (e, user) => {
+  const handleDelete = (e, user) => {
     e.preventDefault()
     setUser(user)
   }
-  const confirmDelete = async () => {
+  const confirmDelete = () => {
     setIsLoading(true)
-    await deleteUser(user)
-    setUser({})
-    setUpdate(!update)
+    deleteUser(user)
+      .then(() => {
+        setUser({})
+        setUpdate(!update)
+        setIsLoading(false)
+      })
+      .catch(error => {
+        setUser({})
+        setAlert({ message: error.message, type: 'is-danger' })
+        setIsLoading(false)
+      })
   }
 
   const { rows } = users
@@ -55,7 +63,6 @@ const Users = () => {
   return (
     <>
       {redirect && <Redirect to={redirect} />}
-      {alert.message && <Notification message={alert.message} clear={clearAlert} type={alert.type} />}
 
       <Container
         title="Usuarios"
@@ -66,6 +73,8 @@ const Users = () => {
         <button className="button mx-1 my-1" onClick={() => setRedirect('/add-user')}>
           Agregar
         </button>
+
+        <Notification message={alert.message} clear={clearAlert} type={alert.type} />
 
         <div className="container list-container">
 

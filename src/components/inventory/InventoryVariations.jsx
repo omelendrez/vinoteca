@@ -35,19 +35,18 @@ const InventoryVariations = () => {
   return (
     <>
       {redirect && <Redirect to={redirect} />}
-      {alert.message && (
-        <Notification message={alert.message} clear={clearAlert} type={alert.type} />
-      )}
-
       <Container
         title="Productos"
         subTitle="Admnistración de productos"
         width="is-6"
         background="is-info"
       >
+
         <button className="button mx-1 my-1" onClick={() => setRedirect("/add-inventory-variation")}>
           Agregar
         </button>
+
+        <Notification message={alert.message} clear={clearAlert} type={alert.type} />
 
         <div className="container list-container">
 

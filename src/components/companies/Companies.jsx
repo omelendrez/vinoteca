@@ -39,23 +39,30 @@ const Companies = () => {
     setRedirect({ pathname: '/edit-company', state: { company } })
   }
 
-  const handleDelete = async (e, company) => {
+  const handleDelete = (e, company) => {
     e.preventDefault()
     setCompany(company)
   }
 
-  const confirmDelete = async () => {
+  const confirmDelete = () => {
     setIsLoading(true)
-    await deleteCompany(company)
-    setCompany({})
-    setUpdate(!update)
+    deleteCompany(company)
+      .then(() => {
+        setCompany({})
+        setUpdate(!update)
+        setIsLoading(false)
+      })
+      .catch(error => {
+        setCompany({})
+        setAlert({ message: error.message, type: 'is-danger' })
+        setIsLoading(false)
+      })
   }
 
   const { rows } = companies
   return (
     <>
       {redirect && <Redirect to={redirect} />}
-      {alert.message && <Notification message={alert.message} clear={clearAlert} type={alert.type} />}
 
       <Container
         title="Empresas"
@@ -63,9 +70,13 @@ const Companies = () => {
         width="is-6"
         background="is-primary"
       >
+
         <button className="button mx-1 my-1" onClick={() => setRedirect('/add-company')}>
           Agregar
         </button>
+
+        {alert.message && <Notification message={alert.message} clear={clearAlert} type={alert.type} />}
+
         <div className="container list-container">
           {rows && rows.map((company, index) => {
             const { name, contact, address, email, phone, statusName, created, createdByName, updated, updatedByName } = company
