@@ -11,6 +11,7 @@ import CompanyForm from './components/companies/CompanyForm'
 import Profiles from "./components/profiles/Profiles"
 import ProfileForm from './components/profiles/ProfileForm'
 import Products from "./components/products/Products"
+import LowStockProducts from './components/inventory/LowStockProducts'
 import ProductForm from "./components/products/ProductForm"
 import Categories from "./components/categories/Categories"
 import CategoryForm from "./components/categories/CategoryForm"
@@ -52,6 +53,7 @@ function App() {
               <Route path="/edit-company" exact component={CompanyForm} />
               <Route path="/add-company" exact component={CompanyForm} />
               <Route path="/products" exact component={Products} />
+              <Route path="/low-stock-products" exact component={LowStockProducts} />
               <Route path="/edit-product" exact component={ProductForm} />
               <Route path="/add-product" exact component={ProductForm} />
               <Route path="/categories" exact component={Categories} />

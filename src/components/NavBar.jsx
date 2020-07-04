@@ -42,7 +42,7 @@ const NavBar = ({ user, setUser }) => {
 
               <NavBarGroup title="Inventario" handleToggle={handleToggle}>
                 <NavLink to="/inventory">Inventario</NavLink>
-                <NavLink to="/low-stock">Faltantes</NavLink>
+                <NavLink to="/low-stock-products">Faltantes</NavLink>
                 <NavLink to="/inventory-variations">Correciones de inventario</NavLink>
                 <NavLink to="/variation-reasons">Motivos de variación</NavLink>
               </NavBarGroup>
