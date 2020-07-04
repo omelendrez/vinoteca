@@ -30,3 +30,5 @@ export const cleanData = data => {
   if (!result.lastSaleDate) result.lastSaleDate = undefined
   return result
 }
+
+export const formatAmount = amount => `$ ${amount.toFixed(2)}`
