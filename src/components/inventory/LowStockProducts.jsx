@@ -7,6 +7,7 @@ import TableItem from "../common/TableItem"
 import TableItemField from "../common/TableItemField"
 import TableFooter from "../common/TableFooter"
 import { getLowStockProducts } from "../../services/products"
+import { formatAmount } from "../../helpers"
 
 const Products = () => {
   const [products, setProducts] = useState({ rows: [] })
@@ -68,7 +69,7 @@ const Products = () => {
                 <TableItemField label="Categoría" value={categoryName} />
                 <TableItemField label="Stock" value={quantity} />
                 <TableItemField label="Cantidad mínima" value={minimum} />
-                <TableItemField label="Precio" value={`$ ${price.toFixed(2)}`} />
+                <TableItemField label="Precio" value={formatAmount(price)} />
                 <hr />
                 <TableItemField label="Última compra" value={lastPurchaseDate} />
                 <TableItemField label="Último precio de costo" value={`$ ${lastPurchasePrice.toFixed(2)}`} />

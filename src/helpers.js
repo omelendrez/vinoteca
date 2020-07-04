@@ -36,4 +36,4 @@ export const cleanData = data => {
   return result
 }
 
-export const formatAmount = amount => `$ ${amount.toFixed(2)}`
+export const formatAmount = amount => new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS' }).format(amount)
