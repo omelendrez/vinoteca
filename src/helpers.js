@@ -8,7 +8,7 @@ export const formatDateFull = date => moment(date).format('DD-MM-YYYY HH:mm:ss')
 export const formatDateFromNow = date => moment(date).fromNow()
 
 export const handleError = error => {
-  console.log('Error!', error)
+  window.navigator.vibrate(200)
   if (error.response && error.response.data && error.response.data.message) {
     return error.response.data
   }
