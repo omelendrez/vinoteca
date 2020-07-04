@@ -6,11 +6,11 @@ export const formatDate = date => moment(date).format('L')
 export const formatDateFull = dateTime => moment(dateTime).format('DD-MM-YYYY HH:mm:ss')
 
 export const handleError = error => {
-  console.log(error)
-  if (error.response && error.response.data) {
+  console.log('Error!', error)
+  if (error.response && error.response.data && error.response.data.message) {
     return error.response.data
   }
-  return ({ message: 'Error de conexión' })
+  return ({ message: 'Error interno del servidor' })
 }
 
 export const cleanData = data => {

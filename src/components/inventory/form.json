@@ -1,0 +1,14 @@
+{
+  "fields": [
+    {
+      "label": "Cantidad",
+      "type": "text",
+      "fieldId": "quantity"
+    },
+    {
+      "label": "Observaciones",
+      "type": "text",
+      "fieldId": "comments"
+    }
+  ]
+}
