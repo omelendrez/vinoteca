@@ -40,13 +40,12 @@ export function register(config) {
 
         // Add some additional logging to localhost, pointing developers to the
         // service worker/PWA documentation.
-        navigator.serviceWorker.ready
-          .then(() => {
-            console.log(
-              'This web app is being served cache-first by a service ' +
-              'worker. To learn more, visit https://bit.ly/CRA-PWA'
-            )
-          })
+        navigator.serviceWorker.ready.then(() => {
+          console.log(
+            'This web app is being served cache-first by a service ' +
+            'worker. To learn more, visit https://bit.ly/CRA-PWA'
+          )
+        })
       } else {
         // Is not localhost. Just register service worker
         registerValidSW(swUrl, config)
@@ -127,23 +126,6 @@ function checkValidServiceWorker(swUrl, config) {
         'No internet connection found. App is running in offline mode.'
       )
     })
-}
-
-export function showNotification(title) {
-  Notification.requestPermission(function (result) {
-    if (result === 'granted') {
-      navigator.serviceWorker.ready
-        .then(function (registration) {
-          registration.showNotification(title, {
-            body: 'Buzz! Buzz!',
-            icon: '../public/images/icons/icon-192x192.png',
-            vibrate: [200, 100, 200, 100, 200, 100, 200],
-            tag: 'vibration-sample'
-          })
-        })
-        .catch(error => console.log(error))
-    }
-  })
 }
 
 export function unregister() {
