@@ -20,6 +20,10 @@ const InventoryVariations = () => {
       .then((inventoryVariations) => {
         setInventoryVariations(inventoryVariations)
         setIsLoading(false)
+        if (!inventoryVariations.count) {
+          setAlert({ message: 'La tabla no tiene registros para mostrar', type: 'is-light' })
+        }
+
       })
       .catch((error) => {
         setAlert({ message: error.message, type: "is-danger" })
@@ -70,14 +74,6 @@ const InventoryVariations = () => {
           })
           }
         </div>
-
-        {!rows.length && (
-          <Notification
-            message="La tabla no contiene registros"
-            type="is-light"
-            clear={clearAlert}
-          />
-        )}
 
         {isLoading && <Loading />}
 

@@ -23,6 +23,9 @@ const Suppliers = () => {
       .then(suppliers => {
         setSuppliers(suppliers)
         setIsLoading(false)
+        if (!suppliers.count) {
+          setAlert({ message: 'La tabla no tiene registros para mostrar', type: 'is-light' })
+        }
       })
       .catch(error => {
         setAlert({ message: error.message, type: 'is-danger' })
@@ -113,8 +116,6 @@ const Suppliers = () => {
           isActive={supplier.id}
           close={() => setSupplier({})}
         />
-
-        {!rows.length && <Notification message="La tabla no contiene registros" type="is-light" clear={clearAlert} />}
 
         {isLoading && <Loading />}
 

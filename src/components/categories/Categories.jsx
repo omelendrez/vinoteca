@@ -23,6 +23,9 @@ const Categories = () => {
       .then((categories) => {
         setCategories(categories)
         setIsLoading(false)
+        if (!categories.count) {
+          setAlert({ message: 'La tabla no tiene registros para mostrar', type: 'is-light' })
+        }
       })
       .catch((error) => {
         setAlert({ message: error.message, type: "is-danger" })
@@ -119,21 +122,6 @@ const Categories = () => {
           isActive={category.id}
           close={() => setCategory({})}
         />
-        <Confirm
-          title="Eliminando empresa"
-          message={<span>Confirma eliminación de la empresa <strong>{category.name}</strong>?</span>}
-          handleOk={confirmDelete}
-          isActive={category.id}
-          close={() => setCategory({})}
-        />
-
-        {!rows.length && (
-          <Notification
-            message="La tabla no contiene registros"
-            type="is-light"
-            clear={clearAlert}
-          />
-        )}
 
         {isLoading && <Loading />}
 

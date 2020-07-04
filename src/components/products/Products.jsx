@@ -23,6 +23,9 @@ const Products = () => {
       .then((products) => {
         setProducts(products)
         setIsLoading(false)
+        if (!products.count) {
+          setAlert({ message: 'La tabla no tiene registros para mostrar', type: 'is-light' })
+        }
       })
       .catch((error) => {
         setAlert({ message: error.message, type: "is-danger" })
@@ -124,12 +127,6 @@ const Products = () => {
           handleOk={confirmDelete}
           isActive={product.id}
           close={() => setProduct({})}
-        />
-
-        <Notification
-          message="La tabla no contiene registros"
-          type="is-light"
-          clear={clearAlert}
         />
 
         {isLoading && <Loading />}

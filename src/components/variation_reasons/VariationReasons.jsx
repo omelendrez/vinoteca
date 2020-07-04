@@ -23,6 +23,9 @@ const VariationReasons = () => {
       .then(variationReasons => {
         setVariationReasons(variationReasons)
         setIsLoading(false)
+        if (!variationReasons.count) {
+          setAlert({ message: 'La tabla no tiene registros para mostrar', type: 'is-light' })
+        }
       })
       .catch(error => {
         setAlert({ message: error.message, type: 'is-danger' })
@@ -112,8 +115,6 @@ const VariationReasons = () => {
           isActive={variationReason.id}
           close={() => setVariationReason({})}
         />
-
-        {!rows.length && <Notification message="La tabla no contiene registros" type="is-light" clear={clearAlert} />}
 
         {isLoading && <Loading />}
 

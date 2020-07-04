@@ -23,6 +23,9 @@ const Stores = () => {
       .then(stores => {
         setStores(stores)
         setIsLoading(false)
+        if (!stores.count) {
+          setAlert({ message: 'La tabla no tiene registros para mostrar', type: 'is-light' })
+        }
       })
       .catch(error => {
         setAlert({ message: error.message, type: 'is-danger' })
@@ -113,8 +116,6 @@ const Stores = () => {
           isActive={store.id}
           close={() => setStore({})}
         />
-
-        {!rows.length && <Notification message="La tabla no contiene registros" type="is-light" clear={clearAlert} />}
 
         {isLoading && <Loading />}
 

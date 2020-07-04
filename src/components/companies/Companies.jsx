@@ -23,6 +23,9 @@ const Companies = () => {
       .then(companies => {
         setCompanies(companies)
         setIsLoading(false)
+        if (!companies.count) {
+          setAlert({ message: 'La tabla no tiene registros para mostrar', type: 'is-light' })
+        }
       })
       .catch(error => {
         setAlert({ message: error.message, type: 'is-danger' })
@@ -112,9 +115,6 @@ const Companies = () => {
           isActive={company.id}
           close={() => setCompany({})}
         />
-
-
-        {!rows.length && <Notification message="La tabla no contiene registros" type="is-light" clear={clearAlert} />}
 
         {isLoading && <Loading />}
 

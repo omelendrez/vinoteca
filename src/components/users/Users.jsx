@@ -23,6 +23,9 @@ const Users = () => {
       .then(users => {
         setUsers(users)
         setIsLoading(false)
+        if (!users.count) {
+          setAlert({ message: 'La tabla no tiene registros para mostrar', type: 'is-light' })
+        }
       })
       .catch(error => {
         setAlert({ message: error.message, type: 'is-danger' })
@@ -113,8 +116,6 @@ const Users = () => {
           isActive={user.id}
           close={() => setUser({})}
         />
-
-        {!rows.length && <Notification message="La tabla no contiene registros" type="is-light" clear={clearAlert} />}
 
         {isLoading && <Loading />}
 
