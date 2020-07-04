@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { login, forgotPassword } from '../services/login'
 import Notification from './common/Notification'
 import { saveData, getData } from '../localStorage'
-import { showNotification } from '../notifications'
+import { showNotification } from '../serviceWorker'
 
 const Login = ({ setUser }) => {
 	const checked = getData('remember')
@@ -12,7 +12,7 @@ const Login = ({ setUser }) => {
 	const [isLoading, setIsLoading] = useState(false)
 
 	useEffect(() => {
-		setTimeout(() => showNotification(), 3000)
+		setTimeout(() => showNotification('prueba'), 1000)
 	}, [])
 
 	const handleChange = e => {
