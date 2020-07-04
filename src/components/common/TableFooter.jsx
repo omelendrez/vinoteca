@@ -6,9 +6,9 @@ const TableFooter = ({ statusName, created, createdByName, updated, updatedByNam
   return (
     <>
       <hr />
-      <TableItemField icon="fa fa-calendar-alt mr-2" label="Status" value={statusName} />
+      {statusName && <TableItemField icon="fa fa-calendar-alt mr-2" label="Status" value={statusName} />}
       <TableItemField icon="fa fa-calendar-alt mr-2" label="Creado" value={`${createdByName} ${formatDateFull(created)}`} />
-      {created !== updated &&
+      {updatedByName &&
         <TableItemField label="Modificado" icon="fa fa-calendar-alt mr-2" value={`${updatedByName} ${formatDateFull(updated)}`} />
       }
     </>

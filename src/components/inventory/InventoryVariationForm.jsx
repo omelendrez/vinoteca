@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { Redirect } from 'react-router-dom'
 import Container from "../common/Container"
 import Form from "../common/Form"
 import FormField from "../common/FormField"
@@ -25,6 +26,7 @@ const InventoryVariationForm = () => {
   const [products, setProducts] = useState([])
   const [reasons, setReasons] = useState([])
   const [alert, setAlert] = useState({})
+  const [redirect, setRedirect] = useState('')
 
   useEffect(() => {
     getStores()
@@ -37,6 +39,7 @@ const InventoryVariationForm = () => {
 
   const handleChange = (e) => {
     e.preventDefault()
+    setAlert({})
     setForm({
       ...form,
       [e.target.id]: e.target.value,
@@ -45,12 +48,19 @@ const InventoryVariationForm = () => {
 
   const handleSave = (e) => {
     e.preventDefault()
+    if (!form.variationType || !form.variationReasonId || !form.storeId || !form.productId) {
+      return setAlert({ message: 'Complete los campos faltantes', type: "is-danger" })
+    }
+    if (parseInt(form.quantity) < 1) {
+      return setAlert({ message: 'Cantidad no puede ser menor que 1', type: "is-danger" })
+    }
     setIsLoading(true)
     addInventoryVariation(form)
       .then(() => {
         setIsLoading(false)
         setAlert({ message: 'Variación guardada satisfactoriamente', type: "is-success" })
         setForm(formDefault)
+        setRedirect('/inventory-variations')
       })
       .catch((error) => {
         setIsLoading(false)
@@ -62,10 +72,12 @@ const InventoryVariationForm = () => {
     e.preventDefault()
     setForm(formDefault)
     setAlert({})
+    setRedirect('/inventory-variations')
   }
 
   return (
     <>
+      {redirect && <Redirect to={redirect} />}
       <Container
         title="Creando variación de inventario"
         subTitle="Administración de inventario"

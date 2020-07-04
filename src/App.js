@@ -23,7 +23,9 @@ import Stores from "./components/stores/Stores"
 import StoreForm from './components/stores/StoreForm'
 import VariationReasons from "./components/variation_reasons/VariationReasons"
 import VariationReasonForm from "./components/variation_reasons/VariationReasonForm"
+import InventoryVariationS from "./components/inventory/InventoryVariations"
 import InventoryVariationForm from "./components/inventory/InventoryVariationForm"
+import InventoryVariations from "./components/inventory/InventoryVariations"
 
 function App() {
   const [user, setUser] = useState({})
@@ -62,7 +64,8 @@ function App() {
               <Route path="/variation-reasons" exact component={VariationReasons} />
               <Route path="/edit-variation-reason" exact component={VariationReasonForm} />
               <Route path="/add-variation-reason" exact component={VariationReasonForm} />
-              <Route path="/inventory-variation" exact component={InventoryVariationForm} />
+              <Route path="/inventory-variations" exact component={InventoryVariations} />
+              <Route path="/add-inventory-variation" exact component={InventoryVariationForm} />
             </Switch>
           </main>
         )}
