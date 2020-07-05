@@ -79,7 +79,7 @@ const Categories = () => {
         </button>
 
         {alert.message && (
-          <Notification
+          <Notification className="mx-1 my-1"
             message={alert.message}
             clear={clearAlert}
             type={alert.type}

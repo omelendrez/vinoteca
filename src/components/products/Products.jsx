@@ -78,7 +78,7 @@ const Products = () => {
           Agregar
         </button>
 
-        <Notification message={alert.message} clear={clearAlert} type={alert.type} />
+        <Notification message={alert.message} className="mx-1 my-1" clear={clearAlert} type={alert.type} />
 
         <div className="container list-container">
 
@@ -94,6 +94,7 @@ const Products = () => {
               >
                 <Notification message={quantity <= minimum && quantity > 0 ? 'Producto con bajo stock' : ''} type="is-warning" clear={() => { }} />
                 <Notification message={quantity === 0 ? 'Producto sin stock' : ''} type="is-danger" clear={() => { }} />
+
                 <TableItemField label="Descripción" value={description} />
                 <TableItemField label="Código" value={code} />
                 <TableItemField label="Categoría" value={categoryName} />

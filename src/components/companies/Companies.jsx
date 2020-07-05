@@ -78,7 +78,7 @@ const Companies = () => {
           Agregar
         </button>
 
-        {alert.message && <Notification message={alert.message} clear={clearAlert} type={alert.type} />}
+        <Notification message={alert.message} className="mx-1 my-1" clear={clearAlert} type={alert.type} />
 
         <div className="container list-container">
           {rows && rows.map((company, index) => {

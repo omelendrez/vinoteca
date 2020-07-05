@@ -118,7 +118,7 @@ const Login = ({ setUser }) => {
 									</div>
 								</div>
 
-								{alert.message && <Notification message={alert.message} clear={clearAlert} type={alert.type} />}
+								<Notification message={alert.message} clear={clearAlert} type={alert.type} />
 
 							</form>
 						</div>

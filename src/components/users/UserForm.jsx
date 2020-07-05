@@ -144,7 +144,7 @@ const UserForm = props => {
             />
           ))}
 
-          {alert.message && <Notification message={alert.message} clear={clearAlert} type={alert.type} />}
+          <Notification message={alert.message} clear={clearAlert} type={alert.type} />
         </Form>
       </Container>
 
