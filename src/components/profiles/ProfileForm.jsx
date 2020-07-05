@@ -74,6 +74,7 @@ const ProfileForm = props => {
     <>
       {redirect && <Redirect to={redirect} />}
       {isLoading && <Loading />}
+
       <Container
         title={form.id ? 'Editando' : 'Agregando'}
         subTitle="Administración de perfiles"
@@ -85,6 +86,7 @@ const ProfileForm = props => {
           handleSave={handleSave}
           handleCancel={handleCancel}
         >
+
           {fields.map((field, index) => (
             <FormField
               key={index}
@@ -95,9 +97,13 @@ const ProfileForm = props => {
               handleChange={handleChange}
               icon={field.icon}
             />
+
           ))}
+
           <Notification message={alert.message} clear={clearAlert} type={alert.type} />
+
         </Form>
+
       </Container>
 
     </>
