@@ -1,0 +1,9 @@
+{
+  "fields": [
+    {
+      "label": "Fecha",
+      "type": "date",
+      "fieldId": "date"
+    }
+  ]
+}

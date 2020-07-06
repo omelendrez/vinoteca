@@ -10,6 +10,14 @@ export const getOrders = () => {
   })
 }
 
+export const addOrder = order => {
+  return new Promise((resolve, reject) => {
+    api.post('orders', order)
+      .then(response => resolve(response.data))
+      .catch(error => reject(handleError(error)))
+  })
+}
+
 export const deleteOrder = order => {
   return new Promise((resolve, reject) => {
     api.delete(`orders/${order.id}`)
