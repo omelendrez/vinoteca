@@ -16,7 +16,7 @@ const NavBar = ({ user, setUser }) => {
   }
 
   return (
-    <nav className='navbar is-light' role='navigation' aria-label='main navigation'>
+    <nav className='navbar is-dark' role='navigation' aria-label='main navigation'>
 
       <div className='navbar-brand'>
 

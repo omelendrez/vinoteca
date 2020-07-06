@@ -1,7 +1,6 @@
-
 body {
   /*background-color: rgb(0, 148, 126);*/
-  background-color: #b0c4de; // lightsteelblue
+  background-color: #1d2b38; // lightsteelblue
   height: 100vh;
   overflow-x: hidden;
   .list-container {
@@ -12,5 +11,8 @@ body {
     &::-webkit-scrollbar {
       width: 0px;
     }
+  }
+  .navbar.is-dark {
+    background-color: #1d2b38; // lightsteelblue
   }
 }
