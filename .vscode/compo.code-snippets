@@ -1,6 +1,6 @@
 {
 	"Crear componente funcional ": {
-		"prefix": "componente",
+		"prefix": "compo",
 		"body": [
 			"import React from 'react'",
 			"",
