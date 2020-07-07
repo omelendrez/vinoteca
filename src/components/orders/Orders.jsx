@@ -88,7 +88,7 @@ const Orders = () => {
 
         <div className="container list-container">
           {rows && rows.map((order, index) => {
-            const { number, date, amount, supplierName, statusName, created, createdByName, updated, updatedByName } = order
+            const { number, date, amount, supplierName, items, statusName, created, createdByName, updated, updatedByName } = order
             return (
               <TableItem
                 key={index}
@@ -101,6 +101,7 @@ const Orders = () => {
                 <TableItemField label="Fecha" value={formatDate(date)} />
                 <TableItemField label="Importe" value={formatAmount(amount)} />
                 <TableItemField label="Proveedor" value={supplierName} />
+                <TableItemField label="Detalle" value={`${items} items`} />
                 <TableFooter
                   statusName={statusName}
                   created={created}

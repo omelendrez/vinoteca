@@ -1,5 +1,6 @@
 import moment from 'moment'
 import 'moment/locale/es'
+import { deleteData } from './localStorage'
 
 export const formatDate = date => moment(date).format('L')
 
@@ -10,6 +11,11 @@ export const formatDateFromNow = date => moment(date).fromNow()
 export const handleError = error => {
   window.navigator.vibrate(200)
   if (error.response && error.response.data && error.response.data.message) {
+    if (error.response.data.code === 'token') {
+      deleteData('token')
+      deleteData('user')
+      return window.location.href = '/login'
+    }
     return error.response.data
   }
   if (error.response.data) {
