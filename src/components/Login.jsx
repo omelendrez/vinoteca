@@ -34,6 +34,7 @@ const Login = ({ setUser }) => {
 				setAlert({ message: `Bienvenido ${user.name}`, type: 'is-success' })
 				setIsLoading(false)
 				setUser(user)
+				window.location.reload(false)
 			})
 			.catch(error => {
 				setAlert({ message: error.message, type: 'is-danger' })
