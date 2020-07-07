@@ -37,6 +37,9 @@ const OrderForm = () => {
     }
     addOrder(form)
       .then(order => {
+        setTimeout(() => {
+          setRedirect('/orders')
+        }, 3000)
         setAlert({ message: `Órden nro. ${order.data.number} creada`, type: 'is-success' })
       })
       .catch(error => setAlert({ message: error.message, type: 'is-danger' }))

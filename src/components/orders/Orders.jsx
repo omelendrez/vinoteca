@@ -73,7 +73,7 @@ const Orders = () => {
         title="Órdenes de compra"
         subTitle="Admnistración de órdenes de compra"
         width="is-6"
-        background="is-primary"
+        background="is-warning"
       >
 
         <button className="button mx-1 my-1" onClick={() => setRedirect('/add-order')}>
