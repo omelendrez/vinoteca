@@ -40,7 +40,7 @@ const Orders = () => {
 
   const handleEdit = (e, order) => {
     e.preventDefault()
-    setRedirect({ pathname: '/edit-order', state: { order } })
+    setRedirect({ pathname: `/order-details/${order.id}`, state: { order } })
   }
 
   const handleDelete = async (e, order) => {
