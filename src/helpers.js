@@ -14,7 +14,7 @@ export const handleError = error => {
     if (error.response.data.code === 'token') {
       deleteData('token')
       deleteData('user')
-      return window.location.href = window.location.href
+      return window.location.reload()
     }
     return error.response.data
   }
