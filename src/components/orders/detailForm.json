@@ -1,0 +1,9 @@
+{
+  "fields": [
+    {
+      "label": "Cantidad",
+      "type": "text",
+      "fieldId": "qtyRequested"
+    }
+  ]
+}
