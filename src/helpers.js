@@ -30,7 +30,10 @@ export const cleanData = data => {
   const result = { ...data }
   result.companyName = undefined
   result.profileName = undefined
+  result.productName = undefined
+  result.total = undefined
   result.categoryName = undefined
+  result.storeName = undefined
   result.created = undefined
   result.createdByName = undefined
   result.updated = undefined

@@ -5,13 +5,16 @@ import Modal from '../common/Modal'
 import Form from '../common/Form'
 import FormField from '../common/FormField'
 import FormFieldSelect from '../common/FormFieldSelect'
+import { addDetail, saveDetail } from '../../services/order_details'
 import { getOrder } from '../../services/orders'
 import { getStores } from '../../services/stores'
 import { getProducts } from '../../services/products'
 import { fields } from './detailForm.json'
+import { cleanData } from '../../helpers'
 
 const OrderDetails = (props) => {
   const detailsDefault = {
+    orderId: props.match.params.id,
     productId: '',
     storeId: '',
     qtyRequested: ''
@@ -43,11 +46,45 @@ const OrderDetails = (props) => {
   }
 
   const handleOk = () => {
-    console.log(form)
+    if (form.id) {
+      save()
+    } else {
+      add()
+    }
+  }
+
+  const add = () => {
+    addDetail(form)
+      .then(detail => {
+        setForm(detailsDefault)
+        const { orderDetails } = order
+        orderDetails.push(detail.data)
+        order.orderDetails = orderDetails
+        setOrder(order)
+        setShowForm(false)
+      })
+      .catch(error => console.log(error))
+  }
+
+  const save = () => {
+    saveDetail(cleanData(form))
+      .then(detail => {
+        setForm(detailsDefault)
+        const orderDetails = order.orderDetails.map(item => {
+          if (item.id === detail.data.id) {
+            item = detail.data
+          }
+          return item
+        })
+        order.orderDetails = orderDetails
+        setOrder(order)
+        setShowForm(false)
+      })
+      .catch(error => console.log(error))
   }
 
   const handleEdit = item => {
-    console.log(item)
+    setForm(item)
     setShowForm(true)
   }
 
@@ -100,6 +137,18 @@ const OrderDetails = (props) => {
           handleCancel={closeForm}
         >
 
+          <FormFieldSelect
+            label="Product"
+            fieldId="productId"
+            fieldValue={form.productId}
+            handleChange={handleChange}
+          >
+            <option />
+            {products.map(product => <option key={product.id} value={product.id}>{product.name}</option>)}
+
+          </FormFieldSelect>
+
+
           {fields.map(field => {
             if (field.hideEmpty && !form[field.fieldId]) return null
             return (
@@ -122,17 +171,6 @@ const OrderDetails = (props) => {
           >
             <option />
             {stores.map(store => <option key={store.id} value={store.id}>{store.name}</option>)}
-
-          </FormFieldSelect>
-
-          <FormFieldSelect
-            label="Product"
-            fieldId="productId"
-            fieldValue={form.productId}
-            handleChange={handleChange}
-          >
-            <option />
-            {products.map(product => <option key={product.id} value={product.id}>{product.name}</option>)}
 
           </FormFieldSelect>
 
