@@ -16,3 +16,11 @@ export const saveDetail = detail => {
       .catch(error => reject(handleError(error)))
   })
 }
+
+export const deleteDetail = detail => {
+  return new Promise((resolve, reject) => {
+    api.delete(`order_details/${detail.id}`)
+      .then(response => resolve(response.data))
+      .catch(error => reject(handleError(error)))
+  })
+}

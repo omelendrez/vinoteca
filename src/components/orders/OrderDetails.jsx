@@ -5,7 +5,9 @@ import Modal from '../common/Modal'
 import Form from '../common/Form'
 import FormField from '../common/FormField'
 import FormFieldSelect from '../common/FormFieldSelect'
-import { addDetail, saveDetail } from '../../services/order_details'
+import Confirm from '../common/Confirm'
+import Notification from '../common/Notification'
+import { addDetail, saveDetail, deleteDetail } from '../../services/order_details'
 import { getOrder } from '../../services/orders'
 import { getStores } from '../../services/stores'
 import { getProducts } from '../../services/products'
@@ -24,20 +26,27 @@ const OrderDetails = (props) => {
   const [showForm, setShowForm] = useState(false)
   const [stores, setStores] = useState([])
   const [products, setProducts] = useState([])
+  const [item, setItem] = useState({})
+  const [listAlert, setListAlert] = useState({})
+  const [formAlert, setFormAlert] = useState({})
 
   useEffect(() => {
     getOrder(props.match.params.id)
       .then(order => setOrder(order))
+      .catch(error => setListAlert({ message: error.message, type: 'is-danger' }))
 
     getStores()
       .then(stores => setStores(stores.rows))
+      .catch(error => setListAlert({ message: error.message, type: 'is-danger' }))
 
     getProducts()
       .then(products => setProducts(products.rows))
+      .catch(error => setListAlert({ message: error.message, type: 'is-danger' }))
 
   }, [props.match.params.id])
 
   const handleChange = e => {
+    setFormAlert({})
     setForm({ ...form, [e.target.id]: e.target.value })
   }
 
@@ -54,32 +63,34 @@ const OrderDetails = (props) => {
   }
 
   const add = () => {
+    const found = order.orderDetails.find(item => item.productId === parseInt(form.productId) && item.storeId === parseInt(form.storeId))
+    if (found) {
+      return setFormAlert({ message: 'Producto ya existe en esta orden', type: 'is-warning' })
+    }
     addDetail(form)
       .then(detail => {
-        const { orderDetails } = order
-        orderDetails.push(detail.data)
-        order.orderDetails = orderDetails
+        order.orderDetails.push(detail.data)
         setOrder(order)
         setShowForm(false)
       })
-      .catch(error => console.log(error))
+      .catch(error => setFormAlert({ message: error.message, type: 'is-danger' }))
   }
 
   const save = () => {
     saveDetail(cleanData(form))
       .then(detail => {
         setForm(detailsDefault)
-        const orderDetails = order.orderDetails.map(item => {
+        const newOrderDetails = order.orderDetails.map(item => {
           if (item.id === detail.data.id) {
             item = detail.data
           }
           return item
         })
-        order.orderDetails = orderDetails
+        order.orderDetails = newOrderDetails
         setOrder(order)
         setShowForm(false)
       })
-      .catch(error => console.log(error))
+      .catch(error => setFormAlert({ message: error.message, type: 'is-danger' }))
   }
 
   const handleEdit = item => {
@@ -88,7 +99,17 @@ const OrderDetails = (props) => {
   }
 
   const handleDelete = item => {
-    console.log(item)
+    setItem(item)
+  }
+
+  const confirmDelete = () => {
+    deleteDetail(item)
+      .then(() => {
+        order.orderDetails = order.orderDetails.filter(detail => detail.id !== item.id)
+        setOrder(order)
+        setItem({})
+      })
+      .catch(error => setListAlert({ message: error.message, type: 'is-danger' }))
   }
 
   const { orderDetails: items } = order
@@ -106,6 +127,8 @@ const OrderDetails = (props) => {
       }}>
         Agregar
         </button>
+
+      <Notification message={listAlert.message} type={listAlert.type} />
 
       <table className="table is-fullwidth mx-1 my-1">
         <thead>
@@ -176,9 +199,23 @@ const OrderDetails = (props) => {
 
           </FormFieldSelect>
 
+          <Notification message={formAlert.message} type={formAlert.type} />
+
         </Form>
 
       </Modal>
+
+      <Confirm
+        title="Eliminando item"
+        message={
+          <span>
+            Confirma eliminación de este producto <strong>{item.productName}</strong>?
+          </span>
+        }
+        isActive={item.id}
+        handleOk={confirmDelete}
+        close={() => setItem({})}
+      />
 
     </Container>
   )
