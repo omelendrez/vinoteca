@@ -1,8 +1,8 @@
 import React from 'react'
-import Modal from './Modal'
+import ConfirmModal from './ConfirmModal'
 
 const Confirm = ({ isActive, close, title, message, handleOk }) => (
-  <Modal
+  <ConfirmModal
     isActive={isActive}
     title={title}
     close={close}
@@ -13,7 +13,7 @@ const Confirm = ({ isActive, close, title, message, handleOk }) => (
     <section className="modal-card-body has-text-black">
       {message}
     </section>
-  </Modal>
+  </ConfirmModal>
 )
 
 export default Confirm
