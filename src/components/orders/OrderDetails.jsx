@@ -56,7 +56,6 @@ const OrderDetails = (props) => {
   const add = () => {
     addDetail(form)
       .then(detail => {
-        setForm(detailsDefault)
         const { orderDetails } = order
         orderDetails.push(detail.data)
         order.orderDetails = orderDetails
@@ -101,7 +100,10 @@ const OrderDetails = (props) => {
       width="is-8"
       background="is-warning">
 
-      <button className="button mx-1 my-1" onClick={() => setShowForm(true)}>
+      <button className="button mx-1 my-1" onClick={() => {
+        setForm(detailsDefault)
+        setShowForm(true)
+      }}>
         Agregar
         </button>
 
