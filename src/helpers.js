@@ -2,6 +2,28 @@ import moment from 'moment'
 import 'moment/locale/es'
 import { deleteData } from './localStorage'
 
+// Estos campos no se envían al backend con post o put
+const fieldsToRemove = [
+  'companyName',
+  'profileName',
+  'productName',
+  'total',
+  'categoryName',
+  'storeName',
+  'created',
+  'createdByName',
+  'updated',
+  'updatedByName',
+  'statusName',
+  'confirmPassword'
+]
+
+// Estos campos no se envían al backend con put si están vacíos
+const fieldsToRemoveIfEmpty = [
+  'lastPurchaseDate',
+  'lastSaleDate'
+]
+
 export const formatDate = date => moment(date).format('L')
 
 export const formatDateFull = date => moment(date).format('DD-MM-YYYY HH:mm:ss')
@@ -28,20 +50,12 @@ export const handleError = error => {
 
 export const cleanData = data => {
   const result = { ...data }
-  result.companyName = undefined
-  result.profileName = undefined
-  result.productName = undefined
-  result.total = undefined
-  result.categoryName = undefined
-  result.storeName = undefined
-  result.created = undefined
-  result.createdByName = undefined
-  result.updated = undefined
-  result.updatedByName = undefined
-  result.statusName = undefined
-  result.confirmPassword = undefined
-  if (!result.lastPurchaseDate) result.lastPurchaseDate = undefined
-  if (!result.lastSaleDate) result.lastSaleDate = undefined
+  fieldsToRemove.forEach(name => result[name] = undefined)
+  fieldsToRemoveIfEmpty.forEach(name => {
+    if (!result[name]) {
+      result[name] = undefined
+    }
+  })
   return result
 }
 
