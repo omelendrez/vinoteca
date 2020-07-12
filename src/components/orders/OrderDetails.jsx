@@ -8,11 +8,11 @@ import FormFieldSelect from '../common/FormFieldSelect'
 import Confirm from '../common/Confirm'
 import Notification from '../common/Notification'
 import { addDetail, saveDetail, deleteDetail } from '../../services/order_details'
-import { getOrder } from '../../services/orders'
+import { getOrder, sendOrder, cancelOrder } from '../../services/orders'
 import { getStores } from '../../services/stores'
 import { getProducts } from '../../services/products'
 import { fields } from './detailForm.json'
-import { cleanData } from '../../helpers'
+import { cleanData, formatDate, formatAmount } from '../../helpers'
 
 const OrderDetails = (props) => {
   const detailsDefault = {
@@ -93,6 +93,12 @@ const OrderDetails = (props) => {
       .catch(error => setFormAlert({ message: error.message, type: 'is-danger' }))
   }
 
+  const handleAdd = e => {
+    e.preventDefault()
+    setForm(detailsDefault)
+    setShowForm(true)
+  }
+
   const handleEdit = item => {
     setForm(item)
     setShowForm(true)
@@ -112,6 +118,31 @@ const OrderDetails = (props) => {
       .catch(error => setListAlert({ message: error.message, type: 'is-danger' }))
   }
 
+  const handleSend = e => {
+    e.preventDefault()
+    const newStatus = {
+      id: order.id,
+      statusId: 2
+    }
+    sendOrder(newStatus)
+      .then(order => setOrder(order))
+      .catch(error => setListAlert({ message: error.message, type: 'is-danger' }))
+  }
+
+  const handleCancel = e => {
+    e.preventDefault()
+    const newStatus = {
+      id: order.id,
+      statusId: 4
+    }
+    cancelOrder(newStatus)
+      .then(order => {
+        setOrder(order)
+        console.log(order)
+      })
+      .catch(error => setListAlert({ message: error.message, type: 'is-danger' }))
+  }
+
   const { orderDetails: items } = order
 
   return (
@@ -120,17 +151,34 @@ const OrderDetails = (props) => {
       subTitle="Items"
       width="is-8"
       background="is-warning">
+      <div className="card ">
+        <div className="container">
+          <table className="table is-fullwidth has-background-info-dark has-text-white mb-1">
+            <tbody>
+              <tr>
+                <td>{order.number}</td>
+                <td>{order.supplierName}</td>
+                <td>{formatDate(order.date)}</td>
+                <td>{formatAmount(order.amount)}</td>
+                <td>{order.statusName}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
 
-      <button className="button mx-1 my-1" onClick={() => {
-        setForm(detailsDefault)
-        setShowForm(true)
-      }}>
-        Agregar
-        </button>
+      <div className="is-pulled-left">
+        <button className="button mx-0 my-1" onClick={e => handleAdd(e)}>Agregar</button>
+      </div>
+
+      <div className="is-pulled-right">
+        <button className="button is-info mx-2 my-1" onClick={e => handleSend(e)}>Enviar</button>
+        <button className="button is-danger mx-0 my-1" onClick={e => handleCancel(e)}>Cancelar</button>
+      </div>
 
       <Notification message={listAlert.message} type={listAlert.type} />
 
-      <table className="table is-fullwidth mx-1 my-1">
+      <table className="table is-fullwidth mx-0 my-1">
         <thead>
           <tr>
             <th>Producto</th>

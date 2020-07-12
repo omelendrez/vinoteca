@@ -33,3 +33,19 @@ export const deleteOrder = order => {
       .catch(error => reject(handleError(error)))
   })
 }
+
+export const sendOrder = order => {
+  return new Promise((resolve, reject) => {
+    api.put(`orders/${order.id}`, order)
+      .then(response => resolve(response.data))
+      .catch(error => reject(handleError(error)))
+  })
+}
+
+export const cancelOrder = order => {
+  return new Promise((resolve, reject) => {
+    api.put(`orders/${order.id}`, order)
+      .then(response => resolve(response.data))
+      .catch(error => reject(handleError(error)))
+  })
+}
