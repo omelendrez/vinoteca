@@ -7,6 +7,7 @@ import FormField from '../common/FormField'
 import FormFieldSelect from '../common/FormFieldSelect'
 import Confirm from '../common/Confirm'
 import Notification from '../common/Notification'
+import Search from '../common/Search'
 import { addDetail, saveDetail, deleteDetail } from '../../services/order_details'
 import { getOrder } from '../../services/orders'
 import { getStores } from '../../services/stores'
@@ -112,6 +113,11 @@ const OrderDetails = (props) => {
       .catch(error => setListAlert({ message: error.message, type: 'is-danger' }))
   }
 
+  const selectProduct = product => {
+    console.log(product)
+    setForm({ ...form, productId: product.id })
+  }
+
   const { orderDetails: items } = order
 
   return (
@@ -173,6 +179,7 @@ const OrderDetails = (props) => {
 
           </FormFieldSelect>
 
+          <Search items={products} selectItem={item => selectProduct(item)} />
 
           {fields.map(field => {
             if (field.hideEmpty && !form[field.fieldId]) return null
