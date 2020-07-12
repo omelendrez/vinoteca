@@ -204,7 +204,7 @@ const OrderDetails = (props) => {
           }
 
           <Modal isActive={showProductSearch}>
-            <Search title="Productos" current={form.productId} icon="fas fa-wine-bottle" items={products} selectItem={item => selectProduct(item)} />
+            <Search title="Productos" current={form.productId} icon="fas fa-wine-bottle" items={products} selectItem={selectProduct} />
           </Modal>
           {/** fin Producto */}
 
@@ -238,7 +238,7 @@ const OrderDetails = (props) => {
           }
 
           <Modal isActive={showStoreSearch}>
-            <Search title="Depósitos" current={form.storeId} icon="fas fa-warehouse" items={stores} selectItem={item => selectStore(item)} />
+            <Search title="Depósitos" current={form.storeId} icon="fas fa-warehouse" items={stores} selectItem={selectStore} />
           </Modal>
           {/** fin Depósito */}
 
