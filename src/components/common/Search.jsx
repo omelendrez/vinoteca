@@ -14,13 +14,16 @@ const Search = ({ title, items, selectItem, icon }) => {
   }
 
   const handleClick = item => { // El usuario ha hecho click (o touch en el teléfono) en una de los items de la lista
-    selectItem(item) // Mandamos el item seleccionado al componente padre usando la función 'selectItem' que nos pasó (OrderDetails)
+    selectItem(item) // Mandamos el item seleccionado al componente padre (OrderDetails) usando la función 'selectItem' que nos pasó
   }
 
   const onKeyDown = e => { // En el campo de búsqueda el usuario ha presionado alguna tecla
     var keycode = (e.keyCode ? e.keyCode : e.which)  // Obtenemos el código ASCII de la tecla presionada
     if (keycode === ENTER && filteredItems.length === 1) { // Si presionó Enter y en la list hay un solo item, podemos devolverlo a OrderDetails
-      selectItem(filteredItems[0])
+      setSearch(filteredItems[0].name) // Completamos el input de búsqueda con el nombre completo del item encontrado
+      setTimeout(() => {
+        selectItem(filteredItems[0])
+      }, 200) // Aplicamos un delay de 200 milisegundos para que el usuario vea el nombre completo del item en el campo de búsqueda
     }
     if (keycode === ESC) { // Si presioné Escape entonces devolvemos un objeto vacío (no se seleccionó nada y podemos cerrar el componente)
       selectItem({})
