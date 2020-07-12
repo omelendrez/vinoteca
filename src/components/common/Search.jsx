@@ -23,7 +23,7 @@ const Search = ({ title, items, selectItem, icon }) => {
       setSearch(filteredItems[0].name) // Completamos el input de búsqueda con el nombre completo del item encontrado
       setTimeout(() => {
         selectItem(filteredItems[0])
-      }, 200) // Aplicamos un delay de 200 milisegundos para que el usuario vea el nombre completo del item en el campo de búsqueda
+      }, 200) // Aplicamos un delay de 200 milisegundos para que el usuario vea el nombre completo del item en el campo de búsqueda antes que el modal se cierre
     }
     if (keycode === ESC) { // Si presioné Escape entonces devolvemos un objeto vacío (no se seleccionó nada y podemos cerrar el componente)
       selectItem({})
