@@ -121,7 +121,8 @@ const OrderDetails = (props) => {
   }
 
   const selectProduct = product => {
-    setForm({ ...form, productId: product.id })
+    if (product.id)
+      setForm({ ...form, productId: product.id })
     setShowProductSearch(false)
   }
 
@@ -131,7 +132,8 @@ const OrderDetails = (props) => {
   }
 
   const selectStore = store => {
-    setForm({ ...form, storeId: store.id })
+    if (store.id)
+      setForm({ ...form, storeId: store.id })
     setShowStoreSearch(false)
   }
 
