@@ -30,6 +30,7 @@ const OrderDetails = (props) => {
   const [item, setItem] = useState({})
   const [listAlert, setListAlert] = useState({})
   const [formAlert, setFormAlert] = useState({})
+  const [showSearch, setShowSearch] = useState(false)
 
   useEffect(() => {
     getOrder(props.match.params.id)
@@ -113,9 +114,14 @@ const OrderDetails = (props) => {
       .catch(error => setListAlert({ message: error.message, type: 'is-danger' }))
   }
 
+  const handleShowSearch = e => {
+    e.preventDefault()
+    setShowSearch(true)
+  }
+
   const selectProduct = product => {
-    console.log(product)
     setForm({ ...form, productId: product.id })
+    setShowSearch(false)
   }
 
   const { orderDetails: items } = order
@@ -167,19 +173,23 @@ const OrderDetails = (props) => {
           handleSave={handleOk}
           handleCancel={closeForm}
         >
+          {!showSearch &&
+            <FormFieldSelect
+              label="Product"
+              fieldId="productId"
+              fieldValue={form.productId}
+              handleChange={handleChange}
+              onClick={e => handleShowSearch(e)}
+            >
+              <option />
+              {products.map(product => <option key={product.id} value={product.id}>{product.name}</option>)}
 
-          <FormFieldSelect
-            label="Product"
-            fieldId="productId"
-            fieldValue={form.productId}
-            handleChange={handleChange}
-          >
-            <option />
-            {products.map(product => <option key={product.id} value={product.id}>{product.name}</option>)}
+            </FormFieldSelect>
+          }
 
-          </FormFieldSelect>
-
-          <Search items={products} selectItem={item => selectProduct(item)} />
+          <Modal isActive={showSearch}>
+            <Search items={products} selectItem={item => selectProduct(item)} />
+          </Modal>
 
           {fields.map(field => {
             if (field.hideEmpty && !form[field.fieldId]) return null
