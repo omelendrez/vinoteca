@@ -12,7 +12,7 @@ import { getOrder, sendOrder, cancelOrder } from '../../services/orders'
 import { getStores } from '../../services/stores'
 import { getProducts } from '../../services/products'
 import { fields } from './detailForm.json'
-import { cleanData, formatDate, formatAmount } from '../../helpers'
+import { cleanData } from '../../helpers'
 
 const OrderDetails = (props) => {
   const detailsDefault = {
@@ -158,8 +158,6 @@ const OrderDetails = (props) => {
               <tr>
                 <td>{order.number}</td>
                 <td>{order.supplierName}</td>
-                <td>{formatDate(order.date)}</td>
-                <td>{formatAmount(order.amount)}</td>
                 <td>{order.statusName}</td>
               </tr>
             </tbody>
