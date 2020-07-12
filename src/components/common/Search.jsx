@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
 const Search = ({ title, current, items, selectItem, icon }) => {
-  const ENTER = 13 // Valor ASCII de la tecla Enter
-  const ESC = 27 // Valor ASCII de la tecla Escape
   const LIST_SIZE = 10 // Límite máximo de items a mostrar en la búsqueda
   const [search, setSearch] = useState('') // Aquí guardamos lo que el usuario está tipeando (handleChange)
   const [filteredItems, setFilteredItems] = useState([]) // Los ítems que se van a mostrar
@@ -19,21 +17,6 @@ const Search = ({ title, current, items, selectItem, icon }) => {
 
   const cancel = () => {
     selectItem({})
-  }
-
-  const onKeyDown = e => { // En el campo de búsqueda el usuario ha presionado alguna tecla
-    var keycode = (e.keyCode ? e.keyCode : e.which)  // Obtenemos el código ASCII de la tecla presionada
-    if (keycode === ENTER && filteredItems.length === 1) { // Si presionó Enter y en la list hay un solo item, podemos devolverlo a OrderDetails
-      setSearch(filteredItems[0].name) // Completamos el input de búsqueda con el nombre completo del item encontrado
-      setTimeout(() => {
-        setSearch('')
-        selectItem(filteredItems[0])
-      }, 200) // Aplicamos un delay de 200 milisegundos para que el usuario vea el nombre completo del item en el campo de búsqueda antes que el modal se cierre
-    }
-    if (keycode === ESC) { // Si presioné Escape entonces devolvemos un objeto vacío (no se seleccionó nada y podemos cerrar el componente)
-      setSearch('')
-      cancel()
-    }
   }
 
   useEffect(() => {
@@ -78,7 +61,7 @@ const Search = ({ title, current, items, selectItem, icon }) => {
       </p>
       <div className="panel-block">
         <p className="control has-icons-left has-icons-right">
-          <input className="input" type="text" placeholder="Buscar" onChange={e => handleChange(e)} value={search} onKeyDown={e => onKeyDown(e)} />
+          <input className="input" type="text" placeholder="Buscar" onChange={e => handleChange(e)} value={search} />
           <span className="icon is-left"><i className="fas fa-search" aria-hidden="true"></i></span>
         </p>
       </div>
