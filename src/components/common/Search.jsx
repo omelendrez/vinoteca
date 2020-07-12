@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
-const Search = ({ title, items, selectItem, icon }) => {
+const Search = ({ title, placeholder = 'Buscar', items, selectItem, icon }) => {
   const ENTER = 13 // Valor ASCII de la tecla Enter
   const ESC = 27 // Valor ASCII de la tecla Escape
   const LIST_SIZE = 10 // Límite máximo de items a mostrar en la búsqueda
@@ -56,7 +56,7 @@ const Search = ({ title, items, selectItem, icon }) => {
       </p>
       <div className="panel-block">
         <p className="control has-icons-left has-icons-right">
-          <input className="input" type="text" placeholder="Buscar" onChange={e => handleChange(e)} value={search} onKeyDown={e => onKeyDown(e)} />
+          <input className="input" type="text" placeholder={placeholder} onChange={e => handleChange(e)} value={search} onKeyDown={e => onKeyDown(e)} />
           <span className="icon is-left"><i className="fas fa-search" aria-hidden="true"></i></span>
         </p>
       </div>

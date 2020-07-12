@@ -199,7 +199,7 @@ const OrderDetails = (props) => {
           }
 
           <Modal isActive={showProductSearch}>
-            <Search title="Productos" icon="fas fa-wine-bottle" items={products} selectItem={item => selectProduct(item)} />
+            <Search title="Productos" placeholder={form.productId ? products.find(product => product.id === form.productId).name : ''} icon="fas fa-wine-bottle" items={products} selectItem={item => selectProduct(item)} />
           </Modal>
 
           {fields.map(field => {
@@ -231,7 +231,7 @@ const OrderDetails = (props) => {
           }
 
           <Modal isActive={showStoreSearch}>
-            <Search title="Depósitos" icon="fas fa-warehouse" items={stores} selectItem={item => selectStore(item)} />
+            <Search title="Depósitos" placeholder={form.storeId ? stores.find(store => store.id === form.storeId).name : ''} icon="fas fa-warehouse" items={stores} selectItem={item => selectStore(item)} />
           </Modal>
 
 
