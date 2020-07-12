@@ -39,6 +39,7 @@ const Search = ({ title, current, items, selectItem, icon }) => {
   useEffect(() => {
     // Items contiene la lista completa de items existentes en la base de datos, pero no la vamos a mostrar toda
     // Sólo items que coinciden con en el texto de búsqueda si el texto tiene algo
+    // Para eso creamos filteredItems que es la verdadera lista a mostrar
     const filteredItems = items
       .map(item => {
         item.isActive = item.id === current // Si OrderDetail pasó un id de item es porque estamos editando vamos a marcar el item con ese id como activo
@@ -51,6 +52,7 @@ const Search = ({ title, current, items, selectItem, icon }) => {
         const itemName = item.fullName || item.name // Aquí vemos si existe fullName y si no pasamos sólo name
         return itemName.toLowerCase().includes(search.toLowerCase()) || !search
       })
+
     setFilteredItems(filteredItems.slice(0, LIST_SIZE)) // Cortamos la array mostrando sólo los primeros LIST_SIZE items
 
     /*
@@ -89,7 +91,7 @@ const Search = ({ title, current, items, selectItem, icon }) => {
           <span className="panel-icon">
             <i className={icon} aria-hidden="true"></i>
           </span>
-          {item.fullName || item.name}
+          {item.fullName || item.name} {/** Sólo producto tiene fullName generado arriba */}
         </a>
       )}
 
