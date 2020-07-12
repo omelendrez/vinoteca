@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
-const Search = ({ title, placeholder = 'Buscar', items, selectItem, icon }) => {
+const Search = ({ title, current, items, selectItem, icon }) => {
   const ENTER = 13 // Valor ASCII de la tecla Enter
   const ESC = 27 // Valor ASCII de la tecla Escape
   const LIST_SIZE = 10 // Límite máximo de items a mostrar en la búsqueda
@@ -17,6 +17,10 @@ const Search = ({ title, placeholder = 'Buscar', items, selectItem, icon }) => {
     selectItem(item) // Mandamos el item seleccionado al componente padre (OrderDetails) usando la función 'selectItem' que nos pasó
   }
 
+  const cancel = () => {
+    selectItem({})
+  }
+
   const onKeyDown = e => { // En el campo de búsqueda el usuario ha presionado alguna tecla
     var keycode = (e.keyCode ? e.keyCode : e.which)  // Obtenemos el código ASCII de la tecla presionada
     if (keycode === ENTER && filteredItems.length === 1) { // Si presionó Enter y en la list hay un solo item, podemos devolverlo a OrderDetails
@@ -28,50 +32,64 @@ const Search = ({ title, placeholder = 'Buscar', items, selectItem, icon }) => {
     }
     if (keycode === ESC) { // Si presioné Escape entonces devolvemos un objeto vacío (no se seleccionó nada y podemos cerrar el componente)
       setSearch('')
-      selectItem({})
+      cancel()
     }
   }
 
   useEffect(() => {
     // Items contiene la lista completa de items existentes en la base de datos, pero no la vamos a mostrar toda
     // Sólo items que coinciden con en el texto de búsqueda si el texto tiene algo
-    const filteredItems = items.filter(item => item.name.toLowerCase().includes(search.toLowerCase()) || !search)
+    const filteredItems = items
+      .map(item => {
+        item.isActive = item.id === current // Si OrderDetail pasó un id de item es porque estamos editando vamos a marcar el item con ese id como activo
+        if (item.description) { // Si el item tiene descripción (product) se la agregamos al nombre para una búsqueda más completa
+          item.fullName = item.name + ' ' + item.description // Esa combinación la llamamos fullName y la mostramos abajo sólo si existe
+        }
+        return item
+      })
+      .filter(item => {
+        const itemName = item.fullName || item.name // Aquí vemos si existe fullName y si no pasamos sólo name
+        return itemName.toLowerCase().includes(search.toLowerCase()) || !search
+      })
     setFilteredItems(filteredItems.slice(0, LIST_SIZE)) // Cortamos la array mostrando sólo los primeros LIST_SIZE items
-    /*
 
+    /*
     Deprecated: Se comporta raro tratando de borrar con backspace lo que se escribió en la búsqueda
     if (filteredItems.length === 1) { // Durante la búsqueda si sólo se muestra un item, hemos encontrado lo que buscamos
       setSearch(filteredItems[0].name) // Actualizamos el campo de búsqueda con el nombre completo de lo encontrado
     }
     */
+
     const newBlankRows = [] // Aquí generaremos renglones en blanco si la lista de items encontrados es menor a LIST_SIZE
     for (let i = filteredItems.length; i < LIST_SIZE; i++) {
       newBlankRows.push(i)
     }
     setBlankRows(newBlankRows)
-  }, [items, search]) // Monitoreamos la lista de items que nos pasó OrderDetails y el input 'search' donde el usuario va a tipear su búsqueda
+
+  }, [items, search, current]) // Monitoreamos la lista de items que nos pasó OrderDetails y el input 'search' donde el usuario va a tipear su búsqueda
 
   return (
     <nav className="panel has-background-white">
       <p className="panel-heading has-background-primary">
+        <button className="delete is-pulled-right" onClick={() => cancel()}></button>
         {title}
       </p>
       <div className="panel-block">
         <p className="control has-icons-left has-icons-right">
-          <input className="input" type="text" placeholder={placeholder} onChange={e => handleChange(e)} value={search} onKeyDown={e => onKeyDown(e)} />
+          <input className="input" type="text" placeholder="Buscar" onChange={e => handleChange(e)} value={search} onKeyDown={e => onKeyDown(e)} />
           <span className="icon is-left"><i className="fas fa-search" aria-hidden="true"></i></span>
         </p>
       </div>
 
       {filteredItems.map(item =>
         <a href="# " key={item.id}
-          className="panel-block"
+          className={`panel-block ${item.isActive ? 'is-active' : ''}`}
           onClick={() => handleClick(item)}
         >
           <span className="panel-icon">
             <i className={icon} aria-hidden="true"></i>
           </span>
-          {`${item.name}${item.description ? ' ' + item.description : ''}`}
+          {item.fullName || item.name}
         </a>
       )}
 

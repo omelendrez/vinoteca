@@ -188,6 +188,7 @@ const OrderDetails = (props) => {
           handleSave={handleOk}
           handleCancel={closeForm}
         >
+          {/** inicio Producto */}
           {!showProductSearch &&
             <FormFieldSelect
               label="Product"
@@ -203,8 +204,9 @@ const OrderDetails = (props) => {
           }
 
           <Modal isActive={showProductSearch}>
-            <Search title="Productos" placeholder={form.productId ? products.find(product => product.id === form.productId).name : ''} icon="fas fa-wine-bottle" items={products} selectItem={item => selectProduct(item)} />
+            <Search title="Productos" current={form.productId} icon="fas fa-wine-bottle" items={products} selectItem={item => selectProduct(item)} />
           </Modal>
+          {/** fin Producto */}
 
           {fields.map(field => {
             if (field.hideEmpty && !form[field.fieldId]) return null
@@ -220,6 +222,7 @@ const OrderDetails = (props) => {
             )
           })}
 
+          {/** inicio Depósito */}
           {!showStoreSearch &&
             <FormFieldSelect
               label="Depósito"
@@ -235,9 +238,9 @@ const OrderDetails = (props) => {
           }
 
           <Modal isActive={showStoreSearch}>
-            <Search title="Depósitos" placeholder={form.storeId ? stores.find(store => store.id === form.storeId).name : ''} icon="fas fa-warehouse" items={stores} selectItem={item => selectStore(item)} />
+            <Search title="Depósitos" current={form.storeId} icon="fas fa-warehouse" items={stores} selectItem={item => selectStore(item)} />
           </Modal>
-
+          {/** fin Depósito */}
 
           <Notification message={formAlert.message} type={formAlert.type} />
 
