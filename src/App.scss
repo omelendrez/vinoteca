@@ -16,4 +16,14 @@ body {
   .navbar.is-dark {
     background-color: #1d2b38; // lightsteelblue
   }
+
+  .table {
+    tbody {
+      tr {
+        th, td {
+          vertical-align: middle;
+        }
+      }
+    }
+  }
 }
