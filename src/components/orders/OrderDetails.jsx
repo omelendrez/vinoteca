@@ -138,7 +138,6 @@ const OrderDetails = (props) => {
     cancelOrder(newStatus)
       .then(order => {
         setOrder(order)
-        console.log(order)
       })
       .catch(error => setListAlert({ message: error.message, type: 'is-danger' }))
   }
