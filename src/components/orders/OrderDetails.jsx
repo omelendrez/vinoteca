@@ -7,6 +7,7 @@ import FormField from '../common/FormField'
 import FormFieldSelect from '../common/FormFieldSelect'
 import Confirm from '../common/Confirm'
 import Notification from '../common/Notification'
+import Search from '../common/Search'
 import { addDetail, saveDetail, deleteDetail } from '../../services/order_details'
 import { getOrder, sendOrder, cancelOrder } from '../../services/orders'
 import { getStores } from '../../services/stores'
@@ -29,6 +30,8 @@ const OrderDetails = (props) => {
   const [item, setItem] = useState({})
   const [listAlert, setListAlert] = useState({})
   const [formAlert, setFormAlert] = useState({})
+  const [showProductSearch, setShowProductSearch] = useState(false)
+  const [showStoreSearch, setShowStoreSearch] = useState(false)
 
   useEffect(() => {
     getOrder(props.match.params.id)
@@ -118,6 +121,29 @@ const OrderDetails = (props) => {
       .catch(error => setListAlert({ message: error.message, type: 'is-danger' }))
   }
 
+  const handleShowProductSearch = e => {
+    e.preventDefault()
+    setShowProductSearch(true)
+  }
+
+  const selectProduct = product => {
+    setFormAlert({})
+    if (product.id)
+      setForm({ ...form, productId: product.id })
+    setShowProductSearch(false)
+  }
+
+  const handleShowStoreSearch = e => {
+    e.preventDefault()
+    setShowStoreSearch(true)
+  }
+
+  const selectStore = store => {
+    setFormAlert({})
+    if (store.id)
+      setForm({ ...form, storeId: store.id })
+    setShowStoreSearch(false)
+
   const handleSend = e => {
     e.preventDefault()
     const newStatus = {
@@ -141,6 +167,7 @@ const OrderDetails = (props) => {
         console.log(order)
       })
       .catch(error => setListAlert({ message: error.message, type: 'is-danger' }))
+
   }
 
   const { orderDetails: items } = order
@@ -207,18 +234,25 @@ const OrderDetails = (props) => {
           handleSave={handleOk}
           handleCancel={closeForm}
         >
+          {/** inicio Producto */}
+          {!showProductSearch &&
+            <FormFieldSelect
+              label="Product"
+              fieldId="productId"
+              fieldValue={form.productId}
+              handleChange={handleChange}
+              onClick={e => handleShowProductSearch(e)}
+            >
+              <option />
+              {products.map(product => <option key={product.id} value={product.id}>{product.name}</option>)}
 
-          <FormFieldSelect
-            label="Product"
-            fieldId="productId"
-            fieldValue={form.productId}
-            handleChange={handleChange}
-          >
-            <option />
-            {products.map(product => <option key={product.id} value={product.id}>{product.name}</option>)}
+            </FormFieldSelect>
+          }
 
-          </FormFieldSelect>
-
+          <Modal isActive={showProductSearch}>
+            <Search title="Productos" current={form.productId} icon="fas fa-wine-bottle" items={products} selectItem={selectProduct} />
+          </Modal>
+          {/** fin Producto */}
 
           {fields.map(field => {
             if (field.hideEmpty && !form[field.fieldId]) return null
@@ -234,16 +268,25 @@ const OrderDetails = (props) => {
             )
           })}
 
-          <FormFieldSelect
-            label="Depósito"
-            fieldId="storeId"
-            fieldValue={form.storeId}
-            handleChange={handleChange}
-          >
-            <option />
-            {stores.map(store => <option key={store.id} value={store.id}>{store.name}</option>)}
+          {/** inicio Depósito */}
+          {!showStoreSearch &&
+            <FormFieldSelect
+              label="Depósito"
+              fieldId="storeId"
+              fieldValue={form.storeId}
+              handleChange={handleChange}
+              onClick={e => handleShowStoreSearch(e)}
+            >
+              <option />
+              {stores.map(store => <option key={store.id} value={store.id}>{store.name}</option>)}
 
-          </FormFieldSelect>
+            </FormFieldSelect>
+          }
+
+          <Modal isActive={showStoreSearch}>
+            <Search title="Depósitos" current={form.storeId} icon="fas fa-warehouse" items={stores} selectItem={selectStore} />
+          </Modal>
+          {/** fin Depósito */}
 
           <Notification message={formAlert.message} type={formAlert.type} />
 

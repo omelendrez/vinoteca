@@ -1,6 +1,6 @@
 import React from 'react'
 
-const FormFieldSelect = ({ label, icon, fieldId, fieldValue, children, handleChange }) => {
+const FormFieldSelect = ({ label, icon, fieldId, fieldValue, children, handleChange, onClick }) => {
   const iconElement = <span className="icon is-small is-left"><i className={icon}></i></span>
 
   return (
@@ -13,6 +13,7 @@ const FormFieldSelect = ({ label, icon, fieldId, fieldValue, children, handleCha
           id={fieldId}
           onChange={e => handleChange(e)}
           value={fieldValue}
+          onClick={onClick}
         >{children}
         </select>
       </div>
