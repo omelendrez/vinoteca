@@ -143,6 +143,7 @@ const OrderDetails = (props) => {
     if (store.id)
       setForm({ ...form, storeId: store.id })
     setShowStoreSearch(false)
+  }
 
   const handleSend = e => {
     e.preventDefault()
@@ -166,7 +167,6 @@ const OrderDetails = (props) => {
         setOrder(order)
       })
       .catch(error => setListAlert({ message: error.message, type: 'is-danger' }))
-
   }
 
   const { orderDetails: items } = order
@@ -177,6 +177,7 @@ const OrderDetails = (props) => {
       subTitle="Items"
       width="is-8"
       background="is-warning">
+
       <div className="card ">
         <div className="container">
           <table className="table is-fullwidth has-background-info-dark has-text-white mb-1">
