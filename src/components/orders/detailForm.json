@@ -1,9 +1,21 @@
 {
   "fields": [
     {
+      "label": "Producto",
+      "type": "select",
+      "fieldId": "productId",
+      "options": "products"
+    },
+    {
       "label": "Cantidad",
       "type": "text",
       "fieldId": "qtyRequested"
+    },
+    {
+      "label": "Store",
+      "type": "select",
+      "fieldId": "storeId",
+      "options": "stores"
     }
   ]
 }

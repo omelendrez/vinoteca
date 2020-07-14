@@ -12,7 +12,7 @@ const FormField = ({ label, type, fieldId, fieldValue, handleChange, required, i
           type={type}
           id={fieldId}
           onChange={e => handleChange(e)}
-          value={fieldValue}
+          defaultValue={fieldValue}
           required={required}
           readOnly={readOnly}
           autoComplete={autoComplete}
