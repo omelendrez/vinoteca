@@ -3,6 +3,7 @@ import Modal from './Modal'
 import Search from './Search'
 import { getProducts } from '../../services/products'
 import { getStores } from '../../services/stores'
+import { getCategories } from '../../services/categories'
 
 const FormFieldSelect = ({ label, icon, fieldId, fieldValue, options, current, selectItem }) => {
   const [showSearch, setShowSearch] = useState(false)
@@ -19,9 +20,12 @@ const FormFieldSelect = ({ label, icon, fieldId, fieldValue, options, current, s
         getStores()
           .then(optionsList => setOptionsList(optionsList.rows))
         break
+      case 'categories':
+        getCategories()
+          .then(optionsList => setOptionsList(optionsList.rows))
+        break
       default:
     }
-
   }, [options])
 
   const handleSelect = item => {

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import Container from '../common/Container'
-import OrderDetail from './OrderDetail'
+import OrderHeader from './OrderHeader'
+import OrderDetailsList from './OrderDetailsList'
 import Modal from '../common/Modal'
 import Form from '../common/Form'
 import Confirm from '../common/Confirm'
@@ -135,53 +136,20 @@ const OrderDetails = (props) => {
       width="is-8"
       background="is-warning">
 
-      <div className="card ">
-        <div className="container">
-          <table className="table is-fullwidth has-background-info-dark has-text-white mb-1">
-            <tbody>
-              <tr>
-                <td>{order.number}</td>
-                <td>{order.supplierName}</td>
-                <td>{order.statusName}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <div className="is-pulled-left">
-        <button className="button mx-0 my-1" onClick={e => handleAdd(e)}>Agregar</button>
-      </div>
-
-      <div className="is-pulled-right">
-        <button className="button is-info mx-2 my-1" onClick={e => handleSend(e)}>Enviar</button>
-        <button className="button is-danger mx-0 my-1" onClick={e => handleCancel(e)}>Cancelar</button>
-      </div>
+      <OrderHeader order={order}
+        handleAdd={handleAdd}
+        handleSend={handleSend}
+        handleCancel={handleCancel}
+      />
 
       <Notification message={listAlert.message} type={listAlert.type} />
 
-      <table className="table is-fullwidth mx-0 my-1">
-        <thead>
-          <tr>
-            <th>Producto</th>
-            <th>Depósito</th>
-            <th><abbr title="Cantidad requerida">Cant.</abbr></th>
-            <th colSpan="2"></th>
-          </tr>
-        </thead>
-        <tbody>
-          {items && items.map((item, index) => (
-            <OrderDetail
-              key={index}
-              item={item}
-              handleEdit={handleEdit}
-              handleDelete={handleDelete}
-            />
-          ))}
+      <OrderDetailsList
+        items={items}
+        handleEdit={handleEdit}
+        handleDelete={handleDelete}
+      />
 
-        </tbody>
-
-      </table>
 
       <Modal
         isActive={showForm}
