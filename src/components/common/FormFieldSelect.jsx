@@ -8,7 +8,7 @@ import { getCategories } from '../../services/categories'
 const FormFieldSelect = ({ label, icon, fieldId, options, current, selectItem }) => {
   const [showSearch, setShowSearch] = useState(false)
   const [optionsList, setOptionsList] = useState([])
-  const [selectValue, setSelectValue] = useState('')
+  const [fieldValue, setFieldValue] = useState('')
 
   useEffect(() => {
     switch (options) {
@@ -27,19 +27,20 @@ const FormFieldSelect = ({ label, icon, fieldId, options, current, selectItem })
       default:
     }
     if (!current) {
-      return setSelectValue('')
+      return setFieldValue('')
     }
-    setSelectValue(optionsList.find(option => current === option.id).name)
+    setFieldValue(optionsList.find(option => current === option.id).name)
   }, [options, current])
 
   const handleSelect = item => {
     if (item.id) {
-      const selectValue = optionsList.find(option => option.id === item.id).name
-      setSelectValue(selectValue)
+      const fieldValue = optionsList.find(option => option.id === item.id).name
+      setFieldValue(fieldValue)
     }
     setShowSearch(false)
     selectItem(fieldId, item)
   }
+
   const handleClick = e => {
     e.preventDefault()
     setShowSearch(true)
@@ -51,7 +52,7 @@ const FormFieldSelect = ({ label, icon, fieldId, options, current, selectItem })
         <label className="label">{label}</label>
         <div className={`control ${icon ? 'has-icons-left has-icons-right' : ''}`}>
           {icon ? <span className="icon is-small is-left"><i className={icon}></i></span> : ''}
-          <input type="text" className="input" defaultValue={selectValue} onClick={e => handleClick(e)}></input>
+          <input type="text" className="input" defaultValue={fieldValue} onClick={e => handleClick(e)}></input>
         </div>
       </div>
       <Modal isActive={showSearch}>
