@@ -1,15 +1,21 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import FormField from './FormField'
 import FormFieldSelect from './FormFieldSelect'
 import Notification from '../common/Notification'
 
-const Form = ({ formHeader, fields, handleSave, handleCancel }) => {
+const Form = ({ formHeader, fields, currentForm, handleSave, handleCancel }) => {
   const [form, setForm] = useState({})
   const [formAlert, setFormAlert] = useState({})
 
+  useEffect(() => {
+    setForm(currentForm)
+  }, [currentForm])
+
+
   const selectItem = (fieldId, item) => {
-    if (item.id)
+    if (item.id) {
       setForm({ ...form, [fieldId]: item.id })
+    }
   }
 
   const handleChange = e => {

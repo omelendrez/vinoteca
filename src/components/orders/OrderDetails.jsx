@@ -157,6 +157,7 @@ const OrderDetails = (props) => {
         <Form
           formHeader={form.id ? 'Editando detalle' : 'Agregando detalle'}
           handleSave={form => handleOk(form)}
+          currentForm={form}
           handleCancel={closeForm}
           fields={fields}
         />

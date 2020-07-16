@@ -5,7 +5,7 @@ import { getProducts } from '../../services/products'
 import { getStores } from '../../services/stores'
 import { getCategories } from '../../services/categories'
 
-const FormFieldSelect = ({ label, icon, fieldId, fieldValue, options, current, selectItem }) => {
+const FormFieldSelect = ({ label, icon, fieldId, options, current, selectItem }) => {
   const [showSearch, setShowSearch] = useState(false)
   const [optionsList, setOptionsList] = useState([])
   const [selectValue, setSelectValue] = useState('')
@@ -26,15 +26,19 @@ const FormFieldSelect = ({ label, icon, fieldId, fieldValue, options, current, s
         break
       default:
     }
-  }, [options])
+    if (!current) {
+      return setSelectValue('')
+    }
+    setSelectValue(optionsList.find(option => current === option.id).name)
+  }, [options, current])
 
   const handleSelect = item => {
-    const selectValue = optionsList.find(option => option.id === item.id).name
-    setSelectValue(selectValue)
-    setShowSearch(false)
-    if (item) {
-      selectItem(fieldId, item)
+    if (item.id) {
+      const selectValue = optionsList.find(option => option.id === item.id).name
+      setSelectValue(selectValue)
     }
+    setShowSearch(false)
+    selectItem(fieldId, item)
   }
   const handleClick = e => {
     e.preventDefault()
