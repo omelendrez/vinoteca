@@ -16,6 +16,8 @@ import { fields } from './detailForm.json'
 import { cleanData } from '../../helpers'
 
 const OrderDetails = (props) => {
+  const SEND = 2
+  const CANCEL = 4
   const detailsDefault = {
     orderId: props.match.params.id,
     productId: '',
@@ -32,6 +34,7 @@ const OrderDetails = (props) => {
   const [formAlert, setFormAlert] = useState({})
   const [showProductSearch, setShowProductSearch] = useState(false)
   const [showStoreSearch, setShowStoreSearch] = useState(false)
+  const [confirmAction, setConfirmAction] = useState('')
 
   useEffect(() => {
     getOrder(props.match.params.id)
@@ -147,26 +150,40 @@ const OrderDetails = (props) => {
 
   const handleSend = e => {
     e.preventDefault()
+    setConfirmAction(SEND)
+  }
+
+  const confirmSend = () => {
     const newStatus = {
       id: order.id,
-      statusId: 2
+      statusId: SEND
     }
     sendOrder(newStatus)
-      .then(order => setOrder(order))
+      .then(order => {
+        setOrder(order)
+        setConfirmAction('')
+      })
       .catch(error => setListAlert({ message: error.message, type: 'is-danger' }))
+
   }
 
   const handleCancel = e => {
     e.preventDefault()
+    setConfirmAction(CANCEL)
+  }
+
+  const confirmCancel = () => {
     const newStatus = {
       id: order.id,
-      statusId: 4
+      statusId: CANCEL
     }
     cancelOrder(newStatus)
       .then(order => {
         setOrder(order)
+        setConfirmAction('')
       })
       .catch(error => setListAlert({ message: error.message, type: 'is-danger' }))
+
   }
 
   const { orderDetails: items } = order
@@ -304,6 +321,18 @@ const OrderDetails = (props) => {
         isActive={item.id}
         handleOk={confirmDelete}
         close={() => setItem({})}
+      />
+
+      <Confirm
+        title={confirmAction === SEND ? 'Enviar orden de compra' : 'Cancelar orden de compra'}
+        message={
+          <span>
+            Confirma {confirmAction === SEND ? 'enviar orden de compra' : 'cancelar orden de compra'} <strong>{order.number}</strong>, para proveedor <strong>{order.supplierName}</strong>?
+          </span>
+        }
+        isActive={confirmAction}
+        handleOk={confirmAction === SEND ? confirmSend : confirmCancel}
+        close={() => setConfirmAction('')}
       />
 
     </Container>
