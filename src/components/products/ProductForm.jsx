@@ -4,10 +4,7 @@ import Notification from "../common/Notification"
 import Loading from "../common/Loading"
 import Container from "../common/Container"
 import Form from "../common/Form"
-import FormField from "../common/FormField"
-import FormFieldSelect from "../common/FormFieldSelect"
 import { saveProduct, addProduct } from "../../services/products"
-import { getCategories } from "../../services/categories"
 import { cleanData } from "../../helpers"
 import { fields } from "./form.json"
 
@@ -17,36 +14,28 @@ const ProductForm = (props) => {
     barcode: "",
     name: "",
     description: "",
-    minimum: "",
-    price: "",
+    minimum: 0,
+    price: 0,
   }
 
   const [form, setForm] = useState(formDefault)
   const [redirect, setRedirect] = useState("")
   const [alert, setAlert] = useState({})
   const [isLoading, setIsLoading] = useState(false)
-  const [categories, setCategories] = useState([])
 
   useEffect(() => {
-    if (props.location && props.location.state && props.location.state.product)
-      setForm(props.location.state.product)
-    getCategories().then((categories) => setCategories(categories.rows))
-  }, [props])
+    if (props.location && props.location.state && props.location.state.product) {
+      setForm(props.location.state.product) //No funciona a pesar de que tengan el mismo formato
+      console.log(props.location.state.product)
+      console.log(form)
+    }
+  }, [])
 
   const clearAlert = () => {
     setAlert({})
   }
 
-  const handleChange = (e) => {
-    e.preventDefault()
-    setForm({
-      ...form,
-      [e.target.id]: e.target.value,
-    })
-  }
-
-  const handleSave = (e) => {
-    e.preventDefault()
+  const handleSave = (form) => {
     setIsLoading(true)
     if (form.id) {
       const cleanedForm = cleanData(form)
@@ -89,44 +78,13 @@ const ProductForm = (props) => {
       >
         <Form
           formHeader={form.id ? form.name : "Nuevo producto"}
-          handleSave={handleSave}
+          handleSave={form => handleSave(form)}
           handleCancel={handleCancel}
+          currentForm={form}
+          fields={fields}
+          error={alert}
         >
-          <FormFieldSelect
-            label="Categoria"
-            fieldId="categoryId"
-            fieldValue={form.categoryId}
-            handleChange={handleChange}
-          >
-            <option value=""></option>
-            {categories.map((category, index) => {
-              return (
-                <option key={index} value={category.id}>
-                  {category.name}
-                </option>
-              )
-            })}
-          </FormFieldSelect>
-          {fields.map((field, index) => {
-            if (field.hideEmpty && !form[field.fieldId]) return null
-            return (
-              <FormField
-                key={index}
-                label={field.label}
-                type={field.type}
-                fieldId={field.fieldId}
-                fieldValue={form[field.fieldId]}
-                handleChange={handleChange}
-                icon={field.icon}
-                readOnly={field.readOnly}
-              />
-            )
-          })}
-          <Notification
-            message={alert.message}
-            clear={clearAlert}
-            type={alert.type}
-          />
+
         </Form>
       </Container>
     </>

@@ -13,7 +13,7 @@
       "fieldId": "name"
     },
     {
-      "label": "Descripcion",
+      "label": "Descripción",
       "type": "text",
       "fieldId": "description"
     },
@@ -28,6 +28,12 @@
       "type": "number",
       "fieldId": "price",
       "fieldValue": ""
+    },
+    {
+      "label": "Categorías",
+      "type": "select",
+      "fieldId": "categoryId",
+      "options": "categories"
     }
   ]
 }
