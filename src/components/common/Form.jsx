@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import FormField from './FormField'
+import FormTextArea from './FormTextArea'
 import FormFieldSelect from './FormFieldSelect'
 import Notification from '../common/Notification'
 
@@ -57,6 +58,16 @@ const Form = ({ formHeader, fields, currentForm, handleSave, handleCancel, error
                   selectItem={selectItem}
                   hasSearch={field.hasSearch}
                 />
+                break
+              case 'textArea':
+                return <FormTextArea
+                  key={index}
+                  label={field.label}
+                  fieldId={field.fieldId}
+                  fieldValue={form[field.fieldId]}
+                  handleChange={handleChange}
+                />
+                break
               default:
                 return <FormField
                   key={index}
