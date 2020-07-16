@@ -3,7 +3,7 @@ import FormField from './FormField'
 import FormFieldSelect from './FormFieldSelect'
 import Notification from '../common/Notification'
 
-const Form = ({ formHeader, fields, currentForm, handleSave, handleCancel }) => {
+const Form = ({ formHeader, fields, currentForm, handleSave, handleCancel, error }) => {
   const [form, setForm] = useState({})
   const [formAlert, setFormAlert] = useState({})
 
@@ -11,9 +11,14 @@ const Form = ({ formHeader, fields, currentForm, handleSave, handleCancel }) => 
     setForm(currentForm)
   }, [currentForm])
 
+  useEffect(() => {
+    setFormAlert(error)
+  }, [error])
+
 
   const selectItem = (fieldId, item) => {
     if (item.id) {
+      setFormAlert({})
       setForm({ ...form, [fieldId]: item.id })
     }
   }

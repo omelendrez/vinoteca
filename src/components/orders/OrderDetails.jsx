@@ -23,6 +23,7 @@ const OrderDetails = (props) => {
   const [showForm, setShowForm] = useState(false)
   const [item, setItem] = useState({})
   const [listAlert, setListAlert] = useState({})
+  const [formAlert, setFormAlert] = useState({})
 
   useEffect(() => {
     getOrder(props.match.params.id)
@@ -48,7 +49,7 @@ const OrderDetails = (props) => {
   const add = form => {
     const found = order.orderDetails.find(item => item.productId === parseInt(form.productId) && item.storeId === parseInt(form.storeId))
     if (found) {
-      return console.log('ya existe')
+      return setFormAlert({ message: 'Este producto ya existe en la orden', type: 'is-danger' })
     }
     addDetail(form)
       .then(detail => {
@@ -60,7 +61,6 @@ const OrderDetails = (props) => {
   }
 
   const save = form => {
-    console.log(form)
     saveDetail(cleanData(form))
       .then(detail => {
         setForm(detailsDefault)
@@ -74,7 +74,7 @@ const OrderDetails = (props) => {
         setOrder(order)
         setShowForm(false)
       })
-    //.catch(error => setFormAlert({ message: error.message, type: 'is-danger' }))
+      .catch(error => setFormAlert({ message: error.message, type: 'is-danger' }))
   }
 
   const handleAdd = e => {
@@ -160,6 +160,7 @@ const OrderDetails = (props) => {
           currentForm={form}
           handleCancel={closeForm}
           fields={fields}
+          error={formAlert}
         />
 
       </Modal>
