@@ -29,7 +29,10 @@ const FormFieldSelect = ({ label, icon, fieldId, options, current, selectItem })
     if (!current) {
       return setFieldValue('')
     }
-    setFieldValue(optionsList.find(option => current === option.id).name)
+    console.log(current, optionsList)
+    const name = optionsList.find(option => current === option.id)
+    if (name)
+      setFieldValue(name.name)
   }, [options, current])
 
   const handleSelect = item => {

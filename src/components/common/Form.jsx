@@ -44,6 +44,7 @@ const Form = ({ formHeader, fields, currentForm, handleSave, handleCancel, error
       <div className="card-content">
         <div className="content">
           {fields.map((field, index) => {
+            if (field.hideEmpty && !form[field.fieldId]) return null
             switch (field.type) {
               case 'select':
                 return <FormFieldSelect
