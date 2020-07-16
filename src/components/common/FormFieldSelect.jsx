@@ -4,6 +4,7 @@ import Search from './Search'
 import { getProducts } from '../../services/products'
 import { getStores } from '../../services/stores'
 import { getCategories } from '../../services/categories'
+import { getVariationReasons } from '../../services/variation_reasons'
 
 const FormFieldSelect = ({ label, icon, fieldId, options, current, selectItem }) => {
   const [showSearch, setShowSearch] = useState(false)
@@ -24,12 +25,19 @@ const FormFieldSelect = ({ label, icon, fieldId, options, current, selectItem })
         getCategories()
           .then(optionsList => setOptionsList(optionsList.rows))
         break
+      case 'variationReasons':
+        getVariationReasons()
+          .then(optionsList => setOptionsList(optionsList.rows))
+        break
+      case 'variationTypes':
+        setOptionsList([{ id: 1, name: 'Incrementa stock' }, { id: -1, name: 'Disminuye stock' }])
+        break
       default:
     }
     if (!current) {
       return setFieldValue('')
     }
-    console.log(current, optionsList)
+    // console.log(current, optionsList)
     const name = optionsList.find(option => current === option.id)
     if (name)
       setFieldValue(name.name)
