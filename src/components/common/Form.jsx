@@ -58,7 +58,6 @@ const Form = ({ formHeader, fields, currentForm, handleSave, handleCancel, error
                   selectItem={selectItem}
                   hasSearch={field.hasSearch}
                 />
-                break
               case 'textArea':
                 return <FormTextArea
                   key={index}
@@ -67,7 +66,6 @@ const Form = ({ formHeader, fields, currentForm, handleSave, handleCancel, error
                   fieldValue={form[field.fieldId]}
                   handleChange={handleChange}
                 />
-                break
               default:
                 return <FormField
                   key={index}
@@ -75,6 +73,7 @@ const Form = ({ formHeader, fields, currentForm, handleSave, handleCancel, error
                   type={field.type}
                   fieldId={field.fieldId}
                   fieldValue={form[field.fieldId]}
+                  readOnly={field.readOnly}
                   handleChange={handleChange}
                 />
             }

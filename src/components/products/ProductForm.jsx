@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react"
 import { Redirect } from "react-router-dom"
-import Notification from "../common/Notification"
 import Loading from "../common/Loading"
 import Container from "../common/Container"
 import Form from "../common/Form"
@@ -25,15 +24,9 @@ const ProductForm = (props) => {
 
   useEffect(() => {
     if (props.location && props.location.state && props.location.state.product) {
-      setForm(props.location.state.product) //No funciona a pesar de que tengan el mismo formato
-      console.log(props.location.state.product)
-      console.log(form)
+      setForm(props.location.state.product)
     }
-  }, [])
-
-  const clearAlert = () => {
-    setAlert({})
-  }
+  }, [props.location])
 
   const handleSave = (form) => {
     setIsLoading(true)
@@ -83,9 +76,8 @@ const ProductForm = (props) => {
           currentForm={form}
           fields={fields}
           error={alert}
-        >
+        />
 
-        </Form>
       </Container>
     </>
   )

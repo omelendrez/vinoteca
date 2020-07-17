@@ -16,32 +16,38 @@ const FormFieldSelect = ({ label, icon, fieldId, options, current, selectItem })
       case 'products':
         getProducts()
           .then(optionsList => setOptionsList(optionsList.rows))
+          .catch(error => console.log(error))
         break
       case 'stores':
         getStores()
           .then(optionsList => setOptionsList(optionsList.rows))
+          .catch(error => console.log(error))
         break
       case 'categories':
         getCategories()
           .then(optionsList => setOptionsList(optionsList.rows))
+          .catch(error => console.log(error))
         break
       case 'variationReasons':
         getVariationReasons()
           .then(optionsList => setOptionsList(optionsList.rows))
+          .catch(error => console.log(error))
         break
       case 'variationTypes':
         setOptionsList([{ id: 1, name: 'Incrementa stock' }, { id: -1, name: 'Disminuye stock' }])
+          .catch(error => console.log(error))
         break
       default:
     }
-    if (!current) {
-      return setFieldValue('')
+  }, [options])
+
+  useEffect(() => {
+    if (optionsList) {
+      const name = optionsList.find(option => current === option.id)
+      if (name)
+        setFieldValue(name.name)
     }
-    // console.log(current, optionsList)
-    const name = optionsList.find(option => current === option.id)
-    if (name)
-      setFieldValue(name.name)
-  }, [options, current])
+  }, [current, optionsList])
 
   const handleSelect = item => {
     if (item.id) {
