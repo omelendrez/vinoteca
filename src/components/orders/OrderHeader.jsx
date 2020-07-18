@@ -9,12 +9,12 @@ const OrderHeader = ({ order, handleSend, handleCancel }) => {
       <div className="column is-size-5">{formatDate(order.date)}</div>
       <div className="column is-size-5">{order.statusName}</div>
       {order.statusId === 1 &&
-        <div className="column is-pulled-right">
-          <button className="button is-info mx-2 my-1" onClick={e => handleSend(e)}>Enviar</button>
+        <div className="column">
+          <button className="button is-info" onClick={e => handleSend(e)}>Enviar</button>
         </div>
       }
-      <div className="column is-pulled-right">
-        <button className="button is-danger mx-0 my-1" onClick={e => handleCancel(e)}>Cancelar</button>
+      <div className="column">
+        <button className="button is-danger" onClick={e => handleCancel(e)}>Cancelar</button>
       </div>
     </div>
   )
