@@ -14,7 +14,7 @@
       "icon": "fas fa-cart-plus"
     },
     {
-      "label": "Store",
+      "label": "Depósito",
       "type": "select",
       "fieldId": "storeId",
       "options": "stores",
