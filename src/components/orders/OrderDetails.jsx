@@ -153,8 +153,8 @@ const OrderDetails = (props) => {
       width="is-8"
       background="is-warning">
 
-      <OrderHeader order={order}
-        handleAdd={handleAdd}
+      <OrderHeader
+        order={order}
         handleSend={handleSend}
         handleCancel={handleCancel}
       />
@@ -167,6 +167,10 @@ const OrderDetails = (props) => {
         handleDelete={handleDelete}
       />
 
+
+      {order.statusId === 1 && <div>
+        <button className="button my-0" onClick={e => handleAdd(e)}>Agregar</button>
+      </div>}
 
       <Modal
         isActive={showForm}
@@ -202,6 +206,8 @@ const OrderDetails = (props) => {
           </span>
         }
         isActive={confirmAction}
+        okText={confirmAction === SEND ? 'Enviar' : 'Cancelar'}
+        cancelText={confirmAction === SEND ? 'Cancelar' : 'Salir'}
         handleOk={confirmAction === SEND ? confirmSend : confirmCancel}
         close={() => setConfirmAction('')}
       />
