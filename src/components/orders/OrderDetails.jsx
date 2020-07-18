@@ -8,6 +8,7 @@ import FormFieldSelect from '../common/FormFieldSelect'
 import Confirm from '../common/Confirm'
 import Notification from '../common/Notification'
 import Search from '../common/Search'
+import OrderHeader from './OrderHeader'
 import { addDetail, saveDetail, deleteDetail } from '../../services/order_details'
 import { getOrder, sendOrder, cancelOrder } from '../../services/orders'
 import { getStores } from '../../services/stores'
@@ -195,32 +196,15 @@ const OrderDetails = (props) => {
       width="is-8"
       background="is-warning">
 
-      <div className="card ">
-        <div className="container">
-          <table className="table is-fullwidth has-background-info-dark has-text-white mb-1">
-            <tbody>
-              <tr>
-                <td>{order.number}</td>
-                <td>{order.supplierName}</td>
-                <td>{order.statusName}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-      <div className="is-pulled-left">
-        <button className="button mx-0 my-1" onClick={e => handleAdd(e)}>Agregar</button>
-      </div>
-
-      <div className="is-pulled-right">
-        <button className="button is-info mx-2 my-1" onClick={e => handleSend(e)}>Enviar</button>
-        <button className="button is-danger mx-0 my-1" onClick={e => handleCancel(e)}>Cancelar</button>
-      </div>
+      <OrderHeader
+        order={order}
+        handleSend={handleSend}
+        handleCancel={handleCancel}
+      />
 
       <Notification message={listAlert.message} type={listAlert.type} />
 
-      <table className="table is-fullwidth mx-0 my-1">
+      <table className="table is-fullwidth mx-0 mb-2">
         <thead>
           <tr>
             <th>Producto</th>
@@ -242,6 +226,10 @@ const OrderDetails = (props) => {
         </tbody>
 
       </table>
+
+      {order.statusId === 1 && <div>
+        <button className="button my-0" onClick={e => handleAdd(e)}>Agregar</button>
+      </div>}
 
       <Modal
         isActive={showForm}
@@ -331,6 +319,8 @@ const OrderDetails = (props) => {
           </span>
         }
         isActive={confirmAction}
+        okText={confirmAction === SEND ? 'Enviar' : 'Cancelar'}
+        cancelText={confirmAction === SEND ? 'Cancelar' : 'Salir'}
         handleOk={confirmAction === SEND ? confirmSend : confirmCancel}
         close={() => setConfirmAction('')}
       />

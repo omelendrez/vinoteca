@@ -36,19 +36,15 @@ export const deleteOrder = order => {
 
 export const sendOrder = order => {
   return new Promise((resolve, reject) => {
-    api.post(`send-order/${order.id}`)
-      .then(() => {
-        api.put(`orders/${order.id}`, order)
-          .then(response => resolve(response.data))
-          .catch(error => reject(handleError(error)))
-      })
+    api.post(`send-order/${order.id}`, order)
+      .then(response => resolve(response.data))
       .catch(error => reject(handleError(error)))
   })
 }
 
 export const cancelOrder = order => {
   return new Promise((resolve, reject) => {
-    api.put(`orders/${order.id}`, order)
+    api.post(`cancel-order/${order.id}`, order)
       .then(response => resolve(response.data))
       .catch(error => reject(handleError(error)))
   })

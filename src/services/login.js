@@ -11,7 +11,7 @@ export const login = user => {
 
 export const forgotPassword = user => {
   return new Promise((resolve, reject) => {
-    api.post('emails', user)
+    api.post('forgot-password', user)
       .then(response => resolve(response.data))
       .catch(error => reject(handleError(error)))
   })
