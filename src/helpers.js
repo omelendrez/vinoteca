@@ -28,7 +28,7 @@ export const formatDate = date => moment(date).format('L')
 
 export const formatDateFull = date => moment(date).format('DD-MM-YYYY HH:mm:ss')
 
-export const formatDateFromNow = date => moment(date).fromNow()
+export const formatDateFromNow = date => moment(date).calendar()
 
 export const handleError = error => {
   window.navigator.vibrate(200)
