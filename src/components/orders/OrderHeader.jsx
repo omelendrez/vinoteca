@@ -3,21 +3,19 @@ import { formatDate } from '../../helpers'
 
 const OrderHeader = ({ order, handleSend, handleCancel }) => {
   return (
-    <div className="card my-2">
-      <table className="table is-fullwidth has-background-info-dark has-text-white">
-        <tbody>
-          <tr>
-            <td className="is-size-5">{order.number}</td>
-            <td className="is-size-5">{order.supplierName}</td>
-            <td className="is-size-5">{formatDate(order.date)}</td>
-            <td className="is-size-5">{order.statusName}</td>
-            <td className="is-pulled-right">
-              {order.statusId === 1 && <button className="button is-info mx-2 my-1" onClick={e => handleSend(e)}>Enviar</button>}
-              <button className="button is-danger mx-0 my-1" onClick={e => handleCancel(e)}>Cancelar</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+    <div className="has-background-info-dark has-text-white columns mx-0 my-1">
+      <div className="column is-size-5">{order.number}</div>
+      <div className="column is-size-5">{order.supplierName}</div>
+      <div className="column is-size-5">{formatDate(order.date)}</div>
+      <div className="column is-size-5">{order.statusName}</div>
+      {order.statusId === 1 &&
+        <div className="column is-pulled-right">
+          <button className="button is-info mx-2 my-1" onClick={e => handleSend(e)}>Enviar</button>
+        </div>
+      }
+      <div className="column is-pulled-right">
+        <button className="button is-danger mx-0 my-1" onClick={e => handleCancel(e)}>Cancelar</button>
+      </div>
     </div>
   )
 }
