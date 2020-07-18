@@ -9,7 +9,7 @@ const Form = ({ formHeader, fields, currentForm, handleSave, handleCancel, error
   const [formAlert, setFormAlert] = useState({})
 
   useEffect(() => {
-    setForm(currentForm)
+    setForm(currentForm || {})
   }, [currentForm])
 
   useEffect(() => {

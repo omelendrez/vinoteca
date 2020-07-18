@@ -1,6 +1,12 @@
 {
   "fields": [
     {
+      "label": "Proveedor",
+      "type": "select",
+      "fieldId": "supplierId",
+      "options": "suppliers"
+    },
+    {
       "label": "Fecha",
       "type": "date",
       "fieldId": "date"

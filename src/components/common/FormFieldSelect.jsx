@@ -5,6 +5,7 @@ import { getProducts } from '../../services/products'
 import { getStores } from '../../services/stores'
 import { getCategories } from '../../services/categories'
 import { getVariationReasons } from '../../services/variation_reasons'
+import { getSuppliers } from '../../services/suppliers'
 
 const FormFieldSelect = ({ label, icon, fieldId, options, current, selectItem }) => {
   const [showSearch, setShowSearch] = useState(false)
@@ -35,6 +36,11 @@ const FormFieldSelect = ({ label, icon, fieldId, options, current, selectItem })
         break
       case 'variationTypes':
         setOptionsList([{ id: 1, name: 'Incrementa stock' }, { id: -1, name: 'Disminuye stock' }])
+          .catch(error => console.log(error))
+        break
+      case 'suppliers':
+        getSuppliers()
+          .then(optionsList => setOptionsList(optionsList.rows))
           .catch(error => console.log(error))
         break
       default:
