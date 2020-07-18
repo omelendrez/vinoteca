@@ -57,6 +57,7 @@ const Form = ({ formHeader, fields, currentForm, handleSave, handleCancel, error
                   current={form[field.fieldId]}
                   selectItem={selectItem}
                   hasSearch={field.hasSearch}
+                  icon={field.icon}
                 />
               case 'textArea':
                 return <FormTextArea
@@ -65,6 +66,7 @@ const Form = ({ formHeader, fields, currentForm, handleSave, handleCancel, error
                   fieldId={field.fieldId}
                   fieldValue={form[field.fieldId]}
                   handleChange={handleChange}
+                  icon={field.icon}
                 />
               default:
                 return <FormField
@@ -75,6 +77,7 @@ const Form = ({ formHeader, fields, currentForm, handleSave, handleCancel, error
                   fieldValue={form[field.fieldId]}
                   readOnly={field.readOnly}
                   handleChange={handleChange}
+                  icon={field.icon}
                 />
             }
           })}

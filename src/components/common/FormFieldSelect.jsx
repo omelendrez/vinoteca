@@ -79,7 +79,7 @@ const FormFieldSelect = ({ label, icon, fieldId, options, current, selectItem })
         </div>
       </div>
       <Modal isActive={showSearch}>
-        <Search title={label} current={current} icon="fas fa-wine-bottle" items={optionsList} selectItem={item => handleSelect(item)} />
+        <Search title={label} current={current} icon={icon || "fas fa-wine-bottle"} items={optionsList} selectItem={item => handleSelect(item)} />
       </Modal>
     </>
   )

@@ -4,12 +4,14 @@
       "label": "Proveedor",
       "type": "select",
       "fieldId": "supplierId",
-      "options": "suppliers"
+      "options": "suppliers",
+      "icon": "fas fa-building"
     },
     {
       "label": "Fecha",
       "type": "date",
-      "fieldId": "date"
+      "fieldId": "date",
+      "icon": "fas fa-calendar-alt"
     }
   ]
 }

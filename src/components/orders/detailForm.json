@@ -4,18 +4,21 @@
       "label": "Producto",
       "type": "select",
       "fieldId": "productId",
-      "options": "products"
+      "options": "products",
+      "icon": "fas fa-wine-bottle"
     },
     {
       "label": "Cantidad",
       "type": "text",
-      "fieldId": "qtyRequested"
+      "fieldId": "qtyRequested",
+      "icon": "fas fa-cart-plus"
     },
     {
       "label": "Store",
       "type": "select",
       "fieldId": "storeId",
-      "options": "stores"
+      "options": "stores",
+      "icon": "fas fa-warehouse"
     }
   ]
 }
