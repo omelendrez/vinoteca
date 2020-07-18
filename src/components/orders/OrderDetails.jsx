@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { Redirect } from 'react-router-dom'
 import Container from '../common/Container'
 import OrderDetail from './OrderDetail'
 import Modal from '../common/Modal'
@@ -36,6 +37,7 @@ const OrderDetails = (props) => {
   const [showProductSearch, setShowProductSearch] = useState(false)
   const [showStoreSearch, setShowStoreSearch] = useState(false)
   const [confirmAction, setConfirmAction] = useState('')
+  const [redirect, setRedirect] = useState('')
 
   useEffect(() => {
     getOrder(props.match.params.id)
@@ -187,6 +189,10 @@ const OrderDetails = (props) => {
 
   }
 
+  if (redirect) {
+    return Redirect({ to: redirect })
+  }
+
   const { orderDetails: items } = order
 
   return (
@@ -226,10 +232,11 @@ const OrderDetails = (props) => {
         </tbody>
 
       </table>
+      <div>
+        {order.statusId === 1 && <button className="button my-0" onClick={e => handleAdd(e)}>Agregar</button>}
+        <button className="button my-0 is-pulled-right" onClick={() => setRedirect('/orders')}>Volver</button>
+      </div>
 
-      {order.statusId === 1 && <div>
-        <button className="button my-0" onClick={e => handleAdd(e)}>Agregar</button>
-      </div>}
 
       <Modal
         isActive={showForm}
