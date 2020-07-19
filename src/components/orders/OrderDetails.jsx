@@ -9,6 +9,7 @@ import FormFieldSelect from '../common/FormFieldSelect'
 import Confirm from '../common/Confirm'
 import Notification from '../common/Notification'
 import Search from '../common/Search'
+import Message from '../common/Message'
 import OrderHeader from './OrderHeader'
 import { addDetail, saveDetail, deleteDetail } from '../../services/order_details'
 import { getOrder, sendOrder, cancelOrder } from '../../services/orders'
@@ -38,6 +39,7 @@ const OrderDetails = (props) => {
   const [showStoreSearch, setShowStoreSearch] = useState(false)
   const [confirmAction, setConfirmAction] = useState('')
   const [redirect, setRedirect] = useState('')
+  const [message, setMessage] = useState({})
 
   useEffect(() => {
     getOrder(props.match.params.id)
@@ -167,7 +169,6 @@ const OrderDetails = (props) => {
         setConfirmAction('')
       })
       .catch(error => setListAlert({ message: error.message, type: 'is-danger' }))
-
   }
 
   const handleCancel = e => {
@@ -333,7 +334,12 @@ const OrderDetails = (props) => {
         close={() => setConfirmAction('')}
       />
 
+      <Modal isActive={message.message} >
+        <Message message={message} close={() => setMessage({})} />
+      </Modal>
+
     </Container>
+
   )
 }
 
