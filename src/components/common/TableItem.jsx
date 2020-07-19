@@ -15,8 +15,8 @@ const TableItem = ({ item, itemHeader, children, handleEdit, handleDelete }) => 
     </div>
 
     <footer className="card-footer">
-      {handleEdit && <a href="# " className="card-footer-item has-text-info" onClick={e => handleEdit(e, item)}><i className="fa fa-info-circle"></i></a>}
-      {handleDelete && <a href="# " className="card-footer-item has-text-danger" onClick={e => handleDelete(e, item)}><i className="fa fa-minus-circle"></i></a>}
+      {handleEdit && <a href="# " className="card-footer-item has-text-info" onClick={e => handleEdit(e, item)}><i className="fa fa-2x fa-info-circle"></i></a>}
+      {handleDelete && <a href="# " className="card-footer-item has-text-danger" onClick={e => handleDelete(e, item)}><i className="fa fa-2x fa-minus-circle"></i></a>}
     </footer>
   </div>
 
