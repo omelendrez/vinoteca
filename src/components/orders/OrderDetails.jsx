@@ -226,6 +226,7 @@ const OrderDetails = (props) => {
               item={item}
               handleEdit={handleEdit}
               handleDelete={handleDelete}
+              status={order.statusId}
             />
           ))}
 

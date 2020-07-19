@@ -10,12 +10,19 @@ const OrderHeader = ({ order, handleSend, handleCancel }) => {
       <div className="column is-size-5">{order.statusName}</div>
       {order.statusId === 1 &&
         <div className="column">
-          <button className="button is-info" onClick={e => handleSend(e)}>Enviar</button>
+          <button className="button" onClick={e => handleSend(e)}>Enviar</button>
         </div>
       }
-      <div className="column">
-        <button className="button is-danger" onClick={e => handleCancel(e)}>Cancelar</button>
-      </div>
+      {order.statusId === 2 &&
+        <div className="column">
+          <button className="button" onClick={e => handleSend(e)}>Recibir</button>
+        </div>
+      }
+      {order.statusId !== 1 && order.statusId !== 4 &&
+        <div className="column">
+          <button className="button is-danger" onClick={e => handleCancel(e)}>Cancelar</button>
+        </div>}
+
     </div>
   )
 }
