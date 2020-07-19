@@ -18,7 +18,7 @@ const OrderHeader = ({ order, handleSend, handleCancel }) => {
           <button className="button" onClick={e => handleSend(e)}>Recibir</button>
         </div>
       }
-      {order.statusId !== 1 && order.statusId !== 4 &&
+      {order.statusId === 2 &&
         <div className="column">
           <button className="button is-danger" onClick={e => handleCancel(e)}>Cancelar</button>
         </div>}
