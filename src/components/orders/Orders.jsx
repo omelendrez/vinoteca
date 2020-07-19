@@ -95,7 +95,7 @@ const Orders = () => {
                 item={order}
                 itemHeader={`${number} - ${supplierName}`}
                 handleEdit={handleEdit}
-                handleDelete={handleDelete}
+                handleDelete={order.statusId === 1 ? handleDelete : null}
               >
                 <TableItemField label="Número" value={number} />
                 <TableItemField label="Fecha" value={formatDate(date)} />
