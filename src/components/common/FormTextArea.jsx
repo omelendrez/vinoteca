@@ -1,27 +1,28 @@
 import React from 'react'
 
-const FormField = ({ label, type, fieldId, fieldValue, handleChange, required, icon, readOnly, autoComplete }) => {
+const FormTextArea = ({ label, fieldId, fieldValue, handleChange, required, icon, readOnly, autoComplete }) => {
   const iconElement = <span className="icon is-small is-left"><i className={icon}></i></span>
 
   return (
     <div className="field">
       <label className="label">{label}</label>
       <div className={`control ${icon ? 'has-icons-left has-icons-right' : ''}`}>
-        <input
-          className="input"
-          type={type}
+        <textarea
+          className="textarea"
           id={fieldId}
           onChange={e => handleChange(e)}
-          defaultValue={fieldValue}
           required={required}
           readOnly={readOnly}
           autoComplete={autoComplete}
-        />
+          rows="2"
+        >
+          {fieldValue}
+        </textarea>
         {icon ? iconElement : ''}
       </div>
-    </div>
+    </div >
 
   )
 }
 
-export default FormField
+export default FormTextArea

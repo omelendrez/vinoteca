@@ -1,6 +1,12 @@
 {
   "fields": [
     {
+      "label": "Categoría",
+      "type": "select",
+      "fieldId": "categoryId",
+      "options": "categories"
+    },
+    {
       "label": "Codigo",
       "type": "text",
       "fieldId": "code",
@@ -13,21 +19,19 @@
       "fieldId": "name"
     },
     {
-      "label": "Descripcion",
+      "label": "Descripción",
       "type": "text",
       "fieldId": "description"
     },
     {
       "label": "Minima",
       "type": "number",
-      "fieldId": "minimum",
-      "fieldValue": ""
+      "fieldId": "minimum"
     },
     {
       "label": "Precio",
       "type": "number",
-      "fieldId": "price",
-      "fieldValue": ""
+      "fieldId": "price"
     }
   ]
 }

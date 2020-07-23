@@ -23,14 +23,13 @@ const Search = ({ title, current, items, selectItem, icon }) => {
     // Items contiene la lista completa de items existentes en la base de datos, pero no la vamos a mostrar toda
     // Sólo items que coinciden con en el texto de búsqueda si el texto tiene algo
     // Para eso creamos filteredItems que es la verdadera lista a mostrar
-    const filteredItems = items
-      .map(item => {
-        item.isActive = item.id === current // Si OrderDetail pasó un id de item es porque estamos editando vamos a marcar el item con ese id como activo
-        if (item.description) { // Si el item tiene descripción (product) se la agregamos al nombre para una búsqueda más completa
-          item.fullName = item.name + ' ' + item.description // Esa combinación la llamamos fullName y la mostramos abajo sólo si existe
-        }
-        return item
-      })
+    const filteredItems = items.map(item => {
+      item.isActive = item.id === current // Si OrderDetail pasó un id de item es porque estamos editando vamos a marcar el item con ese id como activo
+      if (item.description) { // Si el item tiene descripción (product) se la agregamos al nombre para una búsqueda más completa
+        item.fullName = item.name + ' ' + item.description // Esa combinación la llamamos fullName y la mostramos abajo sólo si existe
+      }
+      return item
+    })
       .filter(item => {
         const itemName = item.fullName || item.name // Aquí vemos si existe fullName y si no pasamos sólo name
         return itemName.toLowerCase().includes(search.toLowerCase()) || !search

@@ -70,7 +70,7 @@ const Products = () => {
 
       <Container
         title="Productos"
-        subTitle="Admnistración de productos"
+        subTitle="Administración de productos"
         width="is-6"
         background="is-info"
       >

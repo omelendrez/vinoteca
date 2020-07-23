@@ -2,12 +2,11 @@ import React from 'react'
 import { formatAmount } from '../../helpers'
 
 const Item = ({ isSelected, item, handleEdit, handleDelete, status }) => {
-  const { productName, storeName, qtyRequested, qtyReceived, price } = item
+  const { productName, qtyRequested, qtyReceived, price } = item
 
   return (
     <tr className={isSelected}>
       <td>{productName}</td>
-      {/*<td>{storeName}</td>*/}
       <th>{qtyRequested}</th>
       {status === 2 && <th>{qtyReceived}</th>}
       {status === 2 && <th>{formatAmount(price)}</th>}

@@ -1,13 +1,37 @@
 {
   "fields": [
     {
+      "label": "Depósito",
+      "type": "select",
+      "fieldId": "storeId",
+      "options": "stores"
+    },
+    {
+      "label": "Producto",
+      "type": "select",
+      "fieldId": "productId",
+      "options": "products"
+    },
+    {
+      "label": "Razón",
+      "type": "select",
+      "fieldId": "variationReasonId",
+      "options": "variationReasons"
+    },
+    {
+      "label": "Tipo de variación",
+      "type": "select",
+      "fieldId": "variationType",
+      "options": "variationTypes"
+    },
+    {
       "label": "Cantidad",
       "type": "text",
       "fieldId": "quantity"
     },
     {
       "label": "Observaciones",
-      "type": "text",
+      "type": "textArea",
       "fieldId": "comments"
     }
   ]
