@@ -36,7 +36,6 @@ const FormFieldSelect = ({ label, icon, fieldId, options, current, selectItem })
         break
       case 'variationTypes':
         setOptionsList([{ id: 1, name: 'Incrementa stock' }, { id: -1, name: 'Disminuye stock' }])
-          .catch(error => console.log(error))
         break
       case 'suppliers':
         getSuppliers()
