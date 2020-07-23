@@ -215,8 +215,9 @@ const OrderDetails = (props) => {
         <thead>
           <tr>
             <th>Producto</th>
-            <th>Depósito</th>
-            <th><abbr title="Cantidad requerida">Cant.</abbr></th>
+            <th>Req</th>
+            <th>Rec</th>
+            <th>Precio</th>
             <th colSpan="2"></th>
           </tr>
         </thead>
