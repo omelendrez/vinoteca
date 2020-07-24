@@ -68,8 +68,8 @@ const Categories = () => {
       {redirect && <Redirect to={redirect} />}
 
       <Container
-        title="Categorias"
-        subTitle="Admnistración de categorias"
+        title="Categorías"
+        subTitle="Administración de categorías"
         width="is-6"
         background="is-primary"
       >

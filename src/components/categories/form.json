@@ -1,7 +1,7 @@
 {
   "fields": [
     {
-      "label": "Codigo",
+      "label": "Código",
       "type": "text",
       "fieldId": "code",
       "hideEmpty": true,
