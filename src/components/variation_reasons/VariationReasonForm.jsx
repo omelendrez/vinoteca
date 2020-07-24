@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { Redirect } from 'react-router-dom'
-import Notification from '../common/Notification'
 import Loading from '../common/Loading'
 import Container from '../common/Container'
 import Form from '../common/Form'
-import FormField from '../common/FormField'
 import { saveVariationReason, addVariationReason } from '../../services/variation_reasons'
 import { cleanData } from '../../helpers'
 import { getData } from '../../localStorage'
@@ -27,20 +25,7 @@ const VariationReasonForm = props => {
     if (props.location && props.location.state && props.location.state.variationReason) setForm(props.location.state.variationReason)
   }, [props])
 
-  const clearAlert = () => {
-    setAlert({})
-  }
-
-  const handleChange = (e => {
-    e.preventDefault()
-    setForm({
-      ...form,
-      [e.target.id]: e.target.value
-    })
-  })
-
-  const handleSave = (e) => {
-    e.preventDefault()
+  const handleSave = (form) => {
     setIsLoading(true)
     if (form.id) {
       const cleanedForm = cleanData(form)
@@ -83,28 +68,13 @@ const VariationReasonForm = props => {
       >
         <Form
           formHeader={form.id ? form.name : 'Nueva razón de variación de inventario'}
-          handleSave={handleSave}
+          handleSave={form => handleSave(form)}
+          currentForm={form}
           handleCancel={handleCancel}
-        >
-          {fields.map((field, index) => {
-            if (field.hideEmpty && !form[field.fieldId]) return null
-            return (
-              <FormField
-                key={index}
-                label={field.label}
-                type={field.type}
-                fieldId={field.fieldId}
-                fieldValue={form[field.fieldId]}
-                handleChange={handleChange}
-                icon={field.icon}
-                readOnly={field.readOnly}
-              />
-            )
-          })}
-          <Notification message={alert.message} clear={clearAlert} type={alert.type} />
-        </Form>
+          fields={fields}
+          error={alert}
+        />
       </Container>
-
     </>
   )
 }
