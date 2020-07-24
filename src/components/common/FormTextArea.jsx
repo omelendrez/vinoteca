@@ -2,7 +2,7 @@ import React from 'react'
 
 const FormTextArea = ({ label, fieldId, fieldValue, handleChange, required, icon, readOnly, autoComplete }) => {
   const iconElement = <span className="icon is-small is-left"><i className={icon}></i></span>
-
+  console.log(fieldValue)
   return (
     <div className="field">
       <label className="label">{label}</label>
@@ -15,9 +15,8 @@ const FormTextArea = ({ label, fieldId, fieldValue, handleChange, required, icon
           readOnly={readOnly}
           autoComplete={autoComplete}
           rows="2"
-        >
-          {fieldValue}
-        </textarea>
+          value={fieldValue}
+        />
         {icon ? iconElement : ''}
       </div>
     </div >
