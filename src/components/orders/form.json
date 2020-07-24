@@ -12,6 +12,13 @@
       "type": "date",
       "fieldId": "date",
       "icon": "fas fa-calendar-alt"
+    },
+    {
+      "label": "Depósito",
+      "type": "select",
+      "fieldId": "storeId",
+      "options": "stores",
+      "icon": "fas fa-warehouse"
     }
   ]
 }

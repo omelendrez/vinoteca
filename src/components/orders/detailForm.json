@@ -12,13 +12,6 @@
       "type": "text",
       "fieldId": "qtyRequested",
       "icon": "fas fa-cart-plus"
-    },
-    {
-      "label": "Depósito",
-      "type": "select",
-      "fieldId": "storeId",
-      "options": "stores",
-      "icon": "fas fa-warehouse"
     }
   ]
 }

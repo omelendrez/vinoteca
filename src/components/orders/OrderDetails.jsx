@@ -19,7 +19,6 @@ const OrderDetails = (props) => {
   const detailsDefault = {
     orderId: props.match.params.id,
     productId: '',
-    storeId: '',
     qtyRequested: ''
   }
   const [form, setForm] = useState(detailsDefault)
@@ -42,7 +41,6 @@ const OrderDetails = (props) => {
   const closeForm = () => {
     setShowForm(false)
   }
-
 
   const handleOk = item => {
     item.orderId = order.id
