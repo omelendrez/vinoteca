@@ -27,7 +27,6 @@ const StoreForm = props => {
   }, [props])
 
   const handleSave = (form) => {
-    form.preventDefault()
     setIsLoading(true)
     if (form.id) {
       const cleanedForm = cleanData(form)
