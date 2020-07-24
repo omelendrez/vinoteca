@@ -2,7 +2,7 @@ import OrderDetail from './OrderDetail'
 
 import React from 'react'
 
-const OrderDetailsList = ({ items, handleEdit, handleDelete, status }) => {
+const OrderDetailsList = ({ items, handleEdit, handleDelete, status, handleAdd, back }) => {
   return (
     <>
       <table className="table is-fullwidth mx-0 my-1">
@@ -29,6 +29,10 @@ const OrderDetailsList = ({ items, handleEdit, handleDelete, status }) => {
         </tbody>
 
       </table>
+      <div>
+        {status === 1 && <button className="button my-0" onClick={e => handleAdd(e)}>Agregar</button>}
+        <button className="button my-0 is-pulled-right" onClick={() => back('/orders')}>Volver</button>
+      </div>
     </>
   )
 }

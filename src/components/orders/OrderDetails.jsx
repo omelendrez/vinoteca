@@ -173,6 +173,8 @@ const OrderDetails = (props) => {
         handleEdit={handleEdit}
         handleDelete={handleDelete}
         status={order.statusId}
+        back={setRedirect}
+        handleAdd={handleAdd}
       />
 
 
