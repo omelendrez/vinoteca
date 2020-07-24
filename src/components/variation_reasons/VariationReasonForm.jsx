@@ -5,15 +5,13 @@ import Container from '../common/Container'
 import Form from '../common/Form'
 import { saveVariationReason, addVariationReason } from '../../services/variation_reasons'
 import { cleanData } from '../../helpers'
-import { getData } from '../../localStorage'
 import { fields } from './form.json'
 
 const VariationReasonForm = props => {
 
   const formDefault = {
     code: '',
-    name: '',
-    companyId: getData('user').companyId
+    name: ''
   }
 
   const [form, setForm] = useState(formDefault)

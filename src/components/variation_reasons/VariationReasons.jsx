@@ -70,7 +70,7 @@ const VariationReasons = () => {
 
       <Container
         title="Motivos de variación de inventario"
-        subTitle="Admnistración de empresas"
+        subTitle="Administración de empresas"
         width="is-6"
         background="is-primary"
       >

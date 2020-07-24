@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from "react"
 import { Redirect } from "react-router-dom"
-import Notification from "../common/Notification"
 import Loading from "../common/Loading"
 import Container from "../common/Container"
 import Form from "../common/Form"
-import FormField from "../common/FormField"
 import { saveCategory, addCategory } from "../../services/categories"
 import { cleanData } from "../../helpers"
 import { fields } from './form.json'
@@ -24,18 +22,6 @@ const CategoryForm = (props) => {
     if (props.location && props.location.state && props.location.state.category)
       setForm(props.location.state.category)
   }, [props])
-
-  const clearAlert = () => {
-    setAlert({})
-  }
-
-  const handleChange = (e) => {
-    e.preventDefault()
-    setForm({
-      ...form,
-      [e.target.id]: e.target.value,
-    })
-  }
 
   const handleSave = (form) => {
     setIsLoading(true)
