@@ -20,11 +20,11 @@
     },
     {
       "label": "Descripción",
-      "type": "text",
+      "type": "textArea",
       "fieldId": "description"
     },
     {
-      "label": "Minima",
+      "label": "Mínima",
       "type": "number",
       "fieldId": "minimum"
     },

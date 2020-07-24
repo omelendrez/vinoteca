@@ -6,6 +6,8 @@ import { getStores } from '../../services/stores'
 import { getCategories } from '../../services/categories'
 import { getVariationReasons } from '../../services/variation_reasons'
 import { getSuppliers } from '../../services/suppliers'
+import { getCompanies } from '../../services/companies'
+import { getProfiles } from '../../services/profiles'
 
 const FormFieldSelect = ({ label, icon, fieldId, options, current, selectItem }) => {
   const [showSearch, setShowSearch] = useState(false)
@@ -39,6 +41,16 @@ const FormFieldSelect = ({ label, icon, fieldId, options, current, selectItem })
         break
       case 'suppliers':
         getSuppliers()
+          .then(optionsList => setOptionsList(optionsList.rows))
+          .catch(error => console.log(error))
+        break
+      case 'companies':
+        getCompanies()
+          .then(optionsList => setOptionsList(optionsList.rows))
+          .catch(error => console.log(error))
+        break
+      case 'profiles':
+        getProfiles()
           .then(optionsList => setOptionsList(optionsList.rows))
           .catch(error => console.log(error))
         break
