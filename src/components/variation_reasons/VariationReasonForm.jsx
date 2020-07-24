@@ -25,8 +25,7 @@ const VariationReasonForm = props => {
     if (props.location && props.location.state && props.location.state.variationReason) setForm(props.location.state.variationReason)
   }, [props])
 
-  const handleSave = (e) => {
-    e.preventDefault()
+  const handleSave = (form) => {
     setIsLoading(true)
     if (form.id) {
       const cleanedForm = cleanData(form)
