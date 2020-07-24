@@ -14,6 +14,20 @@
       "label": "Password",
       "type": "text",
       "fieldId": "password"
+    },
+    {
+      "label": "Empresa",
+      "type": "select",
+      "fieldId": "companyId",
+      "options": "companies",
+      "icon": "fa fa-building mr-2"
+    },
+    {
+      "label": "Perfil",
+      "type": "select",
+      "fieldId": "profileId",
+      "options": "profiles",
+      "icon": "fa fa-users mr-2"
     }
   ]
 }
