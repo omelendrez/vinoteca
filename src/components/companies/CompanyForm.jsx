@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { Redirect } from 'react-router-dom'
-import Notification from '../common/Notification'
 import Loading from '../common/Loading'
 import Container from '../common/Container'
 import Form from '../common/Form'
-import FormField from '../common/FormField'
 import { saveCompany, addCompany } from '../../services/companies'
 import { cleanData } from '../../helpers'
 import { fields } from './form.json'
@@ -28,20 +26,7 @@ const CompanyForm = props => {
     if (props.location && props.location.state && props.location.state.company) setForm(props.location.state.company)
   }, [props])
 
-  const clearAlert = () => {
-    setAlert({})
-  }
-
-  const handleChange = (e => {
-    e.preventDefault()
-    setForm({
-      ...form,
-      [e.target.id]: e.target.value
-    })
-  })
-
-  const handleSave = (e) => {
-    e.preventDefault()
+  const handleSave = (form) => {
     setIsLoading(true)
     if (form.id) {
       const cleanedForm = cleanData(form)
@@ -86,22 +71,10 @@ const CompanyForm = props => {
           formHeader={form.id ? form.name : 'Nueva empresa'}
           handleSave={handleSave}
           handleCancel={handleCancel}
-        >
-          {fields.map((field, index) => (
-            <FormField
-              key={index}
-              label={field.label}
-              type={field.type}
-              fieldId={field.fieldId}
-              fieldValue={form[field.fieldId]}
-              handleChange={handleChange}
-              icon={field.icon}
-            />
-          ))}
-
-          <Notification message={alert.message} clear={clearAlert} type={alert.type} />
-
-        </Form>
+          currentForm={form}
+          fields={fields}
+          error={alert}
+        />
       </Container>
 
     </>
