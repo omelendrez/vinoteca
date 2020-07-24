@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { Redirect } from 'react-router-dom'
-import Notification from '../common/Notification'
 import Loading from '../common/Loading'
 import Container from '../common/Container'
 import Form from '../common/Form'
-import FormField from '../common/FormField'
 import { saveStore, addStore } from '../../services/stores'
 import { cleanData } from '../../helpers'
 import { fields } from './form.json'
@@ -28,20 +26,8 @@ const StoreForm = props => {
     if (props.location && props.location.state && props.location.state.store) setForm(props.location.state.store)
   }, [props])
 
-  const clearAlert = () => {
-    setAlert({})
-  }
-
-  const handleChange = (e => {
-    e.preventDefault()
-    setForm({
-      ...form,
-      [e.target.id]: e.target.value
-    })
-  })
-
-  const handleSave = (e) => {
-    e.preventDefault()
+  const handleSave = (form) => {
+    form.preventDefault()
     setIsLoading(true)
     if (form.id) {
       const cleanedForm = cleanData(form)
@@ -84,25 +70,13 @@ const StoreForm = props => {
       >
         <Form
           formHeader={form.id ? form.name : 'Nuevo depósito'}
-          handleSave={handleSave}
+          handleSave={form => handleSave(form)}
           handleCancel={handleCancel}
-        >
-          {fields.map((field, index) => (
-            <FormField
-              key={index}
-              label={field.label}
-              type={field.type}
-              fieldId={field.fieldId}
-              fieldValue={form[field.fieldId]}
-              handleChange={handleChange}
-              icon={field.icon}
-            />
-          ))}
-
-          <Notification message={alert.message} clear={clearAlert} type={alert.type} />
-        </Form>
+          fields={fields}
+          error={alert}
+          currentForm={form}
+        />
       </Container>
-
     </>
   )
 }
