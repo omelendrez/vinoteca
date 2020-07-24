@@ -37,8 +37,7 @@ const CategoryForm = (props) => {
     })
   }
 
-  const handleSave = (e) => {
-    e.preventDefault()
+  const handleSave = (form) => {
     setIsLoading(true)
     if (form.id) {
       const cleanedForm = cleanData(form)
@@ -75,38 +74,18 @@ const CategoryForm = (props) => {
       {isLoading && <Loading />}
       <Container
         title={form.id ? "Editando" : "Agregando"}
-        subTitle="Administración de categorias"
+        subTitle="Administración de categorías"
         width="is-6"
         background="is-primary"
       >
         <Form
-          formHeader={form.id ? form.name : "Nueva categoria"}
-          handleSave={handleSave}
+          formHeader={form.id ? form.name : "Nueva categoría"}
+          handleSave={form => handleSave(form)}
           handleCancel={handleCancel}
-        >
-          {fields.map((field, index) => {
-            if (field.hideEmpty && !form[field.fieldId]) return null
-            return (
-              <FormField
-                key={index}
-                label={field.label}
-                type={field.type}
-                fieldId={field.fieldId}
-                fieldValue={form[field.fieldId]}
-                handleChange={handleChange}
-                icon={field.icon}
-                readOnly={field.readOnly}
-              />
-            )
-          }
-          )}
-
-          <Notification
-            message={alert.message}
-            clear={clearAlert}
-            type={alert.type}
-          />
-        </Form>
+          currentForm={form}
+          fields={fields}
+          error={alert}
+        />
       </Container>
     </>
   )
