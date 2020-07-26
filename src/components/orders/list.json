@@ -1,0 +1,32 @@
+{
+  "columns": [
+    {
+      "title": "Número",
+      "columnId": "number",
+      "isHeader": true
+    },
+    {
+      "title": "Fecha",
+      "columnId": "date",
+      "isDate": true
+    },
+    {
+      "title": "Importe",
+      "columnId": "amount",
+      "isAmount": true
+    },
+    {
+      "title": "Proveedor",
+      "columnId": "supplierName",
+      "isHeader": true
+    },
+    {
+      "title": "Depósito",
+      "columnId": "storeName"
+    },
+    {
+      "title": "Detalle",
+      "columnId": "items"
+    }
+  ]
+}

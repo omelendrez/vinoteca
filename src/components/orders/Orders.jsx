@@ -3,12 +3,11 @@ import { Redirect } from 'react-router-dom'
 import Notification from "../common/Notification"
 import Loading from "../common/Loading"
 import Container from "../common/Container"
-import TableItem from "../common/TableItem"
-import TableItemField from "../common/TableItemField"
-import TableFooter from '../common/TableFooter'
+import List from '../common/List'
 import Confirm from "../common/Confirm"
 import { getOrders, deleteOrder } from "../../services/orders"
-import { formatDate, formatAmount } from '../../helpers'
+import { formatDate } from '../../helpers'
+import { columns } from './list.json'
 
 const Orders = () => {
   const [orders, setOrders] = useState({ rows: [] })
@@ -86,35 +85,13 @@ const Orders = () => {
           type={alert.type}
         />
 
-        <div className="container list-container">
-          {rows && rows.map((order, index) => {
-            const { number, date, amount, supplierName, storeName, items, statusName, created, createdByName, updated, updatedByName } = order
-            return (
-              <TableItem
-                key={index}
-                item={order}
-                itemHeader={`${number} - ${supplierName}`}
-                handleEdit={handleEdit}
-                handleDelete={order.statusId === 1 ? handleDelete : null}
-              >
-                <TableItemField label="Número" value={number} />
-                <TableItemField label="Fecha" value={formatDate(date)} />
-                <TableItemField label="Importe" value={formatAmount(amount)} />
-                <TableItemField label="Proveedor" value={supplierName} />
-                <TableItemField label="Depósito" value={storeName} />
-                <TableItemField label="Detalle" value={`${items} items`} />
-                <TableFooter
-                  statusName={statusName}
-                  created={created}
-                  createdByName={createdByName}
-                  updated={updated}
-                  updatedByName={updatedByName}
-                />
-              </TableItem>
-            )
-          })
-          }
-        </div>
+        <List
+          rows={rows}
+          columns={columns}
+          handleEdit={handleEdit}
+          handleDelete={handleDelete}
+        />
+
         <Confirm
           title="Eliminando orden de compra"
           message={<span>Confirma eliminación de la orden de compra <strong>{`Nro. ${order.number} de ${order.supplierName} del ${formatDate(order.date)}`}</strong>?</span>}

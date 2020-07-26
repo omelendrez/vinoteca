@@ -8,8 +8,8 @@ const Item = ({ isSelected, item, handleEdit, handleDelete, status }) => {
     <tr className={isSelected}>
       <td>{productName}</td>
       <th>{qtyRequested}</th>
-      {status === 2 || status === 3 && <th>{qtyReceived}</th>}
-      {status === 2 || status === 3 && <th>{formatAmount(price)}</th>}
+      {(status === 2 || status === 3) && <th>{qtyReceived}</th>}
+      {(status === 2 || status === 3) && <th>{formatAmount(price)}</th>}
       {status !== 3 &&
         <td className="px-0">
           <button className="button is-white has-text-info" onClick={() => handleEdit(item)} ><i className="fa fa-edit"></i></button>
