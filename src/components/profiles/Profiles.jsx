@@ -3,11 +3,10 @@ import { Redirect } from 'react-router-dom'
 import Container from '../common/Container'
 import Notification from '../common/Notification'
 import Loading from '../common/Loading'
-import TableItem from '../common/TableItem'
-import TableItemField from '../common/TableItemField'
-import TableFooter from '../common/TableFooter'
+import List from '../common/List'
 import Confirm from '../common/Confirm'
 import { getProfiles, deleteProfile } from '../../services/profiles'
+import { columns } from './list.json'
 
 const Profiles = () => {
   const [profiles, setProfiles] = useState({ rows: [] })
@@ -80,31 +79,12 @@ const Profiles = () => {
 
         <Notification message={alert.message} className="mx-1 my-1" clear={clearAlert} type={alert.type} />
 
-        <div className="container list-container">
-
-          {rows && rows.map((profile, index) => {
-            const { code, name, statusName, created, createdByName, updated, updatedByName } = profile
-            return (
-              <TableItem
-                key={index}
-                item={profile}
-                itemHeader={name}
-                handleEdit={handleEdit}
-                handleDelete={handleDelete}
-              >
-                <TableItemField label="Código" value={code} />
-                <TableFooter
-                  statusName={statusName}
-                  created={created}
-                  createdByName={createdByName}
-                  updated={updated}
-                  updatedByName={updatedByName}
-                />
-              </TableItem>
-            )
-          })
-          }
-        </div>
+        <List
+          columns={columns}
+          handleEdit={handleEdit}
+          handleDelete={handleDelete}
+          rows={rows}
+        />
 
         <Confirm
           title="Eliminando perfil"

@@ -2,11 +2,9 @@ import React, { useState, useEffect } from "react"
 import Notification from "../common/Notification"
 import Loading from "../common/Loading"
 import Container from "../common/Container"
-import TableItem from "../common/TableItem"
-import TableItemField from "../common/TableItemField"
-import TableFooter from "../common/TableFooter"
+import List from '../common/List'
 import { getInventory } from '../../services/inventory'
-import { formatAmount } from "../../helpers"
+import { columns } from './list.json'
 
 const Inventory = () => {
   const [inventory, setInventory] = useState({ rows: [] })
@@ -45,36 +43,10 @@ const Inventory = () => {
 
         <Notification message={alert.message} className="mx-1 my-1" clear={clearAlert} type={alert.type} />
 
-        <div className="container list-container">
-
-          {rows && rows.map((inventory, index) => {
-            const { quantity, storeName, productName, price, created, createdByName, updated, updatedByName } = inventory
-            return (
-              <TableItem
-                key={index}
-                item={inventory}
-                itemHeader={productName}
-              >
-
-                <TableItemField label="Producto" value={productName} />
-                <TableItemField label="Depósito" value={storeName} />
-                <TableItemField label="Cantidad" value={quantity} />
-                <TableItemField label="Precio unitario" value={formatAmount(price)} />
-                <TableItemField label="Total" value={formatAmount(price * quantity)} />
-
-                <TableFooter
-                  statusName=""
-                  created={created}
-                  createdByName={createdByName}
-                  updated={updated}
-                  updatedByName={updatedByName}
-                />
-              </TableItem>
-            )
-          })
-          }
-        </div>
-
+        <List
+          rows={rows}
+          columns={columns}
+        />
         {isLoading && <Loading />}
 
       </Container>

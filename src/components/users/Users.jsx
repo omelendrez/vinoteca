@@ -3,11 +3,13 @@ import { Redirect } from 'react-router-dom'
 import Notification from '../common/Notification'
 import Loading from '../common/Loading'
 import Container from '../common/Container'
+import List from '../common/List'
 import TableItem from '../common/TableItem'
 import TableItemField from '../common/TableItemField'
 import TableFooter from '../common/TableFooter'
 import Confirm from '../common/Confirm'
 import { getUsers, deleteUser } from '../../services/users'
+import { columns } from './list.json'
 
 const Users = () => {
   const [users, setUsers] = useState({ rows: [] })
@@ -79,35 +81,12 @@ const Users = () => {
 
         <Notification message={alert.message} className="mx-1 my-1" clear={clearAlert} type={alert.type} />
 
-        <div className="container list-container">
-
-          {rows && rows.map((user, index) => {
-            const { companyName, profileName, name, email, statusName, created, createdByName, updated, updatedByName } = user
-            return (
-              <TableItem
-                key={index}
-                item={user}
-                itemHeader={name}
-                handleEdit={handleEdit}
-                handleDelete={handleDelete}
-              >
-                <TableItemField icon="fa fa-building mr-2" value={companyName} />
-                <TableItemField icon="fa fa-users mr-2" value={profileName} />
-                <TableItemField icon="fa fa-at mr-2" value={email} />
-
-                <TableFooter
-                  statusName={statusName}
-                  created={created}
-                  createdByName={createdByName}
-                  updated={updated}
-                  updatedByName={updatedByName}
-                />
-
-              </TableItem>
-            )
-          })
-          }
-        </div>
+        <List
+          rows={rows}
+          columns={columns}
+          handleEdit={handleEdit}
+          handleDelete={handleDelete}
+        />
 
         <Confirm
           title="Eliminando usuario"

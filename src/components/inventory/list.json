@@ -1,0 +1,21 @@
+{
+  "columns": [
+    {
+      "columnId": "productName",
+      "isHeader": true
+    },
+    {
+      "title": "Depósito",
+      "columnId": "storeName"
+    },
+    {
+      "title": "Cantidad",
+      "columnId": "quantity"
+    },
+    {
+      "title": "Precio unitario",
+      "columnId": "price",
+      "isAmount": "true"
+    }
+  ]
+}

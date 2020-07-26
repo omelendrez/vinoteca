@@ -1,0 +1,20 @@
+{
+  "columns": [
+    {
+      "columnId": "name",
+      "isHeader": true
+    },
+    {
+      "icon": "fa fa-building mr-2",
+      "columnId": "companyName"
+    },
+    {
+      "icon": "fa fa-users mr-2",
+      "columnId": "profileName"
+    },
+    {
+      "icon": "fa fa-at mr-2",
+      "columnId": "email"
+    }
+  ]
+}
