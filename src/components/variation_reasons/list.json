@@ -1,0 +1,12 @@
+{
+  "columns": [
+    {
+      "columnId": "name",
+      "isHeader": true
+    },
+    {
+      "title": "Código",
+      "columnId": "code"
+    }
+  ]
+}
