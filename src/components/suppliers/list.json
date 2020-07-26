@@ -1,7 +1,6 @@
 {
   "columns": [
     {
-      "icon": "fa fa-user mr-2",
       "columnId": "name",
       "isHeader": true
     },

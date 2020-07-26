@@ -18,7 +18,7 @@ const List = ({ rows, columns, handleEdit, handleDelete }) => {
             handleDelete={handleDelete}
           >
             {
-              columns.map((column, index) => <ListItemField key={index} column={column} value={row[column.columnId]} />)
+              columns.filter(column => !column.isHeader).map((column, index) => <ListItemField key={index} column={column} value={row[column.columnId]} />)
             }
             <ListFooter
               row={row}

@@ -1,7 +1,10 @@
 {
   "columns": [
     {
-      "title": "Número",
+      "columnId": "supplierName",
+      "isHeader": true
+    },
+    {
       "columnId": "number",
       "isHeader": true
     },
@@ -14,11 +17,6 @@
       "title": "Importe",
       "columnId": "amount",
       "isAmount": true
-    },
-    {
-      "title": "Proveedor",
-      "columnId": "supplierName",
-      "isHeader": true
     },
     {
       "title": "Depósito",
