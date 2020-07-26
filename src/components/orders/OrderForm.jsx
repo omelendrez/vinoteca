@@ -6,8 +6,15 @@ import { fields } from './form.json'
 import { addOrder } from '../../services/orders'
 
 const OrderForm = () => {
+  const orderDefault = {
+    supplierId: '',
+    date: '',
+    storeId: ''
+  }
+
   const [alert, setAlert] = useState({})
   const [redirect, setRedirect] = useState('')
+  const [form, setForm] = useState(orderDefault)
 
   const handleSave = form => {
     if (!form.date || !form.supplierId) {
@@ -45,6 +52,7 @@ const OrderForm = () => {
         handleSave={form => handleSave(form)}
         fields={fields}
         error={alert}
+        currentForm={form}
       >
       </Form>
     </Container>

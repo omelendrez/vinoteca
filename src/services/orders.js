@@ -42,6 +42,14 @@ export const sendOrder = order => {
   })
 }
 
+export const receiveOrder = order => {
+  return new Promise((resolve, reject) => {
+    api.post(`receive-order/${order.id}`, order)
+      .then(response => resolve(response.data))
+      .catch(error => reject(handleError(error)))
+  })
+}
+
 export const cancelOrder = order => {
   return new Promise((resolve, reject) => {
     api.post(`cancel-order/${order.id}`, order)

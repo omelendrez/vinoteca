@@ -83,7 +83,7 @@ const Products = () => {
         <div className="container list-container">
 
           {rows && rows.map((product, index) => {
-            const { categoryName, name, code, description, lastPurchaseDate, lastPurchasePrice, lastSaleDate, lastSalePrice, minimum, quantity, price, statusName, created, createdByName, updated, updatedByName } = product
+            const { categoryName, name, code, description, lastPurchaseOrder, lastPurchaseDate, lastPurchasePrice, lastSaleDate, lastSalePrice, minimum, quantity, price, statusName, created, createdByName, updated, updatedByName } = product
             return (
               <TableItem
                 key={index}
@@ -101,11 +101,13 @@ const Products = () => {
                 <TableItemField label="Stock" value={quantity} />
                 <TableItemField label="Cantidad mínima" value={minimum} />
                 <TableItemField label="Precio" value={formatAmount(price)} />
-                <hr />
-                <TableItemField label="Última compra" value={lastPurchaseDate} />
-                <TableItemField label="Último precio de costo" value={`$ ${lastPurchasePrice.toFixed(2)}`} />
+                <hr className="dropdown-divider" />
+                <TableItemField label="Última orden de compra" value={lastPurchaseOrder} />
+                <TableItemField label="Fecha" value={lastPurchaseDate} />
+                <TableItemField label="Precio de compra" value={`$ ${lastPurchasePrice.toFixed(2)}`} />
+                <hr className="dropdown-divider" />
                 <TableItemField label="Última venta" value={lastSaleDate} />
-                <TableItemField label="Último precio de venta" value={`$ ${lastSalePrice.toFixed(2)}`} />
+                <TableItemField label="Precio de venta" value={`$ ${lastSalePrice.toFixed(2)}`} />
                 <TableFooter
                   statusName={statusName}
                   created={created}

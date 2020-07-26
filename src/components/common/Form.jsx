@@ -9,8 +9,11 @@ const Form = ({ formHeader, fields, currentForm, handleSave, handleCancel, error
   const [formAlert, setFormAlert] = useState({})
 
   useEffect(() => {
-    const form = { id: currentForm.id }
-    fields.map(field => form[field.fieldId] = currentForm[field.fieldId])
+    const form = {}
+    fields.map(field => form[field.fieldId] = currentForm[field.fieldId] || '')
+    if (currentForm.id) {
+      form['id'] = currentForm.id
+    }
     setForm(form)
   }, [currentForm, fields])
 

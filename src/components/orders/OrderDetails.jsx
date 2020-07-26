@@ -9,12 +9,13 @@ import Confirm from '../common/Confirm'
 import Notification from '../common/Notification'
 import Message from '../common/Message'
 import { addDetail, saveDetail, deleteDetail } from '../../services/order_details'
-import { getOrder, sendOrder, cancelOrder } from '../../services/orders'
+import { getOrder, sendOrder, receiveOrder, cancelOrder } from '../../services/orders'
 import { fields } from './detailForm.json'
 import { cleanData } from '../../helpers'
 
 const OrderDetails = (props) => {
   const SEND = 2
+  const RECEIVE = 3
   const CANCEL = 4
   const detailsDefault = {
     orderId: props.match.params.id,
@@ -28,9 +29,50 @@ const OrderDetails = (props) => {
   const [listAlert, setListAlert] = useState({})
   const [formAlert, setFormAlert] = useState({})
   const [confirmAction, setConfirmAction] = useState('')
+  const [confirm, setConfirm] = useState({})
   const [redirect, setRedirect] = useState('')
   const [message, setMessage] = useState({})
   const [isLoading, setIsLoading] = useState(false)
+
+  useEffect(() => {
+    switch (confirmAction) {
+      case SEND:
+        setConfirm({
+          title: 'Enviar orden de compra',
+          message: <span>Confirma enviar orden de compra <strong>{order.number}</strong>, de proveedor <strong>{order.supplierName}</strong>?</span>,
+          okText: 'Enviar',
+          action: confirmSend,
+          cancelText: 'Cancelar',
+          handleOk: confirmSend
+        })
+        break
+
+      case RECEIVE:
+        setConfirm({
+          title: 'Recibir orden de compra',
+          message: <span>Confirma recepción orden de compra <strong>{order.number}</strong>, de proveedor <strong>{order.supplierName}</strong>?</span>,
+          okText: 'Recibir',
+          action: confirmReceive,
+          cancelText: 'Salir',
+          handleOk: confirmSend
+        })
+        break
+
+      case CANCEL:
+        setConfirm({
+          title: 'Cancelar orden de compra',
+          message: <span>Confirma cancelar orden de compra <strong>{order.number}</strong>, de proveedor <strong>{order.supplierName}</strong>?</span>,
+          okText: 'Cancelar',
+          action: confirmCancel,
+          cancelText: 'Salir',
+          handleOk: confirmCancel
+        })
+        break
+
+      default:
+        setConfirm({})
+    }
+  }, [confirmAction])
 
   useEffect(() => {
     getOrder(props.match.params.id)
@@ -137,6 +179,29 @@ const OrderDetails = (props) => {
       })
   }
 
+  const handleReceive = e => {
+    e.preventDefault()
+    setConfirmAction(RECEIVE)
+  }
+
+  const confirmReceive = () => {
+    setIsLoading(true)
+    const newStatus = {
+      id: order.id,
+      statusId: RECEIVE
+    }
+    receiveOrder(newStatus)
+      .then(order => {
+        setOrder(order)
+        setConfirmAction('')
+        setIsLoading(false)
+      })
+      .catch(error => {
+        setListAlert({ message: error.message, type: 'is-danger' })
+        setIsLoading(false)
+      })
+  }
+
   const handleCancel = e => {
     e.preventDefault()
     setConfirmAction(CANCEL)
@@ -177,6 +242,7 @@ const OrderDetails = (props) => {
       <OrderHeader
         order={order}
         handleSend={handleSend}
+        handleReceive={handleReceive}
         handleCancel={handleCancel}
       />
 
@@ -220,16 +286,12 @@ const OrderDetails = (props) => {
       />
 
       <Confirm
-        title={confirmAction === SEND ? 'Enviar orden de compra' : 'Cancelar orden de compra'}
-        message={
-          <span>
-            Confirma {confirmAction === SEND ? 'enviar orden de compra' : 'cancelar orden de compra'} <strong>{order.number}</strong>, para proveedor <strong>{order.supplierName}</strong>?
-          </span>
-        }
+        title={confirm.title}
+        message={<span>{confirm.message}</span>}
         isActive={confirmAction}
-        okText={confirmAction === SEND ? 'Enviar' : 'Cancelar'}
-        cancelText={confirmAction === SEND ? 'Cancelar' : 'Salir'}
-        handleOk={confirmAction === SEND ? confirmSend : confirmCancel}
+        okText={confirm.okText}
+        cancelText={confirm.cancelText}
+        handleOk={confirm.action}
         close={() => setConfirmAction('')}
         isLoading={isLoading}
       />
