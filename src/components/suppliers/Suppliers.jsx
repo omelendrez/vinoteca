@@ -7,6 +7,7 @@ import List from '../common/List'
 import Confirm from '../common/Confirm'
 import { getSuppliers, deleteSupplier } from '../../services/suppliers'
 import { columns } from './list.json'
+
 const Suppliers = () => {
   const [suppliers, setSuppliers] = useState({ rows: [] })
   const [alert, setAlert] = useState({})

@@ -1,0 +1,24 @@
+{
+  "columns": [
+    {
+      "columnId": "name",
+      "isHeader": true
+    },
+    {
+      "icon": "fa fa-user mr-2",
+      "columnId": "contact"
+    },
+    {
+      "icon": "fa fa-map-marker-alt mr-2",
+      "columnId": "address"
+    },
+    {
+      "icon": "fa fa-at mr-2",
+      "columnId": "email"
+    },
+    {
+      "icon": "fa fa-phone mr-2",
+      "columnId": "phone"
+    }
+  ]
+}
