@@ -14,7 +14,7 @@ const OrderForm = () => {
 
   const [alert, setAlert] = useState({})
   const [redirect, setRedirect] = useState('')
-  const [form, setForm] = useState(orderDefault)
+  const form = useState(orderDefault)
 
   const handleSave = form => {
     if (!form.date || !form.supplierId) {
@@ -25,7 +25,7 @@ const OrderForm = () => {
         setTimeout(() => {
           setRedirect('/orders')
         }, 3000)
-        setAlert({ message: `Órden nro. ${order.data.number} creada`, type: 'is-success' })
+        setAlert({ message: `Orden nro. ${order.data.number} creada`, type: 'is-success' })
       })
       .catch(error => setAlert({ message: error.message, type: 'is-danger' }))
   }
