@@ -8,7 +8,7 @@ import TableItemField from "../common/TableItemField"
 import TableFooter from "../common/TableFooter"
 import Confirm from "../common/Confirm"
 import { getProducts, deleteProduct } from "../../services/products"
-import { formatAmount } from "../../helpers"
+import { formatAmount, formatDate } from "../../helpers"
 
 const Products = () => {
   const [products, setProducts] = useState({ rows: [] })
@@ -103,7 +103,7 @@ const Products = () => {
                 <TableItemField label="Precio" value={formatAmount(price)} />
                 <hr className="dropdown-divider" />
                 <TableItemField label="Última orden de compra" value={lastPurchaseOrder} />
-                <TableItemField label="Fecha" value={lastPurchaseDate} />
+                <TableItemField label="Fecha" value={formatDate(lastPurchaseDate)} />
                 <TableItemField label="Precio de compra" value={`$ ${lastPurchasePrice.toFixed(2)}`} />
                 <hr className="dropdown-divider" />
                 <TableItemField label="Última venta" value={lastSaleDate} />

@@ -12,7 +12,7 @@ const OrderDetailsList = ({ items, handleEdit, handleDelete, status, handleAdd, 
             <th>Req</th>
             <th>Rec</th>
             <th>Precio</th>
-            <th colSpan="2"></th>
+            {status !== 3 && <th colSpan="2"></th>}
           </tr>
         </thead>
         <tbody>

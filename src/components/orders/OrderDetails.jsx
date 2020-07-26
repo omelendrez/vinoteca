@@ -155,7 +155,6 @@ const OrderDetails = (props) => {
       })
   }
 
-
   const handleSend = e => {
     e.preventDefault()
     setConfirmAction(SEND)
@@ -188,6 +187,7 @@ const OrderDetails = (props) => {
     setIsLoading(true)
     const newStatus = {
       id: order.id,
+      storeId: order.storeId,
       statusId: RECEIVE
     }
     receiveOrder(newStatus)
