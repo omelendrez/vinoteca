@@ -2,7 +2,6 @@ import api from './api'
 import { handleError } from '../helpers'
 
 export const addDetail = detail => {
-  console.log('detail', detail)
   return new Promise((resolve, reject) => {
     api.post('order_details', detail)
       .then(response => resolve(response.data))

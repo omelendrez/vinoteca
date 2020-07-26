@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Confirmodal = ({ title, isActive, close, children, handleOk, confirmText, cancelText }) => (
+const Confirmodal = ({ title, isActive, close, children, handleOk, confirmText, cancelText, isLoading }) => (
   <div className={`modal ${isActive ? 'is-active' : ''}`}>
     <div className="modal-background"></div>
     <div className="modal-card">
@@ -10,7 +10,7 @@ const Confirmodal = ({ title, isActive, close, children, handleOk, confirmText, 
       </header>
       {children}
       <footer className="modal-card-foot">
-        <button className="button is-danger" onClick={() => handleOk()}>{confirmText}</button>
+        <button className={`button is-danger${isLoading ? ' is-loading' : ''}`} onClick={() => handleOk()}>{confirmText}</button>
         {cancelText ? <button className="button" onClick={() => close()}>{cancelText}</button> : null}
       </footer>
     </div>

@@ -30,6 +30,7 @@ const OrderDetails = (props) => {
   const [confirmAction, setConfirmAction] = useState('')
   const [redirect, setRedirect] = useState('')
   const [message, setMessage] = useState({})
+  const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
     getOrder(props.match.params.id)
@@ -98,13 +99,18 @@ const OrderDetails = (props) => {
   }
 
   const confirmDelete = () => {
+    setIsLoading(true)
     deleteDetail(item)
       .then(() => {
         order.orderDetails = order.orderDetails.filter(detail => detail.id !== item.id)
         setOrder(order)
         setItem({})
+        setIsLoading(false)
       })
-      .catch(error => setListAlert({ message: error.message, type: 'is-danger' }))
+      .catch(error => {
+        setListAlert({ message: error.message, type: 'is-danger' })
+        setIsLoading(false)
+      })
   }
 
 
@@ -114,6 +120,7 @@ const OrderDetails = (props) => {
   }
 
   const confirmSend = () => {
+    setIsLoading(true)
     const newStatus = {
       id: order.id,
       statusId: SEND
@@ -122,8 +129,12 @@ const OrderDetails = (props) => {
       .then(order => {
         setOrder(order)
         setConfirmAction('')
+        setIsLoading(false)
       })
-      .catch(error => setListAlert({ message: error.message, type: 'is-danger' }))
+      .catch(error => {
+        setListAlert({ message: error.message, type: 'is-danger' })
+        setIsLoading(false)
+      })
   }
 
   const handleCancel = e => {
@@ -132,6 +143,7 @@ const OrderDetails = (props) => {
   }
 
   const confirmCancel = () => {
+    setIsLoading(true)
     const newStatus = {
       id: order.id,
       statusId: CANCEL
@@ -140,8 +152,12 @@ const OrderDetails = (props) => {
       .then(order => {
         setOrder(order)
         setConfirmAction('')
+        setIsLoading(true)
       })
-      .catch(error => setListAlert({ message: error.message, type: 'is-danger' }))
+      .catch(error => {
+        setListAlert({ message: error.message, type: 'is-danger' })
+        setIsLoading(false)
+      })
 
   }
 
@@ -200,6 +216,7 @@ const OrderDetails = (props) => {
         isActive={item.id}
         handleOk={confirmDelete}
         close={() => setItem({})}
+        isLoading={isLoading}
       />
 
       <Confirm
@@ -214,6 +231,7 @@ const OrderDetails = (props) => {
         cancelText={confirmAction === SEND ? 'Cancelar' : 'Salir'}
         handleOk={confirmAction === SEND ? confirmSend : confirmCancel}
         close={() => setConfirmAction('')}
+        isLoading={isLoading}
       />
 
       <Modal isActive={message.message} >
