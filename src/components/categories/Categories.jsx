@@ -3,11 +3,10 @@ import { Redirect } from 'react-router-dom'
 import Notification from "../common/Notification"
 import Loading from "../common/Loading"
 import Container from "../common/Container"
-import TableItem from "../common/TableItem"
-import TableItemField from "../common/TableItemField"
-import TableFooter from '../common/TableFooter'
+import List from "../common/List"
 import Confirm from "../common/Confirm"
 import { getCategories, deleteCategory } from "../../services/categories"
+import { columns } from './list.json'
 
 const Categories = () => {
   const [categories, setCategories] = useState({ rows: [] })
@@ -86,35 +85,18 @@ const Categories = () => {
           />
         )}
 
-        <div className="container list-container">
-          {rows && rows.map((category, index) => {
-            const { code, name, statusName, created, createdByName, updated, updatedByName } = category
-            return (
-              <TableItem
-                key={index}
-                item={category}
-                itemHeader={name}
-                handleEdit={handleEdit}
-                handleDelete={handleDelete}
-              >
-                <TableItemField label="Código" value={code} />
-                <TableFooter
-                  statusName={statusName}
-                  created={created}
-                  createdByName={createdByName}
-                  updated={updated}
-                  updatedByName={updatedByName}
-                />
-              </TableItem>
-            )
-          })
-          }
-        </div>
+        <List
+          rows={rows}
+          columns={columns}
+          handleEdit={handleEdit}
+          handleDelete={handleDelete}
+        />
+
         <Confirm
-          title="Eliminando categoria"
+          title="Eliminando categoría"
           message={
             <span>
-              Confirma eliminación de categoria <strong>{category.name}</strong>
+              ¿Confirma la eliminación de categoría <strong>{category.name}</strong>
               ?
             </span>
           }
