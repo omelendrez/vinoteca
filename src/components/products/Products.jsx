@@ -3,12 +3,11 @@ import { Redirect } from "react-router-dom"
 import Notification from "../common/Notification"
 import Loading from "../common/Loading"
 import Container from "../common/Container"
-import TableItem from "../common/TableItem"
-import TableItemField from "../common/TableItemField"
-import TableFooter from "../common/TableFooter"
+import List from '../common/List'
 import Confirm from "../common/Confirm"
 import { getProducts, deleteProduct } from "../../services/products"
 import { formatAmount, formatDate } from "../../helpers"
+import { columns } from './list.json'
 
 const Products = () => {
   const [products, setProducts] = useState({ rows: [] })
@@ -80,46 +79,12 @@ const Products = () => {
 
         <Notification message={alert.message} className="mx-1 my-1" clear={clearAlert} type={alert.type} />
 
-        <div className="container list-container">
-
-          {rows && rows.map((product, index) => {
-            const { categoryName, name, code, description, lastPurchaseOrder, lastPurchaseDate, lastPurchasePrice, lastSaleDate, lastSalePrice, minimum, quantity, price, statusName, created, createdByName, updated, updatedByName } = product
-            return (
-              <TableItem
-                key={index}
-                item={product}
-                itemHeader={name}
-                handleEdit={handleEdit}
-                handleDelete={handleDelete}
-              >
-                <Notification message={quantity <= minimum && quantity > 0 ? 'Producto con bajo stock' : ''} type="is-warning" clear={() => { }} />
-                <Notification message={quantity === 0 ? 'Producto sin stock' : ''} type="is-danger" clear={() => { }} />
-
-                <TableItemField label="Descripción" value={description} />
-                <TableItemField label="Código" value={code} />
-                <TableItemField label="Categoría" value={categoryName} />
-                <TableItemField label="Stock" value={quantity} />
-                <TableItemField label="Cantidad mínima" value={minimum} />
-                <TableItemField label="Precio" value={formatAmount(price)} />
-                <hr className="dropdown-divider" />
-                <TableItemField label="Última orden de compra" value={lastPurchaseOrder} />
-                <TableItemField label="Fecha" value={formatDate(lastPurchaseDate)} />
-                <TableItemField label="Precio de compra" value={`$ ${lastPurchasePrice.toFixed(2)}`} />
-                <hr className="dropdown-divider" />
-                <TableItemField label="Última venta" value={lastSaleDate} />
-                <TableItemField label="Precio de venta" value={`$ ${lastSalePrice.toFixed(2)}`} />
-                <TableFooter
-                  statusName={statusName}
-                  created={created}
-                  createdByName={createdByName}
-                  updated={updated}
-                  updatedByName={updatedByName}
-                />
-              </TableItem>
-            )
-          })
-          }
-        </div>
+        <List
+          rows={rows}
+          columns={columns}
+          handleEdit={handleEdit}
+          handleDelete={handleDelete}
+        />
 
         <Confirm
           title="Eliminando producto"

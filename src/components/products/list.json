@@ -1,0 +1,62 @@
+{
+  "columns": [
+    {
+      "columnId": "code",
+      "isHeader": true
+    },
+    {
+      "columnId": "name",
+      "isHeader": true
+    },
+    {
+      "columnId": "description",
+      "isHeader": true
+    },
+    {
+      "title": "Categoría",
+      "columnId": "categoryName"
+    },
+    {
+      "title": "Stock",
+      "columnId": "quantity"
+    },
+    {
+      "title": "Cant. mìnima",
+      "columnId": "minimum"
+    },
+    {
+      "title": "Precio",
+      "columnId": "price",
+      "isAmount": true
+    },
+    {
+      "className": "dropdown-divider"
+    },
+    {
+      "title": "Última orden",
+      "columnId": "lastPurchaseOrder"
+    },
+    {
+      "title": "Fecha",
+      "columnId": "lastPurchaseDate",
+      "isDate": true
+    },
+    {
+      "title": "Precio",
+      "columnId": "lastPurchasePrice",
+      "isAmount": true
+    },
+    {
+      "className": "dropdown-divider"
+    },
+    {
+      "title": "Última venta",
+      "columnId": "lastSaleOrder"
+    },
+    {
+      "title": "Fecha",
+      "columnId": "lastSaleeDate",
+      "isDate": true
+    }
+  ]
+}

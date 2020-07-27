@@ -8,10 +8,10 @@ const ListItemField = ({ column, value }) => {
   const classElement = column.className || ''
   let valueElement = value
   if (column.isDate) {
-    valueElement = formatDate(valueElement)
+    valueElement = valueElement ? formatDate(valueElement) : ''
   }
   if (column.isAmount) {
-    valueElement = formatAmount(valueElement)
+    valueElement = valueElement ? formatAmount(valueElement) : ''
   }
   return (
     <div className={classElement}>{iconElement}{labelElement}{valueElement}</div>
