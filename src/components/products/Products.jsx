@@ -6,7 +6,6 @@ import Container from "../common/Container"
 import List from '../common/List'
 import Confirm from "../common/Confirm"
 import { getProducts, deleteProduct } from "../../services/products"
-import { formatAmount, formatDate } from "../../helpers"
 import { columns } from './list.json'
 
 const Products = () => {
