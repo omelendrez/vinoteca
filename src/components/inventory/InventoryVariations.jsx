@@ -3,10 +3,9 @@ import { Redirect } from "react-router-dom"
 import Notification from "../common/Notification"
 import Loading from "../common/Loading"
 import Container from "../common/Container"
-import TableItem from "../common/TableItem"
-import TableItemField from "../common/TableItemField"
-import TableFooter from "../common/TableFooter"
+import List from '../common/List'
 import { getInventoryVariations } from "../../services/inventory_variations"
+import { columns } from './list.json'
 
 const InventoryVariations = () => {
   const [inventoryVariations, setInventoryVariations] = useState({ rows: [] })
@@ -52,28 +51,10 @@ const InventoryVariations = () => {
 
         <Notification message={alert.message} className="mx-1 my-1" clear={clearAlert} type={alert.type} />
 
-        <div className="container list-container">
-
-          {rows && rows.map((inventoryVariation, index) => {
-            const { storeName, productCode, productName, quantity, variationType, reasonName, comments, created, createdByName } = inventoryVariation
-            return (
-              <TableItem
-                key={index}
-                itemHeader={`${variationType === 1 ? 'Incremento de' : 'Reducción de'} stock por ${reasonName}`}
-              >
-                <TableItemField icon={`has-text-white fa-lg fas fa-arrow-${variationType === 1 ? 'up has-background-success ' : 'down has-background-danger '} `} value="" />
-                <TableItemField label="Producto" value={`${productCode} ${productName}`} />
-                <TableItemField label="Cantidad" value={quantity * variationType} />
-                <TableItemField label="Depósito" value={storeName} />
-                {comments && <TableItemField label="Observaciones" value={comments} />}
-
-                <TableFooter created={created} createdByName={createdByName} />
-
-              </TableItem>
-            )
-          })
-          }
-        </div>
+        <List
+          rows={rows}
+          columns={columns}
+        />
 
         {isLoading && <Loading />}
 
