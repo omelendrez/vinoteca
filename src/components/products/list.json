@@ -9,8 +9,8 @@
       "isHeader": true
     },
     {
-      "columnId": "description",
-      "isHeader": true
+      "title": "Descripción",
+      "columnId": "description"
     },
     {
       "title": "Categoría",
