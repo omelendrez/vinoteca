@@ -25,9 +25,6 @@ const Search = ({ title, current, items, selectItem, icon }) => {
     // Para eso creamos filteredItems que es la verdadera lista a mostrar
     const filteredItems = items.map(item => {
       item.isActive = item.id === current // Si OrderDetail pasó un id de item es porque estamos editando vamos a marcar el item con ese id como activo
-      if (item.description) { // Si el item tiene descripción (product) se la agregamos al nombre para una búsqueda más completa
-        item.fullName = item.name + ' ' + item.description // Esa combinación la llamamos fullName y la mostramos abajo sólo si existe
-      }
       return item
     })
       .filter(item => {

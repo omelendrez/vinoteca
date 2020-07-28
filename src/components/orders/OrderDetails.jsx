@@ -11,6 +11,7 @@ import Message from '../common/Message'
 import { addDetail, saveDetail, deleteDetail } from '../../services/order_details'
 import { getOrder, sendOrder, receiveOrder, cancelOrder } from '../../services/orders'
 import { fields } from './detailForm.json'
+import { fields as receiveFields } from './receiveForm.json'
 import { cleanData } from '../../helpers'
 
 const OrderDetails = (props) => {
@@ -266,7 +267,7 @@ const OrderDetails = (props) => {
           handleSave={form => handleOk(form)}
           currentForm={form}
           handleCancel={closeForm}
-          fields={fields}
+          fields={order.statusId === 2 ? receiveFields : fields}
           error={formAlert}
         />
 

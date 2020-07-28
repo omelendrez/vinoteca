@@ -9,7 +9,7 @@ import { getSuppliers } from '../../services/suppliers'
 import { getCompanies } from '../../services/companies'
 import { getProfiles } from '../../services/profiles'
 
-const FormFieldSelect = ({ label, icon, fieldId, options, current, selectItem }) => {
+const FormFieldSelect = ({ label, icon, fieldId, options, current, selectItem, readOnly }) => {
   const [showSearch, setShowSearch] = useState(false)
   const [optionsList, setOptionsList] = useState([])
   const [fieldValue, setFieldValue] = useState('')
@@ -61,8 +61,11 @@ const FormFieldSelect = ({ label, icon, fieldId, options, current, selectItem })
   useEffect(() => {
     if (optionsList) {
       const name = optionsList.find(option => current === option.id)
-      if (name)
+      if (name) {
         setFieldValue(name.name)
+      } else {
+        setFieldValue('')
+      }
     }
   }, [current, optionsList])
 
@@ -77,7 +80,9 @@ const FormFieldSelect = ({ label, icon, fieldId, options, current, selectItem })
 
   const handleClick = e => {
     e.preventDefault()
-    setShowSearch(true)
+    if (!readOnly) {
+      setShowSearch(true)
+    }
   }
 
   return (
@@ -86,7 +91,7 @@ const FormFieldSelect = ({ label, icon, fieldId, options, current, selectItem })
         <label className="label">{label}</label>
         <div className={`control ${icon ? 'has-icons-left has-icons-right' : ''}`}>
           {icon ? <span className="icon is-small is-left"><i className={icon}></i></span> : ''}
-          <input type="text" className="input" defaultValue={fieldValue} onClick={e => handleClick(e)}></input>
+          <input type="text" className="input" readOnly={readOnly} defaultValue={fieldValue} onClick={e => handleClick(e)}></input>
         </div>
       </div>
       <Modal isActive={showSearch}>

@@ -17,6 +17,7 @@ const OrderForm = () => {
   const form = useState(orderDefault)
 
   const handleSave = form => {
+    console.log(form)
     if (!form.date || !form.supplierId) {
       return setAlert({ message: 'Complete todos los datos', type: 'is-warning' })
     }

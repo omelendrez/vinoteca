@@ -1,0 +1,31 @@
+{
+  "fields": [
+    {
+      "label": "Producto",
+      "type": "select",
+      "fieldId": "productId",
+      "options": "products",
+      "icon": "fas fa-wine-bottle",
+      "readOnly": true
+    },
+    {
+      "label": "Cantidad requerida",
+      "type": "text",
+      "fieldId": "qtyRequested",
+      "icon": "fas fa-cart-plus",
+      "readOnly": true
+    },
+    {
+      "label": "Cantidad recibida",
+      "type": "text",
+      "fieldId": "qtyReceived",
+      "icon": "fas fa-cart-plus"
+    },
+    {
+      "label": "Precio unitario",
+      "type": "text",
+      "fieldId": "price",
+      "icon": "fas fa-dollar-sign"
+    }
+  ]
+}
