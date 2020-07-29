@@ -8,6 +8,7 @@ const List = ({ rows, columns, handleEdit, handleDelete }) => {
     <div className="container list-container">
       {rows.length > 0 && rows.map((row, index) => {
         const header = []
+        const status = row.statusId
         columns.map(column => column.isHeader ? header.push(row[column.columnId]) : '')
         return (
           <ListItem
@@ -15,7 +16,7 @@ const List = ({ rows, columns, handleEdit, handleDelete }) => {
             item={row}
             itemHeader={header.join(' - ')}
             handleEdit={handleEdit}
-            handleDelete={handleDelete}
+            handleDelete={status === 1 ? handleDelete : null}
           >
             {
               columns.filter(column => !column.isHeader).map((column, index) => <ListItemField key={index} column={column} value={row[column.columnId]} />)
