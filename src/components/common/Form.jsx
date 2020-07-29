@@ -15,7 +15,7 @@ const Form = ({ formHeader, fields, currentForm, handleSave, handleCancel, error
       form['id'] = currentForm.id
     }
     setForm(currentForm)
-  }, [currentForm])
+  }, [currentForm, fields])
 
   useEffect(() => {
     setFormAlert(error)
