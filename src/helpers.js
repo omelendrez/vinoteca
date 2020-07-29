@@ -7,6 +7,7 @@ const fieldsToRemove = [
   'companyName',
   'profileName',
   'productName',
+  'productDescription',
   'total',
   'categoryName',
   'storeName',

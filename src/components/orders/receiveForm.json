@@ -17,13 +17,13 @@
     },
     {
       "label": "Cantidad recibida",
-      "type": "text",
+      "type": "number",
       "fieldId": "qtyReceived",
       "icon": "fas fa-cart-plus"
     },
     {
       "label": "Precio unitario",
-      "type": "text",
+      "type": "number",
       "fieldId": "price",
       "icon": "fas fa-dollar-sign"
     }
