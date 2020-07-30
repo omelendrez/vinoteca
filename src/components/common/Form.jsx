@@ -35,7 +35,12 @@ const Form = ({ formHeader, fields, currentForm, handleSave, handleCancel, error
 
   const handleSubmit = e => {
     e.preventDefault()
-    handleSave(form)
+    const newForm = {}
+    fields.map(field => newForm[field.fieldId] = form[field.fieldId] || '')
+    if (currentForm.id) {
+      newForm['id'] = form.id
+    }
+    handleSave(newForm)
     setFormAlert({})
   }
 

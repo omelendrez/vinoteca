@@ -21,7 +21,9 @@ const OrderDetails = (props) => {
   const detailsDefault = {
     orderId: props.match.params.id,
     productId: '',
-    qtyRequested: ''
+    qtyRequested: '',
+    qtyReceived: '',
+    price: ''
   }
   const [form, setForm] = useState(detailsDefault)
   const [order, setOrder] = useState({})
@@ -88,7 +90,7 @@ const OrderDetails = (props) => {
 
   const handleOk = item => {
     item.orderId = order.id
-    if (form.id) {
+    if (item.id) {
       save(item)
     } else {
       add(item)
@@ -112,16 +114,19 @@ const OrderDetails = (props) => {
   const save = form => {
     saveDetail(cleanData(form))
       .then(detail => {
-        setForm(detailsDefault)
+        let totalOrder = 0
         const newOrderDetails = order.orderDetails.map(item => {
           if (item.id === detail.id) {
             item = detail
           }
+          totalOrder += item.total
           return item
         })
         order.orderDetails = newOrderDetails
+        order.totalOrder = totalOrder
         setOrder(order)
         setShowForm(false)
+        setForm(detailsDefault)
       })
       .catch(error => setFormAlert({ message: error.message, type: 'is-danger' }))
   }
