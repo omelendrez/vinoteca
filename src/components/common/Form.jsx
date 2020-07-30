@@ -7,7 +7,6 @@ import Notification from '../common/Notification'
 const Form = ({ formHeader, fields, currentForm, handleSave, handleCancel, error }) => {
   const [form, setForm] = useState(currentForm || {})
   const [formAlert, setFormAlert] = useState({})
-  console.log(form)
 
   useEffect(() => {
     const form = {}
