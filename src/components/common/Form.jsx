@@ -35,18 +35,19 @@ const Form = ({ formHeader, fields, currentForm, handleSave, handleCancel, error
   }
 
   const validate = () => {
-    let result = true
+    let isOk = true
     let errors = {}
     fields.map(field => {
+      const fieldValue = form[field.fieldId]
       if (field.isRequired) {
-        if (!form[field.fieldId]) {
-          result = false
-          errors = { ...errors, [field.fieldId]: ['is-danger', 'Este campo es obligatorio'] }
+        if (!fieldValue) {
+          isOk = false
+          errors = { ...errors, [field.fieldId]: ['is-danger', `${field.label} es un campo obligatorio`] }
         }
       }
     })
     setFormErrors(errors)
-    return result
+    return isOk
   }
 
   const handleSubmit = e => {
