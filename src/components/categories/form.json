@@ -10,7 +10,8 @@
     {
       "label": "Nombre",
       "type": "text",
-      "fieldId": "name"
+      "fieldId": "name",
+      "isRequired": true
     }
   ]
 }

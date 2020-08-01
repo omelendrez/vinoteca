@@ -9,10 +9,17 @@ import { getSuppliers } from '../../services/suppliers'
 import { getCompanies } from '../../services/companies'
 import { getProfiles } from '../../services/profiles'
 
-const FormFieldSelect = ({ label, icon, fieldId, options, current, selectItem, readOnly }) => {
+const FormFieldSelect = ({ label, icon, fieldId, options, current, selectItem, readOnly, error }) => {
   const [showSearch, setShowSearch] = useState(false)
   const [optionsList, setOptionsList] = useState([])
   const [fieldValue, setFieldValue] = useState('')
+  let message = ''
+  let color = ''
+
+  if (error) {
+    color = error[0]
+    message = error[1]
+  }
 
   useEffect(() => {
     switch (options) {
@@ -91,8 +98,10 @@ const FormFieldSelect = ({ label, icon, fieldId, options, current, selectItem, r
         <label className="label">{label}</label>
         <div className={`control ${icon ? 'has-icons-left has-icons-right' : ''}`}>
           {icon ? <span className="icon is-small is-left"><i className={icon}></i></span> : ''}
-          <input type="text" className="input" readOnly={readOnly} defaultValue={fieldValue} onClick={e => handleClick(e)}></input>
+          <input type="text" className={`input ${color}`} readOnly={readOnly} defaultValue={fieldValue} onClick={e => handleClick(e)}></input>
         </div>
+        <p className={`help ${color}`} >{message}</p>
+
       </div>
       <Modal isActive={showSearch}>
         <Search title={label} current={current} icon={icon || "fas fa-wine-bottle"} items={optionsList} selectItem={item => handleSelect(item)} />

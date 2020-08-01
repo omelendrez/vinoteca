@@ -7,6 +7,7 @@ import Notification from '../common/Notification'
 const Form = ({ formHeader, fields, currentForm, handleSave, handleCancel, error }) => {
   const [form, setForm] = useState(currentForm || {})
   const [formAlert, setFormAlert] = useState({})
+  const [formErrors, setFormErrors] = useState({})
 
   useEffect(() => {
     const form = {}
@@ -33,15 +34,36 @@ const Form = ({ formHeader, fields, currentForm, handleSave, handleCancel, error
     setForm({ ...form, [e.target.id]: e.target.value })
   }
 
+  const validate = () => {
+    let result = true
+    let errors = {}
+    fields.map(field => {
+      if (field.isRequired) {
+        if (!form[field.fieldId]) {
+          console.log(field.fieldId)
+          result = false
+          errors = { ...errors, [field.fieldId]: ['is-danger', 'Este campo es obligatorio'] }
+        }
+      }
+    })
+    setFormErrors(errors)
+    return result
+  }
+
+  console.log(formErrors)
+
   const handleSubmit = e => {
     e.preventDefault()
-    const newForm = {}
-    fields.map(field => newForm[field.fieldId] = form[field.fieldId] || '')
-    if (currentForm.id) {
-      newForm['id'] = form.id
+
+    if (validate()) {
+      const newForm = {}
+      fields.map(field => newForm[field.fieldId] = form[field.fieldId] || '')
+      if (currentForm.id) {
+        newForm['id'] = form.id
+      }
+      handleSave(newForm)
+      setFormAlert({})
     }
-    handleSave(newForm)
-    setFormAlert({})
   }
 
   return (
@@ -68,6 +90,7 @@ const Form = ({ formHeader, fields, currentForm, handleSave, handleCancel, error
                   selectItem={selectItem}
                   hasSearch={field.hasSearch}
                   icon={field.icon}
+                  error={formErrors[field.fieldId]}
                 />
               case 'textArea':
                 return <FormTextArea
@@ -78,6 +101,7 @@ const Form = ({ formHeader, fields, currentForm, handleSave, handleCancel, error
                   readOnly={field.readOnly}
                   handleChange={handleChange}
                   icon={field.icon}
+                  error={formErrors[field.fieldId]}
                 />
               default:
                 return <FormField
@@ -89,6 +113,7 @@ const Form = ({ formHeader, fields, currentForm, handleSave, handleCancel, error
                   readOnly={field.readOnly}
                   handleChange={handleChange}
                   icon={field.icon}
+                  error={formErrors[field.fieldId]}
                 />
             }
           })}
