@@ -40,7 +40,6 @@ const Form = ({ formHeader, fields, currentForm, handleSave, handleCancel, error
     fields.map(field => {
       if (field.isRequired) {
         if (!form[field.fieldId]) {
-          console.log(field.fieldId)
           result = false
           errors = { ...errors, [field.fieldId]: ['is-danger', 'Este campo es obligatorio'] }
         }
@@ -49,8 +48,6 @@ const Form = ({ formHeader, fields, currentForm, handleSave, handleCancel, error
     setFormErrors(errors)
     return result
   }
-
-  console.log(formErrors)
 
   const handleSubmit = e => {
     e.preventDefault()
