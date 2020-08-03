@@ -4,7 +4,11 @@
       "label": "Nombre",
       "type": "text",
       "fieldId": "name",
-      "icon": "fas fa-warehouse"
+      "icon": "fas fa-warehouse",
+      "isLimited": [
+        6,
+        30
+      ]
     },
     {
       "label": "Contacto",
@@ -22,13 +26,15 @@
       "label": "Teléfono",
       "type": "text",
       "fieldId": "phone",
-      "icon": "fas fa-phone"
+      "icon": "fas fa-phone",
+      "isPhone": true
     },
     {
       "label": "E-mail",
       "type": "text",
       "fieldId": "email",
-      "icon": "fas fa-at"
+      "icon": "fas fa-at",
+      "isEmail": true
     }
   ]
 }
