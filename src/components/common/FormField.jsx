@@ -25,7 +25,7 @@ const FormField = ({ label, type, fieldId, fieldValue, handleChange, required, i
         />
         {icon ? iconElement : ''}
       </div>
-      <p className={`help ${color}`} >{message}</p>
+      <p className={`help ${color}`} >{message}&nbsp;</p>
     </div>
 
   )

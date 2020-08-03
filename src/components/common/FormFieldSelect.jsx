@@ -100,7 +100,7 @@ const FormFieldSelect = ({ label, icon, fieldId, options, current, selectItem, r
           {icon ? <span className="icon is-small is-left"><i className={icon}></i></span> : ''}
           <input type="text" className={`input ${color}`} readOnly={readOnly} defaultValue={fieldValue} onClick={e => handleClick(e)}></input>
         </div>
-        <p className={`help ${color}`} >{message}</p>
+        <p className={`help ${color}`} >{message}&nbsp;</p>
 
       </div>
       <Modal isActive={showSearch}>
