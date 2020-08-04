@@ -14,7 +14,10 @@
       "type": "text",
       "fieldId": "contact",
       "icon": "fas fa-user",
-      "isRequired": true
+      "isLimited": [
+        5,
+        30
+      ]
     },
     {
       "label": "Dirección",
