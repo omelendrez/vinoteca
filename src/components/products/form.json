@@ -4,7 +4,8 @@
       "label": "Categoría",
       "type": "select",
       "fieldId": "categoryId",
-      "options": "categories"
+      "options": "categories",
+      "isRequired": true
     },
     {
       "label": "Codigo",
@@ -16,7 +17,11 @@
     {
       "label": "Nombre",
       "type": "text",
-      "fieldId": "name"
+      "fieldId": "name",
+      "isLimited": [
+        5,
+        30
+      ]
     },
     {
       "label": "Descripción",

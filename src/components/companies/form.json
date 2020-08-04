@@ -3,25 +3,42 @@
     {
       "label": "Nombre",
       "type": "text",
-      "fieldId": "name"
+      "fieldId": "name",
+      "isLimited": [
+        5,
+        30
+      ]
     },
     {
       "label": "Contacto",
       "type": "text",
       "fieldId": "contact",
-      "icon": "fas fa-user"
+      "icon": "fas fa-user",
+      "isRequired": true
     },
     {
       "label": "Dirección",
       "type": "text",
       "fieldId": "address",
-      "icon": "fas fa-map-marker-alt"
+      "icon": "fas fa-map-marker-alt",
+      "isLimited": [
+        5,
+        30
+      ]
+    },
+    {
+      "label": "Teléfono",
+      "type": "number",
+      "fieldId": "phone",
+      "icon": "fas fa-phone",
+      "isPhone": true
     },
     {
       "label": "Email",
       "type": "text",
       "fieldId": "email",
-      "icon": "fas fa-at"
+      "icon": "fas fa-at",
+      "isRequired": true
     }
   ]
 }
