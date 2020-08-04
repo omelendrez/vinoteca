@@ -73,7 +73,14 @@ const Form = ({ formHeader, fields, currentForm, handleSave, handleCancel, error
         }
       }
 
-      if (field.isRange) {
+      if (field.onlyText) {
+        if (!/^[a-zA-Z ]*$/.test(fieldValue)) {
+          isOk = false
+          errors = { ...errors, [field.fieldId]: ['is-danger', `${field.label} no es válido, sólo se aceptan letras y espacios`] }
+        }
+      }
+
+     if (field.isRange) {
         const [min, max] = field.isRange
         if (fieldValue < min) {
           isOk = false

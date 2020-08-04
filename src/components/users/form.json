@@ -3,31 +3,42 @@
     {
       "label": "Nombre",
       "type": "text",
-      "fieldId": "name"
+      "fieldId": "name",
+      "isLimited": [
+        5,
+        10
+      ]
     },
     {
       "label": "Email",
       "type": "text",
-      "fieldId": "email"
+      "fieldId": "email",
+      "isEmail": true
     },
     {
       "label": "Password",
       "type": "text",
-      "fieldId": "password"
+      "fieldId": "password",
+      "isLimited": [
+        5,
+        20
+      ]
     },
     {
       "label": "Empresa",
       "type": "select",
       "fieldId": "companyId",
       "options": "companies",
-      "icon": "fa fa-building mr-2"
+      "icon": "fa fa-building mr-2",
+      "isRequired": true
     },
     {
       "label": "Perfil",
       "type": "select",
       "fieldId": "profileId",
       "options": "profiles",
-      "icon": "fa fa-users mr-2"
+      "icon": "fa fa-users mr-2",
+      "isRequired": true
     }
   ]
 }
