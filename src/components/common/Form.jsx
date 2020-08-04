@@ -73,6 +73,13 @@ const Form = ({ formHeader, fields, currentForm, handleSave, handleCancel, error
         }
       }
 
+      if (field.onlyText) {
+        if (!/^[a-zA-Z ]*$/.test(fieldValue)) {
+          isOk = false
+          errors = { ...errors, [field.fieldId]: ['is-danger', `${field.label} no es válido, sólo se aceptan letras y espacios`] }
+        }
+      }
+
     })
     setFormErrors(errors)
     return isOk
