@@ -47,7 +47,7 @@ const OrderForm = () => {
       background="is-warning"
     >
       <Form
-        formHeader="Nueva órden de compra"
+        formHeader="Nueva orden de compra"
         handleCancel={handleCancel}
         handleSave={form => handleSave(form)}
         fields={fields}
