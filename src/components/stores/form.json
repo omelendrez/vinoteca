@@ -6,7 +6,7 @@
       "fieldId": "name",
       "icon": "fas fa-warehouse",
       "isLimited": [
-        6,
+        5,
         30
       ]
     },
@@ -14,13 +14,21 @@
       "label": "Contacto",
       "type": "text",
       "fieldId": "contact",
-      "icon": "fas fa-user"
+      "icon": "fas fa-user",
+      "isLimited": [
+        5,
+        30
+      ]
     },
     {
       "label": "Dirección",
       "type": "text",
       "fieldId": "address",
-      "icon": "fas fa-map-marker-alt"
+      "icon": "fas fa-map-marker-alt",
+      "isLimited": [
+        5,
+        30
+      ]
     },
     {
       "label": "Teléfono",

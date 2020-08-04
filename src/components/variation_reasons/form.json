@@ -10,7 +10,11 @@
     {
       "label": "Razón",
       "type": "text",
-      "fieldId": "name"
+      "fieldId": "name",
+      "isLimited": [
+        5,
+        30
+      ]
     }
   ]
 }
