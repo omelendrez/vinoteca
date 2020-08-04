@@ -5,13 +5,18 @@
       "type": "select",
       "fieldId": "productId",
       "options": "products",
-      "icon": "fas fa-wine-bottle"
+      "icon": "fas fa-wine-bottle",
+      "isRequired": true
     },
     {
       "label": "Cantidad",
-      "type": "text",
+      "type": "number",
       "fieldId": "qtyRequested",
-      "icon": "fas fa-cart-plus"
+      "icon": "fas fa-cart-plus",
+      "isRange": [
+        1,
+        32767
+      ]
     }
   ]
 }

@@ -80,6 +80,18 @@ const Form = ({ formHeader, fields, currentForm, handleSave, handleCancel, error
         }
       }
 
+     if (field.isRange) {
+        const [min, max] = field.isRange
+        if (fieldValue < min) {
+          isOk = false
+          errors = { ...errors, [field.fieldId]: ['is-danger', `Campo ${field.label} tiene que ser al menos ${min}`] }
+        }
+        if (max && fieldValue > max) {
+          isOk = false
+          errors = { ...errors, [field.fieldId]: ['is-danger', `Campo ${field.label} no puede ser más de ${max}`] }
+        }
+      }
+
     })
     setFormErrors(errors)
     return isOk
