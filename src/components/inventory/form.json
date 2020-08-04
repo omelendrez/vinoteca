@@ -4,29 +4,33 @@
       "label": "Depósito",
       "type": "select",
       "fieldId": "storeId",
-      "options": "stores"
+      "options": "stores",
+      "isRequired": true
     },
     {
       "label": "Producto",
       "type": "select",
       "fieldId": "productId",
-      "options": "products"
+      "options": "products",
+      "isRequired": true
     },
     {
       "label": "Razón",
       "type": "select",
       "fieldId": "variationReasonId",
-      "options": "variationReasons"
+      "options": "variationReasons",
+      "isRequired": true
     },
     {
       "label": "Tipo de variación",
       "type": "select",
       "fieldId": "variationType",
-      "options": "variationTypes"
+      "options": "variationTypes",
+      "isRequired": true
     },
     {
       "label": "Cantidad",
-      "type": "text",
+      "type": "number",
       "fieldId": "quantity"
     },
     {

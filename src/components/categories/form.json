@@ -11,7 +11,10 @@
       "label": "Nombre",
       "type": "text",
       "fieldId": "name",
-      "isRequired": true
+      "isLimited": [
+        5,
+        30
+      ]
     }
   ]
 }
