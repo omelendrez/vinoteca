@@ -80,7 +80,7 @@ const Form = ({ formHeader, fields, currentForm, handleSave, handleCancel, error
         }
       }
 
-     if (field.isRange) {
+      if (field.isRange) {
         const [min, max] = field.isRange
         if (fieldValue < min) {
           isOk = false
@@ -92,7 +92,43 @@ const Form = ({ formHeader, fields, currentForm, handleSave, handleCancel, error
         }
       }
 
+      if (field.compare) {
+        const [fld, sign] = field.compare
+        const secFldValue = form[fld]
+        switch (sign) {
+          case '<=':
+            if (!(fieldValue <= secFldValue)) {
+              isOk = false
+              errors = { ...errors, [field.fieldId]: ['is-danger', `${field.label} no puede ser mayor a ${secFldValue}`] }
+            }
+            break
+          case '>=':
+            if (!(fieldValue >= secFldValue)) {
+              isOk = false
+              errors = { ...errors, [field.fieldId]: ['is-danger', `${field.label} no puede ser menor a ${secFldValue}`] }
+            }
+            break
+          case '>':
+            if (!(fieldValue > secFldValue)) {
+              isOk = false
+              errors = { ...errors, [field.fieldId]: ['is-danger', `${field.label} debe ser mayor a ${secFldValue}`] }
+            }
+            break
+          case '<':
+            if (!(fieldValue < secFldValue)) {
+              isOk = false
+              errors = { ...errors, [field.fieldId]: ['is-danger', `${field.label} debe ser menor a ${secFldValue}`] }
+            }
+            break
+          default:
+            if (!(fieldValue = secFldValue)) {
+              isOk = false
+              errors = { ...errors, [field.fieldId]: ['is-danger', `${field.label} debe ser ${secFldValue}`] }
+            }
+        }
+      }
     })
+
     setFormErrors(errors)
     return isOk
   }

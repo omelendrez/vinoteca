@@ -19,13 +19,25 @@
       "label": "Cantidad recibida",
       "type": "number",
       "fieldId": "qtyReceived",
-      "icon": "fas fa-cart-plus"
+      "icon": "fas fa-cart-plus",
+      "isRange": [
+        1,
+        32767
+      ],
+      "compare": [
+        "qtyRequested",
+        "<="
+      ]
     },
     {
       "label": "Precio unitario",
       "type": "number",
       "fieldId": "price",
-      "icon": "fas fa-dollar-sign"
+      "icon": "fas fa-dollar-sign",
+      "isRange": [
+        1,
+        32767
+      ]
     }
   ]
 }
