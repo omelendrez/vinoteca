@@ -37,7 +37,6 @@ const Form = ({ formHeader, fields, currentForm, handleSave, handleCancel, error
 
   const validate = () => {
     const [errors, isOk] = Validator(form, fields)
-    console.log(errors)
     setFormErrors(errors)
     return isOk
   }

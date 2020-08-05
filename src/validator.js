@@ -3,7 +3,7 @@ export default (form, fields) => {
   let isOk = true
   let errors = {}
   fields.map(field => {
-    const fieldValue = form[field.fieldId]
+    let fieldValue = form[field.fieldId]
 
     if (field.isRequired) {
       if (!fieldValue) {
@@ -92,6 +92,7 @@ export default (form, fields) => {
           }
       }
     }
+    return field
   })
 
   return [errors, isOk]
