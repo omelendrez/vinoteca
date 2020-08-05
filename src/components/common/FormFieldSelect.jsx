@@ -98,7 +98,7 @@ const FormFieldSelect = ({ label, icon, fieldId, options, current, selectItem, r
         <label className="label">{label}</label>
         <div className={`control ${icon ? 'has-icons-left has-icons-right' : ''}`}>
           {icon ? <span className="icon is-small is-left"><i className={icon}></i></span> : ''}
-          <input type="text" className={`input ${color}`} readOnly={readOnly} defaultValue={fieldValue} onClick={e => handleClick(e)}></input>
+          <input type="text" className={`input ${color}`} readOnly={readOnly} defaultValue={fieldValue} readOnly onClick={e => handleClick(e)}></input>
         </div>
         <p className={`help ${color}`} >{message}&nbsp;</p>
 
