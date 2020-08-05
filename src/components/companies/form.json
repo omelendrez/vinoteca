@@ -14,6 +14,7 @@
       "type": "text",
       "fieldId": "contact",
       "icon": "fas fa-user",
+      "onlyText": true,
       "isLimited": [
         5,
         30
@@ -31,7 +32,7 @@
     },
     {
       "label": "Teléfono",
-      "type": "number",
+      "type": "text",
       "fieldId": "phone",
       "icon": "fas fa-phone",
       "isPhone": true

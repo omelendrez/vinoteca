@@ -31,12 +31,20 @@
     {
       "label": "Mínima",
       "type": "number",
-      "fieldId": "minimum"
+      "fieldId": "minimum",
+      "isRange": [
+        0,
+        32767
+      ]
     },
     {
       "label": "Precio",
       "type": "number",
-      "fieldId": "price"
+      "fieldId": "price",
+      "isRange": [
+        0,
+        32767
+      ]
     }
   ]
 }

@@ -15,6 +15,7 @@
       "type": "text",
       "fieldId": "contact",
       "icon": "fas fa-user",
+      "onlyText": true,
       "isLimited": [
         5,
         60
