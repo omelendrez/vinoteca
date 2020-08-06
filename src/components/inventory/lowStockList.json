@@ -1,0 +1,20 @@
+{
+  "columns": [
+    {
+      "columnId": "name",
+      "isHeader": true
+    },
+    {
+      "title": "Categoría",
+      "columnId": "categoryName"
+    },
+    {
+      "title": "Mínimo",
+      "columnId": "minimum"
+    },
+    {
+      "title": "Cantidad",
+      "columnId": "quantity"
+    }
+  ]
+}
