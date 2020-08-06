@@ -1,0 +1,24 @@
+{
+  "columns": [
+    {
+      "columnId": "productName",
+      "isHeader": true
+    },
+    {
+      "columnId": "storeName",
+      "icon": "fas fa-warehouse mr-2"
+    },
+    {
+      "title": "Cantidad",
+      "columnId": "quantity"
+    },
+    {
+      "title": "Razón",
+      "columnId": "reasonName"
+    },
+    {
+      "title": "Comentarios",
+      "columnId": "comments"
+    }
+  ]
+}
