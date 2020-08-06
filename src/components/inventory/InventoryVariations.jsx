@@ -5,7 +5,7 @@ import Loading from "../common/Loading"
 import Container from "../common/Container"
 import List from '../common/List'
 import { getInventoryVariations } from "../../services/inventory_variations"
-import { columns } from './list.json'
+import { columns } from './variationList.json'
 
 const InventoryVariations = () => {
   const [inventoryVariations, setInventoryVariations] = useState({ rows: [] })
@@ -39,8 +39,8 @@ const InventoryVariations = () => {
     <>
       {redirect && <Redirect to={redirect} />}
       <Container
-        title="Productos"
-        subTitle="Admnistración de productos"
+        title="Correcciones de inventario"
+        subTitle="Administración de inventario"
         width="is-6"
         background="is-info"
       >
