@@ -18,7 +18,8 @@
     },
     {
       "title": "Comentarios",
-      "columnId": "comments"
+      "columnId": "comments",
+      "hideEmpty": true
     }
   ]
 }

@@ -10,9 +10,11 @@ import { getCompanies } from '../../services/companies'
 import { getProfiles } from '../../services/profiles'
 
 const FormFieldSelect = ({ label, icon, fieldId, options, current, selectItem, readOnly, error }) => {
+
   const [showSearch, setShowSearch] = useState(false)
   const [optionsList, setOptionsList] = useState([])
   const [fieldValue, setFieldValue] = useState('')
+
   let message = ''
   let color = ''
 
@@ -109,4 +111,5 @@ const FormFieldSelect = ({ label, icon, fieldId, options, current, selectItem, r
     </>
   )
 }
+
 export default FormFieldSelect

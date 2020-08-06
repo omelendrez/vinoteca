@@ -2,7 +2,7 @@ import React from 'react'
 import { formatAmount, formatDate } from '../../helpers'
 
 const ListItemField = ({ column, value }) => {
-  if (!column || !value) return null
+  if (!column || (column.hideEmpty && !value)) return null
   const labelElement = column.title ? <span className="has-text-weight-medium">{column.title}: </span> : ''
   const iconElement = <i className={column.icon}></i>
   const classElement = column.className || ''
