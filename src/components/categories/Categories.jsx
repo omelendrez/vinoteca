@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom'
 import Notification from "../common/Notification"
 import Loading from "../common/Loading"
 import Container from "../common/Container"
+import Button from "../common/Button"
 import List from "../common/List"
 import Confirm from "../common/Confirm"
 import { getCategories, deleteCategory } from "../../services/categories"
@@ -73,9 +74,11 @@ const Categories = () => {
         background="is-primary"
       >
 
-        <button className="button mx-1 my-1" onClick={() => setRedirect('/add-category')}>
-          Agregar
-        </button>
+        <Button
+          label="Agregar"
+          // color="is-primary"
+          handleClick={() => setRedirect('/add-category')}
+        />
 
         {alert.message && (
           <Notification className="mx-1 my-1"
