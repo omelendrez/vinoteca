@@ -10,7 +10,8 @@
     },
     {
       "title": "Descripción",
-      "columnId": "description"
+      "columnId": "description",
+      "hideEmpty": true
     },
     {
       "title": "Categoría",
@@ -34,29 +35,34 @@
     },
     {
       "title": "Última orden",
-      "columnId": "lastPurchaseOrder"
+      "columnId": "lastPurchaseOrder",
+      "hideEmpty": true
     },
     {
       "title": "Fecha",
       "columnId": "lastPurchaseDate",
-      "isDate": true
+      "isDate": true,
+      "hideEmpty": true
     },
     {
       "title": "Precio",
       "columnId": "lastPurchasePrice",
-      "isAmount": true
+      "isAmount": true,
+      "hideEmpty": true
     },
     {
       "className": "dropdown-divider"
     },
     {
       "title": "Última venta",
-      "columnId": "lastSaleOrder"
+      "columnId": "lastSaleOrder",
+      "hideEmpty": true
     },
     {
       "title": "Fecha",
       "columnId": "lastSaleeDate",
-      "isDate": true
+      "isDate": true,
+      "hideEmpty": true
     }
   ]
 }
