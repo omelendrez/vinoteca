@@ -17,7 +17,7 @@
       "onlyText": true,
       "isLimited": [
         5,
-        30
+        60
       ]
     },
     {
