@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react"
-import { Redirect } from "react-router-dom"
 import Notification from "../common/Notification"
 import Loading from "../common/Loading"
 import Container from "../common/Container"
@@ -11,7 +10,6 @@ const Products = () => {
   const [products, setProducts] = useState({ rows: [] })
   const [alert, setAlert] = useState({})
   const [isLoading, setIsLoading] = useState(false)
-  const [redirect, setRedirect] = useState('')
 
   useEffect(() => {
     setIsLoading(true)
@@ -36,8 +34,6 @@ const Products = () => {
   const { rows } = products
   return (
     <>
-      {redirect && <Redirect to={redirect} />}
-
       <Container
         title="Faltantes"
         subTitle="Listado de productos faltantes"
