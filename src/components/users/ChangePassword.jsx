@@ -1,12 +1,11 @@
 import React, { useState } from 'react'
 import { Redirect } from 'react-router-dom'
-import Notification from '../common/Notification'
 import Container from '../common/Container'
 import Form from '../common/Form'
-import FormField from '../common/FormField'
 import { changePassword } from '../../services/users'
 import { cleanData } from '../../helpers'
 import { getData } from '../../localStorage'
+import { fields } from './changePasswordForm.json'
 
 const ChangePassword = () => {
 
@@ -19,24 +18,11 @@ const ChangePassword = () => {
     confirmPassword: ''
   }
 
-  const [form, setForm] = useState(formDefault)
+  const [form] = useState(formDefault)
   const [redirect, setRedirect] = useState('')
   const [alert, setAlert] = useState({})
 
-  const clearAlert = () => {
-    setAlert({})
-  }
-
-  const handleChange = (e => {
-    e.preventDefault()
-    setAlert({})
-    setForm({
-      ...form,
-      [e.target.id]: e.target.value
-    })
-  })
-
-  const validatePasswords = () => {
+  const validatePasswords = (form) => {
     if (!form.oldPassword || !form.password || !form.confirmPassword) {
       setAlert({ message: 'Debe completar las tres passwords' })
       return false
@@ -55,9 +41,8 @@ const ChangePassword = () => {
 
   }
 
-  const handleSave = (e) => {
-    e.preventDefault()
-    if (validatePasswords()) {
+  const handleSave = (form) => {
+    if (validatePasswords(form)) {
 
       const cleanedForm = cleanData(form)
       changePassword(cleanedForm)
@@ -81,57 +66,13 @@ const ChangePassword = () => {
         background="is-primary"
       >
         <Form
-          formHeader={form.name}
-          handleSave={handleSave}
+          formHeader={form.id ? form.name : 'Nueva Password'}
+          handleSave={form => handleSave(form)}
           handleCancel={handleCancel}
-        >
-          <FormField
-            label="Nombre"
-            type="text"
-            fieldId="name"
-            fieldValue={form.name}
-            handleChange={handleChange}
-            icon="fas fa-user"
-            readOnly={true}
-          />
-          <FormField
-            label="Email"
-            type="email"
-            fieldId="email"
-            fieldValue={form.email}
-            handleChange={handleChange}
-            icon="fas fa-at"
-            readOnly={true}
-          />
-          <FormField
-            label="Password actual"
-            type="password"
-            fieldId="oldPassword"
-            fieldValue={form.oldPassword}
-            handleChange={handleChange}
-            icon="fas fa-key"
-            autoComplete="new-password"
-          />
-          <FormField
-            label="Nueva password"
-            type="password"
-            fieldId="password"
-            fieldValue={form.password}
-            handleChange={handleChange}
-            icon="fas fa-key"
-            autoComplete="new-password"
-          />
-          <FormField
-            label="Confirmar nueva password"
-            type="password"
-            fieldId="confirmPassword"
-            fieldValue={form.confirmPassword}
-            handleChange={handleChange}
-            icon="fas fa-key"
-            autoComplete="new-password"
-          />
-          <Notification message={alert.message} clear={clearAlert} type={alert.type} />
-        </Form>
+          fields={fields}
+          currentForm={form}
+          error={alert}
+        />
       </Container>
 
     </>
