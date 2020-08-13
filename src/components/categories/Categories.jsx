@@ -77,6 +77,10 @@ const Categories = () => {
           Agregar
         </button>
 
+        <a href="#" className="button is-floating is-primary">
+          <i className="fas fa-chevron-up"></i>
+        </a>
+
         {alert.message && (
           <Notification className="mx-1 my-1"
             message={alert.message}
