@@ -105,6 +105,7 @@ const Categories = () => {
         {isLoading && <Loading />}
 
       </Container>
+
       <Footer
         onAdd={() => setRedirect('/add-category')}
         onTop="true"

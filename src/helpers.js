@@ -63,8 +63,10 @@ export const cleanData = data => {
 export const formatAmount = amount => new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS' }).format(amount)
 
 export const toTop = () => {
-  if (document.body.scrollTop !== 0 || document.documentElement.scrollTop !== 0) {
-    window.scrollBy(0, -50);
-    requestAnimationFrame(toTop);
-  }
+
+  const container = document.getElementsByClassName('list-container')
+  container[0].scrollTo({
+    top: 0,
+    behavior: 'smooth'
+  })
 }
