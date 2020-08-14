@@ -5,7 +5,7 @@ import ListFooter from './ListFooter'
 
 const List = ({ rows, columns, handleEdit, handleDelete }) => {
   return (
-    <div className="container list-container">
+    <div className="container list-container mb-6">
       {rows.length > 0 && rows.map((row, index) => {
         const header = []
         const status = row.statusId
