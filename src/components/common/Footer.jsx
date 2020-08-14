@@ -10,7 +10,7 @@ const Footer = ({ onAdd, onTop }) => {
           <div className="button-text">Agregar</div>
         </div>
         : null}
-      {onAdd ?
+      {onTop ?
         <div className="footer-button" onClick={() => toTop()}>
           <i className="fas fa-chevron-up fa-2x"></i>
           <div className="button-text">Subir</div>
