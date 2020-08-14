@@ -63,6 +63,5 @@ export const cleanData = data => {
 export const formatAmount = amount => new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS' }).format(amount)
 
 export const toTop = () => {
-  document.body.scrollTop = 0; // For Safari
-  document.documentElement.scrollTop = 0
+  console.log('top')
 }
