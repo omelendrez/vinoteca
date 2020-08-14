@@ -3,7 +3,7 @@ import { toTop } from '../../helpers'
 
 const Footer = ({ onAdd, onTop }) => {
   return (
-    <footer className="the-footer is-fullwidth has-background-white-ter">
+    <footer className="the-footer is-size-6 is-fullwidth has-background-white-ter">
       {onAdd ?
         <div className="footer-button" onClick={onAdd}>
           <i className="fas fa-plus-circle fa-2x"></i>
