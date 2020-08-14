@@ -1,7 +1,7 @@
 import React from 'react'
 import { toTop } from '../../helpers'
 
-const Footer = ({ onAdd }) => {
+const Footer = ({ onAdd, onTop }) => {
   return (
     <footer className="the-footer is-fullwidth has-background-white-ter">
       {onAdd ?
@@ -10,7 +10,7 @@ const Footer = ({ onAdd }) => {
           <div className="button-text">Agregar</div>
         </div>
         : null}
-      {onAdd ?
+      {onTop ?
         <div className="footer-button" onClick={() => toTop()}>
           <i className="fas fa-chevron-up fa-2x"></i>
           <div className="button-text">Subir</div>
