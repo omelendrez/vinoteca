@@ -4,6 +4,7 @@ import Notification from "../common/Notification"
 import Loading from "../common/Loading"
 import Container from "../common/Container"
 import List from "../common/List"
+import Footer from '../common/Footer'
 import Confirm from "../common/Confirm"
 import { getCategories, deleteCategory } from "../../services/categories"
 import { columns } from './list.json'
@@ -73,14 +74,6 @@ const Categories = () => {
         background="is-primary"
       >
 
-        <button className="button mx-1 my-1" onClick={() => setRedirect('/add-category')}>
-          Agregar
-        </button>
-
-        <a href="#" className="button is-floating is-primary">
-          <i className="fas fa-chevron-up"></i>
-        </a>
-
         {alert.message && (
           <Notification className="mx-1 my-1"
             message={alert.message}
@@ -112,6 +105,9 @@ const Categories = () => {
         {isLoading && <Loading />}
 
       </Container>
+      <Footer
+        onAdd={() => setRedirect('/add-category')}
+      />
 
     </>
   )
