@@ -3,6 +3,7 @@ import Notification from "../common/Notification"
 import Loading from "../common/Loading"
 import Container from "../common/Container"
 import List from '../common/List'
+import Footer from '../common/Footer'
 import { getLowStockProducts } from "../../services/products"
 import { columns } from './lowStockList.json'
 
@@ -51,6 +52,10 @@ const Products = () => {
         {isLoading && <Loading />}
 
       </Container>
+      <Footer
+        onTop="true"
+      />
+
 
     </>
   )

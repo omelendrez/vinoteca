@@ -4,6 +4,7 @@ import Notification from "../common/Notification"
 import Loading from "../common/Loading"
 import Container from "../common/Container"
 import List from '../common/List'
+import Footer from '../common/Footer'
 import Confirm from "../common/Confirm"
 import { getProducts, deleteProduct } from "../../services/products"
 import { columns } from './list.json'
@@ -72,10 +73,6 @@ const Products = () => {
         width="is-6"
         background="is-info"
       >
-        <button className="button mx-1 my-1" onClick={() => setRedirect("/add-product")}>
-          Agregar
-        </button>
-
         <Notification message={alert.message} className="mx-1 my-1" clear={clearAlert} type={alert.type} />
 
         <List
@@ -100,6 +97,10 @@ const Products = () => {
         {isLoading && <Loading />}
 
       </Container>
+      <Footer
+        onAdd={() => setRedirect('/add-product')}
+        onTop="true"
+      />
 
     </>
   )

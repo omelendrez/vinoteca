@@ -3,6 +3,7 @@ import Notification from "../common/Notification"
 import Loading from "../common/Loading"
 import Container from "../common/Container"
 import List from '../common/List'
+import Footer from '../common/Footer'
 import { getInventory } from '../../services/inventory'
 import { columns } from './list.json'
 
@@ -50,6 +51,9 @@ const Inventory = () => {
         {isLoading && <Loading />}
 
       </Container>
+      <Footer
+        onTop="true"
+      />
 
     </>
   )
