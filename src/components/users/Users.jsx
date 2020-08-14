@@ -4,6 +4,7 @@ import Notification from '../common/Notification'
 import Loading from '../common/Loading'
 import Container from '../common/Container'
 import List from '../common/List'
+import Footer from '../common/Footer'
 import Confirm from '../common/Confirm'
 import { getUsers, deleteUser } from '../../services/users'
 import { columns } from './list.json'
@@ -72,9 +73,6 @@ const Users = () => {
         width="is-6"
         background="is-primary"
       >
-        <button className="button mx-1 my-1" onClick={() => setRedirect('/add-user')}>
-          Agregar
-        </button>
 
         <Notification message={alert.message} className="mx-1 my-1" clear={clearAlert} type={alert.type} />
 
@@ -96,6 +94,10 @@ const Users = () => {
         {isLoading && <Loading />}
 
       </Container>
+      <Footer
+        onAdd={() => setRedirect('/add-user')}
+        onTop="true"
+      />
 
     </>
   )

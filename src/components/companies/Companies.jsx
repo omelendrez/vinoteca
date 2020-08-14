@@ -4,6 +4,7 @@ import Notification from '../common/Notification'
 import Loading from '../common/Loading'
 import Container from '../common/Container'
 import List from '../common/List'
+import Footer from '../common/Footer'
 import Confirm from '../common/Confirm'
 import { getCompanies, deleteCompany } from '../../services/companies'
 import { columns } from './list.json'
@@ -73,10 +74,6 @@ const Companies = () => {
         background="is-primary"
       >
 
-        <button className="button mx-1 my-1" onClick={() => setRedirect('/add-company')}>
-          Agregar
-        </button>
-
         <Notification message={alert.message} className="mx-1 my-1" clear={clearAlert} type={alert.type} />
 
         <List
@@ -97,6 +94,10 @@ const Companies = () => {
         {isLoading && <Loading />}
 
       </Container>
+      <Footer
+        onAdd={() => setRedirect('/add-company')}
+        onTop="true"
+      />
 
     </>
   )
