@@ -29,6 +29,7 @@ const BarcodeScanner = () => {
         setBarcode(result.text)
         codeReader.reset()
         setIsScanning(false)
+        window.navigator.vibrate(200)
       })
       .catch(err => console.log(err));
   }
