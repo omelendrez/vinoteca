@@ -30,6 +30,7 @@ import InventoryVariationForm from "./components/inventory/InventoryVariationFor
 import Orders from './components/orders/Orders'
 import OrderForm from './components/orders/OrderForm'
 import OrderDetails from './components/orders/OrderDetails'
+import BarcodeScanner from './components/common/BarcodeScanner'
 import { getData } from "./localStorage"
 
 function App() {
@@ -84,6 +85,7 @@ function App() {
               <Route path="/orders" exact component={Orders} />
               <Route path="/add-order" exact component={OrderForm} />
               <Route path="/order-details/:id" exact component={OrderDetails} />
+              <Route path="/scanner" exact component={BarcodeScanner} />
             </Switch>
           </main>
         )}
