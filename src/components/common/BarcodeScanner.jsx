@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import { BrowserQRCodeReader } from '@zxing/library'
-const codeReader = new BrowserQRCodeReader();
+import { BrowserMultiFormatReader } from '@zxing/library'
+const codeReader = new BrowserMultiFormatReader();
 
 const BarcodeScanner = () => {
   const [deviceId, setDeviceId] = useState('')
