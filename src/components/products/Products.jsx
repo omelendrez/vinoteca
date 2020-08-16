@@ -6,6 +6,7 @@ import Container from "../common/Container"
 import List from '../common/List'
 import Footer from '../common/Footer'
 import Confirm from "../common/Confirm"
+import Scanner from '../common/BarcodeScanner'
 import { getProducts, deleteProduct } from "../../services/products"
 import { columns } from './list.json'
 
@@ -16,10 +17,12 @@ const Products = () => {
   const [redirect, setRedirect] = useState('')
   const [update, setUpdate] = useState(false)
   const [product, setProduct] = useState({})
+  const [showSearch, setShowSearch] = useState(false)
+  const [search, setSearch] = useState('')
 
   useEffect(() => {
     setIsLoading(true)
-    getProducts()
+    getProducts(search)
       .then((products) => {
         setProducts(products)
         setIsLoading(false)
@@ -31,7 +34,7 @@ const Products = () => {
         setAlert({ message: error.message, type: "is-danger" })
         setIsLoading(false)
       })
-  }, [])
+  }, [search])
 
   const clearAlert = () => {
     setAlert({})
@@ -60,6 +63,18 @@ const Products = () => {
         setAlert({ message: error.message, type: 'is-danger' })
         setIsLoading(false)
       })
+  }
+
+  const handleSearch = e => {
+    e.preventDefault()
+    setShowSearch(true)
+  }
+
+  const handleRead = code => {
+    if (code) {
+      setSearch(code)
+    }
+    setShowSearch(false)
   }
 
   const { rows } = products
@@ -99,7 +114,12 @@ const Products = () => {
       </Container>
       <Footer
         onAdd={() => setRedirect('/add-product')}
+        onSearch={(e) => handleSearch(e)}
         onTop="true"
+      />
+      <Scanner
+        show={showSearch}
+        codeRead={handleRead}
       />
 
     </>

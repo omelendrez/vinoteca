@@ -1,10 +1,10 @@
 import api from "./api"
 import { handleError } from "../helpers"
 
-export const getProducts = () => {
+export const getProducts = (search) => {
   return new Promise((resolve, reject) => {
     api
-      .get("products")
+      .get(`products?search=${search}`)
       .then((response) => resolve(response.data))
       .catch((error) => reject(handleError(error)))
   })
