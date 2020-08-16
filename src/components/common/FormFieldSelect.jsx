@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import Modal from './Modal'
-import Search from './Search'
+import Search from './SelectSearch'
 import { getProducts } from '../../services/products'
 import { getStores } from '../../services/stores'
 import { getCategories } from '../../services/categories'
