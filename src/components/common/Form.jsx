@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import FormField from './FormField'
 import FormTextArea from './FormTextArea'
 import FormFieldSelect from './FormFieldSelect'
+import FormFieldBarcode from './FormFieldBarcode'
 import Notification from '../common/Notification'
 import Validator from '../../validator'
 
@@ -92,6 +93,17 @@ const Form = ({ formHeader, fields, currentForm, handleSave, handleCancel, error
                   icon={field.icon}
                   error={formErrors[field.fieldId]}
                 />
+              case 'barcode':
+                return <FormFieldBarcode
+                  key={index}
+                  label={field.label}
+                  fieldId={field.fieldId}
+                  fieldValue={form[field.fieldId]}
+                  readOnly={true}
+                  handleChange={handleChange}
+                  icon={field.icon}
+                  error={formErrors[field.fieldId]}
+                />
               default:
                 return <FormField
                   key={index}
@@ -100,7 +112,7 @@ const Form = ({ formHeader, fields, currentForm, handleSave, handleCancel, error
                   fieldId={field.fieldId}
                   fieldValue={form[field.fieldId]}
                   readOnly={field.readOnly}
-                  handleChange={handleChange}
+                  codeRead={handleChange}
                   icon={field.icon}
                   error={formErrors[field.fieldId]}
                 />

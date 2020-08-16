@@ -1,6 +1,16 @@
 {
   "fields": [
     {
+      "label": "Barcode",
+      "icon": "fa fa-barcode",
+      "type": "barcode",
+      "fieldId": "barcode",
+      "isLimited": [
+        0,
+        13
+      ]
+    },
+    {
       "label": "Categoría",
       "type": "select",
       "fieldId": "categoryId",
