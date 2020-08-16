@@ -55,5 +55,26 @@
         "url": "/stores"
       }
     ]
+  },
+  {
+    "group": "Usuarios",
+    "profile": 1,
+    "options": [
+      {
+        "title": "Usuarios",
+        "url": "/users"
+      },
+      {
+        "title": "divider"
+      },
+      {
+        "title": "Empresas",
+        "url": "/companies"
+      },
+      {
+        "title": "Perfiles",
+        "url": "/profiles"
+      }
+    ]
   }
 ]

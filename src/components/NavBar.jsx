@@ -36,24 +36,16 @@ const NavBar = ({ user, setUser }) => {
           <>
             <div className='navbar-start'> {/* Opciones la izquierda en la navbar */}
 
-              {options.map(group =>
-                <NavBarGroup title={group.group} handleToggle={handleToggle}>
-                  {group.options.map(option => {
+              {options.map((group, index) =>
+                (!group.profile || group.profile === user.profileId) &&
+                <NavBarGroup key={index} title={group.group} handleToggle={handleToggle}>
+                  {group.options.map((option, index) => {
                     if (option.title === 'divider') {
-                      return (<hr className="dropdown-divider" />)
+                      return (<hr key={index} className="dropdown-divider" />)
                     } else {
-                      return <NavLink to={option.url}>{option.title}</NavLink>
+                      return <NavLink key={index} to={option.url}>{option.title}</NavLink>
                     }
                   })}
-                </NavBarGroup>
-              )}
-
-              {user.profileId === 1 && (
-                <NavBarGroup title="Usuarios" handleToggle={handleToggle}>
-                  <NavLink to="/users">Usuarios</NavLink>
-                  <hr className="dropdown-divider" />
-                  <NavLink to="/companies">Empresas</NavLink>
-                  <NavLink to="/profiles">Perfiles</NavLink>
                 </NavBarGroup>
               )}
 
