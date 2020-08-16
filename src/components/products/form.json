@@ -30,7 +30,7 @@
       "fieldId": "name",
       "isLimited": [
         5,
-        30
+        60
       ]
     },
     {
