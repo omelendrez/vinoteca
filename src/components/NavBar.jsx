@@ -38,7 +38,6 @@ const NavBar = ({ user, setUser }) => {
               <NavBarGroup title="Productos" handleToggle={handleToggle}>
                 <NavLink to="/categories">Categorías</NavLink>
                 <NavLink to="/products">Productos</NavLink>
-                <NavLink to="/scanner">Scanner</NavLink>
               </NavBarGroup>
 
               <NavBarGroup title="Inventario" handleToggle={handleToggle}>
