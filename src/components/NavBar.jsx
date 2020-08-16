@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import NavLink from './NavLink'
 import NavBarGroup from './NavBarGroup'
 import "./NavBar.scss"
+import options from './NavBarMenu.json'
 
 const NavBar = ({ user, setUser }) => {
   const [isActive, setIsActive] = useState(false)
@@ -35,25 +36,17 @@ const NavBar = ({ user, setUser }) => {
           <>
             <div className='navbar-start'> {/* Opciones la izquierda en la navbar */}
 
-              <NavBarGroup title="Productos" handleToggle={handleToggle}>
-                <NavLink to="/categories">Categorías</NavLink>
-                <NavLink to="/products">Productos</NavLink>
-              </NavBarGroup>
-
-              <NavBarGroup title="Inventario" handleToggle={handleToggle}>
-                <NavLink to="/low-stock-products">Faltantes</NavLink>
-                <NavLink to="/inventory">Inventario</NavLink>
-                <NavLink to="/inventory-variations">Correciones de inventario</NavLink>
-                <hr className="dropdown-divider" />
-                <NavLink to="/variation-reasons">Motivos de variación</NavLink>
-              </NavBarGroup>
-
-              <NavBarGroup title="Órdenes de compra" handleToggle={handleToggle}>
-                <NavLink to="/orders">Órdenes de compra</NavLink>
-                <hr className="dropdown-divider" />
-                <NavLink to="/suppliers">Proveedores</NavLink>
-                <NavLink to="/stores">Depósitos</NavLink>
-              </NavBarGroup>
+              {options.map(group =>
+                <NavBarGroup title={group.group} handleToggle={handleToggle}>
+                  {group.options.map(option => {
+                    if (option.title === 'divider') {
+                      return (<hr className="dropdown-divider" />)
+                    } else {
+                      return <NavLink to={option.url}>{option.title}</NavLink>
+                    }
+                  })}
+                </NavBarGroup>
+              )}
 
               {user.profileId === 1 && (
                 <NavBarGroup title="Usuarios" handleToggle={handleToggle}>

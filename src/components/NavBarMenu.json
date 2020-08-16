@@ -1,0 +1,59 @@
+[
+  {
+    "group": "Productos",
+    "options": [
+      {
+        "title": "Categorías",
+        "url": "/categories"
+      },
+      {
+        "title": "Productos",
+        "url": "/products"
+      }
+    ]
+  },
+  {
+    "group": "Inventario",
+    "options": [
+      {
+        "title": "Faltantes",
+        "url": "/low-stock-products"
+      },
+      {
+        "title": "Inventario",
+        "url": "/inventory"
+      },
+      {
+        "title": "Correciones de inventario",
+        "url": "/inventory-variations"
+      },
+      {
+        "title": "divider"
+      },
+      {
+        "title": "Motivos de variación",
+        "url": "/variation-reasons"
+      }
+    ]
+  },
+  {
+    "group": "Órdenes de compra",
+    "options": [
+      {
+        "title": "Órdenes de compra",
+        "url": "/orders"
+      },
+      {
+        "title": "divider"
+      },
+      {
+        "title": "Proveedores",
+        "url": "/suppliers"
+      },
+      {
+        "title": "Depósitos",
+        "url": "/stores"
+      }
+    ]
+  }
+]
