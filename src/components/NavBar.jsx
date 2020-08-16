@@ -43,7 +43,7 @@ const NavBar = ({ user, setUser }) => {
                     if (option.title === 'divider') {
                       return (<hr key={index} className="dropdown-divider" />)
                     } else {
-                      return <NavLink key={index} to={option.url}>{option.title}</NavLink>
+                      return (!option.profile || option.profile === user.profileId) && <NavLink key={index} to={option.url}>{option.title}</NavLink>
                     }
                   })}
                 </NavBarGroup>
