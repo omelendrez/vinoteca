@@ -50,7 +50,7 @@ const BarcodeScanner = ({ codeRead }) => {
           Comenzar
         </button>
       </div>
-      <div className="my-2">
+      <div className="my-2 has-background-grey-lighter">
         <video
           className="video"
           id="video"
