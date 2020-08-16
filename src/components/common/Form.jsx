@@ -112,7 +112,7 @@ const Form = ({ formHeader, fields, currentForm, handleSave, handleCancel, error
                   fieldId={field.fieldId}
                   fieldValue={form[field.fieldId]}
                   readOnly={field.readOnly}
-                  codeRead={handleChange}
+                  handleChange={handleChange}
                   icon={field.icon}
                   error={formErrors[field.fieldId]}
                 />
