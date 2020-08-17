@@ -48,11 +48,11 @@ const Form = ({ formHeader, fields, currentForm, handleSave, handleCancel, error
     if (validate()) {
       const newForm = {}
       fields.map(field => {
-        if (form[field.fieldId]) {
-          newForm[field.fieldId] = form[field.fieldId]
-        } else {
-          newForm[field.fieldId] = field.type === 'number' ? 0 : ''
+        let fieldValue = form[field.fieldId]
+        if (!fieldValue) {
+          fieldValue = field.type === 'number' ? 0 : ''
         }
+        return newForm[field.fieldId] = fieldValue
       })
       if (currentForm.id) {
         newForm['id'] = form.id
