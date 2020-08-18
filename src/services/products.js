@@ -4,7 +4,7 @@ import { handleError } from "../helpers"
 export const getProducts = (search) => {
   return new Promise((resolve, reject) => {
     api
-      .get(`products?search=${search}`)
+      .get(`products?search=${search || ''}`)
       .then((response) => resolve(response.data))
       .catch((error) => reject(handleError(error)))
   })
