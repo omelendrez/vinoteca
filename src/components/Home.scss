@@ -5,3 +5,14 @@
   background-position: center center;
   background-size: contain;
 }
+
+.button.btn-scan {
+  display: block;
+  position: relative;
+  width: 30vw;
+  margin: 0 auto;
+  height: 100%;
+  @media only screen and (max-width: 640px) {
+    top: -3rem;
+  }
+}
