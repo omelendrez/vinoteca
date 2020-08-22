@@ -4,13 +4,13 @@ const Confirmodal = ({ title, isActive, close, children, handleOk, confirmText, 
   <div className={`modal ${isActive ? 'is-active' : ''}`}>
     <div className="modal-background"></div>
     <div className="modal-card">
-      <header className="modal-card-head has-background-danger">
+      <header className="modal-card-head has-background-primary">
         <p className="modal-card-title has-text-white">{title}</p>
         <button className="delete" aria-label="close" onClick={() => close()}></button>
       </header>
       {children}
       <footer className="modal-card-foot">
-        <button className={`button is-danger${isLoading ? ' is-loading' : ''}`} onClick={() => handleOk()}>{confirmText}</button>
+        <button className={`button is-primary${isLoading ? ' is-loading' : ''}`} onClick={() => handleOk()}>{confirmText}</button>
         {cancelText ? <button className="button" onClick={() => close()}>{cancelText}</button> : null}
       </footer>
     </div>
