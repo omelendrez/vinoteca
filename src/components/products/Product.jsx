@@ -3,13 +3,35 @@ import { columns } from './list.json'
 import { formatAmount, formatDate } from '../../helpers'
 import './product.scss'
 
-const Product = ({ product }) => {
+const Table = (props) => {
+  return (
+    <table className="table">
+      <tbody>
+        {props.children}
+      </tbody>
+    </table>
+  )
+}
+
+const RowTable = ({ item }) => {
+  return (
+    <tr>
+      <td>{item.supplierName}</td>
+      <th>{formatAmount(item.price)}</th>
+      <td>{formatDate(item.created)}</td>
+    </tr>
+
+  )
+}
+
+const Product = ({ product, prices }) => {
 
   const [current, setCurrent] = useState(1)
 
   return (
     <div className="card my-3 mx-1">
       <header className="card-header has-background-primary">
+        <button className="delete" aria-label="close"></button>
         <p className="card-header-title">
           {columns
             .filter(col => col.isHeader)
@@ -17,7 +39,7 @@ const Product = ({ product }) => {
           }
         </p>
       </header>
-      <div className="tabs is-toggle  is-fullwidth">
+      <div className="tabs is-toggle is-fullwidth">
         <ul>
           <li className={current === 1 ? 'is-active' : ''} onClick={e => setCurrent(1)}>
             <a href="# ">
@@ -25,11 +47,6 @@ const Product = ({ product }) => {
             </a>
           </li>
           <li className={current === 2 ? 'is-active' : ''} onClick={e => setCurrent(2)}>
-            <a href="# ">
-              <span>Stock</span>
-            </a>
-          </li>
-          <li className={current === 3 ? 'is-active' : ''} onClick={e => setCurrent(3)}>
             <a href="# ">
               <span>Precios</span>
             </a>
@@ -48,15 +65,22 @@ const Product = ({ product }) => {
               if (!value) return null
               if (col.isDate) value = formatDate(value)
               if (col.isAmount) value = formatAmount(value)
-              return (<div>
+              return (<div key={index}>
                 {col.title && <span key={index} className="has-text-weight-medium">{col.title}: </span>}
                 {value}
               </div>)
             })}
+
+          {current === 2 &&
+            <Table>
+              {prices.map((price, index) => <RowTable item={price} />)}
+            </Table>
+          }
+
         </div>
       </div>
 
-    </div>
+    </div >
   )
 }
 

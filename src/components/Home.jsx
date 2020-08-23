@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Redirect } from 'react-router-dom'
 import Scanner from './common/BarcodeScanner'
 import Modal from './common/Modal'
 import Product from './products/Product'
 import Confirm from './common/Confirm'
 import { getProducts } from '../services/products'
+import { getPrices } from '../services/prices'
 import './Home.scss'
 
 const Home = () => {
@@ -12,6 +13,15 @@ const Home = () => {
   const [product, setProduct] = useState({})
   const [showConfirm, setShowConfirm] = useState(false)
   const [redirect, setRedirect] = useState('')
+  const [prices, setPrices] = useState([])
+
+  useEffect(() => {
+    if (product.id) {
+      getPrices(product.id)
+        .then(prices => setPrices(prices.rows))
+        .catch(error => console.log(error))
+    }
+  }, [product])
 
   const handleScan = e => {
     e.preventDefault()
@@ -57,6 +67,7 @@ const Home = () => {
       >
         <Product
           product={product}
+          prices={prices}
         />
 
       </Modal>
