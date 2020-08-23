@@ -24,20 +24,20 @@ const RowTable = ({ item }) => {
   )
 }
 
-const Product = ({ product, prices }) => {
+const Product = ({ product, prices, close }) => {
 
   const [current, setCurrent] = useState(1)
 
   return (
     <div className="card my-3 mx-1">
       <header className="card-header has-background-primary">
-        <button className="delete" aria-label="close"></button>
         <p className="card-header-title">
           {columns
             .filter(col => col.isHeader)
             .map((col, index) => <span key={index}>{product[col.columnId]}&nbsp;</span>)
           }
         </p>
+        <button className="delete" aria-label="close" onClick={close}></button>
       </header>
       <div className="tabs is-toggle is-fullwidth">
         <ul>
@@ -73,7 +73,7 @@ const Product = ({ product, prices }) => {
 
           {current === 2 &&
             <Table>
-              {prices.map((price, index) => <RowTable item={price} />)}
+              {prices.map((price, index) => <RowTable key={index} item={price} />)}
             </Table>
           }
 

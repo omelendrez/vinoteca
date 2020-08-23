@@ -68,6 +68,7 @@ const Home = () => {
         <Product
           product={product}
           prices={prices}
+          close={() => setProduct({})}
         />
 
       </Modal>
