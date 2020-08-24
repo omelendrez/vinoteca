@@ -27,6 +27,8 @@ const fieldsToRemoveIfEmpty = [
 
 export const formatDate = date => moment(date).format('L')
 
+export const formatDateShort = date => moment(date).format('DD/MM/YY')
+
 export const formatDateFull = date => moment(date).format('DD-MM-YYYY HH:mm:ss')
 
 export const formatDateFromNow = date => moment(date).calendar()

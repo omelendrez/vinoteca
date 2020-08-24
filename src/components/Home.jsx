@@ -4,24 +4,13 @@ import Scanner from './common/BarcodeScanner'
 import Modal from './common/Modal'
 import Product from './products/Product'
 import Confirm from './common/Confirm'
-import { getProducts } from '../services/products'
-import { getPrices } from '../services/prices'
 import './Home.scss'
 
 const Home = () => {
   const [showScanner, setShowScanner] = useState(false)
-  const [product, setProduct] = useState({})
+  const [barcode, setBarcode] = useState('')
   const [showConfirm, setShowConfirm] = useState(false)
   const [redirect, setRedirect] = useState('')
-  const [prices, setPrices] = useState([])
-
-  useEffect(() => {
-    if (product.id) {
-      getPrices(product.id)
-        .then(prices => setPrices(prices.rows))
-        .catch(error => console.log(error))
-    }
-  }, [product])
 
   const handleScan = e => {
     e.preventDefault()
@@ -30,16 +19,7 @@ const Home = () => {
 
   const handleCodeRead = code => {
     if (code) {
-      setProduct({})
-      getProducts(code)
-        .then(products => {
-          if (products.count) {
-            setProduct(products.rows[0])
-          } else {
-            setShowConfirm(true)
-          }
-        })
-        .catch(error => console.log(error))
+      setBarcode(code)
     }
     setShowScanner(false)
   }
@@ -53,7 +33,7 @@ const Home = () => {
       {redirect && <Redirect to={redirect} />}
       <div className="image" />
 
-      <button className="button btn-scan" onClick={e => handleCodeRead(1234)}>
+      <button className="button btn-scan" onClick={e => handleCodeRead(1234555)}>
         <i className="fa fa-barcode fa-3x"></i>
       </button>
 
@@ -63,12 +43,11 @@ const Home = () => {
       />
 
       <Modal
-        isActive={product.id}
+        isActive={barcode}
       >
         <Product
-          product={product}
-          prices={prices}
-          close={() => setProduct({})}
+          barcode={barcode}
+          close={() => setBarcode('')}
         />
 
       </Modal>
