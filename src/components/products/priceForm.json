@@ -1,0 +1,21 @@
+{
+  "fields": [
+    {
+      "label": "Proveedor",
+      "type": "select",
+      "fieldId": "supplierId",
+      "options": "suppliers",
+      "icon": "fas fa-building",
+      "isRequired": true
+    },
+    {
+      "label": "Precio",
+      "type": "number",
+      "fieldId": "price",
+      "isRange": [
+        0,
+        32767
+      ]
+    }
+  ]
+}
