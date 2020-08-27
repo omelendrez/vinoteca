@@ -33,7 +33,7 @@ const Home = () => {
       {redirect && <Redirect to={redirect} />}
       <div className="image" />
 
-      <button className="button btn-scan" onClick={e => handleCodeRead(1234)}>
+      <button className="button btn-scan" onClick={code => handleCodeRead(code)}>
         <i className="fa fa-barcode fa-3x"></i>
       </button>
 
