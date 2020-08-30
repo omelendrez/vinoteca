@@ -1,20 +1,22 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Redirect } from 'react-router-dom'
 import Scanner from './common/BarcodeScanner'
 import Modal from './common/Modal'
 import Product from './products/Product'
-import Confirm from './common/Confirm'
 import './Home.scss'
 
 const Home = () => {
   const [showScanner, setShowScanner] = useState(false)
   const [barcode, setBarcode] = useState('')
-  const [showConfirm, setShowConfirm] = useState(false)
   const [redirect, setRedirect] = useState('')
 
   const handleScan = e => {
     e.preventDefault()
     setShowScanner(true)
+  }
+
+  const handleCancel = e => {
+    setBarcode('')
   }
 
   const handleCodeRead = code => {
@@ -33,7 +35,7 @@ const Home = () => {
       {redirect && <Redirect to={redirect} />}
       <div className="image" />
 
-      <button className="button btn-scan" onClick={code => handleCodeRead(code)}>
+      <button className="button btn-scan" onClick={e => handleScan(e)}>
         <i className="fa fa-barcode fa-3x"></i>
       </button>
 
@@ -47,19 +49,11 @@ const Home = () => {
       >
         <Product
           barcode={barcode}
-          close={() => setBarcode('')}
+          close={handleCancel}
+          confirmAdd={confirmAdd}
         />
 
       </Modal>
-
-      <Confirm
-        title="Producto inexistente"
-        message={<span>Desea agregarlo al sistema?</span>}
-        handleOk={confirmAdd}
-        okText="Agregar"
-        isActive={showConfirm}
-        close={() => setShowConfirm(false)}
-      />
 
     </>
   )

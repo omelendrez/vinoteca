@@ -1,7 +1,7 @@
 import React from 'react'
 import ConfirmModal from './ConfirmModal'
 
-const Confirm = ({ isActive, close, title, message, handleOk, okText, cancelText, isLoading }) => (
+const Confirm = ({ isActive, close, title, message, handleOk, okText, cancelText, isLoading, bgColor }) => (
   <ConfirmModal
     isActive={isActive}
     title={title}
@@ -10,6 +10,7 @@ const Confirm = ({ isActive, close, title, message, handleOk, okText, cancelText
     cancelText={cancelText || "Cancelar"}
     handleOk={handleOk}
     isLoading={isLoading}
+    bgColor={bgColor}
   >
     <section className="modal-card-body has-text-black">
       {message}

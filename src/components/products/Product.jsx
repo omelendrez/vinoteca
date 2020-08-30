@@ -26,7 +26,7 @@ const RowTable = ({ item, handleEdit, handleDelete }) => {
       <th>{formatAmount(item.price)}</th>
       <td>{formatDateShort(item.created)}</td>
 
-      <td>
+      <td className="row-buttons">
         <button className="button has-text-info" onClick={() => handleEdit(item)} >
           <i className="fa fa-edit"></i>
         </button>
@@ -40,7 +40,7 @@ const RowTable = ({ item, handleEdit, handleDelete }) => {
   )
 }
 
-const Product = ({ barcode, close }) => {
+const Product = ({ barcode, close, confirmAdd }) => {
   const priceDefault = {
     supplierId: '',
     price: 0
@@ -50,9 +50,10 @@ const Product = ({ barcode, close }) => {
   const [product, setProduct] = useState({})
   const [prices, setPrices] = useState([])
   const [current, setCurrent] = useState(1)
-  const [showConfirm, setShowConfirm] = useState(false)
+  const [showConfirmAdd, setShowConfirmAdd] = useState(false)
+  const [showConfirmDelete, setShowConfirmDelete] = useState(false)
   const [record, setRecord] = useState({})
-  const [alert, setAlert] = useState({})
+  const [error] = useState({})
   const [showForm, setShowForm] = useState(false)
 
   useEffect(() => {
@@ -60,6 +61,9 @@ const Product = ({ barcode, close }) => {
       getProducts(barcode)
         .then(data => {
           setProduct(data.rows[0])
+          if (!data.count) {
+            setShowConfirmAdd(true)
+          }
         })
         .catch(error => console.log(error))
     }
@@ -90,14 +94,14 @@ const Product = ({ barcode, close }) => {
 
   const handleDelete = item => {
     setRecord(item)
-    setShowConfirm(true)
+    setShowConfirmDelete(true)
   }
 
   const confirmDelete = () => {
     deletePrice(record)
       .then(() => {
         loadPrices()
-        setShowConfirm(false)
+        setShowConfirmDelete(false)
       })
       .catch(error => console.log(error))
   }
@@ -184,10 +188,21 @@ const Product = ({ barcode, close }) => {
       </div>
 
       <Confirm
-        isActive={showConfirm}
-        close={() => setShowConfirm(false)}
+        title="Eliminando precio"
+        isActive={showConfirmDelete}
+        close={() => setShowConfirmDelete(false)}
         handleOk={confirmDelete}
-        message="Confirma eliminar el registro?"
+        message={<span>Confirma eliminar el registro seleccionado?</span>}
+        bgColor="danger"
+      />
+
+      <Confirm
+        title="Código inexistente"
+        isActive={showConfirmAdd}
+        close={close}
+        handleOk={confirmAdd}
+        okText="Agregar"
+        message={<span>Desea agregarlo al sistema?</span>}
       />
 
       <Modal
@@ -199,7 +214,7 @@ const Product = ({ barcode, close }) => {
           currentForm={form}
           handleSave={form => handleSave(form)}
           handleCancel={handleCancel}
-          error={alert}
+          error={error}
         />
       </Modal>
 

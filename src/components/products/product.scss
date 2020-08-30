@@ -11,6 +11,9 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        .row-buttons {
+          white-space: nowrap;
+        }
       }
       div {
         span {
@@ -27,7 +30,4 @@
     }
   }
   
-  .prices {
-    display: flex;
-  }
 }
