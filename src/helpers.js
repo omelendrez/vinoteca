@@ -35,6 +35,9 @@ export const formatDateFromNow = date => moment(date).calendar()
 
 export const handleError = error => {
   window.navigator.vibrate(200)
+  if (error.response && error.response.data && error.response.data.error && error.response.data.error.code === 'ER_DUP_ENTRY') {
+    return { message: 'Nombre duplicado' }
+  }
   if (error.response && error.response.data && error.response.data.message) {
     if (error.response.data.code === 'token') {
       deleteData('token')
