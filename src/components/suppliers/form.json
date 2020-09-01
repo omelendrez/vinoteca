@@ -27,7 +27,7 @@
       "fieldId": "address",
       "isLimited": [
         5,
-        30
+        60
       ]
     },
     {
