@@ -31,7 +31,7 @@ const Search = ({ show, handleText }) => {
         </header>
         <div className="card-content">
           <input type="text" className="input" placeholder="Ingrese nombre a buscar" id="search" onChange={e => handleChange(e)}></input>
-          <button className="button is-primary input" onClick={e => handleSend(e)}>
+          <button className="button is-primary input mt-2" onClick={e => handleSend(e)}>
             Buscar
         </button>
         </div>
