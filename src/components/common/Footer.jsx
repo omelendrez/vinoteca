@@ -1,9 +1,16 @@
 import React from 'react'
 import { toTop } from '../../helpers'
 
-const Footer = ({ onAdd, onSearch, onTop }) => {
+const Footer = ({ onAdd, onScan, onSearch, onTop }) => {
   return (
     <footer className="the-footer has-background-white-ter">
+
+      {onScan ?
+        <div className="footer-button" onClick={onScan}>
+          <i className="fas fa-barcode fa-2x"></i>
+          <div className="button-text">Scan</div>
+        </div>
+        : null}
 
       {onSearch ?
         <div className="footer-button" onClick={onSearch}>

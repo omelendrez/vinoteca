@@ -7,6 +7,7 @@ import List from '../common/List'
 import Footer from '../common/Footer'
 import Confirm from "../common/Confirm"
 import Scanner from '../common/BarcodeScanner'
+import Search from '../common/Search'
 import { getProducts, deleteProduct } from "../../services/products"
 import { columns } from './list.json'
 
@@ -17,6 +18,7 @@ const Products = () => {
   const [redirect, setRedirect] = useState('')
   const [update, setUpdate] = useState(false)
   const [product, setProduct] = useState({})
+  const [showScan, setShowScan] = useState(false)
   const [showSearch, setShowSearch] = useState(false)
   const [search, setSearch] = useState('')
 
@@ -65,14 +67,26 @@ const Products = () => {
       })
   }
 
-  const handleSearch = e => {
+  const handleScan = e => {
     e.preventDefault()
-    setShowSearch(true)
+    setShowScan(true)
   }
 
   const handleRead = code => {
     if (code) {
       setSearch(code)
+    }
+    setShowScan(false)
+  }
+
+  const handleSearch = e => {
+    e.preventDefault()
+    setShowSearch(true)
+  }
+
+  const handleText = text => {
+    if (text) {
+      setSearch(text)
     }
     setShowSearch(false)
   }
@@ -114,12 +128,18 @@ const Products = () => {
       </Container>
       <Footer
         onAdd={() => setRedirect('/add-product')}
+        onScan={(e) => handleScan(e)}
         onSearch={(e) => handleSearch(e)}
         onTop="true"
       />
       <Scanner
-        show={showSearch}
+        show={showScan}
         codeRead={handleRead}
+      />
+
+      <Search
+        show={showSearch}
+        handleText={handleText}
       />
 
     </>
