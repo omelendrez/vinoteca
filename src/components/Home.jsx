@@ -8,7 +8,7 @@ import './Home.scss'
 const Home = () => {
   const [showScanner, setShowScanner] = useState(false)
   const [barcode, setBarcode] = useState('')
-  const [redirect, setRedirect] = useState('')
+  const [redirect, setRedirect] = useState({})
 
   const handleScan = e => {
     e.preventDefault()
@@ -27,7 +27,8 @@ const Home = () => {
   }
 
   const confirmAdd = () => {
-    setRedirect('/add-product')
+    const redirect = { pathname: '/add-product', state: { barcode: barcode } }
+    setRedirect(redirect)
   }
 
   return (
@@ -35,7 +36,7 @@ const Home = () => {
       {redirect && <Redirect to={redirect} />}
       <div className="image" />
 
-      <button className="button btn-scan" onClick={e => handleScan(e)}>
+      <button className="button btn-scan" onClick={e => handleCodeRead(12345)}>
         <i className="fa fa-barcode fa-3x"></i>
       </button>
 

@@ -74,7 +74,7 @@ const Product = ({ barcode, close, confirmAdd }) => {
   }, [product])
 
   const loadPrices = () => {
-    if (product.id) {
+    if (product && product.id) {
       getPrices(product.id)
         .then(prices => setPrices(prices.rows))
         .catch(error => console.log(error))
