@@ -81,6 +81,7 @@ const Products = () => {
 
   const handleSearch = e => {
     e.preventDefault()
+    setAlert({})
     setShowSearch(true)
   }
 
