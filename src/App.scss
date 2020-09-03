@@ -46,10 +46,11 @@ body {
     padding: 1rem;
     left: 1rem;
     
-    @media only screen and (max-width: 620px) {
+    @media only screen and (max-width: 768px) {
       flex-direction: row;
       padding: 0;
       padding-top: 0.6rem;
+      top: auto;
       bottom: 0;
       left: 0.25rem;
       right: 0.25rem;
@@ -61,14 +62,15 @@ body {
       justify-content: flex-start;
       align-items: center;
       flex: 1;
-      height: 4rem;
-      width: 4rem;
-      font-size: 14px;
+      font-size: 0.6rem;
       margin: 15px auto;
       cursor: pointer;
       
       i {
-        font-size: 3em;
+        font-size: 3rem;
+        @media only screen and (max-width: 768px) {
+          font-size: 2rem;
+        }
       }
     }
   }
