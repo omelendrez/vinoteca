@@ -29,7 +29,7 @@ const Products = () => {
         setProducts(products)
         setIsLoading(false)
         if (!products.count) {
-          setAlert({ message: 'La tabla no tiene registros para mostrar', type: 'is-light' })
+          setAlert({ message: 'No se encontraron registros', type: 'is-light' })
         }
       })
       .catch((error) => {
