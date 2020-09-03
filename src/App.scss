@@ -13,9 +13,6 @@ body {
     overflow-x: hidden;
     overflow-y: auto;
     max-height: calc(100vh - 220px);
-    &::-webkit-scrollbar {
-      width: 0px;
-    }
     @media only screen and (max-width: 620px) {
       margin-bottom: 3rem;
     }
@@ -41,14 +38,19 @@ body {
 
   .the-footer {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: space-between;
     align-items: center;
     position: fixed;
-    bottom: 0;
-    padding-top: 0.6rem;
-
+    top: 12rem;
+    padding: 1rem;
+    left: 1rem;
+    
     @media only screen and (max-width: 620px) {
+      flex-direction: row;
+      padding: 0;
+      padding-top: 0.6rem;
+      bottom: 0;
       left: 0.25rem;
       right: 0.25rem;
     }
@@ -62,7 +64,12 @@ body {
       height: 4rem;
       width: 4rem;
       font-size: 14px;
+      margin: 15px auto;
       cursor: pointer;
+      
+      i {
+        font-size: 3em;
+      }
     }
   }
 
