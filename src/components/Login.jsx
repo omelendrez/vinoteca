@@ -5,8 +5,10 @@ import { saveData, getData } from '../localStorage'
 
 const Login = ({ setUser }) => {
 
+	const loggedUser = getData('user')
+
 	const checked = getData('remember')
-	const defaultForm = { email: checked && getData('user') ? getData('user').email : '', password: '' }
+	const defaultForm = { email: checked && loggedUser ? loggedUser.email : '', password: '' }
 	const [form, setForm] = useState(defaultForm)
 	const [alert, setAlert] = useState({})
 	const [isLoading, setIsLoading] = useState(false)
@@ -34,7 +36,7 @@ const Login = ({ setUser }) => {
 				setAlert({ message: `Bienvenido ${user.name}`, type: 'is-success' })
 				setIsLoading(false)
 				setUser(user)
-				window.location.reload(false)
+				window.location.reload()
 			})
 			.catch(error => {
 				setAlert({ message: error.message, type: 'is-danger' })
