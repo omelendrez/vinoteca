@@ -9,6 +9,7 @@ const BarcodeScanner = ({ codeRead }) => {
   const [devices, setDevices] = useState([])
   const [isScanning, setIsScanning] = useState(false)
   const [barcode, setBarcode] = useState('')
+
   const changeDevice = (e => {
     setDeviceId(e.target.value)
     saveData('camera', e.target.value)
@@ -19,6 +20,7 @@ const BarcodeScanner = ({ codeRead }) => {
       .then(devices => {
         if (devices.length) {
           setDeviceId(devices[0].deviceId)
+          saveData('camera', devices[0].deviceId)
         }
         setDevices(devices)
         setDeviceId(defaultCamera)
