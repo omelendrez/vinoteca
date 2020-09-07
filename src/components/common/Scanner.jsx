@@ -41,8 +41,11 @@ const BarcodeScanner = ({ codeRead }) => {
       .catch(err => console.log(err));
   }
   const read = e => {
-    codeRead(e.target.value)
-    setBarcode('')
+    const key = e.which || e.keyCode
+    if (key === 13) {
+      codeRead(e.target.value)
+      setBarcode('')
+    }
   }
 
   const stop = e => {
@@ -54,7 +57,7 @@ const BarcodeScanner = ({ codeRead }) => {
 
   return (
     <div className="container has-background-white-ter px-4 py-4">
-      <input type="text" className="input my-2" autoFocus onChange={e => read(e)} value={barcode} />
+      <input type="text" className="input my-2" autoFocus onKeyDown={e => read(e)} defaultValue={barcode} />
       <select className="select input" onChange={e => changeDevice(e)} disabled={isScanning} value={deviceId}>
         {devices.map(device => <option key={device.deviceId} value={device.deviceId}>{device.label}</option>)}
       </select>
