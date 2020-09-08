@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
-import { login, forgotPassword } from '../services/login'
+import { Redirect } from 'react-router-dom'
 import Notification from './common/Notification'
+import { login, forgotPassword } from '../services/login'
 import { saveData, getData } from '../localStorage'
 
 const Login = ({ setUser }) => {
@@ -12,6 +13,7 @@ const Login = ({ setUser }) => {
 	const [form, setForm] = useState(defaultForm)
 	const [alert, setAlert] = useState({})
 	const [isLoading, setIsLoading] = useState(false)
+	const [redirect, setRedirect] = useState('')
 
 	const handleChange = e => {
 		if (alert) clearAlert()
@@ -36,7 +38,8 @@ const Login = ({ setUser }) => {
 				setAlert({ message: `Bienvenido ${user.name}`, type: 'is-success' })
 				setIsLoading(false)
 				setUser(user)
-				window.location.reload()
+				setRedirect('/')
+
 			})
 			.catch(error => {
 				setAlert({ message: error.message, type: 'is-danger' })
@@ -66,6 +69,10 @@ const Login = ({ setUser }) => {
 				setAlert({ message: error.message, type: 'is-danger' })
 				setIsLoading(false)
 			})
+	}
+
+	if (redirect) {
+		return <Redirect to={redirect} />
 	}
 
 	return (
