@@ -25,7 +25,7 @@ const BarcodeScanner = ({ codeRead }) => {
         setDevices(devices)
         setDeviceId(defaultCamera)
       })
-  }, [])
+  }, [defaultCamera])
 
   const scan = e => {
     e.preventDefault()

@@ -29,7 +29,7 @@ const ProductForm = (props) => {
     if (props.location && props.location.state && props.location.state.barcode) {
       setForm({ ...formDefault, barcode: props.location.state.barcode })
     }
-  }, [props.location])
+  }, [props.location, formDefault])
 
   const handleSave = (form) => {
     setIsLoading(true)
