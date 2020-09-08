@@ -13,6 +13,7 @@ const SelectSearch = ({ title, current, items, selectItem, icon }) => {
 
   const handleClick = item => { // El usuario ha hecho click (o touch en el teléfono) en una de los items de la lista
     selectItem(item) // Mandamos el item seleccionado al componente padre (OrderDetails) usando la función 'selectItem' que nos pasó
+    setSearch('')
   }
 
   const cancel = () => {

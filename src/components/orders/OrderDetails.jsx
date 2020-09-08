@@ -106,6 +106,7 @@ const OrderDetails = (props) => {
       .then(detail => {
         order.orderDetails.push(detail.data)
         setOrder(order)
+        setForm(detailsDefault)
         setShowForm(false)
       })
       .catch(error => console.log(error))
@@ -125,8 +126,8 @@ const OrderDetails = (props) => {
         order.orderDetails = newOrderDetails
         order.totalOrder = totalOrder
         setOrder(order)
-        setShowForm(false)
         setForm(detailsDefault)
+        setShowForm(false)
       })
       .catch(error => setFormAlert({ message: error.message, type: 'is-danger' }))
   }
