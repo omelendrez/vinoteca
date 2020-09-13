@@ -18,6 +18,7 @@ const BarcodeScanner = ({ codeRead }) => {
   useEffect(() => {
     codeReader.getVideoInputDevices()
       .then(devices => {
+        console.log(devices)
         if (devices.length) {
           setDeviceId(devices[0].deviceId)
           saveData('camera', devices[0].deviceId)
