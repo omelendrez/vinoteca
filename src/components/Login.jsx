@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { Redirect } from 'react-router-dom'
 import Notification from './common/Notification'
 import { login, forgotPassword } from '../services/login'
 import { saveData, getData } from '../localStorage'
@@ -13,7 +12,6 @@ const Login = ({ setUser }) => {
 	const [form, setForm] = useState(defaultForm)
 	const [alert, setAlert] = useState({})
 	const [isLoading, setIsLoading] = useState(false)
-	const [redirect, setRedirect] = useState('')
 
 	const handleChange = e => {
 		if (alert) clearAlert()
@@ -33,13 +31,12 @@ const Login = ({ setUser }) => {
 		login(form)
 			.then(data => {
 				const { token, user } = data
-				console.log(token, user)
 				saveData('token', token)
 				saveData('user', user)
 				setAlert({ message: `Bienvenido ${user.name}`, type: 'is-success' })
 				setIsLoading(false)
 				setUser(user)
-				setRedirect('/')
+				window.location.reload()
 
 			})
 			.catch(error => {
@@ -70,10 +67,6 @@ const Login = ({ setUser }) => {
 				setAlert({ message: error.message, type: 'is-danger' })
 				setIsLoading(false)
 			})
-	}
-
-	if (redirect) {
-		return <Redirect to={redirect} />
 	}
 
 	return (
