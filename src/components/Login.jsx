@@ -32,6 +32,7 @@ const Login = ({ setUser }) => {
 		setIsLoading(true)
 		login(form)
 			.then(data => {
+				console.log(data)
 				const { token, user } = data
 				saveData('token', token)
 				saveData('user', user)
