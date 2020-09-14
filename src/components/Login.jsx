@@ -32,8 +32,8 @@ const Login = ({ setUser }) => {
 		setIsLoading(true)
 		login(form)
 			.then(data => {
-				console.log(data)
 				const { token, user } = data
+				console.log(token, user)
 				saveData('token', token)
 				saveData('user', user)
 				setAlert({ message: `Bienvenido ${user.name}`, type: 'is-success' })
