@@ -12,7 +12,6 @@ const Login = ({ setUser }) => {
 	const [form, setForm] = useState(defaultForm)
 	const [alert, setAlert] = useState({})
 	const [isLoading, setIsLoading] = useState(false)
-	const [redirect, setRedirect] = useState('')
 
 	const handleChange = e => {
 		if (alert) clearAlert()
