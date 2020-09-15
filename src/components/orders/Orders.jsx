@@ -70,7 +70,7 @@ const Orders = () => {
       {redirect && <Redirect to={redirect} />}
 
       <Container
-        title="Órdenes de compra"
+        title="Compras"
         subTitle="Admnistración de órdenes de compra"
         width="is-6"
         background="is-warning"

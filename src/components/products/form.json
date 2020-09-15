@@ -48,7 +48,7 @@
       ]
     },
     {
-      "label": "Precio",
+      "label": "Precio de venta",
       "type": "number",
       "fieldId": "price",
       "isRange": [

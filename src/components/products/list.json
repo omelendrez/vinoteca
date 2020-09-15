@@ -26,7 +26,7 @@
       "columnId": "minimum"
     },
     {
-      "title": "Precio",
+      "title": "Precio de venta",
       "columnId": "price",
       "isAmount": true
     },
@@ -45,9 +45,14 @@
       "hideEmpty": true
     },
     {
-      "title": "Precio",
+      "title": "Último precio de compra",
       "columnId": "lastPurchasePrice",
       "isAmount": true,
+      "hideEmpty": true
+    },
+    {
+      "title": "Proveedor",
+      "columnId": "supplierName",
       "hideEmpty": true
     },
     {

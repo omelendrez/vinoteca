@@ -37,10 +37,10 @@
     ]
   },
   {
-    "group": "Órdenes de compra",
+    "group": "Compras",
     "options": [
       {
-        "title": "Órdenes de compra",
+        "title": "Compras",
         "url": "/orders"
       },
       {
@@ -53,6 +53,15 @@
       {
         "title": "Depósitos",
         "url": "/stores"
+      }
+    ]
+  },
+  {
+    "group": "Ventas",
+    "options": [
+      {
+        "title": "Ventas",
+        "url": "/sales"
       }
     ]
   },
