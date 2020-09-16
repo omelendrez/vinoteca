@@ -9,6 +9,7 @@ const Item = ({ isSelected, item, handleEdit, handleDelete, status }) => {
       <td>{productName}</td>
       <th>{quantity}</th>
       <th>{formatAmount(price)}</th>
+      <th>{formatAmount(quantity * price)}</th>
       <td className="px-0">
         <button className="button is-white has-text-info" onClick={() => handleEdit(item)} ><i className="fa fa-edit"></i></button>
       </td>

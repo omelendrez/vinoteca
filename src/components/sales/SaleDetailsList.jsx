@@ -11,6 +11,7 @@ const SaleDetailsList = ({ items, handleEdit, handleDelete, status, handleAdd, b
             <th>Producto</th>
             <th>Cant</th>
             <th>Precio</th>
+            <th>Total</th>
             {status !== 3 && <th colSpan="2"></th>}
           </tr>
         </thead>
