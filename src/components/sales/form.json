@@ -1,0 +1,19 @@
+{
+  "fields": [
+    {
+      "label": "Fecha",
+      "type": "date",
+      "fieldId": "date",
+      "icon": "fas fa-calendar-alt",
+      "isRequired": true
+    },
+    {
+      "label": "Depósito",
+      "type": "select",
+      "fieldId": "storeId",
+      "options": "stores",
+      "icon": "fas fa-warehouse",
+      "isRequired": true
+    }
+  ]
+}

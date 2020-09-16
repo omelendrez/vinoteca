@@ -30,6 +30,10 @@ import InventoryVariationForm from "./components/inventory/InventoryVariationFor
 import Orders from './components/orders/Orders'
 import OrderForm from './components/orders/OrderForm'
 import OrderDetails from './components/orders/OrderDetails'
+import Sales from './components/sales/Sales'
+import SaleForm from './components/sales/SaleForm'
+import SaleDetails from './components/sales/SaleDetails'
+
 import { getData } from "./localStorage"
 
 function App() {
@@ -84,6 +88,9 @@ function App() {
               <Route path="/orders" exact component={Orders} />
               <Route path="/add-order" exact component={OrderForm} />
               <Route path="/order-details/:id" exact component={OrderDetails} />
+              <Route path="/sales" exact component={Sales} />
+              <Route path="/add-sale" exact component={SaleForm} />
+              <Route path="/sale-details/:id" exact component={SaleDetails} />
             </Switch>
           </main>
         )}
