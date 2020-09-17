@@ -9,7 +9,7 @@ import Confirm from '../common/Confirm'
 import Notification from '../common/Notification'
 import Message from '../common/Message'
 import { addDetail, saveDetail, deleteDetail } from '../../services/sale_details'
-import { getSale, sendSale } from '../../services/sales'
+import { getSale, confirmSale } from '../../services/sales'
 import { fields } from './detailForm.json'
 import { cleanData } from '../../helpers'
 
@@ -151,7 +151,7 @@ const SaleDetails = (props) => {
       id: sale.id,
       statusId: SEND
     }
-    sendSale(newStatus)
+    confirmSale(newStatus)
       .then(sale => {
         setSale(sale)
         setConfirmAction('')

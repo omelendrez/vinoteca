@@ -18,25 +18,25 @@ export const getSale = id => {
   })
 }
 
-export const addSale = order => {
+export const addSale = sale => {
   return new Promise((resolve, reject) => {
-    api.post('sales', order)
+    api.post('sales', sale)
       .then(response => resolve(response.data))
       .catch(error => reject(handleError(error)))
   })
 }
 
-export const deleteSale = order => {
+export const deleteSale = sale => {
   return new Promise((resolve, reject) => {
-    api.delete(`sales/${order.id}`)
+    api.delete(`sales/${sale.id}`)
       .then(response => resolve(response.data))
       .catch(error => reject(handleError(error)))
   })
 }
 
-export const sendSale = order => {
+export const confirmSale = sale => {
   return new Promise((resolve, reject) => {
-    api.post(`send-order/${order.id}`, order)
+    api.put(`confirm-sale/${sale.id}`, sale)
       .then(response => resolve(response.data))
       .catch(error => reject(handleError(error)))
   })
