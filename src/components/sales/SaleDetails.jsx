@@ -79,6 +79,8 @@ const SaleDetails = (props) => {
     addDetail(form)
       .then(detail => {
         sale.saleDetails.push(detail.data)
+        const total = sale.totalSale + detail.data.total
+        sale.totalSale = total
         setSale(sale)
         setForm(detailsDefault)
         setShowForm(false)
@@ -125,7 +127,9 @@ const SaleDetails = (props) => {
     setIsLoading(true)
     deleteDetail(item)
       .then(() => {
+        const total = sale.totalSale - item.total
         sale.saleDetails = sale.saleDetails.filter(detail => detail.id !== item.id)
+        sale.totalSale = total
         setSale(sale)
         setItem({})
         setIsLoading(false)

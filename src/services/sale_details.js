@@ -4,7 +4,14 @@ import { handleError } from '../helpers'
 export const addDetail = detail => {
   return new Promise((resolve, reject) => {
     api.post('sale_details', detail)
-      .then(response => resolve(response.data))
+      .then(response => {
+        const { data: item } = response.data
+        updateDetails(detail)
+          .then(() => {
+            api.get(`sale_details/${item.id}`)
+              .then(response => resolve(response))
+          })
+      })
       .catch(error => reject(handleError(error)))
   })
 }
@@ -12,7 +19,13 @@ export const addDetail = detail => {
 export const saveDetail = detail => {
   return new Promise((resolve, reject) => {
     api.put(`sale_details/${detail.id}`, detail)
-      .then(response => resolve(response.data))
+      .then(() => {
+        updateDetails(detail)
+          .then(() => {
+            api.get(`sale_details/${detail.id}`)
+              .then(response => resolve(response.data))
+          })
+      })
       .catch(error => reject(handleError(error)))
   })
 }
@@ -20,6 +33,17 @@ export const saveDetail = detail => {
 export const deleteDetail = detail => {
   return new Promise((resolve, reject) => {
     api.delete(`sale_details/${detail.id}`)
+      .then(response => {
+        updateDetails(detail)
+        resolve(response.data)
+      })
+      .catch(error => reject(handleError(error)))
+  })
+}
+
+export const updateDetails = detail => {
+  return new Promise((resolve, reject) => {
+    api.post('sale_details_update', detail)
       .then(response => resolve(response.data))
       .catch(error => reject(handleError(error)))
   })
