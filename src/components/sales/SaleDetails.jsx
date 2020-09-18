@@ -10,6 +10,7 @@ import Notification from '../common/Notification'
 import Message from '../common/Message'
 import { addDetail, saveDetail, deleteDetail } from '../../services/sale_details'
 import { getSale, confirmSale } from '../../services/sales'
+import { getAvailability } from '../../services/inventory'
 import { fields } from './detailForm.json'
 import { cleanData } from '../../helpers'
 
@@ -64,11 +65,28 @@ const SaleDetails = (props) => {
 
   const handleOk = item => {
     item.saleId = sale.id
-    if (item.id) {
-      save(item)
-    } else {
-      add(item)
+
+
+    const params = {
+      storeId: sale.storeId,
+      productId: item.productId
     }
+
+    getAvailability(params)
+      .then(product => {
+        if (!product) {
+          return setFormAlert({ message: 'Este producto no tiene stock', type: 'is-danger' })
+        } else {
+          if (product.quantity < item.quantity) {
+            return setFormAlert({ message: `No hay cantidad suficiente en stock (${product.quantity})`, type: 'is-danger' })
+          }
+          if (item.id) {
+            save(item)
+          } else {
+            add(item)
+          }
+        }
+      })
   }
 
   const add = form => {
