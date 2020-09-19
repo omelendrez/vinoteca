@@ -1,25 +1,32 @@
 html {
   scroll-behavior: smooth;
+  --backgroundColor: #1d2b38;
 }
 
 body {
-  //background-color: rgb(0, 148, 126);
-  //background-color: lightsteelblue;
-  background-color:#1d2b38;
+
+  div.columns {
+    margin: 1px;
+    .column {
+      padding: 0;
+    }
+  }
+
+  background-color: var(--backgroundColor);
   height: 100vh;
   overflow-x: hidden; 
   .list-container {
     overflow: hidden;
     overflow-x: hidden;
     overflow-y: auto;
-    max-height: calc(100vh - 236px);
+    max-height: calc(100vh - 225px);
     @media only screen and (max-width: 620px) {
       margin-bottom: 3rem;
     }
 
   }
   .navbar.is-dark {
-    background-color: #1d2b38; // lightsteelblue
+    background-color:var(--backgroundColor); // lightsteelblue
   }
 
   .table {
