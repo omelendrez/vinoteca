@@ -5,14 +5,6 @@ html {
 
 body {
 
-  div.columns {
-    margin: 1px;
-    padding-bottom: 1rem;
-    .column {
-      padding: 0;
-    }
-  }
-
   background-color: var(--backgroundColor);
   height: 100vh;
   overflow-x: hidden; 
@@ -20,7 +12,7 @@ body {
     overflow: hidden;
     overflow-x: hidden;
     overflow-y: auto;
-    max-height: calc(100vh - 241px);
+    max-height: calc(100vh - 236px);
     @media only screen and (max-width: 620px) {
       margin-bottom: 3rem;
     }
