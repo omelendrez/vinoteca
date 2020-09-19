@@ -75,7 +75,7 @@ const SaleDetails = (props) => {
     getAvailability(params)
       .then(product => {
         if (!product) {
-          return setFormAlert({ message: 'Este producto no tiene stock', type: 'is-danger' })
+          return setFormAlert({ message: 'Este producto no es parte del inventario', type: 'is-danger' })
         } else {
           if (product.quantity < item.quantity) {
             return setFormAlert({ message: `No hay cantidad suficiente en stock (${product.quantity})`, type: 'is-danger' })
@@ -90,9 +90,9 @@ const SaleDetails = (props) => {
   }
 
   const add = form => {
-    const found = sale.saleDetails.find(item => item.productId === parseInt(form.productId) && item.storeId === parseInt(form.storeId))
+    const found = sale.saleDetails.find(item => item.productId === parseInt(form.productId))
     if (found) {
-      return setFormAlert({ message: 'Este producto ya existe en la orden', type: 'is-danger' })
+      return setFormAlert({ message: 'Producto ya ingresado en esta venta', type: 'is-danger' })
     }
     addDetail(form)
       .then(detail => {
