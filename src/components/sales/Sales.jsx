@@ -91,7 +91,7 @@ const Sales = () => {
 
         <Confirm
           title="Eliminando venta"
-          message={<span>Confirma eliminación de la venta <strong>{`Nro. ${sale.number} de ${sale.supplierName} del ${formatDate(sale.date)}`}</strong>?</span>}
+          message={<span>Confirma eliminación de la venta <strong>{`Nro. ${sale.number}`}</strong>?</span>}
           handleOk={confirmDelete}
           isActive={sale.id}
           close={() => setSale({})}
