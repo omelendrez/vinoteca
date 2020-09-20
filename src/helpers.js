@@ -75,3 +75,51 @@ export const toTop = () => {
     behavior: 'smooth'
   })
 }
+
+export const getPeriodName = period => {
+  const month = period.split('/')
+  let monthName = ''
+  switch (month[0]) {
+    case '01':
+      monthName = 'Ene'
+      break;
+    case '02':
+      monthName = 'Feb'
+      break;
+    case '03':
+      monthName = 'Mar'
+      break;
+    case '04':
+      monthName = 'Abr'
+      break;
+    case '05':
+      monthName = 'May'
+      break;
+    case '06':
+      monthName = 'Jun'
+      break;
+    case '07':
+      monthName = 'Jul'
+      break;
+    case '08':
+      monthName = 'Ago'
+      break;
+    case '09':
+      monthName = 'Sep'
+      break;
+    case '10':
+      monthName = 'Oct'
+      break;
+    case '11':
+      monthName = 'Nov'
+      break;
+    case '12':
+      monthName = 'Dic'
+      break;
+
+    default:
+      break;
+  }
+
+  return `${monthName}/${month[1]}`
+}

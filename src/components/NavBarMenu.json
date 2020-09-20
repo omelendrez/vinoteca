@@ -66,6 +66,15 @@
     ]
   },
   {
+    "group": "Reportes",
+    "options": [
+      {
+        "title": "Compras/Ventas",
+        "url": "/orders-sales"
+      }
+    ]
+  },
+  {
     "group": "Usuarios",
     "profile": 1,
     "options": [

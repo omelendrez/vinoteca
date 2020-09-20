@@ -33,6 +33,7 @@ import OrderDetails from './components/orders/OrderDetails'
 import Sales from './components/sales/Sales'
 import SaleForm from './components/sales/SaleForm'
 import SaleDetails from './components/sales/SaleDetails'
+import OrdersSales from './components/reports/OrdersSales'
 
 import { getData } from "./localStorage"
 
@@ -91,6 +92,7 @@ function App() {
               <Route path="/sales" exact component={Sales} />
               <Route path="/add-sale" exact component={SaleForm} />
               <Route path="/sale-details/:id" exact component={SaleDetails} />
+              <Route path="/orders-sales" exact component={OrdersSales} />
             </Switch>
           </main>
         )}
