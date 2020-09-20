@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { getGraphData } from '../../services/reports.js'
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend, LabelList } from 'recharts'
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Legend, LabelList } from 'recharts'
 import Container from '../common/Container'
 import { getPeriodName, formatAmount } from '../../helpers'
 
@@ -25,7 +25,7 @@ const OrdersSales = () => {
   const renderLabel = props => {
     const {
       x, y, width, value,
-    } = props;
+    } = props
 
     return (
       <g>
@@ -33,7 +33,7 @@ const OrdersSales = () => {
           {formatAmount(value)}
         </text>
       </g>
-    );
+    )
   }
 
   return (
