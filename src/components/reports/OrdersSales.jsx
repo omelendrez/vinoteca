@@ -45,8 +45,8 @@ const OrdersSales = () => {
     >
       <div className="card mt-1">
         <BarChart
-          width={600}
-          height={400}
+          width={640}
+          height={480}
           data={data}
           margin={{ top: 20, right: 20, left: 20, bottom: 20 }}
         >
