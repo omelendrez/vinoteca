@@ -10,6 +10,16 @@ export const getProducts = (search) => {
   })
 }
 
+export const getProduct = (product) => {
+  return new Promise((resolve, reject) => {
+    api
+      .get(`products/${product.productId}`)
+      .then((response) => resolve(response.data))
+      .catch((error) => reject(handleError(error)))
+  })
+}
+
+
 export const addProduct = (product) => {
   return new Promise((resolve, reject) => {
     api

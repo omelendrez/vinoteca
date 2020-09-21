@@ -11,10 +11,12 @@ import Message from '../common/Message'
 import { addDetail, saveDetail, deleteDetail } from '../../services/sale_details'
 import { getSale, confirmSale } from '../../services/sales'
 import { getAvailability } from '../../services/inventory'
+import { getProduct } from '../../services/products'
 import { fields } from './detailForm.json'
 import { cleanData } from '../../helpers'
 
 const SaleDetails = (props) => {
+  const NOTIFICATION = 1
   const SEND = 2
   const detailsDefault = {
     saleId: props.match.params.id,
@@ -44,6 +46,16 @@ const SaleDetails = (props) => {
           action: confirmSend,
           cancelText: 'Cancelar',
           handleOk: confirmSend
+        })
+        break
+
+      case NOTIFICATION:
+        setConfirm({
+          title: 'Producto con stock mínimo',
+          message: <span>Atención! El producto alcanzó el stock mínimo</span>,
+          okText: 'Ok',
+          action: () => setConfirmAction(''),
+          handleOk: () => setConfirmAction('')
         })
         break
 
@@ -80,11 +92,17 @@ const SaleDetails = (props) => {
           if (product.quantity < item.quantity) {
             return setFormAlert({ message: `No hay cantidad suficiente en stock (${product.quantity})`, type: 'is-danger' })
           }
-          if (item.id) {
-            save(item)
-          } else {
-            add(item)
-          }
+          getProduct(product)
+            .then(product => {
+              if (product.minimum !== 0 && product.minimum <= product.quantity - item.quantity) {
+                setConfirmAction(NOTIFICATION)
+              }
+              if (item.id) {
+                save(item)
+              } else {
+                add(item)
+              }
+            })
         }
       })
   }
@@ -222,7 +240,6 @@ const SaleDetails = (props) => {
           fields={fields}
           error={formAlert}
         />
-
       </Modal>
 
       <Confirm
@@ -234,6 +251,7 @@ const SaleDetails = (props) => {
         }
         isActive={item.id}
         handleOk={confirmDelete}
+        cancelText="Cancelar"
         close={() => setItem({})}
         isLoading={isLoading}
       />

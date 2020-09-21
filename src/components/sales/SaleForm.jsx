@@ -23,7 +23,7 @@ const SaleForm = () => {
       .then(sale => {
         setTimeout(() => {
           setRedirect('/sales')
-        }, 3000)
+        }, 1000)
         setAlert({ message: `Venta nro. ${sale.data.number} creada`, type: 'is-success' })
       })
       .catch(error => setAlert({ message: error.message, type: 'is-danger' }))
