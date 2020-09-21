@@ -40,9 +40,9 @@ const SaleDetails = (props) => {
     switch (confirmAction) {
       case SEND:
         setConfirm({
-          title: 'Enviar orden de compra',
-          message: <span>Confirma enviar orden de compra <strong>{sale.number}</strong>, de proveedor <strong>{sale.supplierName}</strong>?</span>,
-          okText: 'Enviar',
+          title: 'Confirmar',
+          message: <span>Confirma la venta <strong>{sale.number}</strong>?</span>,
+          okText: 'Confirmar',
           action: confirmSend,
           cancelText: 'Cancelar',
           handleOk: confirmSend
