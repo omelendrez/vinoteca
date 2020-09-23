@@ -7,7 +7,6 @@ import List from '../common/List'
 import Footer from '../common/Footer'
 import Confirm from "../common/Confirm"
 import { getSales, deleteSale } from "../../services/sales"
-import { formatDate } from '../../helpers'
 import { columns } from './list.json'
 
 const Sales = () => {

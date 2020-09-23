@@ -11,13 +11,7 @@ const OrdersSales = () => {
     getGraphData()
       .then(results => {
         const list = []
-        results.rows.map(item => {
-          list.push({
-            name: getPeriodName(item.periodName),
-            Compras: item.purchases,
-            Ventas: item.sales
-          })
-        })
+        results.rows.map(item => list.push({ name: getPeriodName(item.periodName), Compras: item.purchases, Ventas: item.sales }))
         setData(list)
       })
   }, [])

@@ -55,6 +55,7 @@ const Product = ({ barcode, close, confirmAdd }) => {
   const [record, setRecord] = useState({})
   const [error] = useState({})
   const [showForm, setShowForm] = useState(false)
+  const [update, setUpdate] = useState(false)
 
   useEffect(() => {
     if (barcode) {
@@ -70,16 +71,12 @@ const Product = ({ barcode, close, confirmAdd }) => {
   }, [barcode])
 
   useEffect(() => {
-    loadPrices()
-  }, [product])
-
-  const loadPrices = () => {
     if (product && product.id) {
       getPrices(product.id)
         .then(prices => setPrices(prices.rows))
         .catch(error => console.log(error))
     }
-  }
+  }, [product, update])
 
   const handleAdd = e => {
     e.preventDefault()
@@ -100,7 +97,7 @@ const Product = ({ barcode, close, confirmAdd }) => {
   const confirmDelete = () => {
     deletePrice(record)
       .then(() => {
-        loadPrices()
+        setUpdate(!update)
         setShowConfirmDelete(false)
       })
       .catch(error => console.log(error))
@@ -111,14 +108,14 @@ const Product = ({ barcode, close, confirmAdd }) => {
     if (item.id) {
       savePrice(item)
         .then(() => {
-          loadPrices()
+          setUpdate(!update)
           setShowForm(false)
         })
         .catch(error => console.log(error))
     } else {
       addPrice(item)
         .then(() => {
-          loadPrices()
+          setUpdate(!update)
           setShowForm(false)
         })
         .catch(error => console.log(error))
