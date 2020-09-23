@@ -17,3 +17,11 @@ export const getAvailability = params => {
       .catch(error => reject(handleError(error)))
   })
 }
+
+export const getBelowMinimum = () => {
+  return new Promise((resolve, reject) => {
+    api.get('inventory/below-minimum')
+      .then(response => resolve(response.data))
+      .catch(error => reject(handleError(error)))
+  })
+}

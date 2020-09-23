@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom'
 import Scanner from './common/BarcodeScanner'
 import Modal from './common/Modal'
 import Product from './products/Product'
+import BelowMinimum from './inventory/BelowMinimum'
 import './Home.scss'
 
 const Home = () => {
@@ -34,6 +35,9 @@ const Home = () => {
   return (
     <>
       {redirect && <Redirect to={redirect} />}
+
+      <BelowMinimum />
+
       <div className="image" />
 
       <button className="button btn-scan" onClick={e => handleScan(e)}>
