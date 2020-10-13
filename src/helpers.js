@@ -25,13 +25,13 @@ const fieldsToRemoveIfEmpty = [
   'lastSaleDate'
 ]
 
-export const formatDate = date => moment(date).format('L')
+export const formatDate = date => moment(date).add(3, 'hours').format('L')
 
-export const formatDateShort = date => moment(date).format('DD/MM/YY')
+export const formatDateShort = date => moment(date).add(3, 'hours').format('DD/MM/YY')
 
-export const formatDateFull = date => moment(date).format('DD-MM-YYYY HH:mm:ss')
+export const formatDateFull = date => moment(date).add(3, 'hours').format('DD-MM-YYYY HH:mm:ss')
 
-export const formatDateFromNow = date => moment(date).calendar()
+export const formatDateFromNow = date => moment(date).add(3, 'hours').calendar()
 
 export const handleError = error => {
   window.navigator.vibrate(200)
