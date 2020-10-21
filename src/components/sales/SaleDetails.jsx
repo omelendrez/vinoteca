@@ -94,7 +94,7 @@ const SaleDetails = (props) => {
           }
           getProduct(product)
             .then(product => {
-              if (product.minimum !== 0 && product.minimum <= product.quantity - item.quantity) {
+              if (product.minimum !== 0 && product.quantity - item.quantity <= product.minimum) {
                 setConfirmAction(NOTIFICATION)
               }
               if (item.id) {
