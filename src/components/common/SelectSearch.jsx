@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 
 const SelectSearch = ({ title, current, items, selectItem, icon }) => {
-  const LIST_SIZE = 10 // Límite máximo de items a mostrar en la búsqueda
+  const LIST_SIZE = 15 // Límite máximo de items a mostrar en la búsqueda
   const [search, setSearch] = useState('') // Aquí guardamos lo que el usuario está tipeando (handleChange)
   const [filteredItems, setFilteredItems] = useState([]) // Los ítems que se van a mostrar
   const [blankRows, setBlankRows] = useState([]) // Si los ítems a mostrar son menos que el límite máximo (LIST_SIZE) agregaremos renglones en blanco

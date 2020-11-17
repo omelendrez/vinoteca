@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from "react"
 import { BrowserRouter, Switch, Route } from "react-router-dom"
-import "./components/Login"
-import Login from "./components/Login"
-import NavBar from "./components/NavBar"
 import './App.scss'
 
+import Login from "./components/Login"
+import NavBar from "./components/NavBar"
 import Home from "./components/Home"
 import Companies from "./components/companies/Companies"
 import CompanyForm from './components/companies/CompanyForm'
