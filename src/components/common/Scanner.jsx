@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { BrowserMultiFormatReader } from '@zxing/library'
 import { getData, saveData } from '../../localStorage'
-const codeReader = new BrowserMultiFormatReader();
+const codeReader = new BrowserMultiFormatReader()
 
 const BarcodeScanner = ({ codeRead }) => {
   const defaultCamera = getData('camera')
@@ -19,8 +19,8 @@ const BarcodeScanner = ({ codeRead }) => {
     codeReader.listVideoInputDevices()
       .then(devices => {
         if (devices.length && !defaultCamera) {
-          setDeviceId(devices[0].deviceId)
-          saveData('camera', devices[0].deviceId)
+          setDeviceId(devices[0].deviceId || 0)
+          saveData('camera', devices[0].deviceId || 0)
         }
         setDevices(devices)
         setDeviceId(defaultCamera)
@@ -38,7 +38,7 @@ const BarcodeScanner = ({ codeRead }) => {
         window.navigator.vibrate(200)
         codeRead(result.text)
       })
-      .catch(err => console.log(err));
+      .catch(err => console.log(err))
   }
   const read = e => {
     const key = e.which || e.keyCode
@@ -58,8 +58,8 @@ const BarcodeScanner = ({ codeRead }) => {
   return (
     <div className="container has-background-white-ter px-4 py-4">
       <input type="text" className="input my-2" autoFocus onKeyDown={e => read(e)} defaultValue={barcode} />
-      <select className="select input" onChange={e => changeDevice(e)} disabled={isScanning} value={deviceId}>
-        {devices.map(device => <option key={device.deviceId} value={device.deviceId}>{device.label}</option>)}
+      <select className="select input" onChange={e => changeDevice(e)} disabled={isScanning} value={deviceId || 0}>
+        {devices.map((device, index) => <option key={index} value={device.deviceId || 0}>{device.label}</option>)}
       </select>
       <div className="my-2">
         <button className={`button is-primary input ${isScanning ? 'is-loading' : ''}`} onClick={e => scan(e)}>
